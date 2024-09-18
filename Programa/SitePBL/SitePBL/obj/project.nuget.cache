@@ -1,8 +1,18 @@
 {
   "version": 2,
-  "dgSpecHash": "O3mkMitXOSVQpueIRM4t5H0KzusjrJED+sDUC00t8SqYAh1/RMd4AuXaCikp/5VHTZN9mW77HTsE9aWG9aD8bg==",
+  "dgSpecHash": "rY1kpO88fGaUTiykZzAlmj9d+/OBN9YowJ0lASjt9yL5WLeCC3A4w0dCuCIHrjraqRvTgp/8ccyZgi1KSEQlKw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\lucas\\source\\repos\\PBL-EC5\\Programa\\SitePBL\\SitePBL\\SitePBL.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "C:\\Users\\lucas\\Source\\Repos\\PBL-EC5\\Programa\\SitePBL\\SitePBL\\SitePBL.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\lucas\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
+    "C:\\Users\\lucas\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
+    "C:\\Users\\lucas\\.nuget\\packages\\runtime.native.system.data.sqlclient.sni\\4.7.0\\runtime.native.system.data.sqlclient.sni.4.7.0.nupkg.sha512",
+    "C:\\Users\\lucas\\.nuget\\packages\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
+    "C:\\Users\\lucas\\.nuget\\packages\\runtime.win-x64.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-x64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
+    "C:\\Users\\lucas\\.nuget\\packages\\runtime.win-x86.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-x86.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
+    "C:\\Users\\lucas\\.nuget\\packages\\system.data.sqlclient\\4.8.6\\system.data.sqlclient.4.8.6.nupkg.sha512",
+    "C:\\Users\\lucas\\.nuget\\packages\\system.security.accesscontrol\\4.7.0\\system.security.accesscontrol.4.7.0.nupkg.sha512",
+    "C:\\Users\\lucas\\.nuget\\packages\\system.security.principal.windows\\4.7.0\\system.security.principal.windows.4.7.0.nupkg.sha512"
+  ],
   "logs": []
 }
