@@ -1,6 +1,6 @@
 
 --Criação DB
-create database Termo_Light
+create database		
 
 --Tabela de Empresa
 create table Empresa(
@@ -21,7 +21,7 @@ create table Sensor(
 )
 
 
-
+--Tabela de acesso
 create table Acesso(
 	id int primary key not null,
 	senha varchar(500) not null,

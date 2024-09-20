@@ -475,11 +475,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\lucas\\Source\\Repos\\PBL-EC5\\Programa\\SitePBL\\SitePBL\\SitePBL.csproj",
+      "projectUniqueName": "C:\\Users\\lucas\\repo\\.git\\PBL-EC5\\Programa\\SitePBL\\SitePBL\\SitePBL.csproj",
       "projectName": "SitePBL",
-      "projectPath": "C:\\Users\\lucas\\Source\\Repos\\PBL-EC5\\Programa\\SitePBL\\SitePBL\\SitePBL.csproj",
+      "projectPath": "C:\\Users\\lucas\\repo\\.git\\PBL-EC5\\Programa\\SitePBL\\SitePBL\\SitePBL.csproj",
       "packagesPath": "C:\\Users\\lucas\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\lucas\\Source\\Repos\\PBL-EC5\\Programa\\SitePBL\\SitePBL\\obj\\",
+      "outputPath": "C:\\Users\\lucas\\repo\\.git\\PBL-EC5\\Programa\\SitePBL\\SitePBL\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\lucas\\AppData\\Roaming\\NuGet\\NuGet.Config",
