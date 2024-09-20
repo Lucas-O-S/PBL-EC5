@@ -4,7 +4,7 @@
 	public class TemperaturaViewModel
 	{
 		//Data e hora que o dado foi salvo
-		DateTime data_hora {  get; set; }
+		public DateTime data_hora {  get; set; }
 
 		// valor da temperatura
 		public int valor { get; set; }

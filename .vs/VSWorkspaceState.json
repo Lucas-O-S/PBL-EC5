@@ -2,8 +2,10 @@
   "ExpandedNodes": [
     "",
     "\\Programa",
-    "\\Programa\\SitePBL"
+    "\\Programa\\SitePBL",
+    "\\Programa\\SitePBL\\SitePBL",
+    "\\Programa\\SitePBL\\SitePBL\\Models"
   ],
-  "SelectedNode": "\\Programa\\SitePBL\\SitePBL.sln",
+  "SelectedNode": "\\Programa\\SitePBL\\SitePBL\\Models\\TemperaturaViewModel.cs",
   "PreviewInSolutionExplorer": false
 }

@@ -3,7 +3,7 @@
 	public class AcessoViewModel
 	{
 		//ID do acesso, não deve deixar o usuario dar o numero, deve ser o ultimo
-		int id { get; set; }
+		public int id { get; set; }
 
 		//Senha do usuario
 		public string senha { get; set; }
