@@ -3,7 +3,7 @@ using System.Data.SqlClient;
 
 namespace SitePBL.DAO
 {
-    public class HelperDAO
+    public static class HelperDAO
     {
 
         public static void ExecutarSQL(string sql, SqlParameter[] parametros)

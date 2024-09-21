@@ -29,11 +29,75 @@ namespace SitePBL.DAO
 			return acesso;
 		}
 
-		//Classe para inserir um novo acess
+		//Classe para inserir um novo acesso
 		//Alterar depois para uma stored precedure
 		public void Inserir (AcessoViewModel acesso)
 		{
 
+			string sql = "";
+			HelperDAO.ExecutarSQL(sql,CriarParametros(acesso));
+		
+		}
+
+		//Classe para excluir um acesso
+		//Adicionar SP
+		public void Excluir(int id)
+		{
+
+			string sql = "";
+			HelperDAO.ExecutarSQL(sql, null);
+
+		}
+
+		//Alterar Acesso
+		//Adicionar SP
+		public void Alterar(AcessoViewModel acesso)
+		{
+			string sql = "";
+			HelperDAO.ExecutarSQL(sql, CriarParametros(acesso));
+
+		}
+
+
+		//Consulta um acesso
+		//Adicionar SP
+		public AcessoViewModel Consulta(int id)
+		{
+			string sql = "";
+
+			DataTable tabela = HelperDAO.ExecutaSelect(sql, null);
+
+			if (tabela.Rows.Count == 0)
+			{
+				return null;
+			}
+
+			else
+			{
+				return MontarAcesso(tabela.Rows[0]);
+			}
+		}
+
+		//Lista todos os acessos
+		//Adicionar SP
+		public List<AcessoViewModel> Listagem()
+		{
+			List<AcessoViewModel> lista = new List<AcessoViewModel>();
+			string sql = "";
+			DataTable tabela = HelperDAO.ExecutaSelect(sql,null);
+			foreach(DataRow dr in tabela.Rows)
+				lista.Add(MontarAcesso(dr));
+			return lista;
+		}
+
+
+		//busca proximo id
+		//Adicionar SP	
+		public int ProximoID()
+		{
+			string sql = "";
+			DataTable tabela = HelperDAO.ExecutaSelect(sql,null);
+			return Convert.ToInt32(tabela.Rows[0]["Maior"]);
 		}
 
 

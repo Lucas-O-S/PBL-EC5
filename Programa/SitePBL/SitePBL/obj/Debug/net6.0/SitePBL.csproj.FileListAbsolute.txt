@@ -1,0 +1,9 @@
+C:\Users\lucas\repo\.git\PBL-EC5\Programa\SitePBL\SitePBL\obj\Debug\net6.0\SitePBL.csproj.AssemblyReference.cache
+C:\Users\lucas\repo\.git\PBL-EC5\Programa\SitePBL\SitePBL\obj\Debug\net6.0\SitePBL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\lucas\repo\.git\PBL-EC5\Programa\SitePBL\SitePBL\obj\Debug\net6.0\SitePBL.AssemblyInfoInputs.cache
+C:\Users\lucas\repo\.git\PBL-EC5\Programa\SitePBL\SitePBL\obj\Debug\net6.0\SitePBL.AssemblyInfo.cs
+C:\Users\lucas\repo\.git\PBL-EC5\Programa\SitePBL\SitePBL\obj\Debug\net6.0\SitePBL.csproj.CoreCompileInputs.cache
+C:\Users\lucas\repo\.git\PBL-EC5\Programa\SitePBL\SitePBL\obj\Debug\net6.0\SitePBL.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\lucas\repo\.git\PBL-EC5\Programa\SitePBL\SitePBL\obj\Debug\net6.0\SitePBL.RazorAssemblyInfo.cache
+C:\Users\lucas\repo\.git\PBL-EC5\Programa\SitePBL\SitePBL\obj\Debug\net6.0\SitePBL.RazorAssemblyInfo.cs
+C:\Users\lucas\repo\.git\PBL-EC5\Programa\SitePBL\SitePBL\obj\Debug\net6.0\SitePBL.sourcelink.json

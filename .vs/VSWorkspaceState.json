@@ -4,8 +4,9 @@
     "\\Programa",
     "\\Programa\\SitePBL",
     "\\Programa\\SitePBL\\SitePBL",
+    "\\Programa\\SitePBL\\SitePBL\\DAO",
     "\\Programa\\SitePBL\\SitePBL\\Models"
   ],
-  "SelectedNode": "\\Programa\\SitePBL\\SitePBL\\Models\\TemperaturaViewModel.cs",
+  "SelectedNode": "\\Programa\\SitePBL\\SitePBL.sln",
   "PreviewInSolutionExplorer": false
 }
