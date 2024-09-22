@@ -1,6 +1,6 @@
 
 --Criação DB
-create database		
+create database Termo_Light
 
 --Tabela de Empresa
 create table Empresa(

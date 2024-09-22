@@ -11,7 +11,14 @@ namespace SitePBL.DAO
 		{
 			SqlParameter[] parametros = new SqlParameter[3];
 			parametros[0] = new SqlParameter("id", Sensor.id);
-			parametros[1] = new SqlParameter("descricao", Sensor.descricao);
+			if (Sensor.id != null)
+			{
+				parametros[1] = new SqlParameter("descricao", Sensor.descricao);
+
+			}
+			else
+				parametros[1] = new SqlParameter("descricao", DBNull.Value);
+
 			parametros[2] = new SqlParameter("fk_empresa_id", Sensor.empresa);
 
 
@@ -22,21 +29,22 @@ namespace SitePBL.DAO
 		//Monta uma model de Sensor com base do datarow
 		private SensorViewModel MontarSensor(DataRow registro)
 		{
-			SensorViewModel funcionario = new SensorViewModel(); ;
+			SensorViewModel sensor = new SensorViewModel(); ;
 
-			funcionario.id = Convert.ToInt32(registro["id"]);
-			funcionario.nome = Convert.ToString(registro["nome"]);
-			funcionario.cargo = Convert.ToString(registro["fk_empresa_id"]);
-			return funcionario;
+			sensor.id = Convert.ToInt32(registro["id"]);
+			if (registro["descricao"] != DBNull.Value)
+				sensor.descricao = Convert.ToString(registro["descricao"]);
+			sensor.empresa = Convert.ToInt32(registro["fk_empresa_id"]);
+			return sensor;
 		}
 
 		//Classe para inserir um novo Sensor
 		//Alterar depois para uma stored precedure
-		public void Inserir(FuncionarioViewModel empresa)
+		public void Inserir(SensorViewModel sensor)
 		{
 
 			string sql = "";
-			HelperDAO.ExecutarSQL(sql, CriarParametros(empresa));
+			HelperDAO.ExecutarSQL(sql, CriarParametros(sensor));
 
 		}
 
@@ -52,17 +60,17 @@ namespace SitePBL.DAO
 
 		//Alterar Sensor
 		//Adicionar SP
-		public void Alterar(FuncionarioViewModel funcionario)
+		public void Alterar(SensorViewModel sensor)
 		{
 			string sql = "";
-			HelperDAO.ExecutarSQL(sql, CriarParametros(funcionario));
+			HelperDAO.ExecutarSQL(sql, CriarParametros(sensor));
 
 		}
 
 
 		//Consulta um Sensor
 		//Adicionar SP
-		public FuncionarioViewModel Consulta(int id)
+		public SensorViewModel Consulta(int id)
 		{
 			string sql = "";
 
@@ -81,9 +89,9 @@ namespace SitePBL.DAO
 
 		//Lista todos os Sensor
 		//Adicionar SP
-		public List<FuncionarioViewModel> Listagem()
+		public List<SensorViewModel> Listagem()
 		{
-			List<FuncionarioViewModel> lista = new List<FuncionarioViewModel>();
+			List<SensorViewModel> lista = new List<SensorViewModel>();
 			string sql = "";
 			DataTable tabela = HelperDAO.ExecutaSelect(sql, null);
 			foreach (DataRow dr in tabela.Rows)
