@@ -6,7 +6,7 @@ namespace SitePBL.DAO
 {
 	public class EmpresaDAO
 	{
-		//Criar parametros de acessos
+		//Criar parametros de empresa
 		private SqlParameter[] CriarParametros(EmpresaViewModel empresa)
 		{
 			SqlParameter[] parametros = new SqlParameter[4];
@@ -30,7 +30,7 @@ namespace SitePBL.DAO
 		}
 
 
-		//Monta uma model de acesso com base do datarow
+		//Monta uma model de empresa com base do datarow
 		private EmpresaViewModel MontarEmpresas(DataRow registro)
 		{
 			EmpresaViewModel empresa = new EmpresaViewModel(); ;
@@ -46,7 +46,7 @@ namespace SitePBL.DAO
 			return empresa;
 		}
 
-		//Classe para inserir um novo acesso
+		//Classe para inserir um novo empresa
 		//Alterar depois para uma stored precedure
 		public void Inserir(EmpresaViewModel empresa)
 		{
@@ -66,7 +66,7 @@ namespace SitePBL.DAO
 
 		}
 
-		//Alterar Acesso
+		//Alterar empresa
 		//Adicionar SP
 		public void Alterar(EmpresaViewModel empresa)
 		{
@@ -76,7 +76,7 @@ namespace SitePBL.DAO
 		}
 
 
-		//Consulta um acesso
+		//Consulta um empresa
 		//Adicionar SP
 		public EmpresaViewModel Consulta(int id)
 		{
@@ -95,7 +95,7 @@ namespace SitePBL.DAO
 			}
 		}
 
-		//Lista todos os acessos
+		//Lista todos os empresa
 		//Adicionar SP
 		public List<EmpresaViewModel> Listagem()
 		{

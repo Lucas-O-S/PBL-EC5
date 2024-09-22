@@ -3,7 +3,7 @@
 	public class ManutencaoViewModel
 	{
 		// Data e hora marcada da manutenção
-		public DateTime DateTime { get; set; }
+		public DateTime data_hora { get; set; }
 
 		//id do sensor que terá manutenção, usar descrição ou id mesmo no front
 		public int idSensor { get; set; }

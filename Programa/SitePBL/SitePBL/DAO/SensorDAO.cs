@@ -4,49 +4,33 @@ using System.Data;
 
 namespace SitePBL.DAO
 {
-	public class FuncionarioDAO
+	public class SensorDAO
 	{
-		//Criar parametros de funcionario
-		private SqlParameter[] CriarParametros(FuncionarioViewModel funcionario)
+		//Criar parametros de Sensor
+		private SqlParameter[] CriarParametros(SensorViewModel Sensor)
 		{
-			SqlParameter[] parametros = new SqlParameter[4];
-			parametros[0] = new SqlParameter("id", funcionario.id);
-			parametros[1] = new SqlParameter("nome", funcionario.nome);
-			if (funcionario.foto != null)
-			{
-				parametros[2] = new SqlParameter("foto", funcionario.foto);
-
-			}
-			else
-			{
-				parametros[2] = new SqlParameter("foto", DBNull.Value);
-
-
-			}
-			parametros[3] = new SqlParameter("cargo", funcionario.cargo);
+			SqlParameter[] parametros = new SqlParameter[3];
+			parametros[0] = new SqlParameter("id", Sensor.id);
+			parametros[1] = new SqlParameter("descricao", Sensor.descricao);
+			parametros[2] = new SqlParameter("fk_empresa_id", Sensor.empresa);
 
 
 			return parametros;
 		}
 
 
-		//Monta uma model de funcionario com base do datarow
-		private FuncionarioViewModel MontarFuncionario(DataRow registro)
+		//Monta uma model de Sensor com base do datarow
+		private SensorViewModel MontarSensor(DataRow registro)
 		{
-			FuncionarioViewModel funcionario = new FuncionarioViewModel(); ;
+			SensorViewModel funcionario = new SensorViewModel(); ;
 
 			funcionario.id = Convert.ToInt32(registro["id"]);
 			funcionario.nome = Convert.ToString(registro["nome"]);
-			if (registro["foto"] != DBNull.Value)
-			{
-				funcionario.foto = (byte[])registro["foto"];
-
-			}
-			funcionario.cargo = Convert.ToString(registro["cargo"]);
+			funcionario.cargo = Convert.ToString(registro["fk_empresa_id"]);
 			return funcionario;
 		}
 
-		//Classe para inserir um novo funcionario
+		//Classe para inserir um novo Sensor
 		//Alterar depois para uma stored precedure
 		public void Inserir(FuncionarioViewModel empresa)
 		{
@@ -56,7 +40,7 @@ namespace SitePBL.DAO
 
 		}
 
-		//Classe para excluir um funcionario
+		//Classe para excluir um Sensor
 		//Adicionar SP
 		public void Excluir(int id)
 		{
@@ -66,7 +50,7 @@ namespace SitePBL.DAO
 
 		}
 
-		//Alterar funcionario
+		//Alterar Sensor
 		//Adicionar SP
 		public void Alterar(FuncionarioViewModel funcionario)
 		{
@@ -76,7 +60,7 @@ namespace SitePBL.DAO
 		}
 
 
-		//Consulta um funcionario
+		//Consulta um Sensor
 		//Adicionar SP
 		public FuncionarioViewModel Consulta(int id)
 		{
@@ -91,11 +75,11 @@ namespace SitePBL.DAO
 
 			else
 			{
-				return MontarFuncionario(tabela.Rows[0]);
+				return MontarSensor(tabela.Rows[0]);
 			}
 		}
 
-		//Lista todos os funcionario
+		//Lista todos os Sensor
 		//Adicionar SP
 		public List<FuncionarioViewModel> Listagem()
 		{
@@ -103,7 +87,7 @@ namespace SitePBL.DAO
 			string sql = "";
 			DataTable tabela = HelperDAO.ExecutaSelect(sql, null);
 			foreach (DataRow dr in tabela.Rows)
-				lista.Add(MontarFuncionario(dr));
+				lista.Add(MontarSensor(dr));
 			return lista;
 		}
 
