@@ -14,15 +14,22 @@ namespace SitePBL.DAO
 			parametros[1] = new SqlParameter("nome", funcionario.nome);
 			if (funcionario.foto != null)
 			{
-				parametros[2] = new SqlParameter("foto", funcionario.foto);
+				//evita problemas de conversão de foto
+                parametros[2] = new SqlParameter("foto", SqlDbType.VarBinary)
+                {
+                    Value = funcionario.foto
 
-			}
+                };
+            }
 			else
 			{
-				parametros[2] = new SqlParameter("foto", DBNull.Value);
+                parametros[2] = new SqlParameter("foto", SqlDbType.VarBinary)
+                {
+                    Value = DBNull.Value
 
+                };
 
-			}
+            }
 			parametros[3] = new SqlParameter("cargo", funcionario.cargo);
 
 
