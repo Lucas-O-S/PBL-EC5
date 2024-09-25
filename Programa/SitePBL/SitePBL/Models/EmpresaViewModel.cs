@@ -2,11 +2,9 @@
 
 namespace SitePBL.Models
 {
-	public class EmpresaViewModel
-	{
-		//ID da empresa, não deve deixar o usuario dar o numero, deve ser o ultimo
-		//Será nulo ao inserir
-		public int? id {  get; set; }
+	public class EmpresaViewModel : PadraoViewModel
+    {
+	
 
 		//Nome da empresa
 		public string nome { get; set; }

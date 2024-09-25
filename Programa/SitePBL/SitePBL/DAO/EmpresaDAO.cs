@@ -4,10 +4,12 @@ using System.Data;
 
 namespace SitePBL.DAO
 {
-	public class EmpresaDAO
-	{
-		//Criar parametros de empresa sem usar ID
-		private SqlParameter[] CriarParametrosNoID(EmpresaViewModel empresa)
+	public class EmpresaDAO : PadraoDAO<EmpresaViewModel>
+    {
+        protected override void SetTabela() { nomeTabela = "empresa"; }
+
+        //Criar parametros de empresa sem usar ID
+        protected override SqlParameter[] CriaParametrosNoId(EmpresaViewModel empresa)
 		{
 			SqlParameter[] parametros = new SqlParameter[3];
 			parametros[0] = new SqlParameter("nome", empresa.nome);
@@ -37,7 +39,7 @@ namespace SitePBL.DAO
 		}
 
         //Criar parametros de empresa usando ID
-        private SqlParameter[] CriarParametrosID(EmpresaViewModel empresa)
+        protected override SqlParameter[] CriaParametrosId(EmpresaViewModel empresa)
         {
             SqlParameter[] parametros = new SqlParameter[4];
             parametros[0] = new SqlParameter("id", empresa.id);
@@ -69,7 +71,7 @@ namespace SitePBL.DAO
 
 
         //Monta uma model de empresa com base do datarow
-        private EmpresaViewModel MontarEmpresas(DataRow registro)
+        protected override EmpresaViewModel MontaModel(DataRow registro)
 		{
 			EmpresaViewModel empresa = new EmpresaViewModel(); ;
 
@@ -84,76 +86,7 @@ namespace SitePBL.DAO
 			return empresa;
 		}
 
-		//Classe para inserir um novo empresa
-		//Alterar depois para uma stored precedure
-		public void Inserir(EmpresaViewModel empresa)
-		{
-
-			string sql = "sp_insert_empresa";
-			HelperDAO.ExecutaProc(sql, CriarParametrosNoID(empresa));
-
-		}
-
-		//Classe para excluir um acesso
-		//Adicionar SP
-		public void Excluir(int id)
-		{
-            var p = new SqlParameter[]
-			{
-                new SqlParameter("id", id)
-			};
-
-            string sql = "sp_delete_empresa";
-			HelperDAO.ExecutaProc(sql, p);
-
-		}
-
-		//Alterar empresa
-		//Adicionar SP
-		public void Alterar(EmpresaViewModel empresa)
-		{
-			string sql = "sp_update_empresa";
-			HelperDAO.ExecutaProc(sql, CriarParametrosID(empresa));
-
-		}
-
-
-		//Consulta um empresa
-		//Adicionar SP
-		public EmpresaViewModel Consulta(int id)
-		{
-            var p = new SqlParameter[]
-			{
-                new SqlParameter("id", id)
-			};
-
-            string sql = "sp_busca_empresa";
-
-			DataTable tabela = HelperDAO.ExecutaProcSelect(sql, p);
-
-			if (tabela.Rows.Count == 0)
-			{
-				return null;
-			}
-
-			else
-			{
-				return MontarEmpresas(tabela.Rows[0]);
-			}
-		}
-
-		//Lista todos os empresa
-		//Adicionar SP
-		public List<EmpresaViewModel> Listagem()
-		{
-			List<EmpresaViewModel> lista = new List<EmpresaViewModel>();
-			string sql = "sp_listagem_empresa";
-			DataTable tabela = HelperDAO.ExecutaProcSelect(sql, null);
-			foreach (DataRow dr in tabela.Rows)
-				lista.Add(MontarEmpresas(dr));
-			return lista;
-		}
-
+		
 
 	
 	}

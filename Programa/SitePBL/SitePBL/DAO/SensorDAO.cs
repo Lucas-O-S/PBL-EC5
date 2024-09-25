@@ -4,109 +4,72 @@ using System.Data;
 
 namespace SitePBL.DAO
 {
-	public class SensorDAO
-	{
-		//Criar parametros de Sensor
-		private SqlParameter[] CriarParametros(SensorViewModel Sensor)
-		{
-			SqlParameter[] parametros = new SqlParameter[3];
-			parametros[0] = new SqlParameter("id", Sensor.id);
-			if (Sensor.id != null)
-			{
-				parametros[1] = new SqlParameter("descricao", Sensor.descricao);
+    public class SensorDAO : PadraoDAO<SensorViewModel>
+    {
+        protected override void SetTabela() { nomeTabela = "sensor"; }
 
-			}
-			else
-				parametros[1] = new SqlParameter("descricao", DBNull.Value);
+        //Criar parametros de Sensor usando ID
+        protected override SqlParameter[] CriaParametrosId(SensorViewModel Sensor)
+        {
+            SqlParameter[] parametros = new SqlParameter[3];
+            parametros[0] = new SqlParameter("id", Sensor.id);
+            if (Sensor.descricao != null)
+            {
+                parametros[1] = new SqlParameter("descricao", Sensor.descricao);
 
-			parametros[2] = new SqlParameter("fk_empresa_id", Sensor.empresa);
+            }
+            else
+                parametros[1] = new SqlParameter("descricao", DBNull.Value);
 
-
-			return parametros;
-		}
-
-
-		//Monta uma model de Sensor com base do datarow
-		private SensorViewModel MontarSensor(DataRow registro)
-		{
-			SensorViewModel sensor = new SensorViewModel(); ;
-
-			sensor.id = Convert.ToInt32(registro["id"]);
-			if (registro["descricao"] != DBNull.Value)
-				sensor.descricao = Convert.ToString(registro["descricao"]);
-			sensor.empresa = Convert.ToInt32(registro["fk_empresa_id"]);
-			return sensor;
-		}
-
-		//Classe para inserir um novo Sensor
-		//Alterar depois para uma stored precedure
-		public void Inserir(SensorViewModel sensor)
-		{
-
-			string sql = "";
-			HelperDAO.ExecutarSQL(sql, CriarParametros(sensor));
-
-		}
-
-		//Classe para excluir um Sensor
-		//Adicionar SP
-		public void Excluir(int id)
-		{
-
-			string sql = "";
-			HelperDAO.ExecutarSQL(sql, null);
-
-		}
-
-		//Alterar Sensor
-		//Adicionar SP
-		public void Alterar(SensorViewModel sensor)
-		{
-			string sql = "";
-			HelperDAO.ExecutarSQL(sql, CriarParametros(sensor));
-
-		}
+            if (Sensor.empresa != null)
+                parametros[2] = new SqlParameter("fk_empresa_id", Sensor.empresa);
+            else
+                parametros[2] = new SqlParameter("fk_empresa_id", DBNull.Value);
 
 
-		//Consulta um Sensor
-		//Adicionar SP
-		public SensorViewModel Consulta(int id)
-		{
-			string sql = "";
+            return parametros;
+        }
 
-			DataTable tabela = HelperDAO.ExecutaSelect(sql, null);
+        /// <summary>
+        /// Cria parametos sql de sensor sem usar id
+        /// </summary>
+        /// <param name="Sensor"></param>
+        /// <returns></returns>
+        protected override SqlParameter[] CriaParametrosNoId(SensorViewModel Sensor)
+        {
+            SqlParameter[] parametros = new SqlParameter[2];
+            if (Sensor.descricao != null)
+            {
+                parametros[0] = new SqlParameter("descricao", Sensor.descricao);
 
-			if (tabela.Rows.Count == 0)
-			{
-				return null;
-			}
+            }
+            else
+                parametros[0] = new SqlParameter("descricao", DBNull.Value);
 
-			else
-			{
-				return MontarSensor(tabela.Rows[0]);
-			}
-		}
-
-		//Lista todos os Sensor
-		//Adicionar SP
-		public List<SensorViewModel> Listagem()
-		{
-			List<SensorViewModel> lista = new List<SensorViewModel>();
-			string sql = "";
-			DataTable tabela = HelperDAO.ExecutaSelect(sql, null);
-			foreach (DataRow dr in tabela.Rows)
-				lista.Add(MontarSensor(dr));
-			return lista;
-		}
+            if (Sensor.empresa != null)
+                parametros[1] = new SqlParameter("fk_empresa_id", Sensor.empresa);
+            else
+                parametros[1] = new SqlParameter("fk_empresa_id", DBNull.Value);
 
 
-		//busca proximo id
-		//Adicionar SP	
-		public int ProximoID()
-		{
-			string sql = "";
-			DataTable tabela = HelperDAO.ExecutaSelect(sql, null);
-			return Convert.ToInt32(tabela.Rows[0]["Maior"]);
-		}
-	}
+            return parametros;
+        }
+
+
+        //Monta uma model de Sensor com base do datarow
+        protected override SensorViewModel MontaModel(DataRow registro)
+        {
+            SensorViewModel sensor = new SensorViewModel(); ;
+
+            sensor.id = Convert.ToInt32(registro["id"]);
+            if (registro["descricao"] != DBNull.Value)
+                sensor.descricao = Convert.ToString(registro["descricao"]);
+            if (registro["fk_empresa_id"] != DBNull.Value)
+                sensor.empresa = Convert.ToInt32(registro["fk_empresa_id"]);
+            return sensor;
+        }
+
+      
+    
+    }
 }

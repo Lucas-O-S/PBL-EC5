@@ -1,7 +1,7 @@
 ﻿namespace SitePBL.Models
 {
-	public class ManutencaoViewModel
-	{
+	public class ManutencaoViewModel : PadraoViewModel
+    {
 		// Data e hora marcada da manutenção
 		public DateTime data_hora { get; set; }
 

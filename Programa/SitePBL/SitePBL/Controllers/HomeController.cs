@@ -16,7 +16,7 @@ namespace SitePBL.Controllers
 
         public IActionResult Index()
         {
-     
+      
             return View();
         }
 

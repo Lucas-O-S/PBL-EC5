@@ -57,7 +57,12 @@ namespace SitePBL.DAO
 			}
 		}
 
-		//Executa um procedure de select sql
+		/// <summary>
+        /// Executa um select  atravez de sp
+        /// </summary>
+        /// <param name="sql"></param>
+        /// <param name="parametros"></param>
+        /// <returns>DataTable</returns>
 		public static DataTable ExecutaProcSelect(string sql, SqlParameter[] parametros)
 		{
 			using (SqlConnection conexao = ConexaoDB.GetConexao())
@@ -78,5 +83,20 @@ namespace SitePBL.DAO
 				}
 			}
 		}
-	}
+
+        /// <summary>
+        /// Criar um parametro sql com o id somente
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>SqlParameter id</returns>
+        public static SqlParameter[] CriarParametroID(int id)
+        {
+            return new SqlParameter[]
+            {
+                new SqlParameter("id", id)
+            };
+        }
+
+        
+    }
 }

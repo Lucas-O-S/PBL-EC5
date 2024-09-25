@@ -4,10 +4,13 @@ using System.Data.SqlClient;
 
 namespace SitePBL.DAO
 {
-	public class AcessoDAO
+	public class AcessoDAO : PadraoDAO<AcessoViewModel>
 	{
-		//Criar parametros de acessos
-		private SqlParameter[] CriarParametros(AcessoViewModel acesso)
+
+        protected override void SetTabela() { nomeTabela = "acesso"; }
+
+        //Criar parametros de acessos com id
+        protected override SqlParameter[] CriaParametrosId(AcessoViewModel acesso)
 		{
 			SqlParameter[] parametros = new SqlParameter[3];
 			parametros[0] = new SqlParameter("id", acesso.id);
@@ -17,9 +20,20 @@ namespace SitePBL.DAO
 			return parametros;
 		}
 
+        //Criar parametros de acessos sem ID id
+        protected override SqlParameter[] CriaParametrosNoId(AcessoViewModel acesso)
+        {
+            SqlParameter[] parametros = new SqlParameter[2];
+            parametros[0] = new SqlParameter("senha", acesso.senha);
+            parametros[1] = new SqlParameter("fk_empresa_id", acesso.empresa);
 
-		//Monta uma model de acesso com base do datarow
-		private AcessoViewModel MontarAcesso(DataRow registro)
+            return parametros;
+        }
+
+
+
+        //Monta uma model de acesso com base do datarow
+        protected override AcessoViewModel MontaModel(DataRow registro)
 		{
 			AcessoViewModel acesso = new AcessoViewModel(); ;
 
@@ -29,76 +43,28 @@ namespace SitePBL.DAO
 			return acesso;
 		}
 
-		//Classe para inserir um novo acesso
-		//Alterar depois para uma stored precedure
-		public void Inserir (AcessoViewModel acesso)
+	
+
+		public bool Login(string nomeEmpresa, string senha)
 		{
-
-			string sql = "";
-			HelperDAO.ExecutarSQL(sql,CriarParametros(acesso));
-		
-		}
-
-		//Classe para excluir um acesso
-		//Adicionar SP
-		public void Excluir(int id)
-		{
-
-			string sql = "";
-			HelperDAO.ExecutarSQL(sql, null);
-
-		}
-
-		//Alterar Acesso
-		//Adicionar SP
-		public void Alterar(AcessoViewModel acesso)
-		{
-			string sql = "";
-			HelperDAO.ExecutarSQL(sql, CriarParametros(acesso));
-
-		}
-
-
-		//Consulta um acesso
-		//Adicionar SP
-		public AcessoViewModel Consulta(int id)
-		{
-			string sql = "";
-
-			DataTable tabela = HelperDAO.ExecutaSelect(sql, null);
-
-			if (tabela.Rows.Count == 0)
+            var parametros = new SqlParameter[]
 			{
-				return null;
-			}
+                new SqlParameter("NomeEmpresa", nomeEmpresa),
+				new SqlParameter("senha", senha)
 
-			else
-			{
-				return MontarAcesso(tabela.Rows[0]);
-			}
-		}
+             };
+            string sql = "sp_login_acesso";
 
-		//Lista todos os acessos
-		//Adicionar SP
-		public List<AcessoViewModel> Listagem()
-		{
-			List<AcessoViewModel> lista = new List<AcessoViewModel>();
-			string sql = "";
-			DataTable tabela = HelperDAO.ExecutaSelect(sql,null);
-			foreach(DataRow dr in tabela.Rows)
-				lista.Add(MontarAcesso(dr));
-			return lista;
-		}
+			DataTable tabela = HelperDAO.ExecutaProcSelect(sql, parametros);
+            if (tabela.Rows.Count > 0 && Convert.ToInt32(tabela.Rows[0]["resultado"]) >= 1)
+			return true;
+
+            
+
+            return false;
 
 
-		//busca proximo id
-		//Adicionar SP	
-		public int ProximoID()
-		{
-			string sql = "";
-			DataTable tabela = HelperDAO.ExecutaSelect(sql,null);
-			return Convert.ToInt32(tabela.Rows[0]["Maior"]);
-		}
+        }
 
 
 	}

@@ -1,27 +1,38 @@
 ﻿using SitePBL.Models;
 using System.Data.SqlClient;
 using System.Data;
+using System.Xml.Serialization;
 
 namespace SitePBL.DAO
 {
 
-	public class TemperaturaDAO
-	{
-		//Criar parametros de temperatura
-		private SqlParameter[] CriarParametros(TemperaturaViewModel temperatura)
+	public class TemperaturaDAO : PadraoDAO<TemperaturaViewModel>
+    {
+        protected override void SetTabela() { nomeTabela = "temperatura"; }
+
+        //Criar parametros de temperatura
+        protected override SqlParameter[] CriaParametrosNoId(TemperaturaViewModel temperatura)
 		{
-			SqlParameter[] parametros = new SqlParameter[4];
+			SqlParameter[] parametros = new SqlParameter[3];
 			parametros[0] = new SqlParameter("data_hora", temperatura.data_hora);
 			parametros[1] = new SqlParameter("valor", temperatura.valor);
 			parametros[2] = new SqlParameter("fk_sensor_id", temperatura.idSensor);
 
 
 			return parametros;
-		}
+        }
+
+		//Não usar, não há ID
+        protected override SqlParameter[] CriaParametrosId(TemperaturaViewModel temperatura)
+        {
+     
+
+            return null;
+        }
 
 
-		//Monta uma model de temperatura com base do datarow
-		private TemperaturaViewModel MontarTemperatura(DataRow registro)
+        //Monta uma model de temperatura com base do datarow
+        protected override TemperaturaViewModel MontaModel(DataRow registro)
 		{
 			TemperaturaViewModel temperatura = new TemperaturaViewModel(); ;
 
@@ -31,68 +42,14 @@ namespace SitePBL.DAO
 			return temperatura;
 		}
 
-		//Classe para inserir um novo temperatura
-		//Alterar depois para uma stored precedure
-		public void Inserir(TemperaturaViewModel temperatura)
+        public override void Delete(TemperaturaViewModel temperatura)
 		{
 
-			string sql = "";
-			HelperDAO.ExecutarSQL(sql, CriarParametros(temperatura));
-
-		}
-
-		//Classe para excluir um temperatura
-		//Adicionar SP
-		public void Excluir(int id)
-		{
-
-			string sql = "";
-			HelperDAO.ExecutarSQL(sql, null);
-
-		}
-
-		//Alterar temperatura
-		//Adicionar SP
-		public void Alterar(TemperaturaViewModel temperatura)
-		{
-			string sql = "";
-			HelperDAO.ExecutarSQL(sql, CriarParametros(temperatura));
-
+			HelperDAO.ExecutaProc("sp_delete_temperatura", CriaParametrosNoId(temperatura));
 		}
 
 
-		//Consulta um temperatura
-		//Adicionar SP
-		public TemperaturaViewModel Consulta(int id)
-		{
-			string sql = "";
-
-			DataTable tabela = HelperDAO.ExecutaSelect(sql, null);
-
-			if (tabela.Rows.Count == 0)
-			{
-				return null;
-			}
-
-			else
-			{
-				return MontarTemperatura(tabela.Rows[0]);
-			}
-		}
-
-		//Lista todos os temperatura
-		//Adicionar SP
-		public List<TemperaturaViewModel> Listagem()
-		{
-			List<TemperaturaViewModel> lista = new List<TemperaturaViewModel>();
-			string sql = "";
-			DataTable tabela = HelperDAO.ExecutaSelect(sql, null);
-			foreach (DataRow dr in tabela.Rows)
-				lista.Add(MontarTemperatura(dr));
-			return lista;
-		}
 
 
-	
-	}
+    }
 }

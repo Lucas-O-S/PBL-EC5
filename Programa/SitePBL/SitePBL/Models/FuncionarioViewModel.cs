@@ -1,9 +1,8 @@
 ﻿namespace SitePBL.Models
 {
-	public class FuncionarioViewModel
-	{
-		//ID do funcionario, não deve deixar o usuario dar o numero, deve ser o ultimo
-		public int id { get; set; }
+	public class FuncionarioViewModel : PadraoViewModel
+    {
+
 		
 		//nome do funcionario
 		public string nome { get; set; }
