@@ -86,6 +86,24 @@ namespace SitePBL.DAO
 			return empresa;
 		}
 
+        //Busca o id da empresa com base no nome
+        public int buscaID(string nomeEmpresa)
+        {
+            var parametro = new SqlParameter[]
+            {
+                new SqlParameter ("nome",nomeEmpresa)
+            };
+            DataTable tabela = HelperDAO.ExecutaProcSelect("sp_busca_id_empresa", parametro);
+
+            if (tabela != null)
+            {
+                int id = Convert.ToInt32(tabela.Rows[0]["id"]);
+                return id;
+            }
+
+            return -1;
+        }
+
 		
 
 	

@@ -87,6 +87,17 @@ begin
 end
 go
 
+---------------------------------------------------------------------------
+
+create or alter procedure sp_busca_id_empresa(
+	@nome varchar(500)
+
+)
+as
+begin
+	select id from Empresa where nome = @nome
+end
+go
 
 
 
