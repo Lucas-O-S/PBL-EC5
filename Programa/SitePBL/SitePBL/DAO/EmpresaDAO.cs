@@ -6,6 +6,8 @@ namespace SitePBL.DAO
 {
 	public class EmpresaDAO : PadraoDAO<EmpresaViewModel>
     {
+
+        //teste
         protected override void SetTabela() { nomeTabela = "empresa"; }
 
         //Criar parametros de empresa sem usar ID
