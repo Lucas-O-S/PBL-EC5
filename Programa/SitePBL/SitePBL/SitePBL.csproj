@@ -7,6 +7,25 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\css\cadEmpr.css" />
+    <None Include="wwwroot\css\cadFunc.css" />
+    <None Include="wwwroot\css\cadUser.css" />
+    <None Include="wwwroot\css\home.css" />
+    <None Include="wwwroot\css\listagens.css" />
+    <None Include="wwwroot\css\login.css" />
+    <None Include="wwwroot\css\sobre.css" />
+    <None Include="wwwroot\css\styles.css" />
+    <None Include="wwwroot\img\EditIcon.png" />
+    <None Include="wwwroot\img\IconFormsEmpr.png" />
+    <None Include="wwwroot\img\IconFormsFunc.png" />
+    <None Include="wwwroot\img\IconFormsUser.png" />
+    <None Include="wwwroot\img\IconList.png" />
+    <None Include="wwwroot\img\Logo.png" />
+    <None Include="wwwroot\img\LogoSimples.png" />
+    <None Include="wwwroot\img\TrashIcon.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
   </ItemGroup>
 

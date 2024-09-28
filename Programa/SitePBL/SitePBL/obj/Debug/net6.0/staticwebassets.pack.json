@@ -5,12 +5,76 @@
       "PackagePath": "staticwebassets\\SitePBL.bundle.scp.css"
     },
     {
+      "Id": "C:\\Users\\lucas\\repo\\.git\\PBL-EC5\\Programa\\SitePBL\\SitePBL\\wwwroot\\css\\cadEmpr.css",
+      "PackagePath": "staticwebassets\\css\\cadEmpr.css"
+    },
+    {
+      "Id": "C:\\Users\\lucas\\repo\\.git\\PBL-EC5\\Programa\\SitePBL\\SitePBL\\wwwroot\\css\\cadFunc.css",
+      "PackagePath": "staticwebassets\\css\\cadFunc.css"
+    },
+    {
+      "Id": "C:\\Users\\lucas\\repo\\.git\\PBL-EC5\\Programa\\SitePBL\\SitePBL\\wwwroot\\css\\cadUser.css",
+      "PackagePath": "staticwebassets\\css\\cadUser.css"
+    },
+    {
+      "Id": "C:\\Users\\lucas\\repo\\.git\\PBL-EC5\\Programa\\SitePBL\\SitePBL\\wwwroot\\css\\home.css",
+      "PackagePath": "staticwebassets\\css\\home.css"
+    },
+    {
+      "Id": "C:\\Users\\lucas\\repo\\.git\\PBL-EC5\\Programa\\SitePBL\\SitePBL\\wwwroot\\css\\listagens.css",
+      "PackagePath": "staticwebassets\\css\\listagens.css"
+    },
+    {
+      "Id": "C:\\Users\\lucas\\repo\\.git\\PBL-EC5\\Programa\\SitePBL\\SitePBL\\wwwroot\\css\\login.css",
+      "PackagePath": "staticwebassets\\css\\login.css"
+    },
+    {
       "Id": "C:\\Users\\lucas\\repo\\.git\\PBL-EC5\\Programa\\SitePBL\\SitePBL\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },
     {
+      "Id": "C:\\Users\\lucas\\repo\\.git\\PBL-EC5\\Programa\\SitePBL\\SitePBL\\wwwroot\\css\\sobre.css",
+      "PackagePath": "staticwebassets\\css\\sobre.css"
+    },
+    {
+      "Id": "C:\\Users\\lucas\\repo\\.git\\PBL-EC5\\Programa\\SitePBL\\SitePBL\\wwwroot\\css\\styles.css",
+      "PackagePath": "staticwebassets\\css\\styles.css"
+    },
+    {
       "Id": "C:\\Users\\lucas\\repo\\.git\\PBL-EC5\\Programa\\SitePBL\\SitePBL\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "C:\\Users\\lucas\\repo\\.git\\PBL-EC5\\Programa\\SitePBL\\SitePBL\\wwwroot\\img\\EditIcon.png",
+      "PackagePath": "staticwebassets\\img\\EditIcon.png"
+    },
+    {
+      "Id": "C:\\Users\\lucas\\repo\\.git\\PBL-EC5\\Programa\\SitePBL\\SitePBL\\wwwroot\\img\\IconFormsEmpr.png",
+      "PackagePath": "staticwebassets\\img\\IconFormsEmpr.png"
+    },
+    {
+      "Id": "C:\\Users\\lucas\\repo\\.git\\PBL-EC5\\Programa\\SitePBL\\SitePBL\\wwwroot\\img\\IconFormsFunc.png",
+      "PackagePath": "staticwebassets\\img\\IconFormsFunc.png"
+    },
+    {
+      "Id": "C:\\Users\\lucas\\repo\\.git\\PBL-EC5\\Programa\\SitePBL\\SitePBL\\wwwroot\\img\\IconFormsUser.png",
+      "PackagePath": "staticwebassets\\img\\IconFormsUser.png"
+    },
+    {
+      "Id": "C:\\Users\\lucas\\repo\\.git\\PBL-EC5\\Programa\\SitePBL\\SitePBL\\wwwroot\\img\\IconList.png",
+      "PackagePath": "staticwebassets\\img\\IconList.png"
+    },
+    {
+      "Id": "C:\\Users\\lucas\\repo\\.git\\PBL-EC5\\Programa\\SitePBL\\SitePBL\\wwwroot\\img\\Logo.png",
+      "PackagePath": "staticwebassets\\img\\Logo.png"
+    },
+    {
+      "Id": "C:\\Users\\lucas\\repo\\.git\\PBL-EC5\\Programa\\SitePBL\\SitePBL\\wwwroot\\img\\LogoSimples.png",
+      "PackagePath": "staticwebassets\\img\\LogoSimples.png"
+    },
+    {
+      "Id": "C:\\Users\\lucas\\repo\\.git\\PBL-EC5\\Programa\\SitePBL\\SitePBL\\wwwroot\\img\\TrashIcon.png",
+      "PackagePath": "staticwebassets\\img\\TrashIcon.png"
     },
     {
       "Id": "C:\\Users\\lucas\\repo\\.git\\PBL-EC5\\Programa\\SitePBL\\SitePBL\\wwwroot\\js\\site.js",

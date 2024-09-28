@@ -20,6 +20,13 @@ namespace SitePBL.Controllers
             return View();
         }
 
+        public IActionResult Sobre()
+        {
+
+            return View("Sobre");
+        }
+
+
         public IActionResult Privacy()
         {
             return View();

@@ -1,0 +1,102 @@
+/* Estilo dos títulos das seções */
+h2 {
+    font-size: 40px;
+    margin-left: 2.4%;
+}
+
+.title-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding: 0 10px;
+
+}
+
+.titulo {
+    font-size: 50px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    margin-right: 37%;
+    margin-top: 10%;
+}
+
+/* Ajustar contêiner das seções */
+.content-container {
+    display: flex;
+    justify-content: flex-start;
+    padding: 0.5%;
+    gap: 2%;
+    min-height: 100%;
+    margin-top: 0;
+}
+
+.main-section {
+    width: 100%;
+    background-color: #cff8ff;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    margin: 0;
+}
+
+
+/* Estilo das tabelas */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 320px;
+}
+
+    table th,
+    table td {
+        border: 1px solid #398594;
+        padding: 10px;
+        text-align: center;
+    }
+
+    table th {
+        background-color: #cff8ff;
+        color: #398594;
+        font-weight: bold;
+        font-size: 16px;
+    }
+
+    table td {
+        background-color: #cff8ff;
+        color: #333;
+    }
+
+        /* Estilo dos ícones nas tabelas */
+        table td img {
+            height: 25px;
+        }
+
+        table td a,
+        table td button {
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+            table td a img,
+            table td button img {
+                width: 20px;
+                height: auto;
+            }
+
+a.editar:hover img,
+button.excluir:hover img {
+    transform: scale(1.2);
+}
+
+button:active img,
+a.editar:active img {
+    transform: scale(0.9);
+}
+
+/* Definir largura fixa para a coluna "Ações" */
+table th:first-child, /* Aplica ao cabeçalho da coluna "Ações" */
+table td:first-child { /* Aplica às células da coluna "Ações" */
+    width: 80px; /* Ajuste o valor conforme necessário */
+}
