@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Termo-Light</title>
+      <link rel="stylesheet" href="../css/styles.css">
+      <link rel="stylesheet" href="../css/cadFunc.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+   </head>
+   <body>
+      <header>
+         <div class="logo">
+            <h1><a href="Home.html" class="button"><img src="../img/Logo.png" alt="Termo-Light"></a></h1>
+         </div>
+         <nav>
+            <ul>
+               <li><a href="Home.html" class="button">Home</a></li>
+               <li><a href="Sobre.html" class="button">Sobre</a></li>
+               <li><a href="Listagens.html" class="button">Listagens</a></li>
+            </ul>
+         </nav>
+      </header>
+      <main class="content-container">
+         <section class="left-section">
+            <p>Cadastro de</p>
+            <h1><strong>Empresa</strong></h1>
+            <input type="button" name="btnEnviar" value="Enviar">
+         </section>
+         <section class="right-section">
+            <main class="input-container">
+               <section class="text-section">
+               </section>
+               <div class="input-group">
+                  <label>Sede</label>
+                  <br/>
+                  <input type="text" name="Sede">
+                  <br/>
+                  <label>Nome</label>
+                  <br/>
+                  <input type="text" name="Nome">
+               </div>
+               <section class="file-section">
+                  <label for="logo-upload">Logo</label>
+                  <br>
+                  <div class="upload-container">
+                     <label for="logo-upload" class="custom-button"><i class="fas fa-plus"></i></label>
+                     <input type="file" id="logo-upload" name="logo-upload" accept=".jpg,.jpeg,.png">
+                     <p class="texto-upload">Faça o upload do arquivo</p>
+                  </div>
+               </section>
+            </main>
+         </section>
+      </main>
+   </body>
+</html>

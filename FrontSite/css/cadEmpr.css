@@ -1,0 +1,144 @@
+/* Container principal para divisão da tela */
+.content-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    min-height: 100%;
+}
+
+.input-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Seção esquerda (texto) */
+.left-section {
+    flex: 1;
+    margin-right: 0.5%;
+    margin-left: 1%;
+    margin-top: 1%;
+    text-align: left;
+    min-width: 200px;
+    width: 200px;
+}
+
+.left-section p {
+    font-size: 300%;
+    margin: 0px;
+}
+
+.left-section h1 {
+    font-size: 300%;
+    margin: 0px;
+}
+
+/* Seção direita (tabela ou lista) */
+.right-section {
+    flex: 1;
+    margin-top: 1%;
+    background-color: #cff8ff;
+    padding: 5%;
+    border-radius: 10px;
+    text-align: left;
+    min-width: 200px;
+    margin-right: 5%;
+}
+
+.right-section h2 {
+    font-size: 200%;
+    margin-bottom: 10%;
+    margin-top: 5%;
+    margin-left: 5%;
+}
+
+.text-section {
+    display: flex;
+    flex-direction: column;
+    margin-left: -250px;
+}
+
+label {
+    font-size: 130%;
+    text-align: left;
+    display: block;
+    margin-bottom: 0;
+    margin-top: 0;
+    margin-left: 15px;
+}
+
+input[type="text"] {
+    margin-bottom: 35%;
+    padding: 10px;
+    border: 0;
+    width: 100%;
+}
+
+.file-section {
+    margin-right: 10px;
+}
+
+.texto-upload {
+    color: #a0d0d8;
+    font-size: 13px;
+    margin-top: -12px;
+    margin-left: 17px;
+}
+
+input[type="file"] {
+    display: none; /* Oculta o input padrão */
+}
+
+.custom-button {
+    width: 200px;
+    height: 200px;
+    background-color: white;
+    color: #398594;
+    border: none;
+    font-size: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    margin-bottom: 20px;
+    transition: background-color 0.3s;
+}
+
+.custom-button:hover {
+    color: #0d4753;
+}
+
+.custom-button:active {
+    color: #0d4753;
+    font-size: 68px;
+}
+
+/* Estilo do botão de enviar */
+input[type="button"] {
+    margin-top: 40%;
+    background-color: #398594;
+    color: black;
+    font-size: 14px;
+    padding: 10px;
+    border: none;
+    border-radius: 60px;
+    cursor: pointer;
+    width: 20%;
+}
+
+input[type="button"]:hover {
+    background-color: #0d4753;
+    color: white;
+    cursor: pointer;
+}
+
+input[type="button"]:active {
+    transform: scale(0.95); /* Reduz o tamanho do botão em 5% */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* Remove ou diminui a sombra ao clicar */
+}
+
+/* Media query para telas menores (responsividade) */
+@media (max-width: 768px) {
+    .content-container {
+        flex-direction: column; /* Empilha as seções verticalmente em telas pequenas */
+    }
+}
