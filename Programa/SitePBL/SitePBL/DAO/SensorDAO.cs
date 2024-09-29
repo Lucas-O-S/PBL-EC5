@@ -69,10 +69,9 @@ namespace SitePBL.DAO
             return sensor;
         }
 
-        public List<SensorViewModel> ListagemJoin()
+        public List<SensorViewModel> Listagem()
         {
-            string sql = "select * from sensor as s inner join empresa as e " +
-                "on s.fk_empresa_id = e.id order by s.descricao";
+            string sql = "select * from sensor as s order by s.descricao";
             List<SensorViewModel> lista = new List<SensorViewModel>();
 
             DataTable tabela = HelperDAO.ExecutaSelect(sql, null);
@@ -122,15 +121,16 @@ namespace SitePBL.DAO
                 return MontaModel(tab.Rows[0]);
         }
 
-        public bool TesteId(SensorViewModel sensor)
+        public int TesteId(int? id)
         {
-            string sql = $"select * from empresa where id = {sensor.empresa}";
+            string sql = $"select s.descricao, s.fk_empresa_id from sensor as s right join empresa as e " +
+                $"on s.fk_empresa_id = e.id where e.id = {id}";
 
-            DataTable tab = HelperDAO.ExecutaProcSelect(sql, null);
+            DataTable tab = HelperDAO.ExecutaSelect(sql, null);
             if (tab.Rows.Count == 0)
-                return false;
+                return 0;
             else
-                return true;
+                return 1;
         }
     }
 }

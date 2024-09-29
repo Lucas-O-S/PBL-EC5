@@ -19,10 +19,12 @@
                 <div class="input-group-sm mb-3 col">
                     <br />
                     <input type="hidden" name="id" value="@Model.id" />
-                    <label class="form-label">Sede</label>
-                    <input type="text" name="sede" value="@Model.sede" maxlength="500">
+                    <label class="control-label">Sede</label>
+                    <input asp-for="sede" class="form-control" maxlength="500" />
+                    <span asp-validation-for="sede" class="text-danger"></span>
                     <label class="form-label">Nome</label>
-                    <input type="text" name="nome" value="@Model.nome" maxlength="500">
+                    <input asp-for="nome" class="" maxlength="500" />
+                    <span asp-validation-for="nome" class="text-danger"></span>
                 </div>
                 <section class="file-section col" >
                     <label for="logo-upload">Logo</label>

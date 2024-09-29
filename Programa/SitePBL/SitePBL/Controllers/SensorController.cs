@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SitePBL.DAO;
 using SitePBL.Models;
+using System.Data;
 using System.Runtime.Intrinsics.Arm;
 
 namespace SitePBL.Controllers
@@ -18,7 +19,7 @@ namespace SitePBL.Controllers
             try
             {
                 SensorDAO dao = new SensorDAO();
-                List<SensorViewModel> lista = dao.ListagemJoin();
+                List<SensorViewModel> lista = dao.Listagem();
                 return View("Listagem", lista);
             }
             catch (Exception ex)
@@ -79,9 +80,18 @@ namespace SitePBL.Controllers
             SensorDAO dao = new SensorDAO();
 
             if (string.IsNullOrEmpty(sensor.descricao))
-                ModelState.AddModelError("nome", "Campo obrigatório. Preencha o nome.");
-            if (sensor.empresa <= 0 && dao.TesteId(sensor) == false)
-                ModelState.AddModelError("cargo", "Campo obrigatório. Preencha o cargo");
+                ModelState.AddModelError("descricao", "Campo obrigatório. Preencha o descrição.");
+            if (sensor.empresa <= 0)
+                ModelState.AddModelError("empresa", "Preencha o id com valor diferente e maior que zero");
+            
+            if (sensor.empresa != null)
+            {
+                int teste = dao.TesteId(sensor.empresa);
+                if(teste == 0)
+                    ModelState.AddModelError("empresa", "Empresa não localizada, digite um valor válido");             
+            }
+
+
         }
 
         public IActionResult Enviar(SensorViewModel sensor, string Operacao)
@@ -109,11 +119,6 @@ namespace SitePBL.Controllers
             {
                 return View("error", new ErrorViewModel(ex.ToString()));
             }
-        }
-
-        public IActionResult Dashboard()
-        {
-            return View("Dashboard");
         }
     }
 }

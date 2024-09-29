@@ -21,10 +21,12 @@
                 <div class="input-group-sm mb-3 col">
                     <br />
                     <input type="hidden" name="id" value="@Model.id" />
-                    <label class="form-label">Nome</label>
-                    <input type="text" name="nome" value="@Model.nome">
-                    <label class="form-label">Cargo</label>
-                    <input type="text" name="cargo" value="@Model.cargo">
+                    <label class="control-label">Nome</label>
+                    <input asp-for="nome" class="form-control" maxlength="500" />
+                    <span asp-validation-for="nome" class="text-danger"></span>
+                    <label class="control-label">Cargo</label>
+                    <input asp-for="cargo" class="form-control" maxlength="500">
+                    <span asp-validation-for="cargo" class="text-danger"></span>
                 </div>
                 <section class="file-section col">
                     <label for="foto-upload">Foto</label>

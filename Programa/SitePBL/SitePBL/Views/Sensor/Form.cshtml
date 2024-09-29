@@ -22,11 +22,11 @@
                 <div class="input-group-sm mb-3">
                     <br />
                     <input type="hidden" name="id" value="@Model.id" />
-                    <label class="form-label">Descrição</label>
-                    <input type="text" name="descricao" value="@Model.descricao">
+                    <label class="control-label">Descrição</label>
+                    <input asp-for="descricao" class="form-control" maxlength="500" />
                     <span asp-validation-for="descricao" class="text-danger"></span>
-                    <label class="form-label">EmpresaId</label>
-                    <input type="text" name="empresa" value="@Model.empresa">
+                    <label class="control-label">EmpresaId</label>
+                    <input asp-for="empresa" class="form-control" /->
                     <span asp-validation-for="empresa" class="text-danger"></span>
                 </div>
         </section>
