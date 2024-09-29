@@ -22,23 +22,55 @@
             <section class="right-section ">
                 <h2>O que deseja fazer?</h2>
                 <ul>
-                    <li class="dropdown">
-                        <a href="" class="button"  id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                            <img src="~/img/IconFormsFunc.png" alt="Cadastro Funcionário">
-                            Cadastros
+
+                    <!-- Cadastro -->
+
+                    <div class="row ">
+                        <li class="dropdown">
+                             <a href="" class="button no-link" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                <img src="~/img/IconFormsFunc.png" alt="Cadastro Funcionário">
+                                <span class="no-link">Cadastros</span> <!-- Texto sem aparência de link -->
                             </a>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>                        </ul>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                     <li><a class="dropdown-item" href="/Funcionario/create">Funcionarios</a></li>
+                                    <li><a class="dropdown-item" href="/empresa/create">Empresas</a></li>
+                                    <li><a class="dropdown-item" href="/acesso/form">Acesso</a></li>
+                                </ul>
+                        </li>
+                   </div>
+
+                    <!-- Listagem -->
+
+                        <div class="row ">
+                     <li class="dropdown">
+                     <a href="" class="button no-link" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="~/img/IconList.png" alt="Cadastro Funcionário">
+                        <span class="no-link">Listagem</span> <!-- Texto sem aparência de link -->
+                    </a>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <li><a class="dropdown-item" href="/Funcionario/Listagem">Funcionarios</a></li>
+                                <li><a class="dropdown-item" href="/empresa/listagem">Empresas</a></li>
+                            </ul>
                     </li>
-                    <li><a href="/acesso/form" class="button"><img src="~/img/IconFormsUser.png" alt="Cadastro Acesso"></a>Cadastrar novo Usuário</li>
-                    <li><a href="/empresa/create" class="button"><img src="~/img/IconFormsEmpr.png" alt="Cadastro Empresa"></a>Cadastrar nova Empresa</li>
-                    <li><a href="/Funcionario/Listagem" class="button"><img src="~/img/IconList.png" alt="Lista de Funcionários"></a>Listar de Funcionários</li>
-                    <li><a href="/empresa/listagem" class="button"><img src="~/img/IconList.png" alt="Lista de Empresas"></a>Listar de Empresas</li>
+                    </div>
+
+                    <!--Dashboards-->
+                     <div class="row ">
+                         <li class="dropdown">
+                         <a href="" class="button no-link" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="~/img/IconFormsEmpr.png" alt="Cadastro Funcionário">
+                            <span class="no-link">Dashboards</span> <!-- Texto sem aparência de link -->
+                        </a>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                    <li><a class="dropdown-item" href="/Funcionario/Listagem">Dashboard 1</a></li>
+                                    <li><a class="dropdown-item" href="/empresa/listagem">DashBoard 2</a></li>
+                                </ul>
+                        </li>
+                    </div>
+
                 </ul>
             </section>
 
         </div>
-  
+
     </main>

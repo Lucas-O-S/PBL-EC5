@@ -15,23 +15,24 @@
     min-width: 300px;
 }
 
-.left-section h1 {
-    font-size: 700%;
-    margin: 0px;
-}
+    .left-section h1 {
+        font-size: 700%;
+        margin: 0px;
+    }
 
-///Retirei por que tava bugando a pagina no aspnet
-.left-section p {
-    ///font-size: 450%;
-    ///padding: 0px;
-    ///margin: 0px;
-}
 
-.left-section p img {
-    //height: 350px;
-    //padding: 0px;
-    //margin: 0px;
-}
+    /*Retirei por que tava bugando a pagina no aspnet */
+    .left-section p {
+        ///font-size: 450%;
+        ///padding: 0px;
+        ///margin: 0px;
+    }
+
+        .left-section p img {
+            //height: 350px;
+            //padding: 0px;
+            //margin: 0px;
+        }
 
 /* Seção direita (tabela ou lista) */
 .right-section {
@@ -43,80 +44,71 @@
     margin-right: 0.1%;
 }
 
-.right-section h2 {
-    font-size: 200%;
-    margin-bottom: 10%;
-    margin-top: 5%;
-    margin-left: 5%;
-}
-
-.right-section ul {
-    list-style: none;
-    padding: 0;
-    margin-left: 7%;
-}
-
-.right-section ul li {
-    display: flex;
-    align-items: center; 
-    margin-bottom: 5%;
-    font-size: 140%;
-    flex-wrap: wrap; 
-    word-wrap: break-word;
-    word-break: break-word;
-}
-
-.right-section ul li a.button img {
-    background-color: #cff8ff;
-    height: 60px;
-    margin-right: 10px;
-}
-/* Dropdown*/
-.dropbtn {
-    background-color: #4CAF50;
-    color: white;
-    padding: 16px;
-    font-size: 16px;
-    border: none;
-    cursor: pointer;
-}
-.dropdownOriginal {
-    position: relative;
-    display: inline-block;
-}
-
-/* Dropdown Content (Hidden by Default) */
-.dropdownOriginal-content {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-}
-
-    /* Links inside the dropdown */
-    .dropdownOriginal-content a {
-        color: black;
-        padding: 12px 16px;
-        text-decoration: none;
-        display: block;
+    .right-section h2 {
+        font-size: 200%;
+        margin-bottom: 10%;
+        margin-top: 5%;
+        margin-left: 5%;
     }
 
-        /* Change color of dropdown links on hover */
-        .dropdownOriginal-content a:hover {
-            background-color: #f1f1f1
+    .right-section ul {
+        list-style: none;
+        padding: 0;
+        margin-left: 7%;
+    }
+
+        .right-section ul li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 5%;
+            font-size: 140%;
+            flex-wrap: wrap;
+            word-wrap: break-word;
+            word-break: break-word;
         }
 
-/* Show the dropdown menu on hover */
-.dropdownOriginal:hover .dropdown-content {
-    display: block;
+            .right-section ul li a.button img {
+                background-color: #cff8ff;
+                height: 60px;
+                margin-right: 10px;
+            }
+
+.no-link {
+    color: black; /* Herdar a cor do elemento pai */
+    text-decoration: none; /* Remover sublinhado */
+    font-size: inherit; /* Garantir que herde o tamanho de fonte */
 }
 
-/* Change the background color of the dropdown button when the dropdown content is shown */
-.dropdownOriginal:hover .dropbtn {
-    background-color: #3e8e41;
+span .nolink {
+    pointer-events: none
 }
+
+.dropdown a:hover {
+    opacity: 0.5;
+}
+
+.dropdown-menu {
+    background-color: #fff;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    transition: background-color 0.3s;
+}
+
+/* Estilos herdados do pai */
+.dropdown-menu {
+    color: inherit; /* Herdar cor */
+    font-family: inherit; /* Herdar fonte */
+    font-size: inherit; /* Herdar tamanho da fonte */
+    text-decoration: none; /* Remover sublinhado */
+    padding: 10px 15px;
+    background-color: #cff8ff; /* Estilo de hover */
+}
+
+.dropdown-item:hover {
+    color: inherit; /* Manter a cor do pai */
+    background-color: #398594; /* Estilo de hover */
+}
+
 
 /* Media query para telas menores (responsividade) */
 @media (max-width: 768px) {
