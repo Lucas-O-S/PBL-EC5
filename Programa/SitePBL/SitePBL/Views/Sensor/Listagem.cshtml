@@ -1,0 +1,43 @@
+﻿@model List<SensorViewModel>
+@{
+}
+<head>
+    <link rel="stylesheet" href="~/css/listagens.css">
+
+</head>
+<main class="container">
+    <div class=" row titulo" titulo>Lista de Sensores</div>
+    <br />
+    <div class=" row main-section">
+        <table class="table table-responsive">
+            <tr>
+                <th>Ações</th>
+                <th>ID</th>
+                <th>Descrição</th>
+                <th>Empresa ID</th>
+            </tr>
+
+            @foreach (var sensor in Model)
+            {
+                <tr>
+                    <td>
+                        <a href="/sensor/edit?id=@sensor.id" role="button" class="btn btn-primary">Editar</a>
+                        &nbsp;&nbsp;
+                        <a href="javascript:apagar(@sensor.id)" role="button" class="btn btn-danger">Excluir</a>
+                    </td>
+                    <td>@sensor.id</td>
+                    <td>@sensor.descricao</td>
+                    <td>@sensor.empresa</td>
+
+                </tr>
+            }
+        </table>
+    </div>
+</main>
+
+<script>
+    function apagar(id) {
+        if (confirm('Deseja apagar?'))
+            location.href = '/Sensor/delete?id=' + id;
+    }
+</script>

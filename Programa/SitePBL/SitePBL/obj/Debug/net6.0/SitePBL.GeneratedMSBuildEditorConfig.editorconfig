@@ -9,67 +9,75 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = SitePBL
 build_property.RootNamespace = SitePBL
-build_property.ProjectDir = C:\Users\lucas\repo\.git\PBL-EC5\Programa\SitePBL\SitePBL\
+build_property.ProjectDir = D:\C#\pbl\Programa\SitePBL\SitePBL\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\lucas\repo\.git\PBL-EC5\Programa\SitePBL\SitePBL
+build_property.MSBuildProjectDirectory = D:\C#\pbl\Programa\SitePBL\SitePBL
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/lucas/repo/.git/PBL-EC5/Programa/SitePBL/SitePBL/Views/Acesso/Form.cshtml]
+[D:/C\#/pbl/Programa/SitePBL/SitePBL/Views/Acesso/Form.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNlc3NvXEZvcm0uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/lucas/repo/.git/PBL-EC5/Programa/SitePBL/SitePBL/Views/Acesso/Login.cshtml]
+[D:/C\#/pbl/Programa/SitePBL/SitePBL/Views/Acesso/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNlc3NvXExvZ2luLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/lucas/repo/.git/PBL-EC5/Programa/SitePBL/SitePBL/Views/Empresa/Form.cshtml]
+[D:/C\#/pbl/Programa/SitePBL/SitePBL/Views/Empresa/Form.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wcmVzYVxGb3JtLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/lucas/repo/.git/PBL-EC5/Programa/SitePBL/SitePBL/Views/Empresa/Listagem.cshtml]
+[D:/C\#/pbl/Programa/SitePBL/SitePBL/Views/Empresa/Listagem.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wcmVzYVxMaXN0YWdlbS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/lucas/repo/.git/PBL-EC5/Programa/SitePBL/SitePBL/Views/Funcionario/Form.cshtml]
+[D:/C\#/pbl/Programa/SitePBL/SitePBL/Views/Funcionario/Form.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRnVuY2lvbmFyaW9cRm9ybS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/lucas/repo/.git/PBL-EC5/Programa/SitePBL/SitePBL/Views/Funcionario/Listagem.cshtml]
+[D:/C\#/pbl/Programa/SitePBL/SitePBL/Views/Funcionario/Listagem.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRnVuY2lvbmFyaW9cTGlzdGFnZW0uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/lucas/repo/.git/PBL-EC5/Programa/SitePBL/SitePBL/Views/Home/Index.cshtml]
+[D:/C\#/pbl/Programa/SitePBL/SitePBL/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/lucas/repo/.git/PBL-EC5/Programa/SitePBL/SitePBL/Views/Home/Privacy.cshtml]
+[D:/C\#/pbl/Programa/SitePBL/SitePBL/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/lucas/repo/.git/PBL-EC5/Programa/SitePBL/SitePBL/Views/Home/Sobre.cshtml]
+[D:/C\#/pbl/Programa/SitePBL/SitePBL/Views/Home/Sobre.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxTb2JyZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/lucas/repo/.git/PBL-EC5/Programa/SitePBL/SitePBL/Views/Shared/Error.cshtml]
+[D:/C\#/pbl/Programa/SitePBL/SitePBL/Views/Sensor/Form.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2Vuc29yXEZvcm0uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/C\#/pbl/Programa/SitePBL/SitePBL/Views/Sensor/Listagem.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2Vuc29yXExpc3RhZ2VtLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/C\#/pbl/Programa/SitePBL/SitePBL/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/lucas/repo/.git/PBL-EC5/Programa/SitePBL/SitePBL/Views/Shared/_ValidationScriptsPartial.cshtml]
+[D:/C\#/pbl/Programa/SitePBL/SitePBL/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/lucas/repo/.git/PBL-EC5/Programa/SitePBL/SitePBL/Views/_ViewImports.cshtml]
+[D:/C\#/pbl/Programa/SitePBL/SitePBL/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/lucas/repo/.git/PBL-EC5/Programa/SitePBL/SitePBL/Views/_ViewStart.cshtml]
+[D:/C\#/pbl/Programa/SitePBL/SitePBL/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/lucas/repo/.git/PBL-EC5/Programa/SitePBL/SitePBL/Views/Shared/_Layout.cshtml]
+[D:/C\#/pbl/Programa/SitePBL/SitePBL/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-8powlaw4id

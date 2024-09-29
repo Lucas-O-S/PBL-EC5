@@ -1,0 +1,34 @@
+﻿@model SitePBL.Models.SensorViewModel
+@{
+}
+<head>
+    <link rel="stylesheet" href="~/css/cadFunc.css">
+
+</head>
+
+<main class="content-container">
+    <form class="form-container container row" method="post" enctype="multipart/form-data" action="Enviar">
+        <section class="left-section col">
+            <p>Cadastro de</p>
+            <h1><strong>Sensores</strong></h1>
+
+            <input type="hidden" name="Operacao" value="@ViewBag.Operacao" />
+            <input type="submit" class="btn btn-primary btnI" role="button" name="btnEnviar" value="Enviar" />
+        </section>
+
+        <section class="right-section col row">
+            <main class="input-container">
+
+                <div class="input-group-sm mb-3">
+                    <br />
+                    <input type="hidden" name="id" value="@Model.id" />
+                    <label class="form-label">Descrição</label>
+                    <input type="text" name="descricao" value="@Model.descricao">
+                    <span asp-validation-for="descricao" class="text-danger"></span>
+                    <label class="form-label">EmpresaId</label>
+                    <input type="text" name="empresa" value="@Model.empresa">
+                    <span asp-validation-for="empresa" class="text-danger"></span>
+                </div>
+        </section>
+    </form>
+</main>

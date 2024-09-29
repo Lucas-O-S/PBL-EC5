@@ -69,7 +69,68 @@ namespace SitePBL.DAO
             return sensor;
         }
 
-      
-    
+        public List<SensorViewModel> ListagemJoin()
+        {
+            string sql = "select * from sensor as s inner join empresa as e " +
+                "on s.fk_empresa_id = e.id order by s.descricao";
+            List<SensorViewModel> lista = new List<SensorViewModel>();
+
+            DataTable tabela = HelperDAO.ExecutaSelect(sql, null);
+            foreach (DataRow registro in tabela.Rows)
+                lista.Add(MontaModel(registro));
+            return lista;
+        }
+
+        public void Inserir(SensorViewModel sensor)
+        {
+            string sql = "sp_insert_sensor";
+            HelperDAO.ExecutaProc(sql, CriaParametrosNoId(sensor));
+        }
+
+        public void Excluir(int id, string tabela)
+        {
+            string sql = "sp_delete_generic";
+            SqlParameter[] parametros = new SqlParameter[]
+            {
+                new SqlParameter ("id",id),
+                new SqlParameter ("tabela",tabela)
+            };
+            HelperDAO.ExecutaProc(sql, parametros);
+        }
+
+        public void Alterar(SensorViewModel sensor)
+        {
+            string sql = "sp_update_sensor";
+
+            HelperDAO.ExecutaProc(sql, CriaParametrosId(sensor));
+        }
+
+        public SensorViewModel Consulta(int id, string tabela)
+        {
+            string sql = "sp_consulta_generic";
+
+            SqlParameter[] parametros = new SqlParameter[]
+            {
+                new SqlParameter("id",id),
+                new SqlParameter("tabela",tabela)
+            };
+
+            DataTable tab = HelperDAO.ExecutaProcSelect(sql, parametros);
+            if (tab.Rows.Count == 0)
+                return null;
+            else
+                return MontaModel(tab.Rows[0]);
+        }
+
+        public bool TesteId(SensorViewModel sensor)
+        {
+            string sql = $"select * from empresa where id = {sensor.empresa}";
+
+            DataTable tab = HelperDAO.ExecutaProcSelect(sql, null);
+            if (tab.Rows.Count == 0)
+                return false;
+            else
+                return true;
+        }
     }
 }
