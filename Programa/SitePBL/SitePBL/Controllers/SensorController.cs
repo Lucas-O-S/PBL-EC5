@@ -120,5 +120,9 @@ namespace SitePBL.Controllers
                 return View("error", new ErrorViewModel(ex.ToString()));
             }
         }
+        public IActionResult Dashboard()
+        {
+            return View("Dashboard");
+        }
     }
 }
