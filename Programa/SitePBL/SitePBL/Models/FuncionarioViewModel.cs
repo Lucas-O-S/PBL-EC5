@@ -2,10 +2,10 @@
 {
 	public class FuncionarioViewModel : PadraoViewModel
     {
-
-		
-		//nome do funcionario
-		public string nome { get; set; }
+        //id do funcionario
+        public int id { get; set; }
+        //nome do funcionario
+        public string nome { get; set; }
 
 		//descricao do funcionario
 		public string cargo { get; set;}

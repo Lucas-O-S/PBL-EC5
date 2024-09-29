@@ -4,21 +4,21 @@ using System.Data.SqlClient;
 
 namespace SitePBL.DAO
 {
-	public class AcessoDAO : PadraoDAO<AcessoViewModel>
-	{
+    public class AcessoDAO : PadraoDAO<AcessoViewModel>
+    {
 
         protected override void SetTabela() { nomeTabela = "acesso"; }
 
         //Criar parametros de acessos com id
         protected override SqlParameter[] CriaParametrosId(AcessoViewModel acesso)
-		{
-			SqlParameter[] parametros = new SqlParameter[3];
-			parametros[0] = new SqlParameter("id", acesso.id);
-			parametros[1] = new SqlParameter("senha", acesso.senha);
-			parametros[2] = new SqlParameter("fk_empresa_id", acesso.empresa);
+        {
+            SqlParameter[] parametros = new SqlParameter[3];
+            parametros[0] = new SqlParameter("id", acesso.id);
+            parametros[1] = new SqlParameter("senha", acesso.senha);
+            parametros[2] = new SqlParameter("fk_empresa_id", acesso.empresa);
 
-			return parametros;
-		}
+            return parametros;
+        }
 
         //Criar parametros de acessos sem ID id
         protected override SqlParameter[] CriaParametrosNoId(AcessoViewModel acesso)
@@ -34,38 +34,50 @@ namespace SitePBL.DAO
 
         //Monta uma model de acesso com base do datarow
         protected override AcessoViewModel MontaModel(DataRow registro)
-		{
-			AcessoViewModel acesso = new AcessoViewModel(); ;
+        {
+            AcessoViewModel acesso = new AcessoViewModel(); ;
 
-			acesso.id = Convert.ToInt32(registro["id"]);
-			acesso.senha = Convert.ToString(registro["senha"]);
-			acesso.empresa = Convert.ToInt32(registro["fk_empresa_id"]);
-			return acesso;
-		}
+            acesso.id = Convert.ToInt32(registro["id"]);
+            acesso.senha = Convert.ToString(registro["senha"]);
+            acesso.empresa = Convert.ToInt32(registro["fk_empresa_id"]);
+            return acesso;
+        }
 
-	
 
-		public bool Login(string nomeEmpresa, string senha)
-		{
+
+        public bool Login(string nomeEmpresa, string senha)
+        {
             var parametros = new SqlParameter[]
-			{
+            {
                 new SqlParameter("NomeEmpresa", nomeEmpresa),
-				new SqlParameter("senha", senha)
+                new SqlParameter("senha", senha)
 
              };
             string sql = "sp_login_acesso";
 
-			DataTable tabela = HelperDAO.ExecutaProcSelect(sql, parametros);
+            DataTable tabela = HelperDAO.ExecutaProcSelect(sql, parametros);
             if (tabela.Rows.Count > 0 && Convert.ToInt32(tabela.Rows[0]["resultado"]) >= 1)
-			return true;
+                return true;
 
-            
+
 
             return false;
-
-
         }
+        public void Inserir(AcessoViewModel acesso)
+        {
+            string sql = "sp_insert_acesso";
 
-
-	}
+            HelperDAO.ExecutaProc(sql, CriaParametrosNoId(acesso));
+        }
+        public void Excluir(int id, string tabela)
+        {
+            string sql = "sp_delete_generic";
+            SqlParameter[] parametros = new SqlParameter[]
+            {
+                new SqlParameter ("id",id),
+                new SqlParameter ("tabela",tabela)
+            };
+            HelperDAO.ExecutaProc(sql, parametros);
+        }
+    }
 }

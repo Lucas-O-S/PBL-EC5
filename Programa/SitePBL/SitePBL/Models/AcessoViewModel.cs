@@ -2,7 +2,7 @@
 {
 	public class AcessoViewModel : PadraoViewModel
 	{
-		
+		//id do usuario
 
 		//Senha do usuario
 		public string senha { get; set; }

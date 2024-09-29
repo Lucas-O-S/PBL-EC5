@@ -1,39 +1,42 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model SitePBL.Models.EmpresaViewModel
 @{
 }
 <head>
-      <link rel="stylesheet" href="~/css/cadFunc.css">
+    <link rel="stylesheet" href="~/css/cadFunc.css">
 
 </head>
 <main id="cadastro" class="content-container">
-         <section class="left-section col">
+    <form class="form-container" method="post" enctype="multipart/form-data" action="Enviar">
+        <section class="left-section col">
             <p>Cadastro de</p>
             <h1><strong>Empresa</strong></h1>
-            <input type="button" class = "btn" name="btnEnviar" value="Enviar">
-         </section>
+            <input type="hidden" name="Operacao" value="ViewBag.Operacao" />
+            <!--<input type="submit" class="btn btn-primary" role="button" name="btnEnviar" value="Enviar" />-->
+            <a href="/empresa/enviar" class="btn btn-primary" role="button">Enviar</a>
+        </section>
 
-         <section class="right-section col">
+        <section class="right-section col">
             <main class="input-container ">
-               <section class="text-section">
-               </section>
-               <div class="input-group-sm mb-3">
-                   <br />
-                  <label class = "form-label" >Sede</label>
-                  <input type="text" name="Sede">
-                  <label class = "form-label">Nome</label>
-                  <input type="text" name="Nome">
-               </div>
-               <section class="file-section">
-                  <label for="logo-upload">Logo</label>
-                  <br>
-                  <div class="upload-container">
-                     <label for="logo-upload" class="custom-button"><i class="fas fa-plus"></i></label>
-                     <input type="file" id="logo-upload" name="logo-upload" accept=".jpg,.jpeg,.png">
-                     <p class="texto-upload">Faça o upload do arquivo</p>
-                  </div>
-               </section>
+                <section class="text-section">
+                </section>
+                <div class="input-group-sm mb-3">
+                    <br />
+                    <input type="hidden" name="id" value="@Model.id" />
+                    <label class="form-label">Sede</label>
+                    <input type="text" name="sede" value="@Model.sede" maxlength="500">
+                    <label class="form-label">Nome</label>
+                    <input type="text" name="nome" value="@Model.nome" maxlength="500">
+                </div>
+                <section class="file-section">
+                    <label for="logo-upload">Logo</label>
+                    <br>
+                    <div class="upload-container">
+                        <label for="logo-upload" class="custom-button"><i class="fas fa-plus"></i></label>
+                        <input type="file" id="logo-upload" name="logo-upload" value="@Model.logo" accept=".jpg,.jpeg,.png">
+                        <p class="texto-upload">Faça o upload do arquivo</p>
+                    </div>
+                </section>
             </main>
-         </section>
-      </main>
+        </section>
+    </form>
+</main>

@@ -1,14 +1,6 @@
 {
   "ExpandedNodes": [
-    "",
-    "\\Programa",
-    "\\Programa\\SitePBL",
-    "\\Programa\\SitePBL\\SitePBL",
-    "\\Programa\\SitePBL\\SitePBL\\DAO",
-    "\\Programa\\SitePBL\\SitePBL\\Models",
-    "\\Programa\\SitePBL\\SitePBL\\Views",
-    "\\Programa\\SitePBL\\SitePBL\\Views\\Home"
+    ""
   ],
-  "SelectedNode": "\\Programa\\SitePBL\\SitePBL\\Views\\Home\\Sobre.cshtml",
   "PreviewInSolutionExplorer": false
 }

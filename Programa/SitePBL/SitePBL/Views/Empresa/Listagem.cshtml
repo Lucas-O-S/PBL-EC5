@@ -1,24 +1,43 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model List<EmpresaViewModel>
 @{
 }
 <head>
-      <link rel="stylesheet" href="~/css/listagens.css">
+    <link rel="stylesheet" href="~/css/listagens.css">
 
 </head>
 <main class="container">
-        <div class=" row titulo" titulo>Lista de Empresas</div>
-        <br />
-        <div class=" row main-section">
-                <table class="table table-responsive">
-                        <tr>
-                             <th>Ações</th>
-                             <th>ID</th>
-                             <th>Nome</th>
-                             <th>Logo</th>
-                        </tr>
+    <div class=" row titulo" titulo>Lista de Empresas</div>
+    <br />
+    <div class=" row main-section">
+        <table class="table table-responsive">
+            <tr>
+                <th>Ações</th>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Logo</th>
+            </tr>
 
-                </table>
-        </div>
-    </main>
+            @foreach (var empresa in Model)
+            {
+                <tr>
+                    <td>
+                        <a href="/empresa/edit?id=@empresa.id" role="button" class="btn btn-primary">Editar</a>
+                        &nbsp;&nbsp;
+                        <a href="javascript:apagar(@empresa.id)" role="button" class="btn btn-danger">Excluir</a>
+                    </td>
+                    <td>@empresa.id</td>
+                    <td>@empresa.nome</td>
+                    <td>@empresa.logo</td>
+
+                </tr>
+            }
+        </table>
+    </div>
+</main>
+
+<script>
+    function apagar(id) {
+        if (confirm('Deseja apagar?'))
+            location.href = '/Empresa/delete?id=' + id;
+    }
+</script>

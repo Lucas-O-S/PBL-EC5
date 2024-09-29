@@ -4,7 +4,8 @@ namespace SitePBL.Models
 {
 	public class EmpresaViewModel : PadraoViewModel
     {
-	
+		//id da empresa
+		public int id {  get; set; }
 
 		//Nome da empresa
 		public string nome { get; set; }

@@ -1,26 +1,46 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model List<FuncionarioViewModel>
 @{
 }
 <head>
-      <link rel="stylesheet" href="~/css/listagens.css">
+    <link rel="stylesheet" href="~/css/listagens.css">
 
 </head>
 <main class="container">
-        <div class=" row titulo" titulo>Lista de Funcionario</div>
-        <br />
-        <div class=" row main-section">
-                <table class="table table-responsive">
-                        <tr>
-                             <th>Ações</th>
-                             <th>ID</th>
-                             <th>Nome</th>
-                             <th>Cargo</th>
-                             <th>Logo</th>
+    <div class=" row titulo" titulo>Lista de Funcionario</div>
+    <br />
+    <div class=" row main-section">
+        <table class="table table-responsive">
+            <tr>
+                <th>Ações</th>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Cargo</th>
+                <th>Logo</th>
 
-                        </tr>
+            </tr>
 
-                </table>
-        </div>
-    </main>
+            @foreach (var funcionario in Model)
+            {
+                <tr>
+                    <td>
+                        <a href="/funcionario/edit?id=@funcionario.id" role="button" class="btn btn-primary">Editar</a>
+                        &nbsp;&nbsp;
+                        <a href="javascript:apagar(@funcionario.id)" role="button" class="btn btn-danger">Excluir</a>
+                    </td>
+                    <td>@funcionario.id</td>
+                    <td>@funcionario.nome</td>
+                    <td>@funcionario.cargo</td>
+                    <td>@funcionario.foto</td>
+
+                </tr>
+            }
+        </table>
+    </div>
+</main>
+
+<script>
+    function apagar(id) {
+        if (confirm('Deseja apagar?'))
+            location.href = '/Funcionario/delete?id=' + id;
+    }
+</script>
