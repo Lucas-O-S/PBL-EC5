@@ -1,0 +1,670 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\55119\\source\\repos\\PBL-EC5\\Programa\\SitePBL\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{35B35557-0BB3-4BA2-9A34-5709592BDDFD}|SitePBL\\SitePBL.csproj|c:\\users\\55119\\source\\repos\\pbl-ec5\\programa\\sitepbl\\sitepbl\\views\\home\\sobre.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{35B35557-0BB3-4BA2-9A34-5709592BDDFD}|SitePBL\\SitePBL.csproj|solutionrelative:sitepbl\\views\\home\\sobre.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{35B35557-0BB3-4BA2-9A34-5709592BDDFD}|SitePBL\\SitePBL.csproj|c:\\users\\55119\\source\\repos\\pbl-ec5\\programa\\sitepbl\\sitepbl\\views\\funcionario\\listagem.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{35B35557-0BB3-4BA2-9A34-5709592BDDFD}|SitePBL\\SitePBL.csproj|solutionrelative:sitepbl\\views\\funcionario\\listagem.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{35B35557-0BB3-4BA2-9A34-5709592BDDFD}|SitePBL\\SitePBL.csproj|c:\\users\\55119\\source\\repos\\pbl-ec5\\programa\\sitepbl\\sitepbl\\controllers\\funcionario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{35B35557-0BB3-4BA2-9A34-5709592BDDFD}|SitePBL\\SitePBL.csproj|solutionrelative:sitepbl\\controllers\\funcionario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{35B35557-0BB3-4BA2-9A34-5709592BDDFD}|SitePBL\\SitePBL.csproj|c:\\users\\55119\\source\\repos\\pbl-ec5\\programa\\sitepbl\\sitepbl\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{35B35557-0BB3-4BA2-9A34-5709592BDDFD}|SitePBL\\SitePBL.csproj|solutionrelative:sitepbl\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{35B35557-0BB3-4BA2-9A34-5709592BDDFD}|SitePBL\\SitePBL.csproj|c:\\users\\55119\\source\\repos\\pbl-ec5\\programa\\sitepbl\\sitepbl\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{35B35557-0BB3-4BA2-9A34-5709592BDDFD}|SitePBL\\SitePBL.csproj|solutionrelative:sitepbl\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{35B35557-0BB3-4BA2-9A34-5709592BDDFD}|SitePBL\\SitePBL.csproj|c:\\users\\55119\\source\\repos\\pbl-ec5\\programa\\sitepbl\\sitepbl\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{35B35557-0BB3-4BA2-9A34-5709592BDDFD}|SitePBL\\SitePBL.csproj|solutionrelative:sitepbl\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{35B35557-0BB3-4BA2-9A34-5709592BDDFD}|SitePBL\\SitePBL.csproj|c:\\users\\55119\\source\\repos\\pbl-ec5\\programa\\sitepbl\\sitepbl\\views\\login\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{35B35557-0BB3-4BA2-9A34-5709592BDDFD}|SitePBL\\SitePBL.csproj|solutionrelative:sitepbl\\views\\login\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{35B35557-0BB3-4BA2-9A34-5709592BDDFD}|SitePBL\\SitePBL.csproj|c:\\users\\55119\\source\\repos\\pbl-ec5\\programa\\sitepbl\\sitepbl\\views\\empresa\\listagem.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{35B35557-0BB3-4BA2-9A34-5709592BDDFD}|SitePBL\\SitePBL.csproj|solutionrelative:sitepbl\\views\\empresa\\listagem.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{35B35557-0BB3-4BA2-9A34-5709592BDDFD}|SitePBL\\SitePBL.csproj|c:\\users\\55119\\source\\repos\\pbl-ec5\\programa\\sitepbl\\sitepbl\\views\\funcionario\\form.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{35B35557-0BB3-4BA2-9A34-5709592BDDFD}|SitePBL\\SitePBL.csproj|solutionrelative:sitepbl\\views\\funcionario\\form.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{35B35557-0BB3-4BA2-9A34-5709592BDDFD}|SitePBL\\SitePBL.csproj|c:\\users\\55119\\source\\repos\\pbl-ec5\\programa\\sitepbl\\sitepbl\\controllers\\empresa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{35B35557-0BB3-4BA2-9A34-5709592BDDFD}|SitePBL\\SitePBL.csproj|solutionrelative:sitepbl\\controllers\\empresa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{35B35557-0BB3-4BA2-9A34-5709592BDDFD}|SitePBL\\SitePBL.csproj|c:\\users\\55119\\source\\repos\\pbl-ec5\\programa\\sitepbl\\sitepbl\\wwwroot\\css\\listagens.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{35B35557-0BB3-4BA2-9A34-5709592BDDFD}|SitePBL\\SitePBL.csproj|solutionrelative:sitepbl\\wwwroot\\css\\listagens.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{35B35557-0BB3-4BA2-9A34-5709592BDDFD}|SitePBL\\SitePBL.csproj|c:\\users\\55119\\source\\repos\\pbl-ec5\\programa\\sitepbl\\sitepbl\\wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{35B35557-0BB3-4BA2-9A34-5709592BDDFD}|SitePBL\\SitePBL.csproj|solutionrelative:sitepbl\\wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{35B35557-0BB3-4BA2-9A34-5709592BDDFD}|SitePBL\\SitePBL.csproj|c:\\users\\55119\\source\\repos\\pbl-ec5\\programa\\sitepbl\\sitepbl\\wwwroot\\css\\login.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{35B35557-0BB3-4BA2-9A34-5709592BDDFD}|SitePBL\\SitePBL.csproj|solutionrelative:sitepbl\\wwwroot\\css\\login.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{35B35557-0BB3-4BA2-9A34-5709592BDDFD}|SitePBL\\SitePBL.csproj|c:\\users\\55119\\source\\repos\\pbl-ec5\\programa\\sitepbl\\sitepbl\\wwwroot\\css\\styles.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{35B35557-0BB3-4BA2-9A34-5709592BDDFD}|SitePBL\\SitePBL.csproj|solutionrelative:sitepbl\\wwwroot\\css\\styles.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{35B35557-0BB3-4BA2-9A34-5709592BDDFD}|SitePBL\\SitePBL.csproj|c:\\users\\55119\\source\\repos\\pbl-ec5\\programa\\sitepbl\\sitepbl\\views\\acesso\\form.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{35B35557-0BB3-4BA2-9A34-5709592BDDFD}|SitePBL\\SitePBL.csproj|solutionrelative:sitepbl\\views\\acesso\\form.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{35B35557-0BB3-4BA2-9A34-5709592BDDFD}|SitePBL\\SitePBL.csproj|c:\\users\\55119\\source\\repos\\pbl-ec5\\programa\\sitepbl\\sitepbl\\views\\acesso\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{35B35557-0BB3-4BA2-9A34-5709592BDDFD}|SitePBL\\SitePBL.csproj|solutionrelative:sitepbl\\views\\acesso\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{35B35557-0BB3-4BA2-9A34-5709592BDDFD}|SitePBL\\SitePBL.csproj|c:\\users\\55119\\source\\repos\\pbl-ec5\\programa\\sitepbl\\sitepbl\\views\\empresa\\form.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{35B35557-0BB3-4BA2-9A34-5709592BDDFD}|SitePBL\\SitePBL.csproj|solutionrelative:sitepbl\\views\\empresa\\form.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{35B35557-0BB3-4BA2-9A34-5709592BDDFD}|SitePBL\\SitePBL.csproj|c:\\users\\55119\\source\\repos\\pbl-ec5\\programa\\sitepbl\\sitepbl\\models\\padraoviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{35B35557-0BB3-4BA2-9A34-5709592BDDFD}|SitePBL\\SitePBL.csproj|solutionrelative:sitepbl\\models\\padraoviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{35B35557-0BB3-4BA2-9A34-5709592BDDFD}|SitePBL\\SitePBL.csproj|c:\\users\\55119\\source\\repos\\pbl-ec5\\programa\\sitepbl\\sitepbl\\controllers\\acessocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{35B35557-0BB3-4BA2-9A34-5709592BDDFD}|SitePBL\\SitePBL.csproj|solutionrelative:sitepbl\\controllers\\acessocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{35B35557-0BB3-4BA2-9A34-5709592BDDFD}|SitePBL\\SitePBL.csproj|c:\\users\\55119\\source\\repos\\pbl-ec5\\programa\\sitepbl\\sitepbl\\wwwroot\\css\\cadfunc.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{35B35557-0BB3-4BA2-9A34-5709592BDDFD}|SitePBL\\SitePBL.csproj|solutionrelative:sitepbl\\wwwroot\\css\\cadfunc.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{35B35557-0BB3-4BA2-9A34-5709592BDDFD}|SitePBL\\SitePBL.csproj|c:\\users\\55119\\source\\repos\\pbl-ec5\\programa\\sitepbl\\sitepbl\\views\\home\\privacy.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{35B35557-0BB3-4BA2-9A34-5709592BDDFD}|SitePBL\\SitePBL.csproj|solutionrelative:sitepbl\\views\\home\\privacy.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{35B35557-0BB3-4BA2-9A34-5709592BDDFD}|SitePBL\\SitePBL.csproj|c:\\users\\55119\\source\\repos\\pbl-ec5\\programa\\sitepbl\\sitepbl\\wwwroot\\css\\home.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{35B35557-0BB3-4BA2-9A34-5709592BDDFD}|SitePBL\\SitePBL.csproj|solutionrelative:sitepbl\\wwwroot\\css\\home.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{35B35557-0BB3-4BA2-9A34-5709592BDDFD}|SitePBL\\SitePBL.csproj|c:\\users\\55119\\source\\repos\\pbl-ec5\\programa\\sitepbl\\sitepbl\\models\\acessoviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{35B35557-0BB3-4BA2-9A34-5709592BDDFD}|SitePBL\\SitePBL.csproj|solutionrelative:sitepbl\\models\\acessoviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{35B35557-0BB3-4BA2-9A34-5709592BDDFD}|SitePBL\\SitePBL.csproj|c:\\users\\55119\\source\\repos\\pbl-ec5\\programa\\sitepbl\\sitepbl\\dao\\empresadao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{35B35557-0BB3-4BA2-9A34-5709592BDDFD}|SitePBL\\SitePBL.csproj|solutionrelative:sitepbl\\dao\\empresadao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{35B35557-0BB3-4BA2-9A34-5709592BDDFD}|SitePBL\\SitePBL.csproj|c:\\users\\55119\\source\\repos\\pbl-ec5\\programa\\sitepbl\\sitepbl\\dao\\padraodao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{35B35557-0BB3-4BA2-9A34-5709592BDDFD}|SitePBL\\SitePBL.csproj|solutionrelative:sitepbl\\dao\\padraodao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{35B35557-0BB3-4BA2-9A34-5709592BDDFD}|SitePBL\\SitePBL.csproj|c:\\users\\55119\\source\\repos\\pbl-ec5\\programa\\sitepbl\\sitepbl\\dao\\helperdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{35B35557-0BB3-4BA2-9A34-5709592BDDFD}|SitePBL\\SitePBL.csproj|solutionrelative:sitepbl\\dao\\helperdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{35B35557-0BB3-4BA2-9A34-5709592BDDFD}|SitePBL\\SitePBL.csproj|c:\\users\\55119\\source\\repos\\pbl-ec5\\programa\\sitepbl\\sitepbl\\dao\\manutencaodao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{35B35557-0BB3-4BA2-9A34-5709592BDDFD}|SitePBL\\SitePBL.csproj|solutionrelative:sitepbl\\dao\\manutencaodao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{35B35557-0BB3-4BA2-9A34-5709592BDDFD}|SitePBL\\SitePBL.csproj|c:\\users\\55119\\source\\repos\\pbl-ec5\\programa\\sitepbl\\sitepbl\\dao\\temperaturadao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{35B35557-0BB3-4BA2-9A34-5709592BDDFD}|SitePBL\\SitePBL.csproj|solutionrelative:sitepbl\\dao\\temperaturadao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{35B35557-0BB3-4BA2-9A34-5709592BDDFD}|SitePBL\\SitePBL.csproj|c:\\users\\55119\\source\\repos\\pbl-ec5\\programa\\sitepbl\\sitepbl\\dao\\sensordao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{35B35557-0BB3-4BA2-9A34-5709592BDDFD}|SitePBL\\SitePBL.csproj|solutionrelative:sitepbl\\dao\\sensordao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{35B35557-0BB3-4BA2-9A34-5709592BDDFD}|SitePBL\\SitePBL.csproj|c:\\users\\55119\\source\\repos\\pbl-ec5\\programa\\sitepbl\\sitepbl\\dao\\acessodao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{35B35557-0BB3-4BA2-9A34-5709592BDDFD}|SitePBL\\SitePBL.csproj|solutionrelative:sitepbl\\dao\\acessodao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{35B35557-0BB3-4BA2-9A34-5709592BDDFD}|SitePBL\\SitePBL.csproj|c:\\users\\55119\\source\\repos\\pbl-ec5\\programa\\sitepbl\\sitepbl\\models\\temperaturaviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{35B35557-0BB3-4BA2-9A34-5709592BDDFD}|SitePBL\\SitePBL.csproj|solutionrelative:sitepbl\\models\\temperaturaviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{35B35557-0BB3-4BA2-9A34-5709592BDDFD}|SitePBL\\SitePBL.csproj|c:\\users\\55119\\source\\repos\\pbl-ec5\\programa\\sitepbl\\sitepbl\\models\\manutencaoviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{35B35557-0BB3-4BA2-9A34-5709592BDDFD}|SitePBL\\SitePBL.csproj|solutionrelative:sitepbl\\models\\manutencaoviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{35B35557-0BB3-4BA2-9A34-5709592BDDFD}|SitePBL\\SitePBL.csproj|c:\\users\\55119\\source\\repos\\pbl-ec5\\programa\\sitepbl\\sitepbl\\dao\\funcionariodao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{35B35557-0BB3-4BA2-9A34-5709592BDDFD}|SitePBL\\SitePBL.csproj|solutionrelative:sitepbl\\dao\\funcionariodao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{35B35557-0BB3-4BA2-9A34-5709592BDDFD}|SitePBL\\SitePBL.csproj|c:\\users\\55119\\source\\repos\\pbl-ec5\\programa\\sitepbl\\sitepbl\\dao\\conexaodb.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{35B35557-0BB3-4BA2-9A34-5709592BDDFD}|SitePBL\\SitePBL.csproj|solutionrelative:sitepbl\\dao\\conexaodb.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{35B35557-0BB3-4BA2-9A34-5709592BDDFD}|SitePBL\\SitePBL.csproj|c:\\users\\55119\\source\\repos\\pbl-ec5\\programa\\sitepbl\\sitepbl\\models\\funcionarioviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{35B35557-0BB3-4BA2-9A34-5709592BDDFD}|SitePBL\\SitePBL.csproj|solutionrelative:sitepbl\\models\\funcionarioviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{35B35557-0BB3-4BA2-9A34-5709592BDDFD}|SitePBL\\SitePBL.csproj|c:\\users\\55119\\source\\repos\\pbl-ec5\\programa\\sitepbl\\sitepbl\\models\\errorviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{35B35557-0BB3-4BA2-9A34-5709592BDDFD}|SitePBL\\SitePBL.csproj|solutionrelative:sitepbl\\models\\errorviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{35B35557-0BB3-4BA2-9A34-5709592BDDFD}|SitePBL\\SitePBL.csproj|c:\\users\\55119\\source\\repos\\pbl-ec5\\programa\\sitepbl\\sitepbl\\models\\sensorviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{35B35557-0BB3-4BA2-9A34-5709592BDDFD}|SitePBL\\SitePBL.csproj|solutionrelative:sitepbl\\models\\sensorviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{35B35557-0BB3-4BA2-9A34-5709592BDDFD}|SitePBL\\SitePBL.csproj|c:\\users\\55119\\source\\repos\\pbl-ec5\\programa\\sitepbl\\sitepbl\\models\\empresaviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{35B35557-0BB3-4BA2-9A34-5709592BDDFD}|SitePBL\\SitePBL.csproj|solutionrelative:sitepbl\\models\\empresaviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{35B35557-0BB3-4BA2-9A34-5709592BDDFD}|SitePBL\\SitePBL.csproj|c:\\users\\55119\\source\\repos\\pbl-ec5\\programa\\sitepbl\\sitepbl\\views\\shared\\error.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{35B35557-0BB3-4BA2-9A34-5709592BDDFD}|SitePBL\\SitePBL.csproj|solutionrelative:sitepbl\\views\\shared\\error.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 9,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Listagem.cshtml",
+              "DocumentMoniker": "C:\\Users\\55119\\source\\repos\\PBL-EC5\\Programa\\SitePBL\\SitePBL\\Views\\Empresa\\Listagem.cshtml",
+              "RelativeDocumentMoniker": "SitePBL\\Views\\Empresa\\Listagem.cshtml",
+              "ToolTip": "C:\\Users\\55119\\source\\repos\\PBL-EC5\\Programa\\SitePBL\\SitePBL\\Views\\Empresa\\Listagem.cshtml",
+              "RelativeToolTip": "SitePBL\\Views\\Empresa\\Listagem.cshtml",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAABAAAAAoAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-09-29T01:53:30.971Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Listagem.cshtml",
+              "DocumentMoniker": "C:\\Users\\55119\\source\\repos\\PBL-EC5\\Programa\\SitePBL\\SitePBL\\Views\\Funcionario\\Listagem.cshtml",
+              "RelativeDocumentMoniker": "SitePBL\\Views\\Funcionario\\Listagem.cshtml",
+              "ToolTip": "C:\\Users\\55119\\source\\repos\\PBL-EC5\\Programa\\SitePBL\\SitePBL\\Views\\Funcionario\\Listagem.cshtml",
+              "RelativeToolTip": "SitePBL\\Views\\Funcionario\\Listagem.cshtml",
+              "ViewState": "AQIAAAUAAAAAAAAAAAAqwAoAAAA8AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-09-29T01:53:30.974Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "C:\\Users\\55119\\source\\repos\\PBL-EC5\\Programa\\SitePBL\\SitePBL\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "SitePBL\\Controllers\\HomeController.cs",
+              "ToolTip": "C:\\Users\\55119\\source\\repos\\PBL-EC5\\Programa\\SitePBL\\SitePBL\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "SitePBL\\Controllers\\HomeController.cs",
+              "ViewState": "AQIAAAcAAAAAAAAAAAAywBgAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-29T01:53:30.978Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Funcionario.cs",
+              "DocumentMoniker": "C:\\Users\\55119\\source\\repos\\PBL-EC5\\Programa\\SitePBL\\SitePBL\\Controllers\\Funcionario.cs",
+              "RelativeDocumentMoniker": "SitePBL\\Controllers\\Funcionario.cs",
+              "ToolTip": "C:\\Users\\55119\\source\\repos\\PBL-EC5\\Programa\\SitePBL\\SitePBL\\Controllers\\Funcionario.cs",
+              "RelativeToolTip": "SitePBL\\Controllers\\Funcionario.cs",
+              "ViewState": "AQIAAAEAAAAAAAAAAAAwwAwAAAAhAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-29T01:53:30.981Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "C:\\Users\\55119\\source\\repos\\PBL-EC5\\Programa\\SitePBL\\SitePBL\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "SitePBL\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "C:\\Users\\55119\\source\\repos\\PBL-EC5\\Programa\\SitePBL\\SitePBL\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "SitePBL\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AQIAABwAAAAAAAAAAAAqwBYAAAAhAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-09-29T01:53:30.985Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Empresa.cs",
+              "DocumentMoniker": "C:\\Users\\55119\\source\\repos\\PBL-EC5\\Programa\\SitePBL\\SitePBL\\Controllers\\Empresa.cs",
+              "RelativeDocumentMoniker": "SitePBL\\Controllers\\Empresa.cs",
+              "ToolTip": "C:\\Users\\55119\\source\\repos\\PBL-EC5\\Programa\\SitePBL\\SitePBL\\Controllers\\Empresa.cs",
+              "RelativeToolTip": "SitePBL\\Controllers\\Empresa.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAAAwAAAAhAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-29T01:53:30.99Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Form.cshtml",
+              "DocumentMoniker": "C:\\Users\\55119\\source\\repos\\PBL-EC5\\Programa\\SitePBL\\SitePBL\\Views\\Funcionario\\Form.cshtml",
+              "RelativeDocumentMoniker": "SitePBL\\Views\\Funcionario\\Form.cshtml",
+              "ToolTip": "C:\\Users\\55119\\source\\repos\\PBL-EC5\\Programa\\SitePBL\\SitePBL\\Views\\Funcionario\\Form.cshtml",
+              "RelativeToolTip": "SitePBL\\Views\\Funcionario\\Form.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-09-29T01:53:30.993Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "site.css",
+              "DocumentMoniker": "C:\\Users\\55119\\source\\repos\\PBL-EC5\\Programa\\SitePBL\\SitePBL\\wwwroot\\css\\site.css",
+              "RelativeDocumentMoniker": "SitePBL\\wwwroot\\css\\site.css",
+              "ToolTip": "C:\\Users\\55119\\source\\repos\\PBL-EC5\\Programa\\SitePBL\\SitePBL\\wwwroot\\css\\site.css",
+              "RelativeToolTip": "SitePBL\\wwwroot\\css\\site.css",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAAACYAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2024-09-29T01:53:30.996Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Sobre.cshtml",
+              "DocumentMoniker": "C:\\Users\\55119\\source\\repos\\PBL-EC5\\Programa\\SitePBL\\SitePBL\\Views\\Home\\Sobre.cshtml",
+              "RelativeDocumentMoniker": "SitePBL\\Views\\Home\\Sobre.cshtml",
+              "ToolTip": "C:\\Users\\55119\\source\\repos\\PBL-EC5\\Programa\\SitePBL\\SitePBL\\Views\\Home\\Sobre.cshtml",
+              "RelativeToolTip": "SitePBL\\Views\\Home\\Sobre.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABQAAAAnAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-09-29T01:53:31.004Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\55119\\source\\repos\\PBL-EC5\\Programa\\SitePBL\\SitePBL\\Views\\Home\\Index.cshtml",
+              "RelativeDocumentMoniker": "SitePBL\\Views\\Home\\Index.cshtml",
+              "ToolTip": "C:\\Users\\55119\\source\\repos\\PBL-EC5\\Programa\\SitePBL\\SitePBL\\Views\\Home\\Index.cshtml",
+              "RelativeToolTip": "SitePBL\\Views\\Home\\Index.cshtml",
+              "ViewState": "AQIAAA8AAAAAAAAAAAAAABsAAAAvAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-09-29T01:53:30.967Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Login.cshtml",
+              "DocumentMoniker": "C:\\Users\\55119\\source\\repos\\PBL-EC5\\Programa\\SitePBL\\SitePBL\\Views\\Login\\Login.cshtml",
+              "RelativeDocumentMoniker": "SitePBL\\Views\\Login\\Login.cshtml",
+              "ToolTip": "C:\\Users\\55119\\source\\repos\\PBL-EC5\\Programa\\SitePBL\\SitePBL\\Views\\Login\\Login.cshtml",
+              "RelativeToolTip": "SitePBL\\Views\\Login\\Login.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-09-29T01:53:30.948Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "styles.css",
+              "DocumentMoniker": "C:\\Users\\55119\\source\\repos\\PBL-EC5\\Programa\\SitePBL\\SitePBL\\wwwroot\\css\\styles.css",
+              "RelativeDocumentMoniker": "SitePBL\\wwwroot\\css\\styles.css",
+              "ToolTip": "C:\\Users\\55119\\source\\repos\\PBL-EC5\\Programa\\SitePBL\\SitePBL\\wwwroot\\css\\styles.css",
+              "RelativeToolTip": "SitePBL\\wwwroot\\css\\styles.css",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAADsAAAAaAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2024-09-29T01:53:31Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "listagens.css",
+              "DocumentMoniker": "C:\\Users\\55119\\source\\repos\\PBL-EC5\\Programa\\SitePBL\\SitePBL\\wwwroot\\css\\listagens.css",
+              "RelativeDocumentMoniker": "SitePBL\\wwwroot\\css\\listagens.css",
+              "ToolTip": "C:\\Users\\55119\\source\\repos\\PBL-EC5\\Programa\\SitePBL\\SitePBL\\wwwroot\\css\\listagens.css",
+              "RelativeToolTip": "SitePBL\\wwwroot\\css\\listagens.css",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAAABAAAAARAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2024-09-29T01:53:31.008Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "login.css",
+              "DocumentMoniker": "C:\\Users\\55119\\source\\repos\\PBL-EC5\\Programa\\SitePBL\\SitePBL\\wwwroot\\css\\login.css",
+              "RelativeDocumentMoniker": "SitePBL\\wwwroot\\css\\login.css",
+              "ToolTip": "C:\\Users\\55119\\source\\repos\\PBL-EC5\\Programa\\SitePBL\\SitePBL\\wwwroot\\css\\login.css",
+              "RelativeToolTip": "SitePBL\\wwwroot\\css\\login.css",
+              "ViewState": "AQIAADgAAAAAAAAAAAAAACoAAAANAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2024-09-29T01:53:31.012Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "Login.cshtml",
+              "DocumentMoniker": "C:\\Users\\55119\\source\\repos\\PBL-EC5\\Programa\\SitePBL\\SitePBL\\Views\\Acesso\\Login.cshtml",
+              "RelativeDocumentMoniker": "SitePBL\\Views\\Acesso\\Login.cshtml",
+              "ToolTip": "C:\\Users\\55119\\source\\repos\\PBL-EC5\\Programa\\SitePBL\\SitePBL\\Views\\Acesso\\Login.cshtml",
+              "RelativeToolTip": "SitePBL\\Views\\Acesso\\Login.cshtml",
+              "ViewState": "AQIAAAoAAAAAAAAAAAAAACIAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-09-29T01:53:31.017Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "Form.cshtml",
+              "DocumentMoniker": "C:\\Users\\55119\\source\\repos\\PBL-EC5\\Programa\\SitePBL\\SitePBL\\Views\\Acesso\\Form.cshtml",
+              "RelativeDocumentMoniker": "SitePBL\\Views\\Acesso\\Form.cshtml",
+              "ToolTip": "C:\\Users\\55119\\source\\repos\\PBL-EC5\\Programa\\SitePBL\\SitePBL\\Views\\Acesso\\Form.cshtml",
+              "RelativeToolTip": "SitePBL\\Views\\Acesso\\Form.cshtml",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAABUAAAA4AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-09-29T01:53:31.022Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "AcessoController.cs",
+              "DocumentMoniker": "C:\\Users\\55119\\source\\repos\\PBL-EC5\\Programa\\SitePBL\\SitePBL\\Controllers\\AcessoController.cs",
+              "RelativeDocumentMoniker": "SitePBL\\Controllers\\AcessoController.cs",
+              "ToolTip": "C:\\Users\\55119\\source\\repos\\PBL-EC5\\Programa\\SitePBL\\SitePBL\\Controllers\\AcessoController.cs",
+              "RelativeToolTip": "SitePBL\\Controllers\\AcessoController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAUAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-29T01:53:31.026Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "Form.cshtml",
+              "DocumentMoniker": "C:\\Users\\55119\\source\\repos\\PBL-EC5\\Programa\\SitePBL\\SitePBL\\Views\\Empresa\\Form.cshtml",
+              "RelativeDocumentMoniker": "SitePBL\\Views\\Empresa\\Form.cshtml",
+              "ToolTip": "C:\\Users\\55119\\source\\repos\\PBL-EC5\\Programa\\SitePBL\\SitePBL\\Views\\Empresa\\Form.cshtml",
+              "RelativeToolTip": "SitePBL\\Views\\Empresa\\Form.cshtml",
+              "ViewState": "AQIAAA8AAAAAAAAAAAAAABYAAAAtAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-09-29T01:53:31.03Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "PadraoViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\55119\\source\\repos\\PBL-EC5\\Programa\\SitePBL\\SitePBL\\Models\\PadraoViewModel.cs",
+              "RelativeDocumentMoniker": "SitePBL\\Models\\PadraoViewModel.cs",
+              "ToolTip": "C:\\Users\\55119\\source\\repos\\PBL-EC5\\Programa\\SitePBL\\SitePBL\\Models\\PadraoViewModel.cs",
+              "RelativeToolTip": "SitePBL\\Models\\PadraoViewModel.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAAsAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-29T01:53:31.034Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "cadFunc.css",
+              "DocumentMoniker": "C:\\Users\\55119\\source\\repos\\PBL-EC5\\Programa\\SitePBL\\SitePBL\\wwwroot\\css\\cadFunc.css",
+              "RelativeDocumentMoniker": "SitePBL\\wwwroot\\css\\cadFunc.css",
+              "ToolTip": "C:\\Users\\55119\\source\\repos\\PBL-EC5\\Programa\\SitePBL\\SitePBL\\wwwroot\\css\\cadFunc.css",
+              "RelativeToolTip": "SitePBL\\wwwroot\\css\\cadFunc.css",
+              "ViewState": "AQIAAG0AAAAAAAAAAAAAAHgAAAANAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2024-09-29T01:53:31.04Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "Privacy.cshtml",
+              "DocumentMoniker": "C:\\Users\\55119\\source\\repos\\PBL-EC5\\Programa\\SitePBL\\SitePBL\\Views\\Home\\Privacy.cshtml",
+              "RelativeDocumentMoniker": "SitePBL\\Views\\Home\\Privacy.cshtml",
+              "ToolTip": "C:\\Users\\55119\\source\\repos\\PBL-EC5\\Programa\\SitePBL\\SitePBL\\Views\\Home\\Privacy.cshtml",
+              "RelativeToolTip": "SitePBL\\Views\\Home\\Privacy.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-09-29T01:53:31.044Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "home.css",
+              "DocumentMoniker": "C:\\Users\\55119\\source\\repos\\PBL-EC5\\Programa\\SitePBL\\SitePBL\\wwwroot\\css\\home.css",
+              "RelativeDocumentMoniker": "SitePBL\\wwwroot\\css\\home.css",
+              "ToolTip": "C:\\Users\\55119\\source\\repos\\PBL-EC5\\Programa\\SitePBL\\SitePBL\\wwwroot\\css\\home.css",
+              "RelativeToolTip": "SitePBL\\wwwroot\\css\\home.css",
+              "ViewState": "AQIAAD8AAAAAAAAAAAAswEoAAAA1AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2024-09-29T01:53:31.048Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "AcessoViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\55119\\source\\repos\\PBL-EC5\\Programa\\SitePBL\\SitePBL\\Models\\AcessoViewModel.cs",
+              "RelativeDocumentMoniker": "SitePBL\\Models\\AcessoViewModel.cs",
+              "ToolTip": "C:\\Users\\55119\\source\\repos\\PBL-EC5\\Programa\\SitePBL\\SitePBL\\Models\\AcessoViewModel.cs",
+              "RelativeToolTip": "SitePBL\\Models\\AcessoViewModel.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAACAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-29T01:53:31.052Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "PadraoDAO.cs",
+              "DocumentMoniker": "C:\\Users\\55119\\source\\repos\\PBL-EC5\\Programa\\SitePBL\\SitePBL\\DAO\\PadraoDAO.cs",
+              "RelativeDocumentMoniker": "SitePBL\\DAO\\PadraoDAO.cs",
+              "ToolTip": "C:\\Users\\55119\\source\\repos\\PBL-EC5\\Programa\\SitePBL\\SitePBL\\DAO\\PadraoDAO.cs",
+              "RelativeToolTip": "SitePBL\\DAO\\PadraoDAO.cs",
+              "ViewState": "AQIAADIAAAAAAAAAAAAkwA8AAAAiAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-29T01:53:31.056Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "SensorDAO.cs",
+              "DocumentMoniker": "C:\\Users\\55119\\source\\repos\\PBL-EC5\\Programa\\SitePBL\\SitePBL\\DAO\\SensorDAO.cs",
+              "RelativeDocumentMoniker": "SitePBL\\DAO\\SensorDAO.cs",
+              "ToolTip": "C:\\Users\\55119\\source\\repos\\PBL-EC5\\Programa\\SitePBL\\SitePBL\\DAO\\SensorDAO.cs",
+              "RelativeToolTip": "SitePBL\\DAO\\SensorDAO.cs",
+              "ViewState": "AQIAADIAAAAAAAAAAAAwwDsAAAARAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-29T01:53:31.06Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "ManutencaoDAO.cs",
+              "DocumentMoniker": "C:\\Users\\55119\\source\\repos\\PBL-EC5\\Programa\\SitePBL\\SitePBL\\DAO\\ManutencaoDAO.cs",
+              "RelativeDocumentMoniker": "SitePBL\\DAO\\ManutencaoDAO.cs",
+              "ToolTip": "C:\\Users\\55119\\source\\repos\\PBL-EC5\\Programa\\SitePBL\\SitePBL\\DAO\\ManutencaoDAO.cs",
+              "RelativeToolTip": "SitePBL\\DAO\\ManutencaoDAO.cs",
+              "ViewState": "AQIAABMAAAAAAAAAAAAAACgAAAA0AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-29T01:53:31.064Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "HelperDAO.cs",
+              "DocumentMoniker": "C:\\Users\\55119\\source\\repos\\PBL-EC5\\Programa\\SitePBL\\SitePBL\\DAO\\HelperDAO.cs",
+              "RelativeDocumentMoniker": "SitePBL\\DAO\\HelperDAO.cs",
+              "ToolTip": "C:\\Users\\55119\\source\\repos\\PBL-EC5\\Programa\\SitePBL\\SitePBL\\DAO\\HelperDAO.cs",
+              "RelativeToolTip": "SitePBL\\DAO\\HelperDAO.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAqwAUAAAAhAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-29T01:53:31.068Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "TemperaturaViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\55119\\source\\repos\\PBL-EC5\\Programa\\SitePBL\\SitePBL\\Models\\TemperaturaViewModel.cs",
+              "RelativeDocumentMoniker": "SitePBL\\Models\\TemperaturaViewModel.cs",
+              "ToolTip": "C:\\Users\\55119\\source\\repos\\PBL-EC5\\Programa\\SitePBL\\SitePBL\\Models\\TemperaturaViewModel.cs",
+              "RelativeToolTip": "SitePBL\\Models\\TemperaturaViewModel.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAMAAAA0AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-29T01:53:31.071Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "EmpresaDAO.cs",
+              "DocumentMoniker": "C:\\Users\\55119\\source\\repos\\PBL-EC5\\Programa\\SitePBL\\SitePBL\\DAO\\EmpresaDAO.cs",
+              "RelativeDocumentMoniker": "SitePBL\\DAO\\EmpresaDAO.cs",
+              "ToolTip": "C:\\Users\\55119\\source\\repos\\PBL-EC5\\Programa\\SitePBL\\SitePBL\\DAO\\EmpresaDAO.cs",
+              "RelativeToolTip": "SitePBL\\DAO\\EmpresaDAO.cs",
+              "ViewState": "AQIAAFcAAAAAAAAAAAAAAGEAAAAfAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-29T01:53:31.076Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "TemperaturaDAO.cs",
+              "DocumentMoniker": "C:\\Users\\55119\\source\\repos\\PBL-EC5\\Programa\\SitePBL\\SitePBL\\DAO\\TemperaturaDAO.cs",
+              "RelativeDocumentMoniker": "SitePBL\\DAO\\TemperaturaDAO.cs",
+              "ToolTip": "C:\\Users\\55119\\source\\repos\\PBL-EC5\\Programa\\SitePBL\\SitePBL\\DAO\\TemperaturaDAO.cs",
+              "RelativeToolTip": "SitePBL\\DAO\\TemperaturaDAO.cs",
+              "ViewState": "AQIAACEAAAAAAAAAAAAiwDEAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-29T01:53:31.191Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 31,
+              "Title": "ManutencaoViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\55119\\source\\repos\\PBL-EC5\\Programa\\SitePBL\\SitePBL\\Models\\ManutencaoViewModel.cs",
+              "RelativeDocumentMoniker": "SitePBL\\Models\\ManutencaoViewModel.cs",
+              "ToolTip": "C:\\Users\\55119\\source\\repos\\PBL-EC5\\Programa\\SitePBL\\SitePBL\\Models\\ManutencaoViewModel.cs",
+              "RelativeToolTip": "SitePBL\\Models\\ManutencaoViewModel.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAbAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-29T01:53:31.194Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "AcessoDAO.cs",
+              "DocumentMoniker": "C:\\Users\\55119\\source\\repos\\PBL-EC5\\Programa\\SitePBL\\SitePBL\\DAO\\AcessoDAO.cs",
+              "RelativeDocumentMoniker": "SitePBL\\DAO\\AcessoDAO.cs",
+              "ToolTip": "C:\\Users\\55119\\source\\repos\\PBL-EC5\\Programa\\SitePBL\\SitePBL\\DAO\\AcessoDAO.cs",
+              "RelativeToolTip": "SitePBL\\DAO\\AcessoDAO.cs",
+              "ViewState": "AQIAABIAAAAAAAAAAADgvx4AAAAIAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-29T01:53:31.198Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 32,
+              "Title": "FuncionarioDAO.cs",
+              "DocumentMoniker": "C:\\Users\\55119\\source\\repos\\PBL-EC5\\Programa\\SitePBL\\SitePBL\\DAO\\FuncionarioDAO.cs",
+              "RelativeDocumentMoniker": "SitePBL\\DAO\\FuncionarioDAO.cs",
+              "ToolTip": "C:\\Users\\55119\\source\\repos\\PBL-EC5\\Programa\\SitePBL\\SitePBL\\DAO\\FuncionarioDAO.cs",
+              "RelativeToolTip": "SitePBL\\DAO\\FuncionarioDAO.cs",
+              "ViewState": "AQIAADEAAAAAAAAAAAAiwD8AAAAYAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-29T01:53:31.202Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 33,
+              "Title": "ConexaoDB.cs",
+              "DocumentMoniker": "C:\\Users\\55119\\source\\repos\\PBL-EC5\\Programa\\SitePBL\\SitePBL\\DAO\\ConexaoDB.cs",
+              "RelativeDocumentMoniker": "SitePBL\\DAO\\ConexaoDB.cs",
+              "ToolTip": "C:\\Users\\55119\\source\\repos\\PBL-EC5\\Programa\\SitePBL\\SitePBL\\DAO\\ConexaoDB.cs",
+              "RelativeToolTip": "SitePBL\\DAO\\ConexaoDB.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAADwvwwAAAAIAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-29T01:53:31.205Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 34,
+              "Title": "FuncionarioViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\55119\\source\\repos\\PBL-EC5\\Programa\\SitePBL\\SitePBL\\Models\\FuncionarioViewModel.cs",
+              "RelativeDocumentMoniker": "SitePBL\\Models\\FuncionarioViewModel.cs",
+              "ToolTip": "C:\\Users\\55119\\source\\repos\\PBL-EC5\\Programa\\SitePBL\\SitePBL\\Models\\FuncionarioViewModel.cs",
+              "RelativeToolTip": "SitePBL\\Models\\FuncionarioViewModel.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAIAAAA0AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-29T01:53:31.212Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 35,
+              "Title": "ErrorViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\55119\\source\\repos\\PBL-EC5\\Programa\\SitePBL\\SitePBL\\Models\\ErrorViewModel.cs",
+              "RelativeDocumentMoniker": "SitePBL\\Models\\ErrorViewModel.cs",
+              "ToolTip": "C:\\Users\\55119\\source\\repos\\PBL-EC5\\Programa\\SitePBL\\SitePBL\\Models\\ErrorViewModel.cs",
+              "RelativeToolTip": "SitePBL\\Models\\ErrorViewModel.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAwwAcAAAADAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-29T01:53:31.217Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 36,
+              "Title": "SensorViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\55119\\source\\repos\\PBL-EC5\\Programa\\SitePBL\\SitePBL\\Models\\SensorViewModel.cs",
+              "RelativeDocumentMoniker": "SitePBL\\Models\\SensorViewModel.cs",
+              "ToolTip": "C:\\Users\\55119\\source\\repos\\PBL-EC5\\Programa\\SitePBL\\SitePBL\\Models\\SensorViewModel.cs",
+              "RelativeToolTip": "SitePBL\\Models\\SensorViewModel.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAMAAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-29T01:53:31.222Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 37,
+              "Title": "EmpresaViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\55119\\source\\repos\\PBL-EC5\\Programa\\SitePBL\\SitePBL\\Models\\EmpresaViewModel.cs",
+              "RelativeDocumentMoniker": "SitePBL\\Models\\EmpresaViewModel.cs",
+              "ToolTip": "C:\\Users\\55119\\source\\repos\\PBL-EC5\\Programa\\SitePBL\\SitePBL\\Models\\EmpresaViewModel.cs",
+              "RelativeToolTip": "SitePBL\\Models\\EmpresaViewModel.cs",
+              "ViewState": "AQIAAAEAAAAAAAAAAAAAAAYAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-29T01:53:31.226Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 38,
+              "Title": "Error.cshtml",
+              "DocumentMoniker": "C:\\Users\\55119\\source\\repos\\PBL-EC5\\Programa\\SitePBL\\SitePBL\\Views\\Shared\\Error.cshtml",
+              "RelativeDocumentMoniker": "SitePBL\\Views\\Shared\\Error.cshtml",
+              "ToolTip": "C:\\Users\\55119\\source\\repos\\PBL-EC5\\Programa\\SitePBL\\SitePBL\\Views\\Shared\\Error.cshtml",
+              "RelativeToolTip": "SitePBL\\Views\\Shared\\Error.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAADwvwcAAAAEAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-09-29T01:53:31.232Z"
+            }
+          ]
+        },
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            }
+          ]
+        },
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
