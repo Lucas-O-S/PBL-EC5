@@ -6,7 +6,7 @@ namespace SitePBL.DAO
     {
         public static SqlConnection GetConexao()
         {
-            string strCon = "Data Source=LOCALHOST;  Database=Termo_Light; user id=sa; password=123456";
+            string strCon = "Data Source=LOCALHOST\\SQLEXPRESS;  Database=Termo_Light; user id=sa; password=123456";
             SqlConnection conexao = new SqlConnection(strCon);
             conexao.Open();
             return conexao;

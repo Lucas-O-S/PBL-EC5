@@ -7,7 +7,7 @@
 </head>
 
 <main class="content-container">
-    <form class="form-container" method="post" enctype="multipart/form-data" action="Enviar">
+    <form class="form-container row container" method="post" enctype="multipart/form-data" action="Enviar">
         <section class="left-section col">
             <p>Cadastro de</p>
             <h1><strong>Funcionário</strong></h1>
@@ -16,10 +16,9 @@
             <input type="submit" class="btn btn-primary" role="button" name="btnEnviar" value="Enviar" />
         </section>
 
-        <section class="right-section col">
-            <main class="input-container">
+        <section class="right-section col row">
 
-                <div class="input-group-sm mb-3">
+                <div class="input-group-sm mb-3 col">
                     <br />
                     <input type="hidden" name="id" value="@Model.id" />
                     <label class="form-label">Nome</label>
@@ -27,7 +26,7 @@
                     <label class="form-label">Cargo</label>
                     <input type="text" name="cargo" value="@Model.cargo">
                 </div>
-                <section class="file-section">
+                <section class="file-section col">
                     <label for="foto-upload">Foto</label>
                     <br>
                     <div class="upload-container">

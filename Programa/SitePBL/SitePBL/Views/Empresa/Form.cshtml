@@ -6,7 +6,7 @@
 
 </head>
 <main id="cadastro" class="content-container">
-    <form class="form-container" method="post" enctype="multipart/form-data" action="Enviar">
+    <form class="form-container container row" method="post" enctype="multipart/form-data" action="Enviar">
         <section class="left-section col">
             <p>Cadastro de</p>
             <h1><strong>Empresa</strong></h1>
@@ -15,11 +15,9 @@
             <a href="/empresa/enviar" class="btn btn-primary" role="button">Enviar</a>
         </section>
 
-        <section class="right-section col">
-            <main class="input-container ">
-                <section class="text-section">
-                </section>
-                <div class="input-group-sm mb-3">
+        <section class="right-section col row">
+
+                <div class="input-group-sm mb-3 col">
                     <br />
                     <input type="hidden" name="id" value="@Model.id" />
                     <label class="form-label">Sede</label>
@@ -27,7 +25,7 @@
                     <label class="form-label">Nome</label>
                     <input type="text" name="nome" value="@Model.nome" maxlength="500">
                 </div>
-                <section class="file-section">
+                <section class="file-section col" >
                     <label for="logo-upload">Logo</label>
                     <br>
                     <div class="upload-container">
@@ -36,7 +34,6 @@
                         <p class="texto-upload">Faça o upload do arquivo</p>
                     </div>
                 </section>
-            </main>
         </section>
     </form>
 </main>

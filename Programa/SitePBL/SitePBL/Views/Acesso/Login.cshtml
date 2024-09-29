@@ -1,36 +1,19 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@{
+ ViewData["Title"] = "Login";
+ Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<head>
-
-    <link rel="stylesheet" href="../css/login.css">
-
-</head>
-
-
-<main id="pagina_login">
-        <h1 class="logo"><img src="../img/Logo.png" alt="Termo-Light"></h1>
-        <div>
-            <section>
-                <h2><strong>Login</strong></h2>
-                <label>Nome</label>
-                <br>
-                <input type="text" name="Nome">
-                <br>
-                <label>Senha</label>
-                <br>
-                <input type="text" name="Senha">
-                <br>
-                <input type="button" name="btnEnviar" click()="btnClick" value="Entrar">
-
-               
-            </section>
-        </div>
-         <br />
-                <br />
-                <br />
-                <br />
-
-    </main>
+<h2>Login</h2>
+<div class="row">
+    <div class="col-lg-3">
+        <form action="/login/Fazlogin" method="post">
+            <label for="usuario" class="control-label">Usuário</label>
+            <input type="text" name="usuario" class="form-control" required placeholder='Usuário...' />
+            <label for="senha" class="control-label">Senha</label>
+            <input type="password" name="senha" class="form-control" required placeholder='Senha...' />
+            <br />
+            <input type="submit" value="Login" class="btn btn-success" />
+            <br />
+            <span class="text-danger"> @ViewBag.Erro</span>
+        </form>
+    </div>
+</div>
