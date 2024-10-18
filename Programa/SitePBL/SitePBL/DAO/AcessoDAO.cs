@@ -14,8 +14,9 @@ namespace SitePBL.DAO
         {
             SqlParameter[] parametros = new SqlParameter[3];
             parametros[0] = new SqlParameter("id", acesso.id);
-            parametros[1] = new SqlParameter("senha", acesso.senha);
-            parametros[2] = new SqlParameter("fk_empresa_id", acesso.empresa);
+			parametros[1] = new SqlParameter("Nome_Usuario", acesso.nomeUsuario);
+			parametros[2] = new SqlParameter("senha", acesso.senha);
+            parametros[3] = new SqlParameter("fk_empresa_id", acesso.empresa);
 
             return parametros;
         }
@@ -24,7 +25,8 @@ namespace SitePBL.DAO
         protected override SqlParameter[] CriaParametrosNoId(AcessoViewModel acesso)
         {
             SqlParameter[] parametros = new SqlParameter[2];
-            parametros[0] = new SqlParameter("senha", acesso.senha);
+			parametros[1] = new SqlParameter("Nome_Usuario", acesso.nomeUsuario);
+			parametros[0] = new SqlParameter("senha", acesso.senha);
             parametros[1] = new SqlParameter("fk_empresa_id", acesso.empresa);
 
             return parametros;
@@ -38,6 +40,7 @@ namespace SitePBL.DAO
             AcessoViewModel acesso = new AcessoViewModel(); ;
 
             acesso.id = Convert.ToInt32(registro["id"]);
+            acesso.nomeUsuario = Convert.ToString(registro["Nome_Usuario"]);
             acesso.senha = Convert.ToString(registro["senha"]);
             acesso.empresa = Convert.ToInt32(registro["fk_empresa_id"]);
             return acesso;
@@ -45,12 +48,13 @@ namespace SitePBL.DAO
 
 
 
-        public bool Login(string nomeEmpresa, string senha)
+        public bool Login(string nomeEmpresa, string nomeUsuario, string senha)
         {
             var parametros = new SqlParameter[]
             {
                 new SqlParameter("NomeEmpresa", nomeEmpresa),
-                new SqlParameter("senha", senha)
+				new SqlParameter("Nome_Usuario", nomeUsuario),
+				new SqlParameter("senha", senha)
 
              };
             string sql = "sp_login_acesso";

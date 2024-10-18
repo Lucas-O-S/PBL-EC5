@@ -32,8 +32,9 @@ go
 
 --Tabela de acesso
 create table acesso(
-	id int primary key not null,
-	senha varchar(500) not null,
+	Id int primary key not null,
+	Nome_Usuario varchar(500) not null,
+	Senha varchar(500) not null,
 	fk_empresa_id int not null,
 	foreign key (fk_empresa_id)  references Empresa(id)
 	---quando excluir uma empresa o acesso é deletado
@@ -41,7 +42,7 @@ create table acesso(
 
 )
 go
-insert into acesso (id, senha, fk_empresa_id) values(1,'123456',1)
+insert into acesso (id,Nome_Usuario, senha, fk_empresa_id) values(1,'SA','123456',1)
 go
 
 --Tabela Temperatura
@@ -79,3 +80,4 @@ create table manutencao(
 
 )
 go
+

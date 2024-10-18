@@ -144,6 +144,7 @@ go
 
 create or alter procedure sp_insert_acesso(
 	@senha varchar(500),
+	@Nome_Usuario varchar(500),
 	@fk_empresa_id int
 )
 as
@@ -154,13 +155,14 @@ begin
 	begin
 		set @id = 1
 	end
-	insert into Acesso(id,senha,fk_empresa_id) values (@id,@senha, @fk_empresa_id)
+	insert into Acesso(id,Nome_Usuario,senha,fk_empresa_id) values (@id,@Nome_Usuario,@senha, @fk_empresa_id)
 end
 go
 -----------------------------------------------------------
 
 create or alter procedure sp_login_acesso(
 	@NomeEmpresa varchar(500),
+	@Nome_Usuario varchar(500),
 	@senha varchar(500)
 
 )
@@ -168,7 +170,10 @@ as
 begin
 	declare @idEmpresa int
 	select @idEmpresa = id from Empresa where @NomeEmpresa = nome
-	select count(*) as resultado from Acesso as a inner join Empresa as e on e.id = a.fk_empresa_id where e.id = @idEmpresa and a.senha = @senha
+	select count(*) as resultado 
+	from Acesso as a 
+	inner join Empresa as e on e.id = a.fk_empresa_id 
+	where e.id = @idEmpresa and a.senha = @senha and a.Nome_Usuario = @Nome_Usuario 
 
 
 end
