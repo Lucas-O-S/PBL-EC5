@@ -11,7 +11,7 @@ namespace SitePBL.DAO
         protected override void SetTabela() { nomeTabela = "temperatura"; }
 
         //Criar parametros de temperatura
-        protected override SqlParameter[] CriaParametrosNoId(TemperaturaViewModel temperatura)
+        protected override SqlParameter[] CriaParametros(TemperaturaViewModel temperatura)
 		{
 			SqlParameter[] parametros = new SqlParameter[3];
 			parametros[0] = new SqlParameter("data_hora", temperatura.data_hora);
@@ -22,13 +22,7 @@ namespace SitePBL.DAO
 			return parametros;
         }
 
-		//Não usar, não há ID
-        protected override SqlParameter[] CriaParametrosId(TemperaturaViewModel temperatura)
-        {
-     
 
-            return null;
-        }
 
 
         //Monta uma model de temperatura com base do datarow
@@ -45,7 +39,7 @@ namespace SitePBL.DAO
         public override void Delete(TemperaturaViewModel temperatura)
 		{
 
-			HelperDAO.ExecutaProc("sp_delete_temperatura", CriaParametrosNoId(temperatura));
+			HelperDAO.ExecutaProc("sp_delete_temperatura", CriaParametros(temperatura));
 		}
 
 

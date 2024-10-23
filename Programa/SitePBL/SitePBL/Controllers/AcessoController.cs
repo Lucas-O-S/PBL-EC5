@@ -53,7 +53,7 @@ namespace SitePBL.Controllers
             {
                 AcessoViewModel acesso = new AcessoViewModel();
                 AcessoDAO dao = new AcessoDAO();
-                dao.Inserir(acesso);
+                dao.Insert(acesso);
 
                 return View("/Home/index");
             }
@@ -68,7 +68,7 @@ namespace SitePBL.Controllers
             try
             {
                 AcessoDAO dao = new AcessoDAO();
-                dao.Excluir(id, tabela);
+                dao.Delete (id);
                 return RedirectToAction("");
             }
             catch (Exception ex)

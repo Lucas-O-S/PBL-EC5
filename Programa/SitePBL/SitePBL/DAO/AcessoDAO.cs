@@ -10,29 +10,32 @@ namespace SitePBL.DAO
         protected override void SetTabela() { nomeTabela = "acesso"; }
 
         //Criar parametros de acessos com id
-        protected override SqlParameter[] CriaParametrosId(AcessoViewModel acesso)
+        protected override SqlParameter[] CriaParametros(AcessoViewModel acesso)
         {
-            SqlParameter[] parametros = new SqlParameter[3];
-            parametros[0] = new SqlParameter("id", acesso.id);
-			parametros[1] = new SqlParameter("Nome_Usuario", acesso.nomeUsuario);
-			parametros[2] = new SqlParameter("senha", acesso.senha);
-            parametros[3] = new SqlParameter("fk_empresa_id", acesso.empresa);
+            if (acesso.id != 0)
+            {
+                SqlParameter[] parametros = new SqlParameter[3];
+                parametros[0] = new SqlParameter("id", acesso.id);
+                parametros[1] = new SqlParameter("Nome_Usuario", acesso.nomeUsuario);
+                parametros[2] = new SqlParameter("senha", acesso.senha);
+                parametros[3] = new SqlParameter("fk_empresa_id", acesso.empresa);
+                return parametros;
 
-            return parametros;
+            }
+            else
+            {
+                SqlParameter[] parametros = new SqlParameter[2];
+                parametros[0] = new SqlParameter("Nome_Usuario", acesso.nomeUsuario);
+                parametros[1] = new SqlParameter("senha", acesso.senha);
+                parametros[2] = new SqlParameter("fk_empresa_id", acesso.empresa);
+                return parametros;
+
+            }
+
+
         }
 
-        //Criar parametros de acessos sem ID id
-        protected override SqlParameter[] CriaParametrosNoId(AcessoViewModel acesso)
-        {
-            SqlParameter[] parametros = new SqlParameter[2];
-			parametros[1] = new SqlParameter("Nome_Usuario", acesso.nomeUsuario);
-			parametros[0] = new SqlParameter("senha", acesso.senha);
-            parametros[1] = new SqlParameter("fk_empresa_id", acesso.empresa);
-
-            return parametros;
-        }
-
-
+    
 
         //Monta uma model de acesso com base do datarow
         protected override AcessoViewModel MontaModel(DataRow registro)
@@ -67,21 +70,6 @@ namespace SitePBL.DAO
 
             return false;
         }
-        public void Inserir(AcessoViewModel acesso)
-        {
-            string sql = "sp_insert_acesso";
-
-            HelperDAO.ExecutaProc(sql, CriaParametrosNoId(acesso));
-        }
-        public void Excluir(int id, string tabela)
-        {
-            string sql = "sp_delete_generic";
-            SqlParameter[] parametros = new SqlParameter[]
-            {
-                new SqlParameter ("id",id),
-                new SqlParameter ("tabela",tabela)
-            };
-            HelperDAO.ExecutaProc(sql, parametros);
-        }
+   
     }
 }

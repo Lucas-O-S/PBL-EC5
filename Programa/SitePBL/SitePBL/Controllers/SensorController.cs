@@ -32,7 +32,7 @@ namespace SitePBL.Controllers
             try
             {
                 SensorDAO dao = new SensorDAO();
-                dao.Excluir(id, tabela);
+                dao.Delete(id);
                 return RedirectToAction("Listagem");
             }
             catch (Exception ex)
@@ -47,7 +47,7 @@ namespace SitePBL.Controllers
             {
                 ViewBag.Operacao = "A";
                 SensorDAO dao = new SensorDAO();
-                SensorViewModel sensor = dao.Consulta(id, tabela);
+                SensorViewModel sensor = dao.Consulta(id);
                 if (sensor == null)
                     return RedirectToAction("Listagem");
                 else
@@ -103,9 +103,9 @@ namespace SitePBL.Controllers
                 {
                     SensorDAO dao = new SensorDAO();
                     if (Operacao == "I")
-                        dao.Inserir(sensor);
+                        dao.Insert (sensor);
                     else
-                        dao.Alterar(sensor);
+                        dao.Update(sensor);
 
                     return RedirectToAction("listagem");
                 }

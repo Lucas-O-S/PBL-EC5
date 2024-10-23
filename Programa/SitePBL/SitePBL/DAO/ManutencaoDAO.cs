@@ -9,15 +9,8 @@ namespace SitePBL.DAO
         protected override void SetTabela() { nomeTabela = "manutencao"; }
 
         //Não usar, não há id
-        protected override SqlParameter[] CriaParametrosId(ManutencaoViewModel manutencao )
+        protected override SqlParameter[] CriaParametros(ManutencaoViewModel manutencao )
 		{
-			return null;
-		}
-
-
-        //Criar parametros de manutencao sem id
-        protected override SqlParameter[] CriaParametrosNoId(ManutencaoViewModel manutencao)
-        {
             SqlParameter[] parametros = new SqlParameter[4];
             parametros[0] = new SqlParameter("data_hora", manutencao.data_hora);
             parametros[1] = new SqlParameter("fk_sensor_id", manutencao.idSensor);
@@ -29,6 +22,8 @@ namespace SitePBL.DAO
 
             return parametros;
         }
+
+
 
 
         //Monta uma model de manutencao  com base do datarow

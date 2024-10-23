@@ -19,11 +19,9 @@ namespace SitePBL.DAO
         //Nome da sp de listagem
         protected string nomeSpListagem { get; set; } = "sp_listagem_generic";
 
-        //Metodo abstrato que precisa ser criado para criar paranetro com ID
-        protected abstract SqlParameter[] CriaParametrosId(T model);
+        //Metodo abstrato que precisa ser criado para criar paraneta
+        protected abstract SqlParameter[] CriaParametros(T model);
 
-        //Metodo abstrato que precisa ser criado para criar parametro sem ID
-        protected abstract SqlParameter[] CriaParametrosNoId(T model);
 
         //Metodo abstrato para criar uma classe
         protected abstract T MontaModel(DataRow registro);
@@ -33,36 +31,31 @@ namespace SitePBL.DAO
 
         public virtual void Insert(T model)
         {
-            HelperDAO.ExecutaProc("sp_insert_" + nomeTabela, CriaParametrosNoId(model));
+            HelperDAO.ExecutaProc("sp_insert_" + nomeTabela, CriaParametros(model));
         }
 
         public virtual void Update(T model)
         {
-            HelperDAO.ExecutaProc("sp_update_" + nomeTabela, CriaParametrosNoId(model));
+            HelperDAO.ExecutaProc("sp_update_" + nomeTabela, CriaParametros(model));
         }
 
         public virtual void Delete(int id)
         {
 
-            HelperDAO.ExecutaProc("sp_delete_generic", HelperDAO.CriarParametroID(id));
+            HelperDAO.ExecutaProc("sp_delete_generic", HelperDAO.CriarParametros(id));
         }
 
         //Delete que usa model ao inves de ID
         public virtual void Delete(T model)
         {
-            HelperDAO.ExecutaProc("sp_delete_" + nomeTabela, CriaParametrosNoId(model));
+            HelperDAO.ExecutaProc("sp_delete_" + nomeTabela, CriaParametros(model));
         }
 
         public virtual T Consulta(int id)
         {
 
-            var parametros = new SqlParameter[]
-            {
-                new SqlParameter("id", id),
-                new SqlParameter("tabela", nomeTabela)
-            };
 
-            var tabela = HelperDAO.ExecutaProcSelect("sp_consulta_generic", parametros);
+            var tabela = HelperDAO.ExecutaProcSelect("sp_consulta_generic", HelperDAO.CriarParametros(id, nomeTabela));
 
             if (tabela.Rows.Count == 0)
                 return null;
@@ -74,7 +67,7 @@ namespace SitePBL.DAO
         {
 
        
-            var tabela = HelperDAO.ExecutaProcSelect("sp_consulta_" + nomeTabela, CriaParametrosNoId(model));
+            var tabela = HelperDAO.ExecutaProcSelect("sp_consulta_" + nomeTabela, CriaParametros(model));
 
             if (tabela.Rows.Count == 0)
                 return null;

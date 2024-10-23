@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SitePBL")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e350d11692feed7821ccfc4f4d0afcbdfeb60529")]
 [assembly: System.Reflection.AssemblyProductAttribute("SitePBL")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SitePBL")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

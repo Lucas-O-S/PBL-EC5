@@ -20,7 +20,7 @@ namespace SitePBL.Controllers
             try
             {
                 EmpresaDAO dao = new EmpresaDAO();
-                List<EmpresaViewModel> lista = dao.Listagem(tabela, ordem);
+                List<EmpresaViewModel> lista = dao.Listagem();
                 return View("Listagem", lista);
             }
             catch (Exception ex)
@@ -34,7 +34,7 @@ namespace SitePBL.Controllers
             try
             {
                 EmpresaDAO dao = new EmpresaDAO();
-                dao.Excluir(id, tabela);
+                dao.Delete(id);
                 return RedirectToAction("Listagem");
             }
             catch (Exception ex)
@@ -48,7 +48,7 @@ namespace SitePBL.Controllers
             {
                 ViewBag.Operacao = "A";
                 EmpresaDAO dao = new EmpresaDAO();
-                EmpresaViewModel empresa = dao.Consulta(id, tabela);
+                EmpresaViewModel empresa = dao.Consulta(id);
                 if (empresa == null)
                     return RedirectToAction("Listagem");
                 else
@@ -95,9 +95,9 @@ namespace SitePBL.Controllers
                 {
                     EmpresaDAO dao = new EmpresaDAO();
                     if (Operacao == "I")
-                        dao.Inserir(empresa);
+                        dao.Insert(empresa);
                     else
-                        dao.Alterar(empresa);
+                        dao.Update(empresa);
 
                     return RedirectToAction("listagem");
                 }

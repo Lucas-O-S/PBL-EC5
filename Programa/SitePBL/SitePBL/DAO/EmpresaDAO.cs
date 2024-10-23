@@ -10,65 +10,68 @@ namespace SitePBL.DAO
         //teste
         protected override void SetTabela() { nomeTabela = "empresa"; }
 
-        //Criar parametros de empresa sem usar ID
-        protected override SqlParameter[] CriaParametrosNoId(EmpresaViewModel empresa)
+
+        //Criar parametros 
+        protected override SqlParameter[] CriaParametros(EmpresaViewModel empresa)
         {
-            SqlParameter[] parametros = new SqlParameter[3];
-            parametros[0] = new SqlParameter("nome", empresa.nome);
-            if (empresa.logo != null)
+            if (empresa.id != 0)
             {
-                //Evita problemas de conversão de imagem
-                parametros[1] = new SqlParameter("logo", SqlDbType.VarBinary)
+                SqlParameter[] parametros = new SqlParameter[4];
+                parametros[0] = new SqlParameter("id", empresa.id);
+                parametros[1] = new SqlParameter("nome", empresa.nome);
+                if (empresa.logo != null)
                 {
-                    Value = empresa.logo
+                    //Evita problemas de conversão de imagem
+                    parametros[2] = new SqlParameter("logo", SqlDbType.VarBinary)
+                    {
+                        Value = empresa.logo
 
-                };
+                    };
 
+                }
+                else
+                {
+                    parametros[2] = new SqlParameter("logo", SqlDbType.VarBinary)
+                    {
+                        Value = DBNull.Value
+
+                    };
+
+                }
+                parametros[3] = new SqlParameter("sede", empresa.sede);
+
+
+                return parametros;
             }
             else
             {
-                parametros[1] = new SqlParameter("logo", SqlDbType.VarBinary)
+                SqlParameter[] parametros = new SqlParameter[3];
+                parametros[0] = new SqlParameter("nome", empresa.nome);
+                if (empresa.logo != null)
                 {
-                    Value = DBNull.Value
+                    //Evita problemas de conversão de imagem
+                    parametros[1] = new SqlParameter("logo", SqlDbType.VarBinary)
+                    {
+                        Value = empresa.logo
 
-                };
+                    };
 
-            }
-            parametros[2] = new SqlParameter("sede", empresa.sede);
-
-
-            return parametros;
-        }
-
-        //Criar parametros de empresa usando ID
-        protected override SqlParameter[] CriaParametrosId(EmpresaViewModel empresa)
-        {
-            SqlParameter[] parametros = new SqlParameter[4];
-            parametros[0] = new SqlParameter("id", empresa.id);
-            parametros[1] = new SqlParameter("nome", empresa.nome);
-            if (empresa.logo != null)
-            {
-                //Evita problemas de conversão de imagem
-                parametros[2] = new SqlParameter("logo", SqlDbType.VarBinary)
+                }
+                else
                 {
-                    Value = empresa.logo
+                    parametros[1] = new SqlParameter("logo", SqlDbType.VarBinary)
+                    {
+                        Value = DBNull.Value
 
-                };
+                    };
 
+                }
+                parametros[2] = new SqlParameter("sede", empresa.sede);
+
+
+                return parametros;
             }
-            else
-            {
-                parametros[2] = new SqlParameter("logo", SqlDbType.VarBinary)
-                {
-                    Value = DBNull.Value
-
-                };
-
-            }
-            parametros[3] = new SqlParameter("sede", empresa.sede);
-
-
-            return parametros;
+           
         }
 
 
@@ -106,62 +109,13 @@ namespace SitePBL.DAO
             return -1;
         }
 
-        public List<EmpresaViewModel> Listagem(string tabela, string ordem)
-        {
-            List<EmpresaViewModel> lista = new List<EmpresaViewModel>();
-            string sql = "sp_listagem_generic";
 
-            SqlParameter[] parametros = new SqlParameter[]
-            {
-                new SqlParameter ("tabela",tabela),
-                new SqlParameter ("ordem",ordem)
-            };
-            DataTable t = HelperDAO.ExecutaProcSelect(sql, parametros);
-            foreach (DataRow registro in t.Rows)
-                lista.Add(MontaModel(registro));
-            return lista;
-        }
 
-        public void Inserir(EmpresaViewModel empresa)
-        {
-            string sql = "sp_insert_empresa";
-            HelperDAO.ExecutaProc(sql, CriaParametrosNoId(empresa));
-        }
 
-        public void Excluir(int id, string tabela)
-        {
-            string sql = "sp_delete_generic";
-            SqlParameter[] parametros = new SqlParameter[]
-            {
-                new SqlParameter ("id",id),
-                new SqlParameter ("tabela",tabela)
-            };
-            HelperDAO.ExecutaProc(sql, parametros);
-        }
 
-        public void Alterar(EmpresaViewModel empresa)
-        {
-            string sql = "sp_update_empresa";
+  
 
-            HelperDAO.ExecutaProc(sql, CriaParametrosId(empresa));
-        }
-
-        public EmpresaViewModel Consulta(int id, string tabela)
-        {
-            string sql = "sp_consulta_generic";
-
-            SqlParameter[] parametros = new SqlParameter[]
-            {
-                new SqlParameter("id",id),
-                new SqlParameter("tabela",tabela)
-            };
-
-            DataTable tab = HelperDAO.ExecutaProcSelect(sql, parametros);
-            if (tab.Rows.Count == 0)
-                return null;
-            else
-                return MontaModel(tab.Rows[0]);
-        }
+      
 
     }
 }

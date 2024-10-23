@@ -20,7 +20,7 @@ namespace SitePBL.Controllers
             try
             {
                 FuncionarioDAO dao = new FuncionarioDAO();
-                List<FuncionarioViewModel> lista = dao.Listagem(tabela, ordem);
+                List<FuncionarioViewModel> lista = dao.Listagem();
                 return View("Listagem", lista);
             }
             catch (Exception ex)
@@ -34,7 +34,7 @@ namespace SitePBL.Controllers
             try
             {
                 FuncionarioDAO dao = new FuncionarioDAO();
-                dao.Excluir(id, tabela);
+                dao.Delete(id);
                 return RedirectToAction("Listagem");
             }
             catch (Exception ex)
@@ -49,7 +49,7 @@ namespace SitePBL.Controllers
             {
                 ViewBag.Operacao = "A";
                 FuncionarioDAO dao = new FuncionarioDAO();
-                FuncionarioViewModel funcionario = dao.Consulta(id, tabela);
+                FuncionarioViewModel funcionario = dao.Consulta(id);
                 if (funcionario == null)
                     return RedirectToAction("Listagem");
                 else
@@ -95,9 +95,9 @@ namespace SitePBL.Controllers
                 {
                     FuncionarioDAO dao = new FuncionarioDAO();
                     if (Operacao == "I")
-                        dao.Inserir(funcionario);
+                        dao.Insert(funcionario);
                     else
-                        dao.Alterar(funcionario);
+                        dao.Update(funcionario);
 
                     return RedirectToAction("listagem");
                 }
