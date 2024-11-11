@@ -7,19 +7,19 @@ go
 
 --Tabela de Empresa
 create table empresa(
-	id int primary key not null,
+	id int identity(1,1) primary key not null,
 	nome varchar(500) not null,
 	logo varbinary(max) null,
 	sede varchar(500) not null
 
 )
 go
-insert into Empresa(id, nome, logo, sede) values (1,'Termo-Light', null, 'SP')
+insert into Empresa( nome, logo, sede) values ('Termo-Light', null, 'SP')
 go
 
 --Tabela Sensor
 create table sensor(
-	id int primary key not null,
+	id int identity(1,1) primary key not null,
 	descricao varchar(500) null,
 	fk_empresa_id int null,
 	foreign key (fk_empresa_id)  references Empresa(id) 
@@ -32,7 +32,7 @@ go
 
 --Tabela de acesso
 create table acesso(
-	Id int primary key not null,
+	id int identity(1,1) primary key not null,
 	Nome_Usuario varchar(500) not null,
 	Senha varchar(500) not null,
 	fk_empresa_id int not null,
@@ -42,24 +42,13 @@ create table acesso(
 
 )
 go
-insert into acesso (id,Nome_Usuario, senha, fk_empresa_id) values(1,'SA','123456',1)
+insert into acesso (Nome_Usuario, senha, fk_empresa_id) values('SA','123456',1)
 go
 
---Tabela Temperatura
-create table temperatura(
-	data_hora datetime not null,
-	valor int not null,
-	fk_sensor_id int not null,
-	primary key(data_hora, fk_sensor_id ),
-	foreign key (fk_sensor_id) references Sensor(id)
-	--Quando deletar o sensor seus dados são excluidos
-	on delete cascade
-)
-go
 
 --Tabela de Funcionarios
 create table funcionario(
-	id int primary key not null,
+	id int identity(1,1) primary key not null,
 	nome varchar(500) not null,
 	cargo varchar(500) not null,
 	foto varbinary(max) null
@@ -69,11 +58,11 @@ go
 --Tabela Manutenção
 create table manutencao(
 
+	id int identity(1,1) primary key not null,
 	data_hora datetime not null,
 	fk_sensor_id int not null,
 	fk_funcionario_id int not null,
 	estado varchar(100) not null,
-	primary key(data_hora,fk_sensor_id,fk_funcionario_id),
 	foreign key ( fk_sensor_id) references Sensor(id),
 	foreign key (fk_funcionario_id) references Funcionario(id)
 

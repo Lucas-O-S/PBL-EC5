@@ -58,15 +58,7 @@ create or alter procedure sp_insert_empresa(
 as
 
 begin
-
-	declare @id int 
-
-	select @id = MAX(id) + 1 from Empresa
-	if (@id is null)
-		begin
-			set @id = 1
-		end
-	insert into Empresa (id, nome, logo, sede) values (@id, @nome, @logo, @sede);
+	insert into Empresa (nome, logo, sede) values (@nome, @logo, @sede);
 
 end
 go
@@ -111,13 +103,8 @@ create or alter procedure sp_insert_sensor(
 )
 AS
 BEGIN
-	declare @id int
-	select @id = MAX(id) + 1 from Sensor
-	if (@id is null)
-	begin
-		set @id = 1
-	end
-	insert into Sensor(id,descricao,fk_empresa_id) values (@id,@descricao,@fk_empresa_id)
+
+	insert into Sensor(descricao,fk_empresa_id) values (@descricao,@fk_empresa_id)
 END
 GO
 
@@ -149,31 +136,24 @@ create or alter procedure sp_insert_acesso(
 )
 as
 begin
-	declare @id int
-	select @id = max(id) + 1 from Acesso
-	if (@id is null)
-	begin
-		set @id = 1
-	end
-	insert into Acesso(id,Nome_Usuario,senha,fk_empresa_id) values (@id,@Nome_Usuario,@senha, @fk_empresa_id)
+
+	insert into Acesso(Nome_Usuario,senha,fk_empresa_id) values (@Nome_Usuario,@senha, @fk_empresa_id)
 end
 go
 -----------------------------------------------------------
 
+----Devolve todos os acessos da empresa para fazer o login
 create or alter procedure sp_login_acesso(
-	@NomeEmpresa varchar(500),
-	@Nome_Usuario varchar(500),
-	@senha varchar(500)
+	@id_empresa int
 
 )
 as
 begin
-	declare @idEmpresa int
-	select @idEmpresa = id from Empresa where @NomeEmpresa = nome
-	select count(*) as resultado 
+
+	select * 
 	from Acesso as a 
 	inner join Empresa as e on e.id = a.fk_empresa_id 
-	where e.id = @idEmpresa and a.senha = @senha and a.Nome_Usuario = @Nome_Usuario 
+	where e.id = @id_empresa
 
 
 end
@@ -204,14 +184,9 @@ create or alter procedure sp_insert_funcionario(
 )
 as
 begin
-	declare @id int
-	select @id = max(id) + 1 from Funcionario
-	if (@id is null)
-	begin
-		set @id = 1
-	end
 
-	insert into Funcionario (id,nome,Cargo,Foto) values (@id,@nome,@cargo,@foto)
+
+	insert into Funcionario (nome,Cargo,Foto) values (@nome,@cargo,@foto)
 end
 go
 
@@ -258,119 +233,23 @@ create or alter procedure sp_update_manutencao(
 )
 as
 begin
-	declare @buscaMudanca int
-
-	--Verifica se mudeou alguma primary key
-	select @buscaMudanca = COUNT(*) from Manutencao 
-	where @data_hora = data_hora and @fk_funcionario_id = fk_funcionario_id and fk_sensor_id = @fk_sensor_id
-	
-	
-
-	---Se a pessoa mudar somente o estado da manutenção só muda o estado
-	if(@buscaMudanca > 1)
-	begin
-		update Manutencao set estado = @estado where @data_hora = data_hora and @fk_funcionario_id = fk_funcionario_id and fk_sensor_id = @fk_sensor_id
-	end
-
-	else 
-
-	--Se a pessoa mudar o funcionario, sensor ou data cria-se um novo registro e deleta antigo
-	begin
-		delete Manutencao where @data_hora = data_hora and @fk_funcionario_id = fk_funcionario_id and fk_sensor_id = @fk_sensor_id
-		exec sp_insert_manutencao @data_hora, @fk_sensor_id, @fk_funcionario_id, @estado
-	end
+	update manutencao set data_hora = @data_hora, fk_funcionario_id = @fk_funcionario_id, fk_sensor_id= @fk_sensor_id, estado = @estado
 
 
-end
-go
----------------------------------------------------------------
-
-create or alter procedure sp_delete_manutencao(
-	@data_hora datetime,
-	@fk_sensor_id int,
-	@fk_funcionario_id int,
-	@estado varchar(100)
-
-)
-as
-begin
-	delete Manutencao 
-	where @data_hora = data_hora and @fk_funcionario_id = fk_funcionario_id and fk_sensor_id = @fk_sensor_id
 end
 go
 
 -----------------------------------------------------------------------------------------------
 
 create or alter procedure sp_consulta_manutencao(
-	@data_hora datetime,
-	@fk_sensor_id int,
-	@fk_funcionario_id int,
-	@estado varchar(100)
+	@id int
 
 )
 as
 begin
-	select * from Manutencao where @data_hora = data_hora and @fk_funcionario_id = fk_funcionario_id and fk_sensor_id = @fk_sensor_id
+	select * from Manutencao where @id = id
 end
 go
 
 
 -------------------------------------------------
-
---------SPs temperatura
-
-create or alter procedure sp_insert_temperatura(
-	@data_hora datetime,
-	@valor int,
-	@fk_sensor_id int
-)
-as
-begin
-	insert into Temperatura(data_hora,valor,fk_sensor_id)
-	values (@data_hora,@valor,@fk_sensor_id)
-end
-go
-
-------------------------------------------------------------
-
-create or alter procedure sp_update_temperatura(
-	@data_hora datetime,
-	@valor int,
-	@fk_sensor_id int
-
-)
-as
-begin
-	update Temperatura set valor = @valor where @data_hora = data_hora and @fk_sensor_id = fk_sensor_id
-end
-go
-
----------------------------------------------------------
-
-create or alter procedure sp_delete_temperatura(
-	@data_hora datetime,
-	@valor int,
-	@fk_sensor_id int
-
-)
-as
-begin
-	delete Temperatura where @data_hora = data_hora and @fk_sensor_id = fk_sensor_id
-end
-go
---------------------------------------------------------------------------------------------
-
-create or alter procedure sp_consulta_temperatura(
-	@data_hora datetime,
-	@valor int,
-	@fk_sensor_id int
-
-)
-as
-begin
-	select * from Temperatura where @data_hora = data_hora and @fk_sensor_id = fk_sensor_id
-end
-go
-
--------------------------------------------------------------------------------
-
