@@ -1,16 +1,17 @@
 ﻿namespace SitePBL.Models
 {
-	public class FuncionarioViewModel : PadraoViewModel
+	public class FuncionarioViewModel : FotoPadraoViewModel
     {
-        //id do funcionario
-        public int id { get; set; }
-        //nome do funcionario
+        /// <summary>
+		/// nome do funcionario
+		/// </summary>
         public string nome { get; set; }
 
-		//descricao do funcionario
+		/// <summary>
+		/// Cargo do funcionario
+		/// </summary>
 		public string cargo { get; set;}
 
-		//Foto do funcionario salvo em bytes, lembrar de converter
-		public byte[]? foto { get; set;}
+
 	}
 }

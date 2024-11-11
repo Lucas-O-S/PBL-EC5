@@ -19,12 +19,12 @@ namespace SitePBL.DAO
                 SqlParameter[] parametros = new SqlParameter[4];
                 parametros[0] = new SqlParameter("id", empresa.id);
                 parametros[1] = new SqlParameter("nome", empresa.nome);
-                if (empresa.logo != null)
+                if (empresa.imagembyte != null)
                 {
                     //Evita problemas de conversão de imagem
                     parametros[2] = new SqlParameter("logo", SqlDbType.VarBinary)
                     {
-                        Value = empresa.logo
+                        Value = empresa.imagembyte
 
                     };
 
@@ -47,12 +47,12 @@ namespace SitePBL.DAO
             {
                 SqlParameter[] parametros = new SqlParameter[3];
                 parametros[0] = new SqlParameter("nome", empresa.nome);
-                if (empresa.logo != null)
+                if (empresa.imagembyte != null)
                 {
                     //Evita problemas de conversão de imagem
                     parametros[1] = new SqlParameter("logo", SqlDbType.VarBinary)
                     {
-                        Value = empresa.logo
+                        Value = empresa.imagembyte
 
                     };
 
@@ -75,7 +75,7 @@ namespace SitePBL.DAO
         }
 
 
-        //Monta uma model de empresa com base do datarow
+        //Monta uma model de empresaId com base do datarow
         protected override EmpresaViewModel MontaModel(DataRow registro)
         {
             EmpresaViewModel empresa = new EmpresaViewModel(); ;
@@ -84,21 +84,21 @@ namespace SitePBL.DAO
             empresa.nome = Convert.ToString(registro["nome"]);
             if (registro["logo"] != DBNull.Value)
             {
-                empresa.logo = (byte[])registro["logo"];
+                empresa.imagembyte = (byte[])registro["logo"];
 
             }
             empresa.sede = Convert.ToString(registro["sede"]);
             return empresa;
         }
 
-        //Busca o id da empresa com base no nome
+        //Busca o id da empresaId com base no nome
         public int buscaID(string nomeEmpresa)
         {
             var parametro = new SqlParameter[]
             {
                 new SqlParameter ("nome",nomeEmpresa)
             };
-            DataTable tabela = HelperDAO.ExecutaProcSelect("sp_busca_id_empresa", parametro);
+            DataTable tabela = HelperSqlDAO.ExecutaProcSelect("sp_busca_id_empresa", parametro);
 
             if (tabela != null)
             {

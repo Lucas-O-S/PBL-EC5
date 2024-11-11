@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "nnM1U4ewBUroxumguSudVguJC3sgYB8vIonKuHMz1d7OLHmX9AJmTMqDZCaQrbJUtOaYjemTtj2uQrEGi9/edA==",
+  "dgSpecHash": "b+wyS7X0amgthXS/9qSD00jqXyqNHRany0MBeid4WvDy8B8ykDOqBopgpLdbMBbZFyWrzS2Ex5Z6kwiKEEnT/A==",
   "success": true,
-  "projectFilePath": "C:\\Users\\lucas\\repo\\.git\\PBL-EC5\\Programa\\SitePBL\\SitePBL\\SitePBL.csproj",
+  "projectFilePath": "C:\\Users\\lucas\\repo\\PBL-EC5\\Programa\\SitePBL\\SitePBL\\SitePBL.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\lucas\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\lucas\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
+    "C:\\Users\\lucas\\.nuget\\packages\\restsharp\\112.1.0\\restsharp.112.1.0.nupkg.sha512",
     "C:\\Users\\lucas\\.nuget\\packages\\runtime.native.system.data.sqlclient.sni\\4.7.0\\runtime.native.system.data.sqlclient.sni.4.7.0.nupkg.sha512",
     "C:\\Users\\lucas\\.nuget\\packages\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
     "C:\\Users\\lucas\\.nuget\\packages\\runtime.win-x64.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-x64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",

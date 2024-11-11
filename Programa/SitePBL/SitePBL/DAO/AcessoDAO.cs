@@ -18,7 +18,7 @@ namespace SitePBL.DAO
                 parametros[0] = new SqlParameter("id", acesso.id);
                 parametros[1] = new SqlParameter("Nome_Usuario", acesso.nomeUsuario);
                 parametros[2] = new SqlParameter("senha", acesso.senha);
-                parametros[3] = new SqlParameter("fk_empresa_id", acesso.empresa);
+                parametros[3] = new SqlParameter("fk_empresa_id", acesso.empresaId);
                 return parametros;
 
             }
@@ -27,7 +27,7 @@ namespace SitePBL.DAO
                 SqlParameter[] parametros = new SqlParameter[2];
                 parametros[0] = new SqlParameter("Nome_Usuario", acesso.nomeUsuario);
                 parametros[1] = new SqlParameter("senha", acesso.senha);
-                parametros[2] = new SqlParameter("fk_empresa_id", acesso.empresa);
+                parametros[2] = new SqlParameter("fk_empresa_id", acesso.empresaId);
                 return parametros;
 
             }
@@ -45,7 +45,7 @@ namespace SitePBL.DAO
             acesso.id = Convert.ToInt32(registro["id"]);
             acesso.nomeUsuario = Convert.ToString(registro["Nome_Usuario"]);
             acesso.senha = Convert.ToString(registro["senha"]);
-            acesso.empresa = Convert.ToInt32(registro["fk_empresa_id"]);
+            acesso.empresaId = Convert.ToInt32(registro["fk_empresa_id"]);
             return acesso;
         }
 
@@ -62,7 +62,7 @@ namespace SitePBL.DAO
              };
             string sql = "sp_login_acesso";
 
-            DataTable tabela = HelperDAO.ExecutaProcSelect(sql, parametros);
+            DataTable tabela = HelperSqlDAO.ExecutaProcSelect(sql, parametros);
             if (tabela.Rows.Count > 0 && Convert.ToInt32(tabela.Rows[0]["resultado"]) >= 1)
                 return true;
 

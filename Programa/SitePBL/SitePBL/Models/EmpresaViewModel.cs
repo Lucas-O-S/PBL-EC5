@@ -2,18 +2,20 @@
 
 namespace SitePBL.Models
 {
-	public class EmpresaViewModel : PadraoViewModel
+	/// <summary>
+	/// Classe de empresas
+	/// </summary>
+	public class EmpresaViewModel : FotoPadraoViewModel
     {
-		//id da empresa
-		public int id {  get; set; }
 
-		//Nome da empresa
+		/// <summary>
+		/// Nome da empresaId
+		/// </summary>
 		public string nome { get; set; }
 
-		// Imagem da logo da empresa salva em bytes, lembrar de converter
-		public byte[]? logo { get; set; }
-
-		//Nome da sede da empresa
+		/// <summary>
+		/// Local da sede da empresaId
+		/// </summary>
 		public string sede { get; set; }
 
 	

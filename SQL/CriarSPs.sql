@@ -132,6 +132,7 @@ go
 create or alter procedure sp_insert_acesso(
 	@senha varchar(500),
 	@Nome_Usuario varchar(500),
+	@login_Usuario varchar(500),
 	@fk_empresa_id int
 )
 as
@@ -163,12 +164,14 @@ go
 
 create or alter procedure sp_update_acesso(
 	@id int,
+	@Nome_Usuario varchar(500),
+	@login_Usuario varchar(500),
 	@senha varchar(500),
 	@idEmpresa int
-)
+	)
 as
 begin
-	update acesso set senha = @senha where id = @id and @idEmpresa = fk_empresa_id
+	update acesso set Nome_Usuario = @Nome_Usuario, fk_empresa_id = @idEmpresa,  senha = @senha, @login_Usuario = @login_Usuario where id = @id
 end
 go
 

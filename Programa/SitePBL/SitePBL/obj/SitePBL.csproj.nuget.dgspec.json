@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\lucas\\repo\\.git\\PBL-EC5\\Programa\\SitePBL\\SitePBL\\SitePBL.csproj": {}
+    "C:\\Users\\lucas\\repo\\PBL-EC5\\Programa\\SitePBL\\SitePBL\\SitePBL.csproj": {}
   },
   "projects": {
-    "C:\\Users\\lucas\\repo\\.git\\PBL-EC5\\Programa\\SitePBL\\SitePBL\\SitePBL.csproj": {
+    "C:\\Users\\lucas\\repo\\PBL-EC5\\Programa\\SitePBL\\SitePBL\\SitePBL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\lucas\\repo\\.git\\PBL-EC5\\Programa\\SitePBL\\SitePBL\\SitePBL.csproj",
+        "projectUniqueName": "C:\\Users\\lucas\\repo\\PBL-EC5\\Programa\\SitePBL\\SitePBL\\SitePBL.csproj",
         "projectName": "SitePBL",
-        "projectPath": "C:\\Users\\lucas\\repo\\.git\\PBL-EC5\\Programa\\SitePBL\\SitePBL\\SitePBL.csproj",
+        "projectPath": "C:\\Users\\lucas\\repo\\PBL-EC5\\Programa\\SitePBL\\SitePBL\\SitePBL.csproj",
         "packagesPath": "C:\\Users\\lucas\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\lucas\\repo\\.git\\PBL-EC5\\Programa\\SitePBL\\SitePBL\\obj\\",
+        "outputPath": "C:\\Users\\lucas\\repo\\PBL-EC5\\Programa\\SitePBL\\SitePBL\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\lucas\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -40,6 +40,10 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "RestSharp": {
+              "target": "Package",
+              "version": "[112.1.0, )"
+            },
             "System.Data.SqlClient": {
               "target": "Package",
               "version": "[4.8.6, )"

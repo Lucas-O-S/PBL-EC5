@@ -31,31 +31,31 @@ namespace SitePBL.DAO
 
         public virtual void Insert(T model)
         {
-            HelperDAO.ExecutaProc("sp_insert_" + nomeTabela, CriaParametros(model));
+            HelperSqlDAO.ExecutaProc("sp_insert_" + nomeTabela, CriaParametros(model));
         }
 
         public virtual void Update(T model)
         {
-            HelperDAO.ExecutaProc("sp_update_" + nomeTabela, CriaParametros(model));
+            HelperSqlDAO.ExecutaProc("sp_update_" + nomeTabela, CriaParametros(model));
         }
 
         public virtual void Delete(int id)
         {
 
-            HelperDAO.ExecutaProc("sp_delete_generic", HelperDAO.CriarParametros(id));
+            HelperSqlDAO.ExecutaProc("sp_delete_generic", HelperSqlDAO.CriarParametros(id));
         }
 
         //Delete que usa model ao inves de ID
         public virtual void Delete(T model)
         {
-            HelperDAO.ExecutaProc("sp_delete_" + nomeTabela, CriaParametros(model));
+            HelperSqlDAO.ExecutaProc("sp_delete_" + nomeTabela, CriaParametros(model));
         }
 
         public virtual T Consulta(int id)
         {
 
 
-            var tabela = HelperDAO.ExecutaProcSelect("sp_consulta_generic", HelperDAO.CriarParametros(id, nomeTabela));
+            var tabela = HelperSqlDAO.ExecutaProcSelect("sp_consulta_generic", HelperSqlDAO.CriarParametros(id, nomeTabela));
 
             if (tabela.Rows.Count == 0)
                 return null;
@@ -67,7 +67,7 @@ namespace SitePBL.DAO
         {
 
        
-            var tabela = HelperDAO.ExecutaProcSelect("sp_consulta_" + nomeTabela, CriaParametros(model));
+            var tabela = HelperSqlDAO.ExecutaProcSelect("sp_consulta_" + nomeTabela, CriaParametros(model));
 
             if (tabela.Rows.Count == 0)
                 return null;
@@ -82,7 +82,7 @@ namespace SitePBL.DAO
                  new SqlParameter("tabela", nomeTabela),
                 new SqlParameter("Ordem", "1")
             };
-            var tabela = HelperDAO.ExecutaProcSelect(nomeSpListagem, p);
+            var tabela = HelperSqlDAO.ExecutaProcSelect(nomeSpListagem, p);
             List<T> lista = new List<T>();
             foreach (DataRow registro in tabela.Rows)
                 lista.Add(MontaModel(registro));

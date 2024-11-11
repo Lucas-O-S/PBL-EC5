@@ -23,8 +23,8 @@ namespace SitePBL.DAO
                 else
                     parametros[1] = new SqlParameter("descricao", DBNull.Value);
 
-                if (Sensor.empresa != null)
-                    parametros[2] = new SqlParameter("fk_empresa_id", Sensor.empresa);
+                if (Sensor.empresaId != null)
+                    parametros[2] = new SqlParameter("fk_empresa_id", Sensor.empresaId);
                 else
                     parametros[2] = new SqlParameter("fk_empresa_id", DBNull.Value);
 
@@ -42,8 +42,8 @@ namespace SitePBL.DAO
                 else
                     parametros[0] = new SqlParameter("descricao", DBNull.Value);
 
-                if (Sensor.empresa != null)
-                    parametros[1] = new SqlParameter("fk_empresa_id", Sensor.empresa);
+                if (Sensor.empresaId != null)
+                    parametros[1] = new SqlParameter("fk_empresa_id", Sensor.empresaId);
                 else
                     parametros[1] = new SqlParameter("fk_empresa_id", DBNull.Value);
 
@@ -64,33 +64,10 @@ namespace SitePBL.DAO
             if (registro["descricao"] != DBNull.Value)
                 sensor.descricao = Convert.ToString(registro["descricao"]);
             if (registro["fk_empresa_id"] != DBNull.Value)
-                sensor.empresa = Convert.ToInt32(registro["fk_empresa_id"]);
+                sensor.empresaId = Convert.ToInt32(registro["fk_empresa_id"]);
             return sensor;
         }
 
-        public List<SensorViewModel> Listagem()
-        {
-            string sql = "select * from sensor as s order by s.descricao";
-            List<SensorViewModel> lista = new List<SensorViewModel>();
-
-            DataTable tabela = HelperDAO.ExecutaSelect(sql, null);
-            foreach (DataRow registro in tabela.Rows)
-                lista.Add(MontaModel(registro));
-            return lista;
-        }
-
-
-
-        public int TesteId(int? id)
-        {
-            string sql = $"select s.descricao, s.fk_empresa_id from sensor as s right join empresa as e " +
-                $"on s.fk_empresa_id = e.id where e.id = {id}";
-
-            DataTable tab = HelperDAO.ExecutaSelect(sql, null);
-            if (tab.Rows.Count == 0)
-                return 0;
-            else
-                return 1;
-        }
+  
     }
 }

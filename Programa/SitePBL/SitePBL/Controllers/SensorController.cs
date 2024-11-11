@@ -81,15 +81,10 @@ namespace SitePBL.Controllers
 
             if (string.IsNullOrEmpty(sensor.descricao))
                 ModelState.AddModelError("descricao", "Campo obrigatório. Preencha o descrição.");
-            if (sensor.empresa <= 0)
+            if (sensor.empresaId <= 0)
                 ModelState.AddModelError("empresa", "Preencha o id com valor diferente e maior que zero");
             
-            if (sensor.empresa != null)
-            {
-                int teste = dao.TesteId(sensor.empresa);
-                if(teste == 0)
-                    ModelState.AddModelError("empresa", "Empresa não localizada, digite um valor válido");             
-            }
+
 
 
         }

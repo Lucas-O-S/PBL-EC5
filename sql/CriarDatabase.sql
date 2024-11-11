@@ -28,12 +28,11 @@ create table sensor(
 
 )
 go
-
-
 --Tabela de acesso
 create table acesso(
 	id int identity(1,1) primary key not null,
 	Nome_Usuario varchar(500) not null,
+	login_Usuario varchar(500) not null,
 	Senha varchar(500) not null,
 	fk_empresa_id int not null,
 	foreign key (fk_empresa_id)  references Empresa(id)
@@ -42,7 +41,7 @@ create table acesso(
 
 )
 go
-insert into acesso (Nome_Usuario, senha, fk_empresa_id) values('SA','123456',1)
+insert into acesso (Nome_Usuario, login_usuario, senha, fk_empresa_id) values('SA','SA','123456',1)
 go
 
 

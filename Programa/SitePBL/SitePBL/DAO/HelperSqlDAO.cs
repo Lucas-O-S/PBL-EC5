@@ -3,44 +3,13 @@ using System.Data.SqlClient;
 
 namespace SitePBL.DAO
 {
-    public static class HelperDAO
+    public static class HelperSqlDAO
     {
-		//Executa um comando sql
-        public static void ExecutarSQL(string sql, SqlParameter[] parametros)
-        {
-            using (SqlConnection conexao = ConexaoDB.GetConexao())
-            {
-                using (SqlCommand comando = new SqlCommand(sql, conexao))
-                {
-                    if (parametros != null)
-                        comando.Parameters.AddRange(parametros);
-                    comando.ExecuteNonQuery();
-
-                    conexao.Close();
-                }
-            }
-
-        }
-		
-		//Executa um select sql
-        public static DataTable ExecutaSelect(string sql, SqlParameter[] parametros)
-        {
-            using (SqlConnection conexao = ConexaoDB.GetConexao())
-            {
-                using (SqlDataAdapter adapter = new SqlDataAdapter(sql, conexao))
-                {
-                    if (parametros != null)
-                        adapter.SelectCommand.Parameters.AddRange(parametros);
-                    DataTable tabela = new DataTable();
-                    adapter.Fill(tabela);
-                    conexao.Close();
-                    return tabela;
-
-                }
-            }
-        }
-
-		//Executa um precedure sql
+		/// <summary>
+        /// Executa um precedure sql
+        /// </summary>
+        /// <param name="sql"></param>
+        /// <param name="parametros"></param>
 		public static void ExecutaProc(string sql, SqlParameter[] parametros)
 		{
 			using (SqlConnection conexao = ConexaoDB.GetConexao())
@@ -58,7 +27,7 @@ namespace SitePBL.DAO
 		}
 
 		/// <summary>
-        /// Executa um select  atravez de sp
+        /// Executa um select atraves de sp
         /// </summary>
         /// <param name="sql"></param>
         /// <param name="parametros"></param>
