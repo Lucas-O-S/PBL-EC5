@@ -4,70 +4,74 @@ using System.Data;
 
 namespace SitePBL.DAO
 {
+    /// <summary>
+    /// Dao do sensor
+    /// </summary>
     public class SensorDAO : PadraoDAO<SensorViewModel>
     {
+        /// <summary>
+        /// define a tabela do sensor
+        /// </summary>
         protected override void SetTabela() { nomeTabela = "sensor"; }
 
-        //Criar parametros de Sensor usando ID
+        /// <summary>
+        /// Criar parametros de Sensor 
+        /// </summary>
+        /// <param name="Sensor">Classe sensor</param>
+        /// <returns></returns>
         protected override SqlParameter[] CriaParametros(SensorViewModel Sensor)
         {
+            SqlParameter[] sp;
             if (Sensor.id != 0)
             {
-                SqlParameter[] parametros = new SqlParameter[3];
-                parametros[0] = new SqlParameter("id", Sensor.id);
-                if (Sensor.descricao != null)
+                sp = new SqlParameter[]
                 {
-                    parametros[1] = new SqlParameter("descricao", Sensor.descricao);
-
-                }
-                else
-                    parametros[1] = new SqlParameter("descricao", DBNull.Value);
-
-                if (Sensor.empresaId != null)
-                    parametros[2] = new SqlParameter("fk_empresa_id", Sensor.empresaId);
-                else
-                    parametros[2] = new SqlParameter("fk_empresa_id", DBNull.Value);
-
-
-                return parametros;
+                    new SqlParameter("id", Sensor.id),
+                    new SqlParameter("descricao", Sensor.descricao),
+                    new SqlParameter("fk_empresa_id", Sensor.empresaId)
+                };
             }
+
+
+
             else
             {
-                SqlParameter[] parametros = new SqlParameter[2];
-                if (Sensor.descricao != null)
+                sp = new SqlParameter[]
                 {
-                    parametros[0] = new SqlParameter("descricao", Sensor.descricao);
-
-                }
-                else
-                    parametros[0] = new SqlParameter("descricao", DBNull.Value);
-
-                if (Sensor.empresaId != null)
-                    parametros[1] = new SqlParameter("fk_empresa_id", Sensor.empresaId);
-                else
-                    parametros[1] = new SqlParameter("fk_empresa_id", DBNull.Value);
+                    new SqlParameter("descricao", Sensor.descricao),
+                    new SqlParameter("fk_empresa_id", Sensor.empresaId)
+                };
 
 
-                return parametros;
             }
-            
+            return sp;
         }
 
-     
-
-        //Monta uma model de Sensor com base do datarow
-        protected override SensorViewModel MontaModel(DataRow registro)
+        /// <summary>
+        /// Monta uma model de Sensor com base do datarow
+        /// </summary>
+        /// <param name="registro">DataRow de uma tabela</param>
+        /// <returns></returns>
+        protected override SensorViewModel MontarModel(DataRow registro)
         {
-            SensorViewModel sensor = new SensorViewModel(); ;
+            SensorViewModel sensor = new SensorViewModel();
 
             sensor.id = Convert.ToInt32(registro["id"]);
-            if (registro["descricao"] != DBNull.Value)
-                sensor.descricao = Convert.ToString(registro["descricao"]);
-            if (registro["fk_empresa_id"] != DBNull.Value)
-                sensor.empresaId = Convert.ToInt32(registro["fk_empresa_id"]);
+            sensor.descricao = Convert.ToString(registro["descricao"]);
+            sensor.empresaId = Convert.ToInt32(registro["fk_empresa_id"]);
+
+            EmpresaDAO cDAO = new EmpresaDAO();
+
+            sensor.empresaNome = cDAO.Consulta(sensor.empresaId).nome;
+
             return sensor;
         }
-
-  
     }
+
+
+
+
+
+
 }
+

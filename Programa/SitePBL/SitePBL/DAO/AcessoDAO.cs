@@ -6,39 +6,56 @@ namespace SitePBL.DAO
 {
     public class AcessoDAO : PadraoDAO<AcessoViewModel>
     {
-
+        /// <summary>
+        /// Define a tabela como acesso
+        /// </summary>
         protected override void SetTabela() { nomeTabela = "acesso"; }
 
-        //Criar parametros de acessos com id
+        /// <summary>
+        /// Cria parametros para a tabela acesso
+        /// </summary>
+        /// <param name="acesso">calsse de acesso</param>
+        /// <returns></returns>
         protected override SqlParameter[] CriaParametros(AcessoViewModel acesso)
         {
+            SqlParameter[] sp;
             if (acesso.id != 0)
             {
-                SqlParameter[] parametros = new SqlParameter[3];
-                parametros[0] = new SqlParameter("id", acesso.id);
-                parametros[1] = new SqlParameter("Nome_Usuario", acesso.nomeUsuario);
-                parametros[2] = new SqlParameter("senha", acesso.senha);
-                parametros[3] = new SqlParameter("fk_empresa_id", acesso.empresaId);
-                return parametros;
+                sp = new SqlParameter[]
+                {
+                     new SqlParameter("id", acesso.id),
+                    new SqlParameter("Nome_Usuario", acesso.nomeUsuario),
+                     new SqlParameter("Nome_Usuario", acesso.nomeUsuario),
+                      new SqlParameter("senha", acesso.senha),
+                      new SqlParameter("fk_empresa_id", acesso.empresaId)
+                };
+
 
             }
             else
             {
-                SqlParameter[] parametros = new SqlParameter[2];
-                parametros[0] = new SqlParameter("Nome_Usuario", acesso.nomeUsuario);
-                parametros[1] = new SqlParameter("senha", acesso.senha);
-                parametros[2] = new SqlParameter("fk_empresa_id", acesso.empresaId);
-                return parametros;
+                sp = new SqlParameter[]
+                {
+                     new SqlParameter("id", acesso.id),
+                    new SqlParameter("Nome_Usuario", acesso.nomeUsuario),
+                     new SqlParameter("Nome_Usuario", acesso.nomeUsuario),
+                      new SqlParameter("senha", acesso.senha),
+                      new SqlParameter("fk_empresa_id", acesso.empresaId)
+                };
 
             }
 
-
+            return sp;
         }
 
-    
 
-        //Monta uma model de acesso com base do datarow
-        protected override AcessoViewModel MontaModel(DataRow registro)
+
+        /// <summary>
+        /// Monta uma model de acesso com base do datarow
+        /// </summary>
+        /// <param name="registro">datarow da tabela</param>
+        /// <returns></returns>
+        protected override AcessoViewModel MontarModel(DataRow registro)
         {
             AcessoViewModel acesso = new AcessoViewModel(); ;
 
@@ -46,6 +63,10 @@ namespace SitePBL.DAO
             acesso.nomeUsuario = Convert.ToString(registro["Nome_Usuario"]);
             acesso.senha = Convert.ToString(registro["senha"]);
             acesso.empresaId = Convert.ToInt32(registro["fk_empresa_id"]);
+
+            EmpresaDAO eDAO = new EmpresaDAO;
+            acesso.nomeEmpresa = eDAO.Consulta(acesso.empresaId).nome;
+
             return acesso;
         }
 
@@ -56,8 +77,8 @@ namespace SitePBL.DAO
             var parametros = new SqlParameter[]
             {
                 new SqlParameter("NomeEmpresa", nomeEmpresa),
-				new SqlParameter("Nome_Usuario", nomeUsuario),
-				new SqlParameter("senha", senha)
+                new SqlParameter("Nome_Usuario", nomeUsuario),
+                new SqlParameter("senha", senha)
 
              };
             string sql = "sp_login_acesso";
@@ -70,6 +91,6 @@ namespace SitePBL.DAO
 
             return false;
         }
-   
+
     }
 }

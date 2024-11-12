@@ -1,5 +1,8 @@
 ﻿namespace SitePBL.Models
 {
+	/// <summary>
+	/// Classe de Funcionario
+	/// </summary>
 	public class FuncionarioViewModel : FotoPadraoViewModel
     {
         /// <summary>

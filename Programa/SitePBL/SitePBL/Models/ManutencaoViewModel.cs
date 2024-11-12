@@ -27,7 +27,14 @@
 		/// </summary>
 		public string? nomeFuncionario { get; set; }
 
-		//Estado atual da manutenção, pode ser feita, em aguardo, cancelada...
-		public string estado { get; set; }
+		/// <summary>
+		/// Estado atual da manutenção, pode ser feita, em aguardo, cancelada...
+		/// </summary>
+		public int estadoId { get; set; }
+
+		/// <summary>
+		/// Nome do estado
+		/// </summary>
+		public string? estadoNome { get; set; }
 	}
 }

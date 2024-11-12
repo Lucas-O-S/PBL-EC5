@@ -8,12 +8,14 @@ namespace SitePBL.DAO
 		/// <summary>
         /// Executa um precedure sql
         /// </summary>
-        /// <param name="sql"></param>
-        /// <param name="parametros"></param>
+        /// <param name="sql">string sql da chamada</param>
+        /// <param name="parametros">parametros a serem utilizados</param>
 		public static void ExecutaProc(string sql, SqlParameter[] parametros)
 		{
+            ///Cria conexão
 			using (SqlConnection conexao = ConexaoDB.GetConexao())
 			{
+                /// Cria comandos
 				using (SqlCommand comando = new SqlCommand(sql, conexao))
 				{
 					comando.CommandType = CommandType.StoredProcedure;
@@ -27,10 +29,10 @@ namespace SitePBL.DAO
 		}
 
 		/// <summary>
-        /// Executa um select atraves de sp
+        /// Executa um select atraves de sp e devolve uma data table
         /// </summary>
-        /// <param name="sql"></param>
-        /// <param name="parametros"></param>
+        /// <param name="sql">string sql da chamada</param>
+        /// <param name="parametros">parametros a serem utilizados</param>
         /// <returns>DataTable</returns>
 		public static DataTable ExecutaProcSelect(string sql, SqlParameter[] parametros)
 		{
@@ -56,7 +58,7 @@ namespace SitePBL.DAO
         /// <summary>
         /// Criar um parametro sql com o id somente
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="id">id que sera usado</param>
         /// <returns>SqlParameter id</returns>
         public static SqlParameter[] CriarParametros(int id)
         {
@@ -67,10 +69,11 @@ namespace SitePBL.DAO
         }
 
         /// <summary>
-        /// Criar um parametro sql com o id e tabela somente
+        /// /Cria parametros sql somente com id e tabela
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns>SqlParameter id</returns>
+        /// <param name="id">id da consulta</param>
+        /// <param name="tabela">nome da tabela</param>
+        /// <returns></returns>
         public static SqlParameter[] CriarParametros(int id, string tabela)
         {
             return new SqlParameter[]

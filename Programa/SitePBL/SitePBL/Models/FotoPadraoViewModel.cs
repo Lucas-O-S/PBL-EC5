@@ -31,8 +31,8 @@
         /// <summary>
         /// Converte a imagem em IFormFile em Byte
         /// </summary>
-        /// <param name="file"></param>
-        /// <returns></returns>
+        /// <param name="file">Imagem em IFormFile</param>
+        /// <returns>Imagem de byte[]</returns>
         public byte[] ConvertImageToByte(IFormFile file)
         {
             if (file != null)

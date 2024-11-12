@@ -1,5 +1,8 @@
 ﻿namespace SitePBL.Models
 {
+	/// <summary>
+	/// Classe dos sensores
+	/// </summary>
 	public class SensorViewModel : PadraoViewModel
     {
 		/// <summary>

@@ -1,5 +1,8 @@
 ﻿namespace SitePBL.Models
 {
+    /// <summary>
+    /// Struct para a leitura do sensor
+    /// </summary>
     public struct LeituraViewModel
     {
         /// <summary>

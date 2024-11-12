@@ -5,52 +5,84 @@ using System.Reflection.Emit;
 
 namespace SitePBL.DAO
 {
+    /// <summary>
+    /// Classe abstratada pai das DAO
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public abstract class PadraoDAO<T> where T : PadraoViewModel
     {
-        //Construtor que usa o metodo set nomeTabela
+        /// <summary>
+        /// Construtor que usa o metodo set nomeTabela
+        /// </summary>
         public PadraoDAO()
         {
             SetTabela();
         }
 
-        //Tabela usada pela classe
+        /// <summary>
+        /// Define a tabela usada pela classe
+        /// </summary>
         protected string nomeTabela { get; set; }
 
-        //Nome da sp de listagem
+        /// <summary>
+        /// Nome da sp de listagem
+        /// </summary>
         protected string nomeSpListagem { get; set; } = "sp_listagem_generic";
 
-        //Metodo abstrato que precisa ser criado para criar paraneta
+        /// <summary>
+        /// Metodo abstrato que precisa ser criado para criar parametros
+        /// </summary>
+        /// <param name="model">Classe que trabalharemos</param>
+        /// <returns></returns>
         protected abstract SqlParameter[] CriaParametros(T model);
 
 
-        //Metodo abstrato para criar uma classe
-        protected abstract T MontaModel(DataRow registro);
+        /// <summary>
+        /// Metodo abstrato para criar uma classe
+        /// </summary>
+        /// <param name="registro">data row de uma tabela</param>
+        /// <returns></returns>
+        protected abstract T MontarModel(DataRow registro);
 
-        ///Metodo abstrato que precisa ser criado que seleciona a nomeTabela
+        /// <summary>
+        /// Metodo abstrato que precisa ser criado que seja definido o nome da tabela usada
+        /// </summary>
         protected abstract void SetTabela();
 
+        /// <summary>
+        /// metodo para inserir dados na tabela
+        /// </summary>
+        /// <param name="model">classe que trabalharemos</param>
         public virtual void Insert(T model)
         {
             HelperSqlDAO.ExecutaProc("sp_insert_" + nomeTabela, CriaParametros(model));
         }
 
+        /// <summary>
+        /// Metodo pa atualizar um registro
+        /// </summary>
+        /// <param name="model">Classe que trabalharemos</param>
         public virtual void Update(T model)
         {
             HelperSqlDAO.ExecutaProc("sp_update_" + nomeTabela, CriaParametros(model));
         }
 
+        /// <summary>
+        /// Metodo para deletar um registro
+        /// </summary>
+        /// <param name="id">id da classe que trabalharemos</param>
         public virtual void Delete(int id)
         {
 
             HelperSqlDAO.ExecutaProc("sp_delete_generic", HelperSqlDAO.CriarParametros(id));
         }
 
-        //Delete que usa model ao inves de ID
-        public virtual void Delete(T model)
-        {
-            HelperSqlDAO.ExecutaProc("sp_delete_" + nomeTabela, CriaParametros(model));
-        }
 
+        /// <summary>
+        /// Metodo para consultar um registro
+        /// </summary>
+        /// <param name="id">id da classe que trabalharemos</param>
+        /// <returns></returns>
         public virtual T Consulta(int id)
         {
 
@@ -60,20 +92,13 @@ namespace SitePBL.DAO
             if (tabela.Rows.Count == 0)
                 return null;
             else
-                return MontaModel(tabela.Rows[0]);
+                return MontarModel(tabela.Rows[0]);
         }
 
-        public virtual T Consulta(T model)
-        {
-
-       
-            var tabela = HelperSqlDAO.ExecutaProcSelect("sp_consulta_" + nomeTabela, CriaParametros(model));
-
-            if (tabela.Rows.Count == 0)
-                return null;
-            else
-                return MontaModel(tabela.Rows[0]);
-        }
+        /// <summary>
+        /// Metodo para listar os dados de uma tabela
+        /// </summary>
+        /// <returns></returns>
         public virtual List<T> Listagem()
         {
 
@@ -85,7 +110,7 @@ namespace SitePBL.DAO
             var tabela = HelperSqlDAO.ExecutaProcSelect(nomeSpListagem, p);
             List<T> lista = new List<T>();
             foreach (DataRow registro in tabela.Rows)
-                lista.Add(MontaModel(registro));
+                lista.Add(MontarModel(registro));
             return lista;
         }
 
