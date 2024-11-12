@@ -54,6 +54,7 @@ create table funcionario(
 
 )
 go
+
 --Tabela Manutenção
 create table manutencao(
 
@@ -61,7 +62,7 @@ create table manutencao(
 	data_hora datetime not null,
 	fk_sensor_id int not null,
 	fk_funcionario_id int not null,
-	estado varchar(100) not null,
+	estado int not null,
 	foreign key ( fk_sensor_id) references Sensor(id),
 	foreign key (fk_funcionario_id) references Funcionario(id)
 

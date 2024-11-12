@@ -217,8 +217,7 @@ create or alter procedure sp_insert_manutencao
 	@data_hora datetime,
 	@fk_sensor_id int,
 	@fk_funcionario_id int,
-	@estado varchar(100)
-	
+	@estado int	
 )
 as
 begin
@@ -232,7 +231,7 @@ create or alter procedure sp_update_manutencao(
 	@data_hora datetime,
 	@fk_sensor_id int,
 	@fk_funcionario_id int,
-	@estado varchar(100)
+	@estado int
 )
 as
 begin
@@ -243,16 +242,3 @@ end
 go
 
 -----------------------------------------------------------------------------------------------
-
-create or alter procedure sp_consulta_manutencao(
-	@id int
-
-)
-as
-begin
-	select * from Manutencao where @id = id
-end
-go
-
-
--------------------------------------------------
