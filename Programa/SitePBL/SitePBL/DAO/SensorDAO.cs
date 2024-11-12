@@ -22,7 +22,7 @@ namespace SitePBL.DAO
         protected override SqlParameter[] CriaParametros(SensorViewModel Sensor)
         {
             SqlParameter[] sp;
-            if (Sensor.id != 0 || Sensor.id != null)
+            if (Sensor.id != 0 && Sensor.id != null)
             {
                 sp = new SqlParameter[]
                 {

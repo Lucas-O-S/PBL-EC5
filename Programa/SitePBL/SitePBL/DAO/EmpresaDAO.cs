@@ -23,16 +23,15 @@ namespace SitePBL.DAO
             SqlParameter[] sp;
 
             object imgByte = empresa.imagembyte;
-            if (imgByte == null)
-                imgByte = DBNull.Value;
+
             
-            if (empresa.id != 0 || empresa.id != null)
+            if (empresa.id != 0 && empresa.id != null)
             {
                 sp = new SqlParameter[] {
 
                     new SqlParameter("id", empresa.id),
                     new SqlParameter("nome", empresa.nome),
-                    new SqlParameter("logo", imgByte),
+                    new SqlParameter("logo", SqlDbType.VarBinary) { Value = imgByte ?? DBNull.Value },
                     new SqlParameter("sede", empresa.sede),
                 };
 
@@ -42,7 +41,7 @@ namespace SitePBL.DAO
                 sp = new SqlParameter[] {
 
                     new SqlParameter("nome", empresa.nome),
-                    new SqlParameter("logo", imgByte),
+                    new SqlParameter("logo", SqlDbType.VarBinary) { Value = imgByte ?? DBNull.Value },
                     new SqlParameter("sede", empresa.sede),
                 };
             }

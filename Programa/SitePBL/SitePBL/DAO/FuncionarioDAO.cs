@@ -21,10 +21,9 @@ namespace SitePBL.DAO
 
             SqlParameter[] sp;
             object imgByte = funcionario.imagembyte;
-            if (imgByte == null)
-                imgByte = DBNull.Value;
+  
 
-            if (funcionario.id != 0 || funcionario.id != null)
+            if (funcionario.id != 0 && funcionario.id != null)
             {
                 sp = new SqlParameter[] {
 
@@ -34,7 +33,7 @@ namespace SitePBL.DAO
 
                     new SqlParameter("cargo", funcionario.cargo),
 
-                    new SqlParameter("foto", imgByte),
+                    new SqlParameter("foto", SqlDbType.VarBinary) { Value = imgByte ?? DBNull.Value },
 
                     new SqlParameter("dataContratacao", funcionario.dataContratacao)
 
@@ -56,7 +55,7 @@ namespace SitePBL.DAO
 
                     new SqlParameter("cargo", funcionario.cargo),
 
-                    new SqlParameter("foto", imgByte),
+                    new SqlParameter("foto", SqlDbType.VarBinary) { Value = imgByte ?? DBNull.Value },
                     new SqlParameter("dataContratacao", funcionario.dataContratacao)
 
 
