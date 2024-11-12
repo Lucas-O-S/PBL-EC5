@@ -114,5 +114,9 @@ namespace SitePBL.DAO
             return lista;
         }
 
+        public static implicit operator PadraoDAO<T>(SensorDAO v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

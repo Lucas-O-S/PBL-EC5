@@ -64,7 +64,7 @@ namespace SitePBL.DAO
             acesso.senha = Convert.ToString(registro["senha"]);
             acesso.empresaId = Convert.ToInt32(registro["fk_empresa_id"]);
 
-            EmpresaDAO eDAO = new EmpresaDAO;
+            EmpresaDAO eDAO = new EmpresaDAO();
             acesso.nomeEmpresa = eDAO.Consulta(acesso.empresaId).nome;
 
             return acesso;
