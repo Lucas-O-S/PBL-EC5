@@ -6,7 +6,7 @@ namespace SitePBL.Controllers
 {
     public class FuncionarioController : PadraoController<FuncionarioViewModel>
     {
-        public FuncionarioController() { dao = new FuncionarioDAO();
+        public FuncionarioController() { dao = new FuncionarioDAO(); }
 
         protected override void ValidarDados(FuncionarioViewModel model, string operacao)
         {
