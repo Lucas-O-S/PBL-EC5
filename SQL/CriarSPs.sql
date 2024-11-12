@@ -183,13 +183,14 @@ go
 create or alter procedure sp_insert_funcionario(
 	@nome varchar(500),
 	@cargo varchar(500),
-	@foto varbinary(max)
+	@foto varbinary(max),
+	@dataContratacao datetime
 )
 as
 begin
 
 
-	insert into Funcionario (nome,Cargo,Foto) values (@nome,@cargo,@foto)
+	insert into Funcionario (nome,Cargo,Foto,dataContratacao) values (@nome,@cargo,@foto,@dataContratacao)
 end
 go
 
@@ -199,12 +200,14 @@ create or alter procedure sp_update_funcionario(
 	@id int,
 	@nome varchar(500),
 	@cargo varchar(500),
-	@foto varbinary(max)
+	@foto varbinary(max),
+	@dataContratacao datetime
+
 )
 as
 begin
 
-	update Funcionario set nome = @nome, cargo = @cargo, Foto = @foto where id = @id 
+	update Funcionario set nome = @nome, cargo = @cargo, Foto = @foto, dataContratacao = @dataContratacao where id = @id 
 end
 go
 

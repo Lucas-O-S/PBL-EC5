@@ -34,7 +34,10 @@ namespace SitePBL.DAO
 
                     new SqlParameter("cargo", funcionario.cargo),
 
-                    new SqlParameter("foto", imgByte)
+                    new SqlParameter("foto", imgByte),
+
+                    new SqlParameter("dataContratacao", funcionario.dataContratacao)
+
                         
 
                 };
@@ -53,7 +56,9 @@ namespace SitePBL.DAO
 
                     new SqlParameter("cargo", funcionario.cargo),
 
-                    new SqlParameter("foto", imgByte)
+                    new SqlParameter("foto", imgByte),
+                    new SqlParameter("dataContratacao", funcionario.dataContratacao)
+
 
 
                 };
@@ -80,6 +85,8 @@ namespace SitePBL.DAO
             funcionario.imagembyte = (byte[])registro["foto"];
            
             funcionario.cargo = Convert.ToString(registro["cargo"]);
+
+            funcionario.dataContratacao = Convert.ToDateTime(registro["dataContratacao"]);
             return funcionario;
         }
 
