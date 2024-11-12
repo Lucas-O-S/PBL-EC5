@@ -76,3 +76,14 @@ D:\C#\PBL-EC5\Programa\SitePBL\SitePBL\obj\Release\net6.0\refint\SitePBL.dll
 D:\C#\PBL-EC5\Programa\SitePBL\SitePBL\obj\Release\net6.0\SitePBL.pdb
 D:\C#\PBL-EC5\Programa\SitePBL\SitePBL\obj\Release\net6.0\SitePBL.genruntimeconfig.cache
 D:\C#\PBL-EC5\Programa\SitePBL\SitePBL\obj\Release\net6.0\ref\SitePBL.dll
+C:\Users\082220019\Source\Repos\PBL-EC5\Programa\SitePBL\SitePBL\obj\Release\net6.0\SitePBL.csproj.AssemblyReference.cache
+C:\Users\082220019\Source\Repos\PBL-EC5\Programa\SitePBL\SitePBL\obj\Release\net6.0\SitePBL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\082220019\Source\Repos\PBL-EC5\Programa\SitePBL\SitePBL\obj\Release\net6.0\SitePBL.AssemblyInfoInputs.cache
+C:\Users\082220019\Source\Repos\PBL-EC5\Programa\SitePBL\SitePBL\obj\Release\net6.0\SitePBL.AssemblyInfo.cs
+C:\Users\082220019\Source\Repos\PBL-EC5\Programa\SitePBL\SitePBL\obj\Release\net6.0\SitePBL.csproj.CoreCompileInputs.cache
+C:\Users\082220019\Source\Repos\PBL-EC5\Programa\SitePBL\SitePBL\obj\Release\net6.0\SitePBL.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\082220019\Source\Repos\PBL-EC5\Programa\SitePBL\SitePBL\obj\Release\net6.0\SitePBL.RazorAssemblyInfo.cache
+C:\Users\082220019\Source\Repos\PBL-EC5\Programa\SitePBL\SitePBL\obj\Release\net6.0\SitePBL.RazorAssemblyInfo.cs
+C:\Users\082220019\Source\Repos\PBL-EC5\Programa\SitePBL\SitePBL\obj\Release\net6.0\SitePBL.dll
+C:\Users\082220019\Source\Repos\PBL-EC5\Programa\SitePBL\SitePBL\obj\Release\net6.0\refint\SitePBL.dll
+C:\Users\082220019\Source\Repos\PBL-EC5\Programa\SitePBL\SitePBL\obj\Release\net6.0\SitePBL.pdb
