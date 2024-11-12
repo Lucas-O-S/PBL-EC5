@@ -44,13 +44,13 @@ go
 insert into acesso (Nome_Usuario, login_usuario, senha, fk_empresa_id) values('SA','SA','123456',1)
 go
 
-
 --Tabela de Funcionarios
 create table funcionario(
 	id int identity(1,1) primary key not null,
 	nome varchar(500) not null,
 	cargo varchar(500) not null,
-	foto varbinary(max) null
+	foto varbinary(max) null,
+	dataContratacao datetime not null
 
 )
 go
