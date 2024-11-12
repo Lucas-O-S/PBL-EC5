@@ -21,7 +21,7 @@ namespace SitePBL.DAO
         protected override SqlParameter[] CriaParametros(ManutencaoViewModel manutencao)
         {
             SqlParameter[] sp;
-            if (manutencao.id != 0)
+            if (manutencao.id != 0 || manutencao.id != null)
             {
                 sp = new SqlParameter[]
                 {

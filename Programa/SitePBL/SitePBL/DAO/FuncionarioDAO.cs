@@ -24,7 +24,7 @@ namespace SitePBL.DAO
             if (imgByte == null)
                 imgByte = DBNull.Value;
 
-            if (funcionario.id != 0)
+            if (funcionario.id != 0 || funcionario.id != null)
             {
                 sp = new SqlParameter[] {
 

@@ -19,7 +19,7 @@ namespace SitePBL.DAO
         protected override SqlParameter[] CriaParametros(AcessoViewModel acesso)
         {
             SqlParameter[] sp;
-            if (acesso.id != 0)
+            if (acesso.id != 0 || acesso.id != null)
             {
                 sp = new SqlParameter[]
                 {
