@@ -3,7 +3,6 @@
 }
 <head>
     <link rel="stylesheet" href="~/css/cadFunc.css">
-
 </head>
 <main id="cadastro" class="content-container">
     <form class="form-container container row" method="post" enctype="multipart/form-data" action="save">
@@ -11,30 +10,64 @@
             <p>Cadastro de</p>
             <h1><strong>Empresa</strong></h1>
             <input type="hidden" name="Operacao" value="@ViewBag.Operacao" />
-            <input type="submit" class="btn btn-primary" role="button" name="btnEnviar"  />
+            <input type="submit" class="btn btn-primary" role="button" name="btnEnviar" />
         </section>
 
         <section class="right-section col row">
+            <div class="input-group-sm mb-3 col">
+                <br />
+                <input type="hidden" name="id" value="@Model.id" />
+                <label class="control-label">Sede</label>
+                <input asp-for="sede" class="form-control" maxlength="500" />
+                <span asp-validation-for="sede" class="text-danger"></span>
+                <label class="form-label">Nome</label>
+                <input asp-for="nome" class="" maxlength="500" />
+                <span asp-validation-for="nome" class="text-danger"></span>
+            </div>
+            <div class="file-section col">
+                <label for="logo-upload">Logo</label>
+                <br>
+                <div class="upload-container">
+                    <!-- Input de arquivo escondido -->
+                    <input type="file" id="logo-upload" asp-for="imagem" accept=".jpg,.jpeg,.png"
+                           onchange="ExibirImagem()" style="display: none;" value="@Model.imagem">
 
-                <div class="input-group-sm mb-3 col">
-                    <br />
-                    <input type="hidden" name="id" value="@Model.id" />
-                    <label class="control-label">Sede</label>
-                    <input asp-for="sede" class="form-control" maxlength="500" />
-                    <span asp-validation-for="sede" class="text-danger"></span>
-                    <label class="form-label">Nome</label>
-                    <input asp-for="nome" class="" maxlength="500" />
-                    <span asp-validation-for="nome" class="text-danger"></span>
-                </div>
-                <section class="file-section col" >
-                    <label for="logo-upload">Logo</label>
-                    <br>
-                    <div class="upload-container">
-                        <label for="logo-upload" class="custom-button"><i class="fas fa-plus"></i></label>
-                        <input type="file" id="logo-upload" name="logo-upload" value="@Model.foto64" accept=".jpg,.jpeg,.png">
-                        <p class="texto-upload">Faça o upload do arquivo</p>
+                    <!-- Container clicável para imagem ou ícone -->
+                    <div class="image-upload-box d-flex justify-content-center align-items-center border border-secondary"
+                         style="width: 150px; height: 150px; background-color: white; cursor: pointer;"
+                         onclick="document.getElementById('logo-upload').click();">
+                        <!-- Pré-visualização da imagem -->
+                        <img id="imgPreview" src="@Model.foto64" alt="Pré-visualização da Logo"
+                             style="max-width: 100%; max-height: 100%; display: none;">
+
+                        <!-- Ícone de 'mais' para upload -->
+                        <span id="uploadIcon" class="text-secondary" style="font-size: 2rem;">
+                            <i class="fas fa-plus"></i>
+                        </span>
                     </div>
-                </section>
+                </div>
+            </div>
         </section>
     </form>
+
+    <script>
+        function ExibirImagem() {
+            var oFReader = new FileReader();
+            var fileInput = document.getElementById("logo-upload");
+            var file = fileInput.files[0];
+
+            if (file) {
+                oFReader.readAsDataURL(file);
+                oFReader.onload = function (oFREvent) {
+                    var imgPreview = document.getElementById("imgPreview");
+                    var uploadIcon = document.getElementById("uploadIcon");
+
+                    // Exibe a imagem e esconde o ícone
+                    imgPreview.src = oFREvent.target.result;
+                    imgPreview.style.display = "block";
+                    uploadIcon.style.display = "none";
+                };
+            }
+        }
+    </script>
 </main>

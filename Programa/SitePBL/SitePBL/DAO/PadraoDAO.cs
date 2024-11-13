@@ -83,7 +83,7 @@ namespace SitePBL.DAO
         /// </summary>
         /// <param name="id">id da classe que trabalharemos</param>
         /// <returns></returns>
-        public virtual T Consulta(int id)
+        public virtual T Consulta(int? id)
         {
 
 

@@ -60,7 +60,7 @@ namespace SitePBL.DAO
         /// </summary>
         /// <param name="id">id que sera usado</param>
         /// <returns>SqlParameter id</returns>
-        public static SqlParameter[] CriarParametros(int id)
+        public static SqlParameter[] CriarParametros(int? id)
         {
             return new SqlParameter[]
             {
@@ -74,7 +74,7 @@ namespace SitePBL.DAO
         /// <param name="id">id da consulta</param>
         /// <param name="tabela">nome da tabela</param>
         /// <returns></returns>
-        public static SqlParameter[] CriarParametros(int id, string tabela)
+        public static SqlParameter[] CriarParametros(int? id, string tabela)
         {
             return new SqlParameter[]
             {
