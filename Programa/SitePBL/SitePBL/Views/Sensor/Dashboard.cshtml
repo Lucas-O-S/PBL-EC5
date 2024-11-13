@@ -1,5 +1,77 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Gráfico de Temperatura</title>
+    <meta charset="utf-8" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .chart-container {
+            position: relative;
+            height: 500px;
+            width: 700px;
+        }
+    </style>
+</head>
+<body>
+    <div class="chart-container">
+        <canvas id="chart"></canvas>
+    </div>
+    <button id="toggleButton">Pausar</button>
+
+    <script>
+        // Configuração do gráfico
+        const ctx = document.getElementById('chart').getContext('2d');
+        const labels = [];
+        const temperatureData = [];
+
+        const dynamicChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [
+                    {
+                        label: 'Temperatura (°C)',
+                        data: temperatureData,
+                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        borderWidth: 1
+                    }
+                ]
+            },
+            options: {
+                scales: {
+                    x: {
+                        beginAtZero: true
+                    },
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // Controle de pausa/retomada
+        let isPaused = false;
+        const toggleButton = document.getElementById('toggleButton');
+
+        toggleButton.addEventListener('click', () => {
+            isPaused = !isPaused;
+            toggleButton.textContent = isPaused ? 'Retomar' : 'Pausar';
+        });
+
+        // Função para atualizar dados a cada 1 segundo
+        setInterval(() => {
+            if (!isPaused) {
+                const newTemperature = Math.floor(Math.random() * 10) + 20; // Gera temperatura entre 20 e 30°C
+
+                // Adiciona novos dados
+                temperatureData.push(newTemperature);
+                labels.push(`${labels.length}s`);
+
+                // Atualiza o gráfico
+                dynamicChart.update();
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
