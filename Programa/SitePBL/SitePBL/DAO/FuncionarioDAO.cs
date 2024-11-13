@@ -44,13 +44,10 @@ namespace SitePBL.DAO
             }
             else
             {
-                SqlParameter[] parametros = new SqlParameter[3];
-                parametros[0] = new SqlParameter("nome", funcionario.nome);
 
                 sp = new SqlParameter[] {
 
 
-                    new SqlParameter("id", funcionario.id),
                     new SqlParameter("nome", funcionario.nome),
 
                     new SqlParameter("cargo", funcionario.cargo),
@@ -81,7 +78,7 @@ namespace SitePBL.DAO
             funcionario.id = Convert.ToInt32(registro["id"]);
             funcionario.nome = Convert.ToString(registro["nome"]);
 
-            funcionario.imagembyte = (byte[])registro["foto"];
+            funcionario.imagembyte = registro["foto"] as byte[];
            
             funcionario.cargo = Convert.ToString(registro["cargo"]);
 

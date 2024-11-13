@@ -62,7 +62,8 @@ namespace SitePBL.DAO
             empresa.id = Convert.ToInt32(registro["id"]);
             empresa.nome = Convert.ToString(registro["nome"]);
 
-            empresa.imagembyte = registro["logo"] as byte[];
+
+           empresa.imagembyte = registro["logo"] as byte[];
 
             
             empresa.sede = Convert.ToString(registro["sede"]);
