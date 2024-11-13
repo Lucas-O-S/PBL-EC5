@@ -75,6 +75,11 @@ namespace SitePBL.DAO
             SensorDAO sDAO = new SensorDAO();
 
             manutencao.descricaoSensor = sDAO.Consulta(manutencao.idSensor).descricao;
+            
+            EmpresaDAO eDAO = new EmpresaDAO();
+
+            manutencao.nomeEmpresa = eDAO.Consulta(sDAO.Consulta(manutencao.idSensor).empresaId).nome;
+
 
             return manutencao;
         }

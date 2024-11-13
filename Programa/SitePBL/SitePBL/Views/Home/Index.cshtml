@@ -1,78 +1,82 @@
 @{
-    ViewData["Title"] = "Home Page";
+	ViewData["Title"] = "Home Page";
 }
 <head>
-      <link rel="stylesheet" href="~/css/home.css">
+	<link rel="stylesheet" href="~/css/home.css">
 
 </head>
 
 
-    <main class="content-container">
+<main class="content-container">
 
-        <div class ="col">
-             <section class="left-section container">
-                <h1><strong>Olá!</strong></h1>
-                <p>Somos a</p>
-                <p><img src="../img/LogoSimples.png" alt="Termo-Light"></p>
-        </section>
+	<div class="col">
+		<section class="left-section container">
+			<h1><strong>Olá!</strong></h1>
+			<p>Somos a</p>
+			<p><img src="../img/LogoSimples.png" alt="Termo-Light"></p>
+		</section>
 
-         </div>
+	</div>
 
-        <div class ="col">
-            <section class="right-section ">
-                <h2>O que deseja fazer?</h2>
-                <ul>
+	<div class="col">
+		<section class="right-section ">
+			<h2>O que deseja fazer?</h2>
+			<ul>
 
-                    <!-- Cadastro -->
+				<!-- Cadastro -->
 
-                    <div class="row ">
-                        <li class="dropdown">
-                             <a href="" class="button no-link" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                <img src="~/img/IconFormsFunc.png" alt="Cadastro Funcionário">
-                                <span class="no-link">Cadastros</span> <!-- Texto sem aparência de link -->
-                            </a>
-                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                     <li><a class="dropdown-item" href="/Funcionario/create">Funcionarios</a></li>
-                                    <li><a class="dropdown-item" href="/empresa/create">Empresas</a></li>
-                                    <li><a class="dropdown-item" href="/sensor/create">Sensores</a></li>
-                                    <li><a class="dropdown-item" href="/acesso/form">Acesso</a></li>
-                                </ul>
-                        </li>
-                   </div>
+				<div class="row ">
+				<li class="dropdown">
+					<a href="" class="button no-link" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+						<img src="~/img/IconFormsFunc.png" alt="Cadastro Funcionário">
+						<span class="no-link">Cadastros</span> <!-- Texto sem aparência de link -->
+					</a>
+					<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+						<li><a class="dropdown-item" href="/Funcionario/create">Funcionarios</a></li>
+						<li><a class="dropdown-item" href="/empresa/create">Empresas</a></li>
+						<li><a class="dropdown-item" href="/sensor/create">Sensores</a></li>
+						<li><a class="dropdown-item" href="/acesso/create">Acesso</a></li>
+						<li><a class="dropdown-item" href="/manutencao/create">Manutenção</a></li>
 
-                    <!-- Listagem -->
+					</ul>
+				</li>
+	</div>
 
-                        <div class="row ">
-                     <li class="dropdown">
-                     <a href="" class="button no-link" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="~/img/IconList.png" alt="Cadastro Funcionário">
-                        <span class="no-link">Listagem</span> <!-- Texto sem aparência de link -->
-                    </a>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                <li><a class="dropdown-item" href="/Funcionario/index">Funcionarios</a></li>
-                    <li><a class="dropdown-item" href="/empresa/index">Empresas</a></li>
-                                <li><a class="dropdown-item" href="/sensor/index">Sensores</a></li>
-                            </ul>
-                    </li>
-                    </div>
+	<!-- Listagem -->
 
-                    <!--Dashboards-->
-                     <div class="row ">
-                         <li class="dropdown">
-                         <a href="" class="button no-link" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                            <img src="~/img/IconFormsEmpr.png" alt="Cadastro Funcionário">
-                            <span class="no-link">Dashboards</span> <!-- Texto sem aparência de link -->
-                        </a>
-                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                    <li><a class="dropdown-item" href="/Empresa/Dashboard">Dashboard Empresa</a></li>
-                                    <li><a class="dropdown-item" href="/Sensor/Dashboard">DashBoard Sensores</a></li>
-                                </ul>
-                        </li>
-                    </div>
+	<div class="row ">
+		<li class="dropdown">
+			<a href="" class="button no-link" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+				<img src="~/img/IconList.png" alt="Cadastro Funcionário">
+				<span class="no-link">Listagem</span> <!-- Texto sem aparência de link -->
+			</a>
+			<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+				<li><a class="dropdown-item" href="/Funcionario/index">Funcionarios</a></li>
+				<li><a class="dropdown-item" href="/empresa/index">Empresas</a></li>
+				<li><a class="dropdown-item" href="/sensor/index">Sensores</a></li>
+				<li><a class="dropdown-item" href="/manutencao/index">Manutenção</a></li>
 
-                </ul>
-            </section>
+			</ul>
+		</li>
+	</div>
 
-        </div>
+	<!--Dashboards-->
+	<div class="row ">
+		<li class="dropdown">
+			<a href="" class="button no-link" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+				<img src="~/img/IconFormsEmpr.png" alt="Cadastro Funcionário">
+				<span class="no-link">Dashboards</span> <!-- Texto sem aparência de link -->
+			</a>
+			<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+				<li><a class="dropdown-item" href="/manutencao/Dashboard">Dashboard Manutenção</a></li>
+				<li><a class="dropdown-item" href="/Sensor/Dashboard">DashBoard Sensores</a></li>
+			</ul>
+		</li>
+	</div>
 
-    </main>
+	</ul>
+	</section>
+
+	</div>
+
+</main>

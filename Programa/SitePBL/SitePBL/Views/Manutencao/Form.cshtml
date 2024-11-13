@@ -1,0 +1,55 @@
+﻿@model ManutencaoViewModel
+@{
+}
+<head>
+    <link rel="stylesheet" href="~/css/cadFunc.css">
+
+</head>
+
+<main class="content-container">
+    <form class="form-container row container" method="post" enctype="multipart/form-data" action="Save">
+        <section class="left-section col">
+            <p>Cadastro de</p>
+            <h1><strong>Manutenção</strong></h1>
+
+            <input type="hidden" name="Operacao" value="@ViewBag.Operacao" />
+            <input type="submit" class="btn btn-primary" role="button" name="btnEnviar" value="Enviar" />
+        </section>
+
+        <section class="right-section col row">
+
+            <div class="input-group-sm mb-3 col">
+                <br />
+                <input type="hidden" name="id" value="@Model.id" />
+
+
+                <div class="form-group">
+                    <label class="control-label">Funcionario Responsavel</label>
+                    <select asp-for="idFuncionario"> 
+                        @foreach(FuncionarioViewModel f in ViewBag.funcionarios){
+
+                        }
+                    </select>
+                </div>
+
+                <!--Data e Hora-->
+                <div class="form-group">
+                    <label class="control-label">Data de Contratação</label>
+                    @if (ViewBag.operacao == "I")
+                    {
+                        <input asp-for="data_hora" type="datetime-local" class="form-control"
+                               value="@DateTime.Now.ToString("yyyy-MM-ddTHH:mm")" />
+                    }
+                    else
+                    {
+                        <input asp-for="data_hora" type="datetime-local" class="form-control"
+                               value="@Model.data_hora.ToString("yyyy-MM-ddTHH:mm")" />
+                    }
+                    <span asp-validation-for="data_hora" class="text-danger"></span>
+                </div>
+            </div>
+
+    </form>
+
+
+</main>

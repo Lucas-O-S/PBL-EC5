@@ -36,5 +36,10 @@
 		/// Nome do estado
 		/// </summary>
 		public string? estadoNome { get; set; }
+
+		/// <summary>
+		/// Nome da Empresa
+		/// </summary>
+		public string? nomeEmpresa {  get; set; }
 	}
 }

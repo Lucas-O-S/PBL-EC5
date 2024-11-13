@@ -1,0 +1,50 @@
+﻿@model List<ManutencaoViewModel>
+@{
+}
+<head>
+    <link rel="stylesheet" href="~/css/listagens.css">
+
+</head>
+<!--Precisa adicionar consulta avançada-->
+<main class="container">
+    <div class=" row titulo" titulo>Lista de Manutenções</div>
+    <br />
+    <div class=" row main-section">
+        <table class="table table-responsive">
+            <tr>
+                <th>Ações</th>
+                <th>ID</th>
+                <th>dataHora</th>
+                <th>Funcionario Responsavel</th>
+                <th>Sensor</th>
+                <th>Empresa</th>
+
+            </tr>
+
+            @foreach (var manutencao in Model)
+            {
+                <tr>
+                    <td>
+                        <a href="/funcionario/edit?id=@manutencao.id" role="button" class="btn btn-primary">Editar</a>
+                        &nbsp;&nbsp;
+                        <a href="javascript:apagar(@manutencao.id)" role="button" class="btn btn-danger">Excluir</a>
+                    </td>
+                    <td>@manutencao.id</td>
+                    <td>@manutencao.data_hora</td>
+                    <td>@manutencao.nomeFuncionario</td>
+                    <td>@manutencao.descricaoSensor</td>
+                    <td>@manutencao.nomeEmpresa</td>
+
+
+                </tr>
+            }
+        </table>
+    </div>
+</main>
+
+<script>
+    function apagar(id) {
+        if (confirm('Deseja apagar?'))
+            location.href = '/Funcionario/delete?id=' + id;
+    }
+</script>
