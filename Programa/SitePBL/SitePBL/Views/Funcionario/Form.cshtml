@@ -37,16 +37,49 @@
                         <span asp-validation-for="dataContratacao" class="text-danger"></span>
                     </div>
                 </div>
-                <section class="file-section col">
-                    <label for="foto-upload">Foto</label>
-                    <br>
-                    <div class="upload-container">
-                        <label for="foto-upload" class="custom-button"><i class="fas fa-plus"></i></label>
-                        <input type="file" id="foto-upload" name="foto-upload" value="@Model.foto64" accept=".jpg,.jpeg,.png">
-                        <p class="texto-upload">Faça o upload do arquivo</p>
-                    </div>
-                </section>
-    </form>
+            <div class="file-section col">
+                <label for="logo-upload">Foto</label>
+                <br>
+                <div class="upload-container">
+                    <!-- Input de arquivo escondido -->
+                    <input type="file" id="logo-upload" asp-for="imagem" accept=".jpg,.jpeg,.png"
+                           onchange="ExibirImagem()" style="display: none;" value="@Model.imagem">
 
+                    <!-- Container clicável para imagem ou ícone -->
+                    <div class="image-upload-box d-flex justify-content-center align-items-center border border-secondary"
+                         style="width: 150px; height: 150px; background-color: white; cursor: pointer;"
+                         onclick="document.getElementById('logo-upload').click();">
+                        <!-- Pré-visualização da imagem -->
+                        <img id="imgPreview" src="@Model.foto64" alt="Pré-visualização da Logo"
+                             style="max-width: 100%; max-height: 100%; display: none;">
+
+                        <!-- Ícone de 'mais' para upload -->
+                        <span id="uploadIcon" class="text-secondary" style="font-size: 2rem;">
+                            <i class="fas fa-plus"></i>
+                        </span>
+                    </div>
+                </div>
+            </div>
+    </form>
+    <script>
+        function ExibirImagem() {
+            var oFReader = new FileReader();
+            var fileInput = document.getElementById("logo-upload");
+            var file = fileInput.files[0];
+
+            if (file) {
+                oFReader.readAsDataURL(file);
+                oFReader.onload = function (oFREvent) {
+                    var imgPreview = document.getElementById("imgPreview");
+                    var uploadIcon = document.getElementById("uploadIcon");
+
+                    // Exibe a imagem e esconde o ícone
+                    imgPreview.src = oFREvent.target.result;
+                    imgPreview.style.display = "block";
+                    uploadIcon.style.display = "none";
+                };
+            }
+        }
+    </script>
 
 </main>
