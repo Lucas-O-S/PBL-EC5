@@ -14,10 +14,11 @@
             <tr>
                 <th>Ações</th>
                 <th>ID</th>
-                <th>dataHora</th>
+                <th>Data/Hora</th>
                 <th>Funcionario Responsavel</th>
                 <th>Sensor</th>
                 <th>Empresa</th>
+                <th>Estado da Manutenção</th>
 
             </tr>
 
@@ -25,7 +26,7 @@
             {
                 <tr>
                     <td>
-                        <a href="/funcionario/edit?id=@manutencao.id" role="button" class="btn btn-primary">Editar</a>
+                        <a href="/manutencao/edit?id=@manutencao.id" role="button" class="btn btn-primary">Editar</a>
                         &nbsp;&nbsp;
                         <a href="javascript:apagar(@manutencao.id)" role="button" class="btn btn-danger">Excluir</a>
                     </td>
@@ -34,6 +35,7 @@
                     <td>@manutencao.nomeFuncionario</td>
                     <td>@manutencao.descricaoSensor</td>
                     <td>@manutencao.nomeEmpresa</td>
+                    <td>@manutencao.estadoNome</td>
 
 
                 </tr>
@@ -45,6 +47,6 @@
 <script>
     function apagar(id) {
         if (confirm('Deseja apagar?'))
-            location.href = '/Funcionario/delete?id=' + id;
+            location.href = '/manutencao/delete?id=' + id;
     }
 </script>

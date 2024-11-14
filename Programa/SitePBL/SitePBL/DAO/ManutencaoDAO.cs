@@ -6,8 +6,11 @@ namespace SitePBL.DAO
 {
     public class ManutencaoDAO : PadraoDAO<ManutencaoViewModel>
     {
+        /// <summary>
+        /// Enumerador de estados com os seguintes estados: Completo, Incompleto, Cancelado
+        /// </summary>
+        public enum estados { Completo, Incompleto, Cancelado };
 
-        public enum estados { completo, incompleto, Cancelado };
         /// <summary>
         /// Define a tabela como manutenção
         /// </summary>
@@ -38,20 +41,20 @@ namespace SitePBL.DAO
             else
             {
                 sp = new SqlParameter[]
-{
+                {
                     new SqlParameter("data_hora", manutencao.data_hora),
                     new SqlParameter("fk_sensor_id", manutencao.idSensor),
 
                     new SqlParameter("fk_funcionario_id", manutencao.idFuncionario),
 
                     new SqlParameter("estado", manutencao.estadoId)
-};
+                };
             }
 
 
 
-                return sp;
-            }
+            return sp;
+        }
         /// <summary>
         /// Monta uma model de manutencao  com base do datarow
         /// </summary>
@@ -60,12 +63,12 @@ namespace SitePBL.DAO
         protected override ManutencaoViewModel MontarModel(DataRow registro)
         {
             ManutencaoViewModel manutencao = new ManutencaoViewModel(); ;
-
+            manutencao.id = Convert.ToInt32(registro["id"]);
             manutencao.data_hora = Convert.ToDateTime(registro["data_hora"]);
             manutencao.idFuncionario = Convert.ToInt32(registro["fk_funcionario_id"]);
             manutencao.idSensor = Convert.ToInt32(registro["fk_sensor_id"]);
             manutencao.estadoId = Convert.ToInt32(registro["estado"]);
-            
+
             //Pega do enumerador o nome do estado com base no id dele
             manutencao.estadoNome = Enum.GetName(typeof(estados), manutencao.estadoId);
 
@@ -75,7 +78,7 @@ namespace SitePBL.DAO
             SensorDAO sDAO = new SensorDAO();
 
             manutencao.descricaoSensor = sDAO.Consulta(manutencao.idSensor).descricao;
-            
+
             EmpresaDAO eDAO = new EmpresaDAO();
 
             manutencao.nomeEmpresa = eDAO.Consulta(sDAO.Consulta(manutencao.idSensor).empresaId).nome;

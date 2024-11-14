@@ -7,13 +7,13 @@
 </head>
 
 <main class="content-container">
-    <form class="form-container container row" method="post" enctype="multipart/form-data" action="Enviar">
+    <form class="form-container container row" method="post" enctype="multipart/form-data" action="Save">
         <section class="left-section col">
             <p>Cadastro de</p>
             <h1><strong>Sensores</strong></h1>
 
             <input type="hidden" name="Operacao" value="@ViewBag.Operacao" />
-            <input type="submit" class="btn btn-primary btnI" role="button" name="btnEnviar" value="Enviar" />
+            <input type="submit" class="btn btn-primary btnI" role="button" name="btnEnviar" />
         </section>
 
         <section class="right-section col row">
@@ -26,7 +26,13 @@
                     <input asp-for="descricao" class="form-control" maxlength="500" />
                     <span asp-validation-for="descricao" class="text-danger"></span>
                     <label class="control-label">EmpresaId</label>
-                    <input asp-for="empresaId" class="form-control" /->
+
+                    <select asp-for="empresaId" class="form-control">
+                        @foreach(EmpresaViewModel E in ViewBag.empresas)
+                        {
+                            <option value="@E.id">@E.nome</option>
+                        }
+                    </select>
                     <span asp-validation-for="empresaId" class="text-danger"></span>
                 </div>
         </section>

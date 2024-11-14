@@ -74,7 +74,7 @@ namespace SitePBL.DAO
         public virtual void Delete(int id)
         {
 
-            HelperSqlDAO.ExecutaProc("sp_delete_generic", HelperSqlDAO.CriarParametros(id));
+            HelperSqlDAO.ExecutaProc("sp_delete_generic", HelperSqlDAO.CriarParametros(id, nomeTabela));
         }
 
 

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SitePBL.DAO;
 using SitePBL.Models;
+using System.Reflection;
 
 namespace SitePBL.Controllers
 {
@@ -10,6 +11,11 @@ namespace SitePBL.Controllers
         protected PadraoDAO<T> dao { get; set; }
         protected string NomeViewIndex { get; set; } = "index";
         protected string NomeViewForm { get; set; } = "form";
+
+        /// <summary>
+        /// Metodo virtual usado para adicionar dados a ViewBags a create e edit, assim não precisa modifica-las diretamente
+        /// </summary>
+        protected virtual void AdicionarViewbagsForm() { }
 
         protected virtual IActionResult RedirecionaParaIndex(T model)
         {
@@ -36,6 +42,7 @@ namespace SitePBL.Controllers
             {
                 ViewBag.operacao = "I";
                 T model = Activator.CreateInstance(typeof(T)) as T;
+                AdicionarViewbagsForm();
                 return View(NomeViewForm, model);
             }
             catch (Exception erro)
@@ -51,6 +58,7 @@ namespace SitePBL.Controllers
                 ValidarDados(model, operacao);
                 if (ModelState.IsValid == false)
                 {
+                    AdicionarViewbagsForm();
                     ViewBag.operacao = operacao;
                     return View(NomeViewForm, model);
                 }
@@ -79,6 +87,8 @@ namespace SitePBL.Controllers
             {
                 ViewBag.operacao = "A";
                 var model = dao.Consulta(id);
+                AdicionarViewbagsForm();
+
                 if (model == null)
                     return RedirecionaParaIndex(model);
                 else

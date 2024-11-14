@@ -11,6 +11,13 @@ namespace SitePBL.Controllers
     {
         public SensorController() { dao = new SensorDAO(); }
 
+        protected override void AdicionarViewbagsForm()
+        {
+            EmpresaDAO eDAO = new EmpresaDAO();
+            ViewBag.empresas = eDAO.Listagem();
+
+        }
+
         protected override void ValidarDados(SensorViewModel model, string operacao)
         {
             base.ValidarDados(model, operacao);
