@@ -17,6 +17,9 @@ namespace SitePBL.DAO
     /// </summary>
     public static class HelperFiwareDAO
     {
+        public static string host = "4.228.64.5";
+
+
         /// <summary>
         /// Metodo que faz o helth check do servidor
         /// </summary>

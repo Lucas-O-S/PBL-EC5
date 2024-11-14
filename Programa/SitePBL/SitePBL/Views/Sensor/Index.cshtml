@@ -16,7 +16,8 @@
                 <th>Ações</th>
                 <th>ID</th>
                 <th>Descrição</th>
-                <th>Empresa ID</th>
+                <th>Empresa
+                </th>
             </tr>
 
             @foreach (var sensor in Model)
@@ -29,7 +30,7 @@
                     </td>
                     <td>@sensor.id</td>
                     <td>@sensor.descricao</td>
-                    <td>@sensor.empresaId</td>
+                    <td>@sensor.empresaNome</td>
 
                 </tr>
             }

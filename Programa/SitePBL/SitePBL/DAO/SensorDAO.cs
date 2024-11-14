@@ -66,12 +66,27 @@ namespace SitePBL.DAO
 
             return sensor;
         }
+
+        /// <summary>
+        /// Verifica se há sensores repetidos
+        /// </summary>
+        /// <param name="descricao">descricao do sensor</param>
+        /// <returns></returns>
+        public virtual int VerificarSensoresRepetidos(string descricao)
+        {
+            SqlParameter[] sp = new SqlParameter[] { new SqlParameter("descricao", descricao) };
+            DataTable dt = HelperSqlDAO.ExecutaProcSelect("sp_verificar_sensor", sp);
+            int teste = Convert.ToInt32(dt.Rows[0]["cont"]);
+            return teste;
+        }
     }
-
-
-
-
-
-
 }
+
+
+
+
+
+
+
+
 

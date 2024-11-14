@@ -63,10 +63,14 @@ create table manutencao(
 	fk_sensor_id int not null,
 	fk_funcionario_id int not null,
 	estado int not null,
-	foreign key ( fk_sensor_id) references Sensor(id),
+	foreign key ( fk_sensor_id) references Sensor(id)
+		on delete cascade,
 	foreign key (fk_funcionario_id) references Funcionario(id)
+		on delete cascade
 
 
 )
+
+select * from manutencao
 go
 

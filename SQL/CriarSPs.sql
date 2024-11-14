@@ -123,6 +123,16 @@ begin
 end
 go
 
+--------------------------------------------------------------------------
+
+create or alter procedure sp_verificar_sensor(
+	@descricao varchar
+)
+as
+begin
+	select COUNT(descricao) as cont from sensor where descricao = @descricao
+end
+go
 
 
 -----SPs de Acesso
@@ -231,6 +241,7 @@ go
 
 --------------------------------------------------------------------------------
 create or alter procedure sp_update_manutencao(
+	@id int,
 	@data_hora datetime,
 	@fk_sensor_id int,
 	@fk_funcionario_id int,
@@ -238,7 +249,7 @@ create or alter procedure sp_update_manutencao(
 )
 as
 begin
-	update manutencao set data_hora = @data_hora, fk_funcionario_id = @fk_funcionario_id, fk_sensor_id= @fk_sensor_id, estado = @estado
+	update manutencao set data_hora = @data_hora, fk_funcionario_id = @fk_funcionario_id, fk_sensor_id= @fk_sensor_id, estado = @estado where id = @id
 
 
 end

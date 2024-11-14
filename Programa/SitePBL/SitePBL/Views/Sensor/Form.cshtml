@@ -23,8 +23,17 @@
                     <br />
                     <input type="hidden" name="id" value="@Model.id" />
                     <label class="control-label">Descrição</label>
-                    <input asp-for="descricao" class="form-control" maxlength="500" />
-                    <span asp-validation-for="descricao" class="text-danger"></span>
+                    @if (ViewBag.operacao == "I")
+                    {
+                        <input asp-for="descricao" class="form-control" maxlength="500" />
+                        <span asp-validation-for="descricao" class="text-danger"></span>
+                    }
+                    else
+                    {
+                        <input asp-for="descricao" class="form-control" maxlength="500" readonly/>
+
+                    }
+
                     <label class="control-label">EmpresaId</label>
 
                     <select asp-for="empresaId" class="form-control">
