@@ -126,11 +126,36 @@ go
 --------------------------------------------------------------------------
 
 create or alter procedure sp_verificar_sensor(
-	@descricao varchar
+	@descricao varchar(max)
 )
 as
 begin
 	select COUNT(descricao) as cont from sensor where descricao = @descricao
+end
+go
+
+------------------------------------------------------------------------------
+
+create or alter procedure sp_avancado_sensor(
+	@descricao varchar(max),
+	@empresa varchar(max),
+	@tipo bit
+
+)
+as
+begin
+	declare @likeDescricao varchar(max)
+	set @likeDescricao = '%' + @descricao + '%'
+	declare @likeEmpresa varchar(max)
+	set @likeEmpresa = '%' + @empresa + '%'
+
+	select s.id,descricao, fk_empresa_id 
+	from sensor as s
+	inner join empresa as e
+	on e.id = s.fk_empresa_id
+	where s.descricao like @likeDescricao and
+	( (@tipo = 0 and e.nome like @likeDescricao) or (@tipo = 1 and e.nome = @empresa))
+				
 end
 go
 
