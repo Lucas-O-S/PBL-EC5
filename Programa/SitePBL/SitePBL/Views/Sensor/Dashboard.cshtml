@@ -1,8 +1,8 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="pt-br">
 <head>
+    <meta charset="UTF-8">
     <title>Gráfico de Temperatura</title>
-    <meta charset="utf-8" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         .chart-container {
@@ -61,21 +61,50 @@
         // Controle de pausa/retomada
         let isPaused = false;
         const toggleButton = document.getElementById('toggleButton');
-
         toggleButton.addEventListener('click', () => {
             isPaused = !isPaused;
             toggleButton.textContent = isPaused ? 'Retomar' : 'Pausar';
         });
 
-        // Função para atualizar dados a cada 1 segundo
+        // Função para obter a temperatura diretamente do Fiware
+        async function obterTemperatura(host, lamp) {
+            try {
+                // Faz a requisição para o Fiware para obter o valor da temperatura
+                const response = await fetch(`http://${host}:1026/v2/entities/urn:ngsi-ld:Lamp:${lamp}/attrs/temperature`, {
+                    method: 'GET',
+                    headers: {
+                        'fiware-service': 'smart',
+                        'fiware-servicepath': '/',
+                        'Accept': 'application/json'
+                    }
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    const temp = data.value;  // Obtém a temperatura
+                    const dataString = data.metadata.TimeInstant.value; // Obtém o timestamp
+                    const dataHora = new Date(dataString);
+
+                    // Adiciona os dados ao gráfico
+                    temperatureData.push(temp);
+                    labels.push(dataHora.toLocaleTimeString());  // Adiciona a hora formatada como label
+
+                    dynamicChart.update();
+                } else {
+                    console.error('Erro ao buscar os dados do Fiware:', response.statusText);
+                }
+            } catch (error) {
+                console.error('Erro na requisição:', error);
+            }
+        }
+
+        // Atualizar a temperatura a cada 1 segundo (você pode ajustar o tempo conforme necessário)
         setInterval(() => {
             if (!isPaused) {
-                
-                const newTemperature = Math.floor(Math.random() * 10) + 20; // Gera temperatura entre 20 e 30°C
+                obterTemperatura('4.228.64.5', '03y');  // Chame a função passando o IP do servidor e o ID da lâmpada
                 const newMV = 40;
 
                 // Adiciona novos dados
-                temperatureData.push(newTemperature);
                 MV.push(newMV);
                 labels.push(`${labels.length}s`);
 
@@ -83,6 +112,7 @@
                 dynamicChart.update();
             }
         }, 1000);
+
     </script>
 </body>
 </html>
