@@ -15,8 +15,8 @@ const String lamp = "03y";
 const String server = "4.228.64.5";
 
 // Configurações - variáveis editáveis
-const char* default_SSID = "Wokwi-GUEST"; // Nome da rede Wi-Fi
-const char* default_PASSWORD = ""; // Senha da rede Wi-Fi
+const char* default_SSID = "POCO F5"; // Nome da rede Wi-Fi
+const char* default_PASSWORD = "kanx5025"; // Senha da rede Wi-Fi
 const char* default_BROKER_MQTT = server.c_str(); // IP do Broker MQTT
 const int default_BROKER_PORT = 1883; // Porta do Broker MQTT
 
@@ -177,6 +177,7 @@ void handleLuminosity() {
     const int potPin = 34;
     int sensorValue = analogRead(potPin);
     int temp = map(sensorValue, 0, 4095, 0, 100);
+    temp +=5;
     String mensagem = String(temp);
     Serial.print("Valor da temperatura: ");
     Serial.println(mensagem.c_str());
