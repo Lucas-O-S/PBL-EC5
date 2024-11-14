@@ -1,5 +1,9 @@
 ﻿@model SitePBL.Models.FuncionarioViewModel
 @{
+    if (ViewBag.operacao == "I")
+        ViewData["Title"] = "Cadastro de Funcionario";
+    else
+        ViewData["Title"] = "Edição de Funcionario";
 }
 <head>
     <link rel="stylesheet" href="~/css/cadFunc.css">

@@ -1,5 +1,9 @@
 ﻿@model ManutencaoViewModel
 @{
+    if (ViewBag.operacao == "I")
+        ViewData["Title"] = "Cadastro de Manutenção";
+    else
+        ViewData["Title"] = "Edição de Manutenção";
 }
 <head>
     <link rel="stylesheet" href="~/css/cadFunc.css">

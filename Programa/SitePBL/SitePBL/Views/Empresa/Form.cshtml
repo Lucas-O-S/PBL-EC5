@@ -1,5 +1,9 @@
 ﻿@model SitePBL.Models.EmpresaViewModel
 @{
+    if (ViewBag.operacao == "I")
+        ViewData["Title"] = "Cadastro de Empresa";
+    else
+        ViewData["Title"] = "Edição de Empresa";
 }
 <head>
     <link rel="stylesheet" href="~/css/cadFunc.css">

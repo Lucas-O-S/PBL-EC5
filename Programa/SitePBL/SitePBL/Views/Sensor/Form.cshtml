@@ -1,7 +1,14 @@
 ﻿@model SitePBL.Models.SensorViewModel
 @{
+    if(ViewBag.operacao == "I")
+        ViewData["Title"] = "Cadastro de Sensores";
+    else
+        ViewData["Title"] = "Edição de Sensores";
+
 }
+
 <head>
+
     <link rel="stylesheet" href="~/css/cadFunc.css">
 
 </head>
