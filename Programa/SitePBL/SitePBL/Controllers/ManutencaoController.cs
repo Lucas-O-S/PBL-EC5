@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SitePBL.DAO;
 using SitePBL.Models;
+using System.Data.SqlTypes;
+
 
 namespace SitePBL.Controllers
 {
@@ -26,7 +28,12 @@ namespace SitePBL.Controllers
 
         }
 
-  
+        protected override void AdicionarViewbagsIndex()
+        {
+            ViewBag.estados = Enum.GetValues(typeof(ManutencaoDAO.estados)).Cast<ManutencaoDAO.estados>().ToList();
+        }
+
+
         protected override void ValidarDados(ManutencaoViewModel model, string operacao)
         {
             base.ValidarDados(model, operacao);
@@ -55,5 +62,40 @@ namespace SitePBL.Controllers
 
 
         }
-    }
+
+		public IActionResult BuscaAvancada(
+            DateTime data_hora_inicial,
+			DateTime data_hora_final,
+			string funcionario,
+			string empresa,
+			string sensor,
+			int estado)
+		{
+			try
+			{
+				if (data_hora_inicial < SqlDateTime.MinValue.Value || data_hora_inicial > SqlDateTime.MaxValue.Value)
+					data_hora_inicial = SqlDateTime.MinValue.Value;
+                if (data_hora_final < SqlDateTime.MinValue.Value || data_hora_final > SqlDateTime.MaxValue.Value)
+                    data_hora_final = SqlDateTime.MaxValue.Value ;
+
+				if (string.IsNullOrEmpty(empresa))
+					empresa = "";
+                
+				if (string.IsNullOrEmpty(funcionario))
+                    funcionario = "";
+                
+				if (string.IsNullOrEmpty(sensor))
+					sensor = "";
+
+				ManutencaoDAO mDAO = new ManutencaoDAO();
+				var lista = mDAO.BuscaAvancada(data_hora_inicial,data_hora_final,funcionario,empresa,sensor,estado);
+				return PartialView("pvManutencao", lista);
+
+			}
+			catch (Exception erro)
+			{
+				return View("Error", new ErrorViewModel(erro.ToString()));
+			}
+		}
+	}
 }

@@ -111,7 +111,6 @@
 		var vDescricao = document.getElementById('descricao').value;
 		var vEmpresa = document.getElementById('empresa').value;
 		var vOpcao = document.querySelector('input[name="opcao"]:checked').value;
-		console.log(vOpcao)
 		$.ajax({
 			url: "/Sensor/BuscaAvancada",
 			data: { descricao: vDescricao, empresa: vEmpresa, tipo : vOpcao },

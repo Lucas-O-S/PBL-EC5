@@ -86,7 +86,36 @@ namespace SitePBL.DAO
 
             return manutencao;
         }
-    }
+
+		public List<ManutencaoViewModel> BuscaAvancada(
+            DateTime data_hora_inicial,
+            DateTime data_hora_final,
+            string funcionario,
+            string empresa,
+            string sensor,
+            int estado
+            )
+		{
+
+			SqlParameter[] sp = new SqlParameter[]
+			{
+				new SqlParameter("data_hora_inicial",data_hora_inicial),
+				new SqlParameter("data_hora_final",data_hora_final),
+				new SqlParameter("funcionario",funcionario),
+				new SqlParameter("sensor",sensor),
+				new SqlParameter("empresa",empresa),
+				new SqlParameter("estado",estado)
+			};
+			DataTable dt = HelperSqlDAO.ExecutaProcSelect("sp_avancado_manutencao", sp);
+			List<ManutencaoViewModel> lista = new List<ManutencaoViewModel>();
+
+			foreach (DataRow dr in dt.Rows)
+			{
+				lista.Add(MontarModel(dr));
+			}
+			return lista;
+		}
+	}
 
 
 

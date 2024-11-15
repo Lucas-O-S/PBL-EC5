@@ -1,0 +1,34 @@
+﻿@model List<ManutencaoViewModel>
+<div class=" row main-section">
+    <table class="table table-responsive">
+        <tr>
+            <th>Ações</th>
+            <th>ID</th>
+            <th>Data/Hora</th>
+            <th>Funcionario Responsavel</th>
+            <th>Sensor</th>
+            <th>Empresa</th>
+            <th>Estado da Manutenção</th>
+
+        </tr>
+
+        @foreach (var manutencao in Model)
+        {
+            <tr>
+                <td>
+                    <a href="/manutencao/edit?id=@manutencao.id" role="button" class="btn btn-primary">Editar</a>
+                    &nbsp;&nbsp;
+                    <a href="javascript:apagar(@manutencao.id)" role="button" class="btn btn-danger">Excluir</a>
+                </td>
+                <td>@manutencao.id</td>
+                <td>@manutencao.data_hora</td>
+                <td>@manutencao.nomeFuncionario</td>
+                <td>@manutencao.descricaoSensor</td>
+                <td>@manutencao.nomeEmpresa</td>
+                <td>@manutencao.estadoNome</td>
+
+
+            </tr>
+        }
+    </table>
+</div>
