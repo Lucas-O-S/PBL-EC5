@@ -29,7 +29,11 @@ namespace SitePBL.Controllers
             ViewBag.empresas = eDAO.Listagem();
 
         }
-
+        protected override void AdicionarViewbagsIndex()
+        {
+            EmpresaDAO eDAO = new EmpresaDAO();
+            ViewBag.empresas = eDAO.Listagem();
+        }
 
 
         protected override void ValidarDados(SensorViewModel model, string operacao)
@@ -48,6 +52,22 @@ namespace SitePBL.Controllers
                     ValidarDadosFiware(model, operacao).GetAwaiter().GetResult();
             }
 
+        }
+
+        public IActionResult BuscaAvancada(string descricao, string empresa, int tipo)
+        {
+            try
+            {
+
+                SensorDAO sDAO = new SensorDAO();
+                var lista = sDAO.BuscaAvancada(descricao,empresa,tipo);
+				return PartialView("pvSensor",lista);
+
+			}
+			catch (Exception erro)
+			{
+				return View("Error", new ErrorViewModel(erro.ToString()));
+			}
         }
 
     }

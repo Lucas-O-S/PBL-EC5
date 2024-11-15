@@ -1,0 +1,30 @@
+﻿@model List<SensorViewModel>
+
+<div class=" row main-section">
+
+	<table class="table table-responsive">
+		<tr>
+			<th>Ações</th>
+			<th>ID</th>
+			<th>Descrição</th>
+			<th>
+				Empresa
+			</th>
+		</tr>
+
+		@foreach (var sensor in Model)
+		{
+			<tr>
+				<td>
+					<a href="/sensor/edit?id=@sensor.id" role="button" class="btn btn-primary">Editar</a>
+					&nbsp;&nbsp;
+					<a href="javascript:apagar(@sensor.id)" role="button" class="btn btn-danger">Excluir</a>
+				</td>
+				<td>@sensor.id</td>
+				<td>@sensor.descricao</td>
+				<td>@sensor.empresaNome</td>
+
+			</tr>
+		}
+	</table>
+</div>

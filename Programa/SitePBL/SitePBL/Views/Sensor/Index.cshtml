@@ -1,62 +1,145 @@
 ﻿@model List<SensorViewModel>
 @{
-    ViewData["Title"] = "Listagem de Sensores";
-
+	ViewData["Title"] = "Listagem de Sensores";
 }
 <head>
-    <link rel="stylesheet" href="~/css/listagens.css">
+	<link rel="stylesheet" href="~/css/listagens.css">
 
 </head>
 <!--Precisa adicionar consulta avançada-->
 
 <main class="container">
 
-    <div class=" row titulo" titulo>Lista de Sensores</div>
-    <br />
-    <fieldset id="area_filtro" class="form-group main-section ">
-        <legend>Filtro de pesquisa</legend>
-        <div class="row">
-            <div class="col">
-                <input />
-            </div>
-            <div class="col">
-                <input />
-            </div>
-        </div>
-    </fieldset>
-    <br />
-    <div class=" row main-section">
+	<div class=" row titulo" titulo>Lista de Sensores</div>
+	<br />
+	<div class="container">
+		<fieldset id="area_filtro" class="form-group main-section">
+			<legend>Filtro de pesquisa</legend>
+			<div class="row g-2 align-items-center">
+				<!-- Descrição -->
+				<div class="col-md-3">
+					<label for="descricao" class="form-label">Descrição</label>
+					<input type="text" class="form-control form-control-sm" id="descricao" />
+				</div>
+				<!-- Tipo de Consulta de Empresa -->
+				<div class="col-md-3">
+					<label class="form-label">Tipo de Consulta de Empresa</label>
+					<div class="form-check">
+						<input type="radio" class="form-check-input" name="opcao" id="opcao1" value="0"
+						@(ViewData["opcao"]?.ToString() == "0" ? "checked" : "") onclick="toggleInput()" />
+						<label class="form-check-label" for="opcao1">Pesquisa Livre</label>
+					</div>
+					<div class="form-check">
+						<input type="radio" class="form-check-input" name="opcao" id="opcao2" value="1"
+						@(ViewData["opcao"]?.ToString() == "1" ? "checked" : "") onclick="toggleInput()" />
+						<label class="form-check-label" for="opcao2">Pesquisa por Empresa</label>
+					</div>
+				</div>
 
-        <table class="table table-responsive">
-            <tr>
-                <th>Ações</th>
-                <th>ID</th>
-                <th>Descrição</th>
-                <th>Empresa
-                </th>
-            </tr>
+				<!-- Empresa -->
+				<div class="col-md-3" id="empresaDiv">
+					<label for="empresa" class="form-label">Empresa</label>
+					<input type="text" name="empresa" class="form-control form-control-sm" id="empresa" />
+				</div>
 
-            @foreach (var sensor in Model)
-            {
-                <tr>
-                    <td>
-                        <a href="/sensor/edit?id=@sensor.id" role="button" class="btn btn-primary">Editar</a>
-                        &nbsp;&nbsp;
-                        <a href="javascript:apagar(@sensor.id)" role="button" class="btn btn-danger">Excluir</a>
-                    </td>
-                    <td>@sensor.id</td>
-                    <td>@sensor.descricao</td>
-                    <td>@sensor.empresaNome</td>
+				<!-- Pesquisa avançada -->
+				<div class="col-md-3 d-flex align-items-center">
+					<input type="button" name="pesquisar" id="pesquisar" value="Pesquisar" onclick="pesquisar()"
+						   class="btn btn-primary btn-sm w-100" />
+				</div>
+			</div>
+		</fieldset>
+	</div>
 
-                </tr>
-            }
-        </table>
-    </div>
+
+	<br />
+	<div id="resultadoConsulta" class="table-responsive">
+	</div>
+
+
+	<div class=" row main-section">
+
+		<table class="table table-responsive">
+			<tr>
+				<th>Ações</th>
+				<th>ID</th>
+				<th>Descrição</th>
+				<th>
+					Empresa
+				</th>
+			</tr>
+
+			@foreach (var sensor in Model)
+			{
+				<tr>
+					<td>
+						<a href="/sensor/edit?id=@sensor.id" role="button" class="btn btn-primary">Editar</a>
+						&nbsp;&nbsp;
+						<a href="javascript:apagar(@sensor.id)" role="button" class="btn btn-danger">Excluir</a>
+					</td>
+					<td>@sensor.id</td>
+					<td>@sensor.descricao</td>
+					<td>@sensor.empresaNome</td>
+
+				</tr>
+			}
+		</table>
+	</div>
+	<br />
+	<br />
+	<br />
+
 </main>
 
 <script>
-    function apagar(id) {
-        if (confirm('Deseja apagar?'))
-            location.href = '/Sensor/delete?id=' + id;
-    }
-</script>
+	function apagar(id) {
+		if (confirm('Deseja apagar?'))
+			location.href = '/Sensor/delete?id=' + id;
+	}
+	// Função para alternar entre os inputs
+	// Função para alternar entre os inputs
+	function toggleInput() {
+		var opcao = document.querySelector('input[name="opcao"]:checked').value;
+
+		var empresaInput = document.getElementById("empresa");
+		var empresaDiv = document.getElementById("empresaDiv");
+
+		if (opcao == "0") {
+			// Exibir input de texto
+			empresaInput.type = "text";  // Garante que é um campo de texto
+			empresaDiv.innerHTML = `
+					<label for="empresa">Empresa</label>
+					<input type="text" name="empresa" class="form-control" id="empresa" />`;
+		} 
+		else {
+			// Exibir dropdown (select)
+			empresaDiv.innerHTML = `
+					<label for="empresa">Empresa</label>
+					<select name="empresa" id="empresa" class="form-control">
+				@foreach (EmpresaViewModel E in ViewBag.empresas)
+				{
+					<option value="@E.nome">@E.nome</option>
+				}
+				</select>`;
+		}
+	}
+
+	function pesquisar() {
+		var vDescricao = document.getElementById('descricao').value;
+		var vEmpresa = document.getElementById('empresa').value;
+		var vOpcao = document.querySelector('input[name="opcao"]:checked').value;
+		$.ajax({
+			url: "/Sensor/BuscaAvancada",
+			data: { descricao: vDescricao, empresa: vEmpresa, opcao: vOpcao },
+			success: function(dados){
+				if (dados.erro != undefined) {
+					alert(dados.msg);
+				}
+				else{
+					document.getElementById('resultadoConsulta').innerHTML = dados;
+
+				}
+			}
+		})
+	}
+	</script>

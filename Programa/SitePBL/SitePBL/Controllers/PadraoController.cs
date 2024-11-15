@@ -16,6 +16,7 @@ namespace SitePBL.Controllers
         /// Metodo virtual usado para adicionar dados a ViewBags a create e edit, assim não precisa modifica-las diretamente
         /// </summary>
         protected virtual void AdicionarViewbagsForm() { }
+        protected virtual void AdicionarViewbagsIndex() { }
 
         protected virtual IActionResult RedirecionaParaIndex(T model)
         {
@@ -26,6 +27,7 @@ namespace SitePBL.Controllers
         {
             try
             {
+                AdicionarViewbagsIndex();
                 var lista = dao.Listagem();
                 return View(NomeViewIndex, lista);
 

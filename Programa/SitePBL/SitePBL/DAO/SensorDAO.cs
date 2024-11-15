@@ -72,12 +72,30 @@ namespace SitePBL.DAO
         /// </summary>
         /// <param name="descricao">descricao do sensor</param>
         /// <returns></returns>
-        public virtual int VerificarSensoresRepetidos(string descricao)
+        public int VerificarSensoresRepetidos(string descricao)
         {
             SqlParameter[] sp = new SqlParameter[] { new SqlParameter("descricao", descricao) };
             DataTable dt = HelperSqlDAO.ExecutaProcSelect("sp_verificar_sensor", sp);
             int teste = Convert.ToInt32(dt.Rows[0]["cont"]);
             return teste;
+        }
+
+        public List<SensorViewModel> BuscaAvancada(string descricao, string empresa,int tipo)
+        {
+            SqlParameter[] sp = new SqlParameter[]
+            {
+                new SqlParameter("descricao",descricao),
+                new SqlParameter("empresa",empresa),
+                new SqlParameter("tipo",tipo)
+            };
+            DataTable dt = HelperSqlDAO.ExecutaProcSelect("sp_avancado_sensor", sp);
+            List<SensorViewModel> lista = new List<SensorViewModel>();
+
+			foreach (DataRow dr in dt.Rows)
+            {
+                lista.Add(MontarModel(dr));
+            }
+            return lista;
         }
     }
 }
