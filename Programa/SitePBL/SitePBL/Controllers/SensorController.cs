@@ -58,8 +58,11 @@ namespace SitePBL.Controllers
         {
             try
             {
-
-                SensorDAO sDAO = new SensorDAO();
+                if (string.IsNullOrEmpty(descricao))
+                    descricao = "";
+				if (string.IsNullOrEmpty(empresa))
+					empresa = "";
+				SensorDAO sDAO = new SensorDAO();
                 var lista = sDAO.BuscaAvancada(descricao,empresa,tipo);
 				return PartialView("pvSensor",lista);
 

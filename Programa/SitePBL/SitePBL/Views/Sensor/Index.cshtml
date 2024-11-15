@@ -26,7 +26,7 @@
 					<label class="form-label">Tipo de Consulta de Empresa</label>
 					<div class="form-check">
 						<input type="radio" class="form-check-input" name="opcao" id="opcao1" value="0"
-						@(ViewData["opcao"]?.ToString() == "0" ? "checked" : "") onclick="toggleInput()" />
+						checked  onclick="toggleInput()" />
 						<label class="form-check-label" for="opcao1">Pesquisa Livre</label>
 					</div>
 					<div class="form-check">
@@ -54,37 +54,7 @@
 
 	<br />
 	<div id="resultadoConsulta" class="table-responsive">
-	</div>
 
-
-	<div class=" row main-section">
-
-		<table class="table table-responsive">
-			<tr>
-				<th>Ações</th>
-				<th>ID</th>
-				<th>Descrição</th>
-				<th>
-					Empresa
-				</th>
-			</tr>
-
-			@foreach (var sensor in Model)
-			{
-				<tr>
-					<td>
-						<a href="/sensor/edit?id=@sensor.id" role="button" class="btn btn-primary">Editar</a>
-						&nbsp;&nbsp;
-						<a href="javascript:apagar(@sensor.id)" role="button" class="btn btn-danger">Excluir</a>
-					</td>
-					<td>@sensor.id</td>
-					<td>@sensor.descricao</td>
-					<td>@sensor.empresaNome</td>
-
-				</tr>
-			}
-		</table>
-	</div>
 	<br />
 	<br />
 	<br />
@@ -92,6 +62,18 @@
 </main>
 
 <script>
+
+	document.addEventListener("DOMContentLoaded", function () {
+		// Selecionar a primeira opção por padrão
+		document.getElementById("opcao1").checked = true;
+
+		// Ajustar o input inicial
+		toggleInput();
+
+		// Executar a pesquisa inicial
+		pesquisar();
+	});
+
 	function apagar(id) {
 		if (confirm('Deseja apagar?'))
 			location.href = '/Sensor/delete?id=' + id;
@@ -124,13 +106,15 @@
 		}
 	}
 
+	
 	function pesquisar() {
 		var vDescricao = document.getElementById('descricao').value;
 		var vEmpresa = document.getElementById('empresa').value;
 		var vOpcao = document.querySelector('input[name="opcao"]:checked').value;
+		console.log(vOpcao)
 		$.ajax({
 			url: "/Sensor/BuscaAvancada",
-			data: { descricao: vDescricao, empresa: vEmpresa, opcao: vOpcao },
+			data: { descricao: vDescricao, empresa: vEmpresa, tipo : vOpcao },
 			success: function(dados){
 				if (dados.erro != undefined) {
 					alert(dados.msg);
