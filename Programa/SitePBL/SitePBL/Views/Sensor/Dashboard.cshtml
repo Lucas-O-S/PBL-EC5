@@ -5,18 +5,55 @@
     <title>Gráfico de Temperatura</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
+        .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
         .chart-container {
             position: relative;
             height: 500px;
             width: 700px;
         }
+
+        .controls {
+            display: flex;
+            flex-direction: column;
+            margin-left: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 10px;
+        }
     </style>
 </head>
 <body>
-    <div class="chart-container">
-        <canvas id="chart"></canvas>
+
+    <div class="container">
+        <div class="chart-container">
+            <canvas id="chart"></canvas>
+        </div>
+        <div class="controls">
+            <button id="toggleButton">Pausar</button>
+            <div class="form-group">
+                <label for="mvInput">MV (Valor de Medição):</label>
+                <input type="number" id="mvInput" step="0.1" />
+            </div>
+            <div class="form-group">
+                <label for="kpInput">Kp:</label>
+                <input type="number" id="kpInput" step="0.1" />
+            </div>
+            <div class="form-group">
+                <label for="kiInput">Ki:</label>
+                <input type="number" id="kiInput" step="0.1" />
+            </div>
+            <div class="form-group">
+                <label for="kdInput">Kd:</label>
+                <input type="number" id="kdInput" step="0.1" />
+            </div>
+        </div>
     </div>
-    <button id="toggleButton">Pausar</button>
 
     <script>
         // Configuração do gráfico
@@ -38,11 +75,12 @@
                         borderWidth: 1
                     },
                     {
-                        label: 'MV',
-                        data: MV,
-                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                        borderColor: 'rgba(255, 99, 132, 1)',
-                        borderWidth: 1
+                        label: 'MV (Valor de Medição)',
+                        data: [],
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        borderWidth: 1,
+                        borderDash: [5, 5],
+                        fill: false
                     }
                 ]
             },
@@ -101,18 +139,34 @@
         // Atualizar a temperatura a cada 1 segundo (você pode ajustar o tempo conforme necessário)
         setInterval(() => {
             if (!isPaused) {
-                obterTemperatura('4.228.64.5', '03y');  // Chame a função passando o IP do servidor e o ID da lâmpada
-                const newMV = 40;
+                const newTemperature = Math.floor(Math.random() * 10) + 20; // Gera temperatura entre 20 e 30°C
 
                 // Adiciona novos dados
-                MV.push(newMV);
+                temperatureData.push(newTemperature);
                 labels.push(`${labels.length}s`);
+
+                // Atualiza a linha de MV para que acompanhe o gráfico
+                if (mvValue !== null) {
+                    dynamicChart.data.datasets[1].data.push(mvValue);
+                }
+                
+                //obterTemperatura('4.228.64.5', '03y');  // Chame a função passando o IP do servidor e o ID da lâmpada
 
                 // Atualiza o gráfico
                 dynamicChart.update();
             }
         }, 1000);
 
+        // Atualização da linha de MV
+        const mvInput = document.getElementById('mvInput');
+        mvInput.addEventListener('change', () => {
+            mvValue = parseFloat(mvInput.value);
+            if (!isNaN(mvValue)) {
+                // Atualiza todos os dados do MV para o gráfico atual
+                dynamicChart.data.datasets[1].data = Array(labels.length).fill(mvValue);
+                dynamicChart.update();
+            }
+        });
     </script>
 </body>
 </html>
