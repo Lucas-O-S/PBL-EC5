@@ -281,7 +281,6 @@ end
 go
 
 -----------------------------------------------------------------------------------------------
-
 create or alter procedure sp_avancado_manutencao(
 	@data_hora_inicial datetime,
 	@data_hora_final datetime,
@@ -301,16 +300,9 @@ begin
 	inner join sensor as s on s.id = m.fk_sensor_id
 	inner join funcionario as f on f.id = m.fk_funcionario_id
 	inner join empresa as e on e.id = s.fk_empresa_id
-	where (m.data_hora between @data_hora_inicial and @data_hora_final)
+	where m.data_hora >= @data_hora_inicial and m.data_hora <= @data_hora_final
 	and e.nome like @empresa and s.descricao like @sensor and f.nome like @funcionario
 	and ((estado = @estado and @estado !=4) or (@estado=4))
 end
 go
 ---------------------------------------------------------------------------
-EXEC sp_avancado_manutencao
-    @data_hora_inicial = '2024-01-01 00:00:00',  -- Defina a data/hora inicial no formato correto
-    @data_hora_final = '2024-12-31 23:59:59',    -- Defina a data/hora final no formato correto
-    @funcionario = '',                            -- Deixe vazio para buscar todos os funcionários
-    @empresa = '',                                -- Deixe vazio para buscar todas as empresas
-    @sensor = '',                                 -- Deixe vazio para buscar todos os sensores
-    @estado = 4;                                  -- Defina o estado, 4 significa todos os estados
