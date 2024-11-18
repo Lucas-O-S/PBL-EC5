@@ -37,7 +37,7 @@
 /* Seção direita (tabela ou lista) */
 .right-section {
     flex: 1;
-    background-color: #cff8ff;
+    background-color: #e0ffda;
     border-radius: 10px;
     text-align: left;
     min-width: 200px;
@@ -68,7 +68,7 @@
         }
 
             .right-section ul li a.button img {
-                background-color: #cff8ff;
+                background-color: #e0ffda;
                 height: 60px;
                 margin-right: 10px;
             }
@@ -98,15 +98,15 @@ span .nolink {
 .dropdown-menu {
     color: inherit; /* Herdar cor */
     font-family: inherit; /* Herdar fonte */
-    font-size: inherit; /* Herdar tamanho da fonte */
+    font-size: 15px;
     text-decoration: none; /* Remover sublinhado */
     padding: 10px 15px;
-    background-color: #cff8ff; /* Estilo de hover */
+    background-color: #e0ffda; /* Estilo de hover */
 }
 
 .dropdown-item:hover {
     color: inherit; /* Manter a cor do pai */
-    background-color: #398594; /* Estilo de hover */
+    background-color: #136c01; /* Estilo de hover */
 }
 
 

@@ -36,7 +36,7 @@
 .right-section {
     flex: 1;
     margin-top: 1%;
-    background-color: #cff8ff;
+    background-color: #e0ffda;
     padding: 5%;
     border-radius: 10px;
     text-align: left;
@@ -78,7 +78,7 @@ input[type="text"] {
 }
 
 .texto-upload {
-    color: #a0d0d8;
+    color: #bdf4b2;
     font-size: 13px;
     margin-top: -12px;
     margin-left: 17px;
@@ -89,33 +89,43 @@ input[type="file"] {
 }
 
 .custom-button {
-    width: 500%;
-    height: 5000%;
-    background-color: white;
-    color: #398594;
-    border: none;
-    font-size: 70px;
-    display: flex;
+    position: absolute;
+    bottom: 350px;
+    width: auto; /* Permite que o botão se ajuste ao conteúdo */
+    min-width: 120px; /* Define uma largura mínima */
+    height: auto; /* Ajusta a altura de acordo com o conteúdo */
+    padding: 10px 20px; /* Adiciona espaçamento interno */
+    color: #000000; /* Define a cor do texto */
+    background-color: #136c01; /* Adiciona um fundo para melhor contraste */
+    font-size: 16px; /* Ajusta o tamanho da fonte */
+    display: flex; /* Garante o alinhamento interno */
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    margin-bottom: 20px;
-    transition: background-color 0.3s;
+    margin-bottom: 20px; /* Espaçamento inferior */
+    border-radius: 25px; /* Bordas arredondadas para um visual moderno */
+    transition: background-color 0.3s, transform 0.2s; /* Animação para hover */
 }
 
-.custom-button:hover {
-    color: #0d4753;
-}
+    .custom-button:hover {
+        color: #072b00;
+        transform: scale(1.05);
+    }
 
-.custom-button:active {
-    color: #0d4753;
-    font-size: 68px;
+    .custom-button:active {
+        color: #072b00;
+        font-size: 15px;
+    }
+
+#uploadIcon i {
+    font-size: 2rem;
+    color: #136c01; /* Altere para a cor desejada */
 }
 
 /* Estilo do botão de enviar */
 input[type="button"] {
     margin-top: 40%;
-    background-color: #398594;
+    background-color: #136c01;
     color: black;
     font-size: 14px;
     padding: 10px;
@@ -125,11 +135,11 @@ input[type="button"] {
     width: 20%;
 }
 
-input[type="button"]:hover {
-    background-color: #0d4753;
-    color: white;
-    cursor: pointer;
-}
+    input[type="button"]:hover {
+        background-color: #072b00;
+        color: white;
+        cursor: pointer;
+    }
 
 input[type="button"]:active {
     transform: scale(0.95); /* Reduz o tamanho do botão em 5% */

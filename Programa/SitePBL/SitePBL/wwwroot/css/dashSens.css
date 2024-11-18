@@ -1,0 +1,78 @@
+﻿body {
+    background-color: #9bed8b;
+    font-family: Consolas, monospace;
+    margin: 0;
+    padding: 0;
+}
+
+/* Contêiner do gráfico e controles */
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.container-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 80px;
+}
+
+.chart-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    height: 300px;
+    width: 550px;
+    margin-top: 100px;
+    background-color: #e0ffda;
+    border-radius: 10px;
+    padding: 25px;
+}
+
+.controls {
+    display: flex;
+    flex-direction: column;
+    margin-right: 120px;
+    margin-top: 40px;
+}
+
+.form-group {
+    margin-bottom: 10px;
+}
+
+/* Estilo do botão */
+button {
+    background-color: #136c01; /* Cor de fundo do botão */
+    color: #ffffff; /* Cor do texto no botão */
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    button:hover {
+        color: #ffffff;
+        background-color: #072b00; /* Cor de fundo ao passar o mouse */
+    }
+
+    button:active {
+        color: #ffffff;
+        background-color: #072b00; /* Cor de fundo quando pressionado */
+    }
+
+/* Estilo dos rótulos e campos de entrada */
+label {
+    color: #000000;
+}
+
+input[type="number"] {
+    padding: 5px;
+    font-size: 16px;
+    margin-top: 5px;
+}

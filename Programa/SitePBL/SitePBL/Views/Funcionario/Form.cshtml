@@ -17,7 +17,7 @@
             <h1><strong>Funcionário</strong></h1>
 
             <input type="hidden" name="Operacao" value="@ViewBag.Operacao" />
-            <input type="submit" class="btn btn-primary" role="button" name="btnEnviar" value="Enviar" />
+            <input type="submit" class="custom-button" role="button" name="btnEnviar" value="Enviar" />
         </section>
 
         <section class="right-section col row">
@@ -50,7 +50,7 @@
                            onchange="ExibirImagem()" style="display: none;" value="@Model.imagem">
 
                     <!-- Container clicável para imagem ou ícone -->
-                    <div class="image-upload-box d-flex justify-content-center align-items-center border border-secondary"
+                    <div class="image-upload-box d-flex justify-content-center align-items-center"
                          style="width: 150px; height: 150px; background-color: white; cursor: pointer;"
                          onclick="document.getElementById('logo-upload').click();">
                         <!-- Pré-visualização da imagem -->

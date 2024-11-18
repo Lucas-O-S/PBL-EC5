@@ -30,7 +30,7 @@
 /* Seção direita (tabela ou lista) */
 .right-section {
     flex: 1;
-    background-color: #cff8ff;
+    background-color: #e0ffda;
     padding: 0.01%;
     border-radius: 10px;
     text-align: center;
@@ -75,7 +75,7 @@ input[type="text"] {
 /* Estilo do botão de enviar */
 input[type="button"] {
     margin-top: 40%;
-    background-color: #398594;
+    background-color: #136c01;
     color: black;
     font-size: 14px;
     padding: 10px;
@@ -85,11 +85,11 @@ input[type="button"] {
     width: 30%;
 }
 
-input[type="button"]:hover {
-    background-color: #0d4753;
-    color: white;
-    cursor: pointer;
-}
+    input[type="button"]:hover {
+        background-color: #072b00;
+        color: white;
+        cursor: pointer;
+    }
 
 input[type="button"]:active {
     transform: scale(0.95); /* Reduz o tamanho do botão em 5% */

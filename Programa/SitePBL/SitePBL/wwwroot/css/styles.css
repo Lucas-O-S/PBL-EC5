@@ -3,7 +3,7 @@ body {
     font-family: Consolas, monospace;
     margin: 0;
     padding: 0;
-    background-color: #aef3ff;
+    background-color: #9bed8b;
 }
 
 /* Estilo do cabeçalho */
@@ -11,7 +11,7 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #398594;
+    background-color: #136c01;
     padding: 10px 20px;
     height: 60px;
 }
@@ -43,24 +43,24 @@ nav ul li {
 }
 
 /* Estilo dos links */
-nav ul li a.button {
-    background-color: #398594;
-    color: black;
-    padding: 10px 20px;
-    margin: 0px;
-    height: 60px;
-    text-decoration: none;
-    font-size: 20px;
-    border-radius: 0px;
-    transition: background-color 0.3s, color 0.3s, border 0.3s;
-    font-family: 'Consolas', monospace;
-}
+    nav ul li a.button {
+        background-color: #136c01;
+        color: black;
+        padding: 10px 20px;
+        margin: 0px;
+        height: 60px;
+        text-decoration: none;
+        font-size: 20px;
+        border-radius: 0px;
+        transition: background-color 0.3s, color 0.3s, border 0.3s;
+        font-family: 'Consolas', monospace;
+    }
 
 /* Efeito hover nos botões */
-nav ul li a.button:hover {
-    background-color: #0d4753;
-    color: white;
-    border: 0px solid;
-    margin: 0px;
-    height: 60px;
-}
+        nav ul li a.button:hover {
+            background-color: #072b00;
+            color: white;
+            border: 0px solid;
+            margin: 0px;
+            height: 60px;
+        }
