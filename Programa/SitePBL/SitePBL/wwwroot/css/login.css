@@ -3,12 +3,12 @@
     font-family: Consolas, monospace;
     margin: 0;
     padding: 0;
-    background-color: #aef3ff;
+    background-color: #9bed8b;
 }
 
 #pagina_login section {
     flex: 1;
-    background-color: #cff8ff;
+    background-color: #e0ffda;
     padding: 0.01%;
     border-radius: 10px;
     text-align: center;
@@ -59,7 +59,7 @@ input[type="text"] {
 /* Estilo do botão */
 input[type="button"] {
     margin-bottom: 8%;
-    background-color: #398594;
+    background-color: #136c01;
     color: white;
     font-size: 16px;
     padding: 10px;
@@ -69,11 +69,11 @@ input[type="button"] {
     width: 40%;
 }
 
-input[type="button"]:hover {
-    background-color: #0d4753;
-    color: white;
-    cursor: pointer;
-}
+    input[type="button"]:hover {
+        background-color: #072b00;
+        color: white;
+        cursor: pointer;
+    }
 
 input[type="button"]:active {
     transform: scale(0.95); /* Reduz o tamanho do botão em 5% */

@@ -6,7 +6,7 @@
         ViewData["Title"] = "Edição de Empresa";
 }
 <head>
-    <link rel="stylesheet" href="~/css/cadFunc.css">
+    <link rel="stylesheet" href="~/css/cadEmpr.css">
 </head>
 <main id="cadastro" class="content-container">
     <form class="form-container container row" method="post" enctype="multipart/form-data" action="save">
@@ -14,7 +14,7 @@
             <p>Cadastro de</p>
             <h1><strong>Empresa</strong></h1>
             <input type="hidden" name="Operacao" value="@ViewBag.Operacao" />
-            <input type="submit" class="btn btn-primary" role="button" name="btnEnviar" />
+            <input type="submit" class="custom-button" role="button" name="btnEnviar" />
         </section>
 
         <section class="right-section col row">
@@ -22,7 +22,7 @@
                 <br />
                 <input type="hidden" name="id" value="@Model.id" />
                 <label class="control-label">Sede</label>
-                <input asp-for="sede" class="form-control" maxlength="500" />
+                <input asp-for="sede" class="" maxlength="500" />
                 <span asp-validation-for="sede" class="text-danger"></span>
                 <label class="form-label">Nome</label>
                 <input asp-for="nome" class="" maxlength="500" />
@@ -37,7 +37,7 @@
                            onchange="ExibirImagem()" style="display: none;" value="@Model.imagem">
 
                     <!-- Container clicável para imagem ou ícone -->
-                    <div class="image-upload-box d-flex justify-content-center align-items-center border border-secondary"
+                    <div class="image-upload-box d-flex justify-content-center align-items-center"
                          style="width: 150px; height: 150px; background-color: white; cursor: pointer;"
                          onclick="document.getElementById('logo-upload').click();">
                         <!-- Pré-visualização da imagem -->
