@@ -31,5 +31,7 @@
 		/// Nome do usuario
 		/// </summary>
 		public string nomeUsuario { get; set;}
+
+		public int id {  get; set; }
 	}
 }

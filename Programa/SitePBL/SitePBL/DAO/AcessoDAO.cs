@@ -23,32 +23,24 @@ namespace SitePBL.DAO
             {
                 sp = new SqlParameter[]
                 {
-                     new SqlParameter("id", acesso.id),
                     new SqlParameter("Nome_Usuario", acesso.nomeUsuario),
-                     new SqlParameter("Nome_Usuario", acesso.nomeUsuario),
+                     new SqlParameter("login_Usuario", acesso.loginUsuario),
                       new SqlParameter("senha", acesso.senha),
-                      new SqlParameter("fk_empresa_id", acesso.empresaId)
+                      new SqlParameter("nomeEmpresa", acesso.nomeEmpresa)
                 };
-
-
             }
             else
             {
                 sp = new SqlParameter[]
                 {
-                     new SqlParameter("id", acesso.id),
                     new SqlParameter("Nome_Usuario", acesso.nomeUsuario),
-                     new SqlParameter("Nome_Usuario", acesso.nomeUsuario),
+                     new SqlParameter("login_Usuario", acesso.loginUsuario),
                       new SqlParameter("senha", acesso.senha),
-                      new SqlParameter("fk_empresa_id", acesso.empresaId)
+                      new SqlParameter("nomeEmpresa", acesso.nomeEmpresa)
                 };
-
             }
-
             return sp;
         }
-
-
 
         /// <summary>
         /// Monta uma model de acesso com base do datarow
@@ -70,26 +62,18 @@ namespace SitePBL.DAO
             return acesso;
         }
 
-
-
-        public bool Login(string nomeEmpresa, string nomeUsuario, string senha)
+        public bool Login(string loginUsuario, string senha)
         {
             var parametros = new SqlParameter[]
             {
-                new SqlParameter("NomeEmpresa", nomeEmpresa),
-                new SqlParameter("Nome_Usuario", nomeUsuario),
+                new SqlParameter("login_Usuario", loginUsuario),
                 new SqlParameter("senha", senha)
-
              };
             string sql = "sp_login_acesso";
 
             DataTable tabela = HelperSqlDAO.ExecutaProcSelect(sql, parametros);
-            if (tabela.Rows.Count > 0 && Convert.ToInt32(tabela.Rows[0]["resultado"]) >= 1)
-                return true;
 
-
-
-            return false;
+            return Convert.ToString (tabela.Rows[0]["login_Usuario"]) == loginUsuario && Convert.ToString(tabela.Rows[0]["senha"]) == senha;
         }
 
     }

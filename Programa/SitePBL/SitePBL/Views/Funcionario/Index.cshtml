@@ -12,7 +12,7 @@
     <br />
 
     <div class="container">
-        <fieldset id="areaFiltro" class="form-group">
+        <fieldset id="areaFiltro" class="form-group  main-section">
             <legend>Filtro de pesquisa</legend>
             <div class="row g-3 align-items-center">
                 <!--Adicionando o nome-->
@@ -29,12 +29,12 @@
                 <div class="col-md-3">
                     Período contratado <br />
                     <label for="dataInicial" class="form-label">Data Inicial</label>
-                    <input type="datetime-local" class="form-control form-control-sm mt-0" id="dataInicial" value="@(new DateTime(1753, 1, 1, 0, 0, 0, 0).ToString("yyyy-MM-ddTHH:mm"))" />
+                    <input type="date" class="form-control form-control-sm mt-0" id="dataInicial" value="@(new DateTime(1753, 1, 1).ToString("yyyy-MM-dd"))" />
                 </div>
                 <!-- Data Final -->
                 <div class="col-md-3">
                     <label for="dataFinal" class="form-label">Data Final</label>
-                    <input type="datetime-local" class="form-control form-control-sm mt-0" id="dataFinal" value="@DateTime.Now.AddYears(1).ToString("yyyy-MM-ddTHH:mm")" />
+                    <input type="date" class="form-control form-control-sm mt-0" id="dataFinal" value="@DateTime.Now.AddYears(1).ToString("yyyy-MM-dd")" />
                 </div>
 
                 
@@ -48,10 +48,11 @@
     </div>
     <div id="resultadoConsulta" class="table-responsive">
 
-        <br />
-        <br />
-        <br />
     </div>
+
+    <br />
+    <br />
+    <br />
 </main>
 
 

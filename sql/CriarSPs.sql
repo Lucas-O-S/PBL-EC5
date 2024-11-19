@@ -168,29 +168,29 @@ create or alter procedure sp_insert_acesso(
 	@senha varchar(500),
 	@Nome_Usuario varchar(500),
 	@login_Usuario varchar(500),
-	@fk_empresa_id int
+	@nomeEmpresa varchar (500)
 )
 as
 begin
-
-	insert into Acesso(Nome_Usuario,senha,fk_empresa_id) values (@Nome_Usuario,@senha, @fk_empresa_id)
+	declare @fk_empresa_id int
+	set @fk_empresa_id = (select empresa.id from empresa where 'Termo-Light' = empresa.nome)
+	insert into Acesso(Nome_Usuario,login_Usuario ,senha,fk_empresa_id) values (@Nome_Usuario, @login_Usuario, @senha, @fk_empresa_id)
 end
 go
 -----------------------------------------------------------
 
 ----Devolve todos os acessos da empresa para fazer o login
 create or alter procedure sp_login_acesso(
-	@id_empresa int
-
+	@login_Usuario varchar(500),
+	@senha varchar(500)
 )
 as
 begin
 
 	select * 
-	from Acesso as a 
-	inner join Empresa as e on e.id = a.fk_empresa_id 
-	where e.id = @id_empresa
-
+	from Acesso 
+	where @login_Usuario = login_Usuario and @senha = Senha
+	
 
 end
 go
@@ -245,6 +245,25 @@ begin
 	update Funcionario set nome = @nome, cargo = @cargo, Foto = @foto, dataContratacao = @dataContratacao where id = @id 
 end
 go
+
+---------------------------------------------------------------------------
+create or alter procedure sp_avancado_func
+(
+	@data_hora_inicial date,
+	@data_hora_final date,
+	@nome varchar(max),
+	@cargo varchar(max)
+)
+as
+begin
+	set @nome = '%' + @nome + '%'
+	set @cargo = '%' + @cargo + '%'
+	
+	select * from funcionario
+	where dataContratacao >= @data_hora_inicial and dataContratacao <= @data_hora_final
+	and nome like @nome and cargo like @cargo
+end
+GO
 
 ----------------------------------------------------------------------
 
@@ -305,21 +324,4 @@ begin
 	and ((estado = @estado and @estado !=4) or (@estado=4))
 end
 go
----------------------------------------------------------------------------
-create or alter procedure sp_avancado_func
-(
-	@data_hora_inicial datetime,
-	@data_hora_final datetime,
-	@nome varchar(max),
-	@cargo varchar(max)
-)
-as
-begin
-	set @nome = '%' + @nome + '%'
-	set @cargo = '%' + @cargo + '%'
-	
-	select * from funcionario as f
-	where dataContratacao >= @data_hora_inicial and dataContratacao <= @data_hora_final
-	and nome = @nome and cargo = @cargo
-end
-GO
+----------------------------------------------------------

@@ -12,9 +12,64 @@ namespace SitePBL.Controllers
     {
         public AcessoController() { dao = new AcessoDAO(); }
 
+
         protected override void ValidarDados(AcessoViewModel model, string operacao)
         {
             base.ValidarDados(model, operacao);
+        }
+
+        public IActionResult Login()
+        {
+            ViewBag.Operacao = "A";
+            AcessoViewModel a = new AcessoViewModel();
+            return View(NomeViewForm, a);
+        }
+
+        public IActionResult Cadastro()
+        {
+            ViewBag.Operacao = "I";
+            AcessoViewModel a = new AcessoViewModel();
+            return View(NomeViewForm, a);
+        }
+
+        public IActionResult Enviar(AcessoViewModel model, string operacao)
+        {
+            AcessoDAO a = new AcessoDAO();
+
+            if(operacao == "A")
+            {
+                if (a.Login(model.loginUsuario, model.senha))
+                {
+                    HttpContext.Session.SetString("Logado", "true");
+                    return RedirectToAction("index", "home");
+                }
+                else
+                {
+                    ViewBag.Operacao = operacao;
+                    return View("Form");
+                }
+            }
+            else
+            {
+                a.Insert(model);
+                if (a.Login(model.nomeUsuario, model.senha))
+                {
+                    HttpContext.Session.SetString("Logado", "true");
+                    return RedirectToAction("index", "home");
+                }
+                else
+                {
+                    ViewBag.Operacao = operacao;
+                    return View("Form");
+                }
+            }
+        }
+
+        public IActionResult LogOff()
+        {
+            HttpContext.Session.Clear();
+            ViewBag.Operacao = "A";
+            return RedirectToAction("Form");
         }
     }
 }

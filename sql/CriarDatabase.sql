@@ -50,10 +50,10 @@ create table funcionario(
 	nome varchar(500) not null,
 	cargo varchar(500) not null,
 	foto varbinary(max) null,
-	dataContratacao datetime not null
-
+	dataContratacao date not null
 )
 go
+
 
 --Tabela Manutenção
 create table manutencao(
@@ -70,7 +70,5 @@ create table manutencao(
 
 
 )
-
-select * from manutencao
 go
 
