@@ -163,8 +163,8 @@ void mqtt_callback(char* topic, byte* payload, unsigned int length) {
 }
 ```
 
-#### Leitura e Publicação de Luminosidade
-O código realiza uma leitura analógica do GPIO 34, simula valores de luminosidade, e os publica no broker MQTT.
+#### Leitura e Publicação de Temperatura
+O código realiza uma leitura analógica do GPIO 34, simula valores de temperatura, e os publica no broker MQTT.
 ```cpp
 void handleLuminosity() {
     const int potPin = 34;
