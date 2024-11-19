@@ -70,12 +70,14 @@ table {
         /* Estilo dos ícones nas tabelas */
         table td img {
             height: 25px;
+            width: 25px;
+            background: none; /* Remove qualquer fundo */
         }
 
         table td a,
         table td button {
-            background: none;
-            border: none;
+            background: none; /* Remove fundo dos links e botões */
+            border: none; /* Remove bordas visíveis */
             cursor: pointer;
         }
 
@@ -83,7 +85,21 @@ table {
             table td button img {
                 width: 20px;
                 height: auto;
+                background: none; /* Garante que o fundo das imagens seja transparente */
             }
+
+.icons {
+    display: flex;
+    flex-direction: row;
+}
+
+.btn {
+    background: none !important; /* Remove fundo dos botões */
+    border: none !important; /* Remove bordas */
+    padding: 0 !important; /* Remove preenchimento interno */
+    display: inline-block; /* Garante alinhamento correto */
+}
+
 
 a.editar:hover img,
 button.excluir:hover img {
