@@ -64,7 +64,7 @@ aquecimento, acoplada a um dissipador de calor e a um sensor de temperatura LM35
 ![Diagrama Eletrico](./imagens/).
 
 ### Projeto Físico
-![Projeto Fisico](./imagens/).
+![Projeto Fisico](./imagens/projeto2.jpg).
 
 ## Software
 ### FIWARE
