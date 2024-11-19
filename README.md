@@ -42,16 +42,16 @@ aquecimento, acoplada a um dissipador de calor e a um sensor de temperatura LM35
 ### Componentes
 | **Componente**         | **Função**                                                                                                                | **Imagem** |
 |-------------------------|---------------------------------------------------------------------------------------------------------------------------|------------|
-| **Protoboard**          | Dispositivo utilizado para construir circuitos eletrônicos temporários sem solda, facilitando a experimentação.          | ![Protoboard](link_da_imagem) |
-| **ESP32**               | Conectividade e comunicação com a plataforma FIWARE, operando de 0V a 3,3V e suportando Wi-Fi e Bluetooth. LED embutido. | ![ESP32](link_da_imagem)      |
-| **10KΩ Resistor**       | Protege contra correntes excessivas e divide a tensão, garantindo leituras precisas de sinais analógicos.                | ![Resistor](link_da_imagem)   |
-| **Jumper Wires**        | Conecta fisicamente os componentes eletrônicos do sistema.                                                               | ![Jumper Wires](link_da_imagem) |
-| **Fonte DC**            | Fornece tensão contínua (DC) estável para alimentar circuitos eletrônicos.                                               | ![Fonte DC](link_da_imagem)   |
-| **Cabo de Força**       | Transmite energia elétrica de uma fonte para dispositivos eletrônicos ou equipamentos.                                   | ![Cabo de Força](link_da_imagem) |
-| **Cabos Banana**        | Conexões seguras em equipamentos eletrônicos, com conectores tipo banana.                                                | ![Cabos Banana](link_da_imagem) |
-| **Cabo USB**            | Permite comunicação e alimentação de dispositivos eletrônicos.                                                           | ![Cabo USB](link_da_imagem)   |
-| **Protótipo**           | Simula o funcionamento de uma estufa.                                                                                    | ![Protótipo](link_da_imagem)  |
-| **Notebook**            | Equipamento utilizado para desenvolvimento e monitoramento do sistema.                                                   | ![Notebook](link_da_imagem)   |
+| **Protoboard**          | Dispositivo utilizado para construir circuitos eletrônicos temporários sem solda, facilitando a experimentação.          | ![Protoboard](./imagens/protoboar.jpeg) |
+| **ESP32**               | Conectividade e comunicação com a plataforma FIWARE, operando de 0V a 3,3V e suportando Wi-Fi e Bluetooth. LED embutido. | ![ESP32](./imagens/esp32.jpeg)      |
+| **10KΩ Resistor**       | Protege contra correntes excessivas e divide a tensão, garantindo leituras precisas de sinais analógicos.                | ![Resistor](./imagens/resistor10k.jpeg)   |
+| **Jumper Wires**        | Conecta fisicamente os componentes eletrônicos do sistema.                                                               | ![Jumper Wires](./imagens/jumpers.joeg) |
+| **Fonte DC**            | Fornece tensão contínua (DC) estável para alimentar circuitos eletrônicos.                                               | ![Fonte DC](./imagens/fonte_dc.jpeg)   |
+| **Cabo de Força**       | Transmite energia elétrica de uma fonte para dispositivos eletrônicos ou equipamentos.                                   | ![Cabo de Força](./imagens/cabo_de_forca.jpeg) |
+| **Cabos Banana**        | Conexões seguras em equipamentos eletrônicos, com conectores tipo banana.                                                | ![Cabos Banana](./imagens/cabo_banana.jpeg) |
+| **Cabo USB**            | Permite comunicação e alimentação de dispositivos eletrônicos.                                                           | ![Cabo USB](./imagens/usb.jpeg)   |
+| **Protótipo**           | Simula o funcionamento de uma estufa.                                                                                    | ![Protótipo](./imagens/prototipo.jpeg)  |
+| **Notebook**            | Equipamento utilizado para desenvolvimento e monitoramento do sistema.                                                   | ![Notebook](./imagens/notebook.jpeg)   |
 
 ### Conexões
 | **Componente** | **Conexão**                                              |
@@ -61,17 +61,17 @@ aquecimento, acoplada a um dissipador de calor e a um sensor de temperatura LM35
 | **Protótipo**  |       |
 
 ### Diagrama Elétrico
-![Diagrama Eletrico](link_da_imagem).
+![Diagrama Eletrico](./imagens/).
 
 ### Projeto Físico
-![Projeto Fisico](link_da_imagem).
+![Projeto Fisico](./imagens/).
 
 ## Software
 ### FIWARE
 FIWARE é uma plataforma aberta que oferece ferramentas e APIs para o desenvolvimento de soluções inteligentes, facilitando a interoperabilidade entre sistemas, dispositivos IoT e aplicações. Seu principal componente, o Orion Context Broker, gerencia dados contextuais em tempo real, permitindo que dispositivos compartilhem informações. Neste caso, dados de temperatura são enviados ao FIWARE para tomada de decisões automatizadas. Os componentes da plataforma, conhecidos como Generic Enablers, são implantados via Docker, garantindo escalabilidade e portabilidade. APIs RESTful asseguram a comunicação entre os sistemas, enquanto o broker MQTT integra os dados do ESP32 ao FIWARE para processamento e análise em tempo real.
 
 #### Diagrama em Camadas da Aplicação
-![Diagrama em Camadas](link_da_imagem).
+![Diagrama em Camadas](./imagens/diagrama_camadas.jpeg).
 
 ### Código do ESP32
 #### Dependências
