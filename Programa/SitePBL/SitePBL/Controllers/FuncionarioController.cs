@@ -55,7 +55,6 @@ namespace SitePBL.Controllers
                     data_hora_inicial = SqlDateTime.MinValue.Value;
                 if (data_hora_final < SqlDateTime.MinValue.Value || data_hora_final > SqlDateTime.MaxValue.Value)
                     data_hora_final = SqlDateTime.MaxValue.Value;
-
                 if (string.IsNullOrEmpty(nome))
                     nome = "";
 

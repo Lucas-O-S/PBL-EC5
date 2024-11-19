@@ -21,7 +21,7 @@ namespace SitePBL.DAO
 
             SqlParameter[] sp;
             object imgByte = funcionario.imagembyte;
-  
+
 
             if (funcionario.id != 0 && funcionario.id != null)
             {
@@ -37,7 +37,7 @@ namespace SitePBL.DAO
 
                     new SqlParameter("dataContratacao", funcionario.dataContratacao)
 
-                        
+
 
                 };
 
@@ -79,7 +79,7 @@ namespace SitePBL.DAO
             funcionario.nome = Convert.ToString(registro["nome"]);
 
             funcionario.imagembyte = registro["foto"] as byte[];
-           
+
             funcionario.cargo = Convert.ToString(registro["cargo"]);
 
             funcionario.dataContratacao = Convert.ToDateTime(registro["dataContratacao"]);
@@ -101,7 +101,7 @@ namespace SitePBL.DAO
                 new SqlParameter("cargo",cargo),
                 new SqlParameter("nome",nome)
             };
-            DataTable dt = HelperSqlDAO.ExecutaProcSelect("sp_avancado_funcionario", sp);
+            DataTable dt = HelperSqlDAO.ExecutaProcSelect("sp_avancado_func", sp);
             List<FuncionarioViewModel> lista = new List<FuncionarioViewModel>();
 
             foreach (DataRow dr in dt.Rows)
