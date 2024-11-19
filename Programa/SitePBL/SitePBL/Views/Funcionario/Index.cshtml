@@ -5,46 +5,77 @@
 }
 <head>
     <link rel="stylesheet" href="~/css/listagens.css">
-
 </head>
-<!--Precisa adicionar consulta avançada-->
 
 <main class="container">
-    <div class=" row titulo" titulo>Lista de Funcionario</div>
-    <br />
-    <div class=" row main-section">
-        <table class="table table-responsive">
-            <tr>
-                <th>Ações</th>
-                <th>ID</th>
-                <th>Nome</th>
-                <th>Cargo</th>
-                <th>Logo</th>
+    <fieldset id="areaFiltro" class="form-group">
+        <legend>Consulta avançada de Funcionarios</legend>
+        <div class="row">
+            <div class="col-lg-4">
+                Nome<br />
+                <input type="text" id="nomne" class="form-control" />
+            </div>
+            <div class="col-lg-3">
+                Cargo <br />
+                <input type="text" id="Cargo" class="form-control" />
+            </div>
+            <div class="col-lg-2">
+                Período contratado <br />
+                <input type="date" id="dataInicial" class="form-control" />
+            </div>
+            <div class="col-lg-2">
+                <br />
+                <input type="date" id="dataFinal" class="form-control" />
+            </div>
+            <div class="col-lg-1">
+                <br />
+                <input type="button" name="pesquisar" id="pesquisar" value="Pesquisar"
+                       onclick="pesquisar()" class="btn btn-primary btn-sm w-100" />
+            </div>
+        </div>
+    </fieldset>
 
-            </tr>
+    <div id="resultadoConsulta" class="table-responsive">
 
-            @foreach (var funcionario in Model)
-            {
-                <tr>
-                    <td>
-                        <a href="/funcionario/edit?id=@funcionario.id" role="button" class="btn btn-primary">Editar</a>
-                        &nbsp;&nbsp;
-                        <a href="javascript:apagar(@funcionario.id)" role="button" class="btn btn-danger">Excluir</a>
-                    </td>
-                    <td>@funcionario.id</td>
-                    <td>@funcionario.nome</td>
-                    <td>@funcionario.cargo</td>
-                    <td>@funcionario.foto64</td>
-
-                </tr>
-            }
-        </table>
+        <br />
+        <br />
+        <br />
     </div>
 </main>
+
+
 
 <script>
     function apagar(id) {
         if (confirm('Deseja apagar?'))
-            location.href = '/Funcionario/delete?id=' + id;
+            location.href = '/manutencao/delete?id=' + id;
+    }
+    document.addEventListener("DOMContentLoaded", function () {
+
+        // Executar a pesquisa inicial
+        pesquisar();
+    });
+    function pesquisar() {
+        var vDataInicial = document.getElementById('dataInicial').value;
+        var vDataFinal = document.getElementById('dataFinal').value;
+
+        var vNome = document.getElementById('nome').value;
+        var vCargo = document.getElementById('cargo').value;
+
+        $.ajax({
+            url: "/funcionario/BuscaAvancada",
+            data:
+            {
+                data_hora_inicial: vDataInicial, data_hora_final: vDataFinal,
+                cargo: vCargo, nome: vNome
+            },
+            success: function (dados) {
+                if (dados.erro != undefined) {
+                }
+                else {
+                    document.getElementById('resultadoConsulta').innerHTML = dados;
+                }
+            }
+        })
     }
 </script>

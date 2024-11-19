@@ -86,5 +86,29 @@ namespace SitePBL.DAO
             return funcionario;
         }
 
+        public List<FuncionarioViewModel> BuscaAvancada(
+            DateTime data_hora_inicial,
+            DateTime data_hora_final,
+            string nome,
+            string cargo
+            )
+        {
+
+            SqlParameter[] sp = new SqlParameter[]
+            {
+                new SqlParameter("data_hora_inicial",data_hora_inicial),
+                new SqlParameter("data_hora_final",data_hora_final),
+                new SqlParameter("cargo",cargo),
+                new SqlParameter("nome",nome)
+            };
+            DataTable dt = HelperSqlDAO.ExecutaProcSelect("sp_avancado_funcionario", sp);
+            List<FuncionarioViewModel> lista = new List<FuncionarioViewModel>();
+
+            foreach (DataRow dr in dt.Rows)
+            {
+                lista.Add(MontarModel(dr));
+            }
+            return lista;
+        }
     }
 }
