@@ -35,10 +35,14 @@
             @foreach (var empresa in Model)
             {
                 <tr>
-                    <td>
-                        <a href="/empresa/edit?id=@empresa.id" role="button" class="btn btn-primary">Editar</a>
+                    <td class="icons">
+                        <a href="/empresa/edit?id=@empresa.id" role="button" class="btn btn-primary">
+                            <img src="~/img/EditIcon.png" alt="Editar" style="width:20px; height:20px;">
+                        </a>
                         &nbsp;&nbsp;
-                        <a href="javascript:apagar(@empresa.id)" role="button" class="btn btn-danger">Excluir</a>
+                        <a href="javascript:apagar(@empresa.id)" role="button" class="btn btn-danger">
+                            <img src="~/img/TrashIcon.png" alt="Excluir" style="width:20px; height:20px;">
+                        </a>
                     </td>
                     <td>@empresa.id</td>
                     <td>@empresa.nome</td>
