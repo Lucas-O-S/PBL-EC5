@@ -50,7 +50,7 @@ aquecimento, acoplada a um dissipador de calor e a um sensor de temperatura LM35
 | **Cabo de Força**       | Transmite energia elétrica de uma fonte para dispositivos eletrônicos ou equipamentos.                                   | ![Cabo de Força](./imagens/cabo_de_forca.jpeg) |
 | **Cabos Banana**        | Conexões seguras em equipamentos eletrônicos, com conectores tipo banana.                                                | ![Cabos Banana](./imagens/cabos_banana.jpeg) |
 | **Cabo USB**            | Permite comunicação e alimentação de dispositivos eletrônicos.                                                           | ![Cabo USB](./imagens/usb.jpeg)   |
-| **Protótipo**           | Simula o funcionamento de uma estufa.                                                                                    | ![Protótipo](./imagens/prototipo.jpeg)  |
+| **Protótipo**           | Simula o funcionamento de uma estufa.                                                                                    | ![Protótipo](./imagens/prototipo.jpg)  |
 | **Notebook**            | Equipamento utilizado para desenvolvimento e monitoramento do sistema.                                                   | ![Notebook](./imagens/notebook.jpeg)   |
 
 ### Conexões
