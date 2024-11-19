@@ -1,108 +1,120 @@
 ﻿@model List<ManutencaoViewModel>
 @{
-	ViewData["Title"] = "Listagem de Manutenções";
+    ViewData["Title"] = "Listagem de Manutenções";
 
 }
 <head>
-	<link rel="stylesheet" href="~/css/listagens.css">
+    <link rel="stylesheet" href="~/css/listagens.css">
 
 </head>
 <!--Precisa adicionar consulta avançada-->
 <main class="container">
-	<div class=" row titulo" titulo>Lista de Manutenções</div>
-	<br />
-	<div class="container">
-		<fieldset id="area_filtro" class="form-group main-section">
-			<legend>Filtro de pesquisa</legend>
-			<div class="row g-3 align-items-center">
-				<!-- Data Inicial -->
-				<div class="col-md-3">
-					<label for="dataInicial" class="form-label">Data Inicial</label>
-					<input type="datetime-local" class="form-control form-control-sm mt-0" id="dataInicial" value="@(new DateTime(1753, 1, 1, 0, 0, 0, 0).ToString("yyyy-MM-ddTHH:mm"))" />
-				</div>
-				<!-- Data Final -->
-				<div class="col-md-3">
-					<label for="dataFinal" class="form-label">Data Final</label>
-					<input type="datetime-local" class="form-control form-control-sm mt-0" id="dataFinal" value="@DateTime.Now.AddYears(1).ToString("yyyy-MM-ddTHH:mm")" />
-				</div>
-		
-				<!-- Funcionario -->
-				<div class="col-md-3">
-					<label for="Funcionario" class="form-label">Funcionario</label>
-					<input type="text" class="form-control form-control-sm" id="Funcionario"  />
-				</div>
-				<!-- Sensor -->
-				<div class="col-md-3">
-					<label for="Sensor" class="form-label">Sensor</label>
-					<input type="text" class="form-control form-control-sm" id="Sensor" />
-				</div>
-				<!-- Empresa -->
-				<div class="col-md-3">
-					<label for="empresa" class="form-label">Empresa</label>
-					<input type="text" name="empresa" class="form-control form-control-sm" id="empresa" />
-				</div>
-				<!-- Estados -->
-				<div class="col-md-3">
-					<label for="estado" class="form-label">Estados</label>
-					<select name="estado" class="form-control form-control-sm mt-0" id="estado">
-						<option value="4">Todos</option>
+    <div class=" row titulo" titulo>Lista de Manutenções</div>
+    <br />
+    <div class="container">
+        <fieldset id="area_filtro" class="form-group main-section">
+            <legend>Filtro de pesquisa</legend>            
+            <div class="row linha">
+                <!-- Funcionario -->
+                <div class="col-md-4">
+                    <b>Funcionário</b><br />
+                    <input type="text" class="form-control form-control-sm" id="Funcionario" />
+                </div>
+                <div class="col-md-2"></div>
+                <!-- Sensor -->
+                <div class="col-md-4">
+                    <b>Sensor</b><br />
+                    <input type="text" class="form-control form-control-sm" id="Sensor" />
+                </div>
+            </div>
+            <br />
+            <div class="row linha">
+                <!-- Empresa -->
+                <div class="col-md-4">
+                    <b>Empresa</b><br />
+                    <input type="text" name="empresa" class="form-control form-control-sm" id="empresa" />
+                </div>
+                <div class="col-md-2"></div>
+                <!-- Estados -->
+                <div class="col-md-4">
+                    <b>Estado da Manutenção</b><br />
+                    <select name="estado" class="form-control form-control-sm mt-0" id="estado">
+                        <option value="4">Todos</option>
 
-						@foreach (var E in ViewBag.estados)
-						{
-							<option value="@((int)E)">@E</option>
-						}
-					</select>
-				</div>
-				<!-- Pesquisa Avançada -->
-				<div class="col-md-3 d-flex align-items-center">
-					<input type="button" name="pesquisar" id="pesquisar" value="Pesquisar" onclick="pesquisar()" class="btn btn-primary btn-sm w-100" />
-				</div>
-			</div>
-		</fieldset>
+                        @foreach (var E in ViewBag.estados)
+                        {
+                            <option value="@((int)E)">@E</option>
+                        }
+                    </select>
+                </div>
+            </div>
+            <br />
+            <div class="row linha">
+                <b>Período da Manutenção</b><br />
+                <!-- Data Inicial -->
+                <div class="col-md-6">
+                    Data Inicial<br />
+                    <input type="datetime-local" class="form-control form-control-sm mt-0" id="dataInicial" value="@(new DateTime(1753, 1, 1, 0, 0, 0, 0).ToString("yyyy-MM-ddTHH:mm"))" />
+                </div>
+                <!-- Data Final -->
+                <div class="col-md-6">
+                    Data Final<br />
+                    <input type="datetime-local" class="form-control form-control-sm mt-0" id="dataFinal" value="@DateTime.Now.AddYears(1).ToString("yyyy-MM-ddTHH:mm")" />
+                </div>
+            </div>
+            <div class="row linha">
+                <!-- Pesquisa Avançada -->
+                <div class="col-md-12 d-flex align-items-center">
+                    <input type="button" name="pesquisar" id="pesquisar" value="Pesquisar" onclick="pesquisar()" class="btn btn-primary btn-sm w-100" />
+                </div>
+            </div>
+        </fieldset>
 
 
-	</div>
+    </div>
 
-	<br />
-	<div id="resultadoConsulta" class="table-responsive"></div>
+    <br />
+    <div id="resultadoConsulta" class="table-responsive"></div>
 
-	<br />
-	<br />
-	<br />
+    <br />
+    <br />
+    <br />
 </main>
 
 <script>
-	function apagar(id) {
-		if (confirm('Deseja apagar?'))
-			location.href = '/manutencao/delete?id=' + id;
-	}
-	document.addEventListener("DOMContentLoaded", function () {
+    function apagar(id) {
+        if (confirm('Deseja apagar?'))
+            location.href = '/manutencao/delete?id=' + id;
+    }
+    document.addEventListener("DOMContentLoaded", function () {
 
-		// Executar a pesquisa inicial
-		pesquisar();
-	});
-	function pesquisar() {
-		var vDataInicial = document.getElementById('dataInicial').value;
-		var vDataFinal = document.getElementById('dataFinal').value;
+        // Executar a pesquisa inicial
+        pesquisar();
+    });
+    function pesquisar() {
+        var vDataInicial = document.getElementById('dataInicial').value;
+        var vDataFinal = document.getElementById('dataFinal').value;
 
-		var vSensor = document.getElementById('Sensor').value;
-		var vFuncionario = document.getElementById('Funcionario').value;
+        var vSensor = document.getElementById('Sensor').value;
+        var vFuncionario = document.getElementById('Funcionario').value;
 
-		var vEmpresa = document.getElementById('empresa').value;
-		var vEstado = document.getElementById('estado').value;
+        var vEmpresa = document.getElementById('empresa').value;
+        var vEstado = document.getElementById('estado').value;
 
-		$.ajax({
-			url: "/manutencao/BuscaAvancada",
-			data: { data_hora_inicial: vDataInicial, data_hora_final: vDataFinal,
-				funcionario: vFuncionario, empresa:vEmpresa, sensor: vSensor, estado: vEstado },
-			success: function (dados) {
-				if (dados.erro != undefined) {
-				}
-				else {
-					document.getElementById('resultadoConsulta').innerHTML = dados;
+        $.ajax({
+            url: "/manutencao/BuscaAvancada",
+            data: {
+                data_hora_inicial: vDataInicial, data_hora_final: vDataFinal,
+                funcionario: vFuncionario, empresa: vEmpresa, sensor: vSensor, estado: vEstado
+            },
+            success: function (dados) {
+                if (dados.erro != undefined) {
+                }
+                else {
+                    document.getElementById('resultadoConsulta').innerHTML = dados;
 
-				}
-			}
-		})
-	}
+                }
+            }
+        })
+    }
 </script>

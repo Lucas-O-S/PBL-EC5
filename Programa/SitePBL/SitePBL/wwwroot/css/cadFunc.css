@@ -123,7 +123,7 @@ input[type="file"] {
 
 /* Estilo do botão de enviar */
 input[type="button"] {
-    margin-top: 40%;
+    margin-top: 40px;
     background-color: #136c01;
     color: black;
     font-size: 14px;
@@ -150,4 +150,8 @@ input[type="button"] {
     .content-container {
         flex-direction: column; /* Empilha as seções verticalmente em telas pequenas */
     }
+}
+
+.linha{
+    height: 70px;
 }

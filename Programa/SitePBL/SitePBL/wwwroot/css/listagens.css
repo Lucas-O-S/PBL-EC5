@@ -116,3 +116,4 @@ table th:first-child, /* Aplica ao cabeçalho da coluna "Ações" */
 table td:first-child { /* Aplica às células da coluna "Ações" */
     width: 80px; /* Ajuste o valor conforme necessário */
 }
+
