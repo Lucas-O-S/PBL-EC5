@@ -20,12 +20,6 @@
                     <h1>Controle de Temperatura</h1>
                 </div>
 
-                <div class="button-container">
-                    <button id="toggleButton" class="button">Pausar</button>
-                    <button id="calculateErrorButton" class="button">Calcular Erro Estacionário</button>
-                    <button id="calculateTimeConstantButton" class="button">Calcular Constante de Tempo</button>
-                </div>
-
                 <div class="controls">
                     <div class="form-group">
                         <label for="mvInput">SetPoint:</label>
@@ -37,23 +31,12 @@
                     </div>
                     <div class="form-group">
                         <label for="kiInput">Ki:</label>
-                        <input type="number" id="kiInput" class="form-control" step="0.1" />
+                        <input type="number" id="kiInput" class="form-control" step="0.1"/>
                     </div>
                     <div class="form-group">
                         <label for="kdInput">Kd:</label>
                         <input type="number" id="kdInput" class="form-control" step="0.1" />
                     </div>
-                </div>
-
-                <div
-                        <label for="errorResult">Erro Estacionário (Fórmula):</label>
-                        <input type="text" id="errorExpect" class="form-control" readonly />
-
-                        <label for="errorResult">Erro Estacionário (Realidade):</label>
-                        <input type="text" id="errorResult" class="form-control" readonly />
-                        
-                        <label for="timeConstantResult">Constante de Tempo (K):</label>
-                        <input type="text" id="timeConstantResult" class="form-control" readonly />
                 </div>
 
             </section>
@@ -63,7 +46,30 @@
                 <div class="chart-container">
                     <canvas id="chart"></canvas>
                 </div>
+  
+                <div class="button-container">
+                    <button id="toggleButton" class="button">Pausar</button>
+                    <button id="calculateErrorButton" class="button">Calcular Erro Estacionário</button>
+
+                    <div>
+                        <label for="Temp">Temperatura atual: </label>
+                        <input type="text" id="Temp" class="form-control" readonly value="0.1" />
+                    </div>
+ 
+                </div>
+
             </section>
+
+            <div>
+                <label for="errorExpect">Erro Estacionário (Fórmula):</label>
+                <input type="text" id="errorExpect" class="form-control" readonly />
+
+                <label for="errorResult">Erro Estacionário (Realidade):</label>
+                <input type="text" id="errorResult" class="form-control" readonly />
+
+                <label for="ConstantTime">Constante de ganho (K):</label>
+                <input type="text" id="ConstantTime" class="form-control" readonly />
+            </div>
         </div>
     </main>
 
@@ -147,8 +153,14 @@
         setInterval(() => {
             if (!isPaused) {
 
+                //Simula uma curva
+                var i = parseFloat(document.getElementById('Temp').value);
+                if (i < 0.9) 
+                     { i += 0.1; }
+                document.getElementById('Temp').value = i;
+
                 //obterTemperatura('4.228.64.5', '03y');  // Chame a função passando o IP do servidor e o ID da lâmpada
-                const newTemperature = Math.floor(Math.random() * 10) + 20; // Gera temperatura entre 20 e 30°C
+                const newTemperature = 20/(Math.cos(i));              
 
                 //conversão do valor de MV
                 const mvInput = document.getElementById('mvInput');
@@ -179,57 +191,63 @@
             }
         });
 
-        // Cálculo do Erro Estacionário
+        // Cálculo do botão "Calcular"
         document.getElementById('calculateErrorButton').addEventListener('click', () => {
             const setpoint = parseFloat(document.getElementById('mvInput').value);
             if (!isNaN(setpoint)) {
-                const lastTemperature = temperatureData[temperatureData.length - 1];
-                const erroEstacionario = setpoint - lastTemperature;
-                document.getElementById('errorExpect').value = erroEstacionario.toFixed(2);
-            }
-        });
+                
+                const ganhoK = calcularGanho(); // Obtém o ganho K
+                const setpoint = parseFloat(document.getElementById('mvInput').value); // Obtém o setpoint
+                const kp = parseFloat(document.getElementById('kpInput').value); // Obtém o Kp
+                const lastTemperature = temperatureData[temperatureData.length - 1]; //Última temperatura
+                const initialValue = temperatureData[0]; //Temperatura inicial
+                const erroEstacionarioResult = setpoint - lastTemperature; //Diferença entre o setpoint e a última temperatura
+                const targetValue = initialValue + 0.632 * (lastTemperature - initialValue); //Constante de tempo (Tau)
 
-        // Cálculo da Constante de Tempo
-        document.getElementById('calculateTimeConstantButton').addEventListener('click', () => {
-            const finalValue = temperatureData[temperatureData.length - 1];
-            const initialValue = temperatureData[0];
-            const targetValue = initialValue + 0.632 * (finalValue - initialValue);
-
-            let timeIndex = labels.length - 1;
-            for (let i = 0; i < temperatureData.length; i++) {
-                if (temperatureData[i] >= targetValue) {
-                    timeIndex = i;
-                    break;
+                //Calcula constante de tempo
+                let timeIndex = labels.length - 1;
+                for (let i = 0; i < temperatureData.length; i++) {
+                    if (temperatureData[i] >= targetValue) {
+                        timeIndex = i; // Encontra o índice correspondente ao targetValue
+                        break;
+                    }
                 }
-            }
+                // Como o intervalo é de 1 segundo, o índice é o tempo em segundos
+                const timeConstant = timeIndex;
 
-            const timeConstant = parseInt(labels[timeIndex]);
-            document.getElementById('timeConstantResult').value = `Constante de Tempo (K): ${timeConstant}s`;
+                //Calcula o Erro estacionário (Fórmula)
+                if (ganhoK !== null && !isNaN(kp) && !isNaN(setpoint)) {
+                    const erroEstacionarioReal = (setpoint - lastTemperature) / (1 + kp * ganhoK);
+                    document.getElementById('errorExpect').value = erroEstacionarioReal.toFixed(2);
+                } else {
+                    console.error('Erro ao calcular o erro estacionário.');
+                }
+                
+                document.getElementById('errorResult').value = erroEstacionarioResult.toFixed(2); //Erro estacionário (Realidade)
+            }
         });
 
-        // Cálculo do Erro Estacionário
-        document.getElementById('calculateErrorButton').addEventListener('click', () => {
-            const setpoint = parseFloat(document.getElementById('mvInput').value);
-            const kp = parseFloat(document.getElementById('kpInput').value);
-            const initialTemperature = temperatureData[0];
-            const finalTemperature = temperatureData[temperatureData.length - 1];
-            const K = parseFloat(document.getElementById('timeConstantResult').value);
+        //Formula que calcula o ganho
+        function calcularGanho() {
+            const initialTemperature = temperatureData[0]; // Primeiro valor da temperatura
+            const finalTemperature = temperatureData[temperatureData.length - 1]; // Último valor da temperatura
+            const mvInput = parseFloat(document.getElementById('mvInput').value); // MV atual
 
-            // Verifique se os valores são números válidos
-            if (!isNaN(setpoint) && !isNaN(kp) && !isNaN(initialTemperature) && !isNaN(finalTemperature)) {
-                // Calcule a amplitude A
-                const amplitude = initialTemperature - setpoint;
+            if (!isNaN(initialTemperature) && !isNaN(finalTemperature) && !isNaN(mvInput)) {
+                // Variação de MV
+                const deltaMV = mvInput; - initialTemperature;
 
-                // Calcule o Erro Estacionário
-                const erroEstacionario = amplitude / (1 + (kp * K));
+                // Calcula o ganho
+                const ganhoK = (finalTemperature - initialTemperature) / deltaMV;
 
-                // Exiba o resultado no campo apropriado
-                document.getElementById('errorResult').value = erroEstacionario.toFixed(2);
+                // Exibe o ganho
+                document.getElementById('ConstantTime').value = ganhoK.toFixed(2);
+                return ganhoK;
             } else {
-                document.getElementById('errorResult').value = 'Valores inválidos fornecidos para o cálculo do Erro Estacionário.';
+                console.error('Não foi possível calcular o ganho. Verifique os valores fornecidos.');
+                return null;
             }
-        });
-
+        }
 
     </script>
 
