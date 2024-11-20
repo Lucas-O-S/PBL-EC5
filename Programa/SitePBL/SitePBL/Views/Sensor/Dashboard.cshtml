@@ -24,18 +24,27 @@
                     <div class="form-group">
                         <label for="mvInput">SetPoint:</label>
                         <input type="number" id="mvInput" class="form-control" step="0.1" />
+                        <span id="mvError" class="text-danger"></span>
                     </div>
                     <div class="form-group">
                         <label for="kpInput">Kp:</label>
-                        <input type="number" id="kpInput" class="form-control" step="0.1" />
+                        <input type="number" id="kpInput" class="form-control" step="0.1" value="1" />
+                        <span id="kpError" class="text-danger"></span>
                     </div>
                     <div class="form-group">
                         <label for="kiInput">Ki:</label>
-                        <input type="number" id="kiInput" class="form-control" step="0.1"/>
+                        <input type="number" id="kiInput" class="form-control" step="0.1" value="1"/>
+                        <span id="kiError" class="text-danger"></span>
                     </div>
                     <div class="form-group">
                         <label for="kdInput">Kd:</label>
-                        <input type="number" id="kdInput" class="form-control" step="0.1" />
+                        <input type="number" id="kdInput" class="form-control" step="0.1" value="1" />
+                        <span id="kdError" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="ReadTime">Tempo de Atualização (ms):</label>
+                        <input type="number" id="ReadTime" class="form-control" value="1000" step="100" />
+                        <button id="updateIntervalButton" class="button">Atualizar Tempo</button>
                     </div>
                 </div>
 
@@ -149,37 +158,55 @@
             }
         }
 
-        // Atualizar a temperatura a cada 1 segundo
-        setInterval(() => {
-            if (!isPaused) {
 
-                //Simula uma curva
-                var i = parseFloat(document.getElementById('Temp').value);
-                if (i < 0.9) 
-                     { i += 0.1; }
-                document.getElementById('Temp').value = i;
+        let updateIntervalId; // Variável global para armazenar o ID do intervalo
 
-                //obterTemperatura('4.228.64.5', '03y');  // Chame a função passando o IP do servidor e o ID da lâmpada
-                const newTemperature = 20/(Math.cos(i));              
-
-                //conversão do valor de MV
-                const mvInput = document.getElementById('mvInput');
-                mvValue = parseFloat(mvInput.value);
-
-                // Adiciona novos 
-                temperatureData.push(newTemperature);
-
-                labels.push(`${labels.length}s`);
-
-                // Atualiza a linha de MV para que acompanhe o gráfico
-                if (mvValue !== null) {
-                    dynamicChart.data.datasets[1].data.push(mvValue);
-                }
-
-                // Atualiza o gráfico
-                dynamicChart.update();
+        // Função para iniciar o intervalo de leitura
+        function startTemperatureUpdate() {
+            // Cancela o intervalo existente, se houver
+            if (updateIntervalId) {
+                clearInterval(updateIntervalId);
             }
-        }, 1000);
+
+            // Obtém o novo tempo de atualização do campo ReadTime
+            const readTimeInput = document.getElementById('ReadTime');
+            const intervalTime = parseFloat(readTimeInput.value) || 1000; // Valor padrão de 1 segundo
+
+            // Define um novo intervalo de leitura
+            updateIntervalId = setInterval(() => {
+                if (!isPaused) {
+                    // Simula uma curva
+                    var i = parseFloat(document.getElementById('Temp').value);
+                    if (i < 0.9) {
+                        i += 0.1;
+                    }
+                    document.getElementById('Temp').value = i;
+
+                    // Calcula a nova temperatura
+                    const newTemperature = 20 / Math.cos(i);
+
+                    // Adiciona novos dados ao gráfico
+                    temperatureData.push(newTemperature);
+                    labels.push(`${labels.length}s`);
+
+                    // Atualiza a linha de MV no gráfico
+                    const mvInput = document.getElementById('mvInput');
+                    const mvValue = parseFloat(mvInput.value);
+                    if (!isNaN(mvValue)) {
+                        dynamicChart.data.datasets[1].data.push(mvValue);
+                    }
+
+                    // Atualiza o gráfico
+                    dynamicChart.update();
+                }
+            }, intervalTime);
+        }
+
+        // Adicione um evento ao botão para atualizar o intervalo
+        document.getElementById('updateIntervalButton').addEventListener('click', startTemperatureUpdate);
+
+        // Inicializa o intervalo ao carregar a página
+        startTemperatureUpdate();
 
         // Atualização da linha de MV
         const mvInput = document.getElementById('mvInput');
@@ -190,6 +217,36 @@
                 dynamicChart.update();
             }
         });
+
+        //Analisa se existe algum erro
+        function validarCampo(inputId, errorId, mensagemErro) {
+            const input = document.getElementById(inputId);
+            const value = parseFloat(input.value);
+            const error = document.getElementById(errorId);
+
+            if (isNaN(value) || value <= 0) {
+                error.textContent = mensagemErro;
+                return false;
+            }
+
+            error.textContent = '';
+            return true;
+        }
+
+        document.getElementById('calculateErrorButton').addEventListener('click', () => {
+            const isMvValid = validarCampo('mvInput', 'mvError', 'O valor de Setpoint é obrigatório e deve ser maior que zero.');
+            const isKpValid = validarCampo('kpInput', 'kpError', 'O valor de Kp é obrigatório e deve ser maior que zero.');
+            const isKiValid = validarCampo('kiInput', 'kiError', 'O valor de Ki é obrigatório e deve ser maior que zero.');
+            const isKdValid = validarCampo('kdInput', 'kdError', 'O valor de Kd é obrigatório e deve ser maior que zero.');
+
+            if (!isKpValid || !isKiValid || !isKdValid) {
+                return; // Interrompe o cálculo se algum campo for inválido
+            }
+
+            console.log('Todos os valores são válidos, continuando com o cálculo...');
+            // Insira o restante do cálculo aqui
+        });
+
 
         // Cálculo do botão "Calcular"
         document.getElementById('calculateErrorButton').addEventListener('click', () => {
@@ -212,7 +269,7 @@
                         break;
                     }
                 }
-                // Como o intervalo é de 1 segundo, o índice é o tempo em segundos
+                // O índice é o tempo em segundos
                 const timeConstant = timeIndex;
 
                 //Calcula o Erro estacionário (Fórmula)
