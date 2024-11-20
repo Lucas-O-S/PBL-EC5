@@ -38,14 +38,16 @@
     flex-direction: column;
     margin-right: 120px;
     margin-top: 40px;
+    gap: 10px;
 }
+
 
 .form-group {
     margin-bottom: 10px;
 }
 
 /* Estilo do botão */
-button {
+.button {
     background-color: #136c01; /* Cor de fundo do botão */
     color: #ffffff; /* Cor do texto no botão */
     border: none;
@@ -54,7 +56,11 @@ button {
     cursor: pointer;
     font-size: 16px;
     transition: background-color 0.3s ease, color 0.3s ease;
-    }
+    display: block; /* Garante que cada botão ocupe uma linha inteira */
+    width: 100%; /* Faz o botão ocupar toda a largura disponível, se necessário */
+    margin-bottom: 10px; /* Espaço entre os botões */
+    position: relative; /* Evita sobreposição ao usar posição relativa */
+}
 
     button:hover {
         color: #ffffff;
