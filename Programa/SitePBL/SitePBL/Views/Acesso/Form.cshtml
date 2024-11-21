@@ -8,15 +8,15 @@
 }
 
 <head>
-      <link rel="stylesheet" href="~/css/cadFunc.css">
+    <link rel="stylesheet" href="~/css/cadFunc.css">
 
 </head>
 <main class="content-container">
     <form class="form-container container row" action="/acesso/enviar" method="post">
         <section class="left-section">
 
-            @if(ViewBag.Operacao == "A")
-            {       
+            @if (ViewBag.Operacao == "A")
+            {
                 <h1><strong>Login</strong></h1>
             }
             else
@@ -24,21 +24,22 @@
                 <h1><strong>Login</strong></h1>
 
             }
+
             <input type="submit" class="custom-button" role="button" name="btnEnviar" />
             <input name="operacao" value="@ViewBag.Operacao" hidden>
 
-        @if(ViewBag.Operacao == "A")
-        {
-            <a asp-controller="Acesso" asp-action="Cadastro">
-                <input type="button" class="btn" name="btnCadastrar" value="Cadastrar">
-            </a>
-        }
-        else
-        {
-            <a asp-controller="Acesso" asp-action="Login">
-                <input type="button" class="btn" name="btnCadastrar" value="Login">
-            </a>
-        }
+            @if (ViewBag.Operacao == "A")
+            {
+                <a asp-controller="Acesso" asp-action="Cadastro">
+                    <input type="button" class="btn" name="btnCadastrar" value="Cadastrar">
+                </a>
+            }
+            else
+            {
+                <a asp-controller="Acesso" asp-action="Login">
+                    <input type="button" class="btn" name="btnLogin" value="Login">
+                </a>
+            }
         </section>
 
 
@@ -46,33 +47,32 @@
             <br>
 
             <div class="input-group-sm mb-3 col">
-            @if(ViewBag.Operacao == "A")
-            {
-                <div class="row">
+                @if (ViewBag.Operacao == "A")
+                {
+                    <div class="row">
                             <div class="form-group">
-                            </div>
-                            <div class="form-group">
-                                <label for="usuario" class="control-label">Usuário</label>
-                                <input asp-for="loginUsuario" type="text" class="form-control" required placeholder='Usuário...' />
+                                <label for="loginUsuario" class="control-label">Login do Usuário</label>
+                                <input asp-for="loginUsuario" type="text" class="form-control" required placeholder='Login...' value="SA"/>
                                 <span asp-validation-for="loginUsuario" class="text-danger"></span>
 
                             </div>
-
                             <div class="form-group">
                                 <label for="senha" class="control-label">Senha</label>
-                                <input asp-for="senha" type="password" class="form-control" required placeholder='Senha...' />
+                                <input asp-for="senha" type="password" class="form-control" required placeholder='Senha...' value="123456"/>
                                 <span asp-validation-for="senha" class="text-danger"></span>
+
                             </div>
 
                             <br />
-
-
                             <span class="text-danger"> @ViewBag.Erro</span>
-                </div>
-            }
-            else
-            {
-                <div class="row">
+
+     
+                    </div>
+
+                }
+                else
+                {
+                    <div class="row">
                         <div class="form-group">
                             <label for="loginUsuario" class="control-label">Login do Usuário</label>
                             <input asp-for="loginUsuario" type="text" class="form-control" required placeholder='Login...' />
@@ -97,13 +97,10 @@
                             <span asp-validation-for="senha" class="text-danger"></span>
 
                         </div>
-
-
-
                         <span class="text-danger"> @ViewBag.Erro</span>
-                </div>
-            }
+                    </div>
+                }
             </div>
         </section>
-        </form>
-    </main>
+    </form>
+</main>

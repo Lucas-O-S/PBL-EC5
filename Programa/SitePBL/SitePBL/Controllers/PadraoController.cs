@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
 using SitePBL.DAO;
 using SitePBL.Models;
 using System.Reflection;
@@ -11,6 +12,19 @@ namespace SitePBL.Controllers
         protected PadraoDAO<T> dao { get; set; }
         protected string NomeViewIndex { get; set; } = "index";
         protected string NomeViewForm { get; set; } = "form";
+
+        protected bool ExigeAutenticacao { get; set; } = true;
+
+        public override void OnActionExecuting(ActionExecutingContext context)
+        {
+            if (ExigeAutenticacao && !HelperController.VerificaUserLogado(HttpContext.Session))
+                context.Result = RedirectToAction("Login", "Acesso");
+            else
+            {
+                ViewBag.Logado = true;
+                base.OnActionExecuting(context);
+            }
+        }
 
         /// <summary>
         /// Metodo virtual usado para adicionar dados a ViewBags a create e edit, assim não precisa modifica-las diretamente
@@ -100,8 +114,6 @@ namespace SitePBL.Controllers
             {
                 return View("Error", new ErrorViewModel(erro.ToString()));
             }
-
-
         }
         public IActionResult Delete(int id)
         {
