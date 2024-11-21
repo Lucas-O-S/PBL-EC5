@@ -24,21 +24,25 @@
                         <input type="number" id="mvInput" class="form-control" step="0.1" />
                         <span id="mvError" class="text-danger"></span>
                     </div>
-                    <div class="form-group">
-                        <label for="kpInput">Kp:</label>
-                        <input type="number" id="kpInput" class="form-control" step="0.1" value="1" />
-                        <span id="kpError" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label for="kiInput">Ki:</label>
-                        <input type="number" id="kiInput" class="form-control" step="0.1" value="1"/>
-                        <span id="kiError" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label for="kdInput">Kd:</label>
-                        <input type="number" id="kdInput" class="form-control" step="0.1" value="1" />
-                        <span id="kdError" class="text-danger"></span>
-                    </div>
+                    
+                    @if (ViewBag.Malha == null || ViewBag.Malha == "F")
+                    {
+                        <div class="form-group">
+                            <label for="kpInput">Kp:</label>
+                            <input type="number" id="kpInput" class="form-control" step="0.1" value="1" />
+                            <span id="kpError" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="kiInput">Ki:</label>
+                            <input type="number" id="kiInput" class="form-control" step="0.1" value="1"/>
+                            <span id="kiError" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="kdInput">Kd:</label>
+                            <input type="number" id="kdInput" class="form-control" step="0.1" value="1" />
+                            <span id="kdError" class="text-danger"></span>
+                        </div>
+                    }
 
                     <div class="form-group">
                         <label for="ReadTime">Tempo de Atualização (ms):</label>
@@ -46,14 +50,19 @@
                         <button id="updateIntervalButton" class="button">Atualizar Tempo</button>
                     </div>
 
+                    <form class="form-container container row" action="/Sensor/TrocaMalha" method="get">
                     <div class="form-group">
+                        
                         <label for="malhaSelect">Escolha o Tipo de Malha:</label>
-                        <select id="malhaSelect" class="form-control">
-                            <option value="aberta">Malha Aberta</option>
-                            <option value="fechada">Malha Fechada</option>
+                        <select id="malhaSelect" class="form-control" name="malha">
+                            <option value="A">Malha Aberta</option>
+                            <option value="F">Malha Fechada</option>
                         </select>
-                        <button id="aplicarMalhaBtn" class="button">Aplicar Tipo de Malha</button>
+                            <input type="submit" class="custom-button" role="button" value="Trocar Malha" />
+
+                            <span class="text-danger"> @ViewBag.Erro </span>
                     </div>
+                    </form>
 
                 </div>
 
@@ -63,7 +72,14 @@
             <section class="chart-section">
 
                 <div>
-                    <h1>Controle de Temperatura</h1>
+                    @if (ViewBag.Malha == null || ViewBag.Malha == "F")
+                        {
+                        <h1>Controle de Temperatura (Malha Fechada)</h1>
+                    }
+                    else
+                    {
+                        <h1>Controle de Temperatura (Malha Aberta)</h1>
+                    }
                 </div>
 
                 <div class="chart-container">

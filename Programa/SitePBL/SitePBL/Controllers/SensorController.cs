@@ -73,5 +73,11 @@ namespace SitePBL.Controllers
 			}
         }
 
+        public IActionResult TrocaMalha(string malha)
+        {
+            ViewBag.Malha = malha;
+            return View("Dashboard",null);
+        }
+
     }
 }
