@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc.Filters;
 using SitePBL.DAO;
 using SitePBL.Models;
 using System.Diagnostics;
@@ -16,7 +18,6 @@ namespace SitePBL.Controllers
 
         public IActionResult Index()
         {
-      
             return View();
         }
 
@@ -38,5 +39,15 @@ namespace SitePBL.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
+        public override void OnActionExecuting(ActionExecutingContext context)
+        {
+            if (!HelperController.VerificaUserLogado(HttpContext.Session))
+                context.Result = RedirectToAction("Login", "Acesso");
+            else
+            {
+                ViewBag.Logado = true;
+                base.OnActionExecuting(context);
+            }
+        }
     }
 }

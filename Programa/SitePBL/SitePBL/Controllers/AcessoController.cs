@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
 using SitePBL.DAO;
 using SitePBL.Models;
 using System.Reflection.Emit;
@@ -10,12 +11,17 @@ namespace SitePBL.Controllers
 
     public class AcessoController : PadraoController<AcessoViewModel>
     {
-        public AcessoController() { dao = new AcessoDAO(); }
 
+        public AcessoController() { 
+            dao = new AcessoDAO(); 
+            ExigeAutenticacao = false;
+        }
 
         protected override void ValidarDados(AcessoViewModel model, string operacao)
         {
             base.ValidarDados(model, operacao);
+
+
         }
 
         public IActionResult Login()
@@ -69,7 +75,7 @@ namespace SitePBL.Controllers
         {
             HttpContext.Session.Clear();
             ViewBag.Operacao = "A";
-            return RedirectToAction("Form");
+            return RedirectToAction("login");
         }
     }
 }

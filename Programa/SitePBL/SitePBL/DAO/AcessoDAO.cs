@@ -24,9 +24,9 @@ namespace SitePBL.DAO
                 sp = new SqlParameter[]
                 {
                     new SqlParameter("Nome_Usuario", acesso.nomeUsuario),
-                     new SqlParameter("login_Usuario", acesso.loginUsuario),
-                      new SqlParameter("senha", acesso.senha),
-                      new SqlParameter("nomeEmpresa", acesso.nomeEmpresa)
+                    new SqlParameter("login_Usuario", acesso.loginUsuario),
+                    new SqlParameter("senha", acesso.senha),
+                    new SqlParameter("nomeEmpresa", acesso.nomeEmpresa)
                 };
             }
             else
@@ -34,9 +34,9 @@ namespace SitePBL.DAO
                 sp = new SqlParameter[]
                 {
                     new SqlParameter("Nome_Usuario", acesso.nomeUsuario),
-                     new SqlParameter("login_Usuario", acesso.loginUsuario),
-                      new SqlParameter("senha", acesso.senha),
-                      new SqlParameter("nomeEmpresa", acesso.nomeEmpresa)
+                    new SqlParameter("login_Usuario", acesso.loginUsuario),
+                    new SqlParameter("senha", acesso.senha),
+                    new SqlParameter("nomeEmpresa", acesso.nomeEmpresa)
                 };
             }
             return sp;
@@ -73,7 +73,14 @@ namespace SitePBL.DAO
 
             DataTable tabela = HelperSqlDAO.ExecutaProcSelect(sql, parametros);
 
-            return Convert.ToString (tabela.Rows[0]["login_Usuario"]) == loginUsuario && Convert.ToString(tabela.Rows[0]["senha"]) == senha;
+            if (tabela.Rows.Count == 0)
+            {
+                return false;
+            }
+            else
+            {
+                return Convert.ToString(tabela.Rows[0]["login_Usuario"]) == loginUsuario && Convert.ToString(tabela.Rows[0]["senha"]) == senha;
+            }
         }
 
     }

@@ -25,11 +25,20 @@
             <h1><a href="/home" class="button"><img src="~/img/logo.png" class="img-fluid" alt="Termo Light logo" /></a></h1>
          </div>
          <nav class="navbar-brand">
-            <ul>
-               <li><a href="/home"  class="button">Home</a></li>
-               <li><a  href="/home/sobre"    class="button">Sobre</a></li>
-               <li><a  href="/acesso/Login"   class="button">Login</a></li>
-            </ul>
+            @if (ViewBag.Logado == true)
+            {
+                <ul>
+                    <li><a href="/home" class="button">Home</a></li>
+                    <li><a href="/home/sobre" class="button">Sobre</a></li>
+                    <li><a href="/acesso/LogOff" class="button">Logoff</a></li>
+                </ul>
+            }
+            else
+            {
+                <ul>
+                    <li><a href="/acesso/Login" class="button">Login</a></li>
+                </ul>
+            }
          </nav>
       </header>
     <div class="container">
