@@ -1,0 +1,31 @@
+﻿@model AcessoViewModel
+
+@{
+    ViewData["Title"] = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+    ///Retirar essa View e misturar com form
+}
+<h2>Login</h2>
+
+<div class="row">
+    <div class="col-lg-3">
+        <form action="/Acesso/Enviar" method="post">
+            <label for="usuario" class="control-label">Usuário</label>
+            <input asp-for="loginUsuario" type="text" class="form-control" required placeholder='Usuário...' />
+            <span asp-validation-for="loginUsuario" class="text-danger"></span>
+
+            <label for="senha" class="control-label">Senha</label>
+            <input asp-for="senha" type="password" class="form-control" required placeholder='Senha...' />
+            <span asp-validation-for="senha" class="text-danger"></span>
+            <br />
+
+            <a asp-controller="Acesso" asp-action="Login">
+                <input type="button" class="btn" name="btnLogin" value="Login">
+            </a>
+            <br />
+            <span class="text-danger"> @ViewBag.Erro</span>
+        </form>
+    </div>
+</div>
