@@ -14,15 +14,13 @@
 
     <main id="dashboard" class="content-container">
         <div class="container-row">
+
             <!-- Seção de Controles -->
             <section class="controls-section">
-                <div>
-                    <h1>Controle de Temperatura</h1>
-                </div>
 
                 <div class="controls">
                     <div class="form-group">
-                        <label for="mvInput">SetPoint:</label>
+                        <label for="mvInput">SetPoint (ºC):</label>
                         <input type="number" id="mvInput" class="form-control" step="0.1" />
                         <span id="mvError" class="text-danger"></span>
                     </div>
@@ -41,17 +39,33 @@
                         <input type="number" id="kdInput" class="form-control" step="0.1" value="1" />
                         <span id="kdError" class="text-danger"></span>
                     </div>
+
                     <div class="form-group">
                         <label for="ReadTime">Tempo de Atualização (ms):</label>
                         <input type="number" id="ReadTime" class="form-control" value="1000" step="100" />
                         <button id="updateIntervalButton" class="button">Atualizar Tempo</button>
                     </div>
+
+                    <div class="form-group">
+                        <label for="malhaSelect">Escolha o Tipo de Malha:</label>
+                        <select id="malhaSelect" class="form-control">
+                            <option value="aberta">Malha Aberta</option>
+                            <option value="fechada">Malha Fechada</option>
+                        </select>
+                        <button id="aplicarMalhaBtn" class="button">Aplicar Tipo de Malha</button>
+                    </div>
+
                 </div>
 
             </section>
 
             <!-- Seção do Gráfico -->
             <section class="chart-section">
+
+                <div>
+                    <h1>Controle de Temperatura</h1>
+                </div>
+
                 <div class="chart-container">
                     <canvas id="chart"></canvas>
                 </div>
@@ -59,10 +73,15 @@
                 <div class="button-container">
                     <button id="toggleButton" class="button">Pausar</button>
                     <button id="calculateErrorButton" class="button">Calcular Erro Estacionário</button>
+                    <button id="limparDadosBtn">Limpar Dados do Gráfico</button>
 
                     <div>
-                        <label for="Temp">Temperatura atual: </label>
+                        <label for="Temp">Temperatura atual: </label> 
                         <input type="text" id="Temp" class="form-control" readonly value="0.1" />
+                    </div>
+
+                    <div>
+                        <a href="/Home/Index">Voltar</a>
                     </div>
  
                 </div>
@@ -70,14 +89,19 @@
             </section>
 
             <div>
+
                 <label for="errorExpect">Erro Estacionário (Fórmula):</label>
                 <input type="text" id="errorExpect" class="form-control" readonly />
 
                 <label for="errorResult">Erro Estacionário (Realidade):</label>
                 <input type="text" id="errorResult" class="form-control" readonly />
 
-                <label for="ConstantTime">Constante de ganho (K):</label>
+                <label for="ConstantWin">Constante de ganho (K):</label>
+                <input type="text" id="ConstantWin" class="form-control" readonly />
+
+                <label for="ConstantTime">Constante de tempo (S):</label>
                 <input type="text" id="ConstantTime" class="form-control" readonly />
+
             </div>
         </div>
     </main>
@@ -280,6 +304,7 @@
                     console.error('Erro ao calcular o erro estacionário.');
                 }
                 
+                document.getElementById('ConstantTime').value = timeConstant.toFixed(2);
                 document.getElementById('errorResult').value = erroEstacionarioResult.toFixed(2); //Erro estacionário (Realidade)
             }
         });
@@ -298,13 +323,37 @@
                 const ganhoK = (finalTemperature - initialTemperature) / deltaMV;
 
                 // Exibe o ganho
-                document.getElementById('ConstantTime').value = ganhoK.toFixed(2);
+                document.getElementById('ConstantWin').value = ganhoK.toFixed(2);
                 return ganhoK;
             } else {
                 console.error('Não foi possível calcular o ganho. Verifique os valores fornecidos.');
                 return null;
             }
         }
+
+        // Função para limpar os dados do gráfico com confirmação
+        function limparDados() {
+            const confirmacao = confirm('Tem certeza de que deseja limpar todos os dados do gráfico? ' +
+                                        'Pode haver perca de dados não salvos');
+
+            if (confirmacao) {
+                // Limpa os dados dos datasets e rótulos do gráfico
+                labels.length = 0; // Limpa os rótulos globalmente
+                temperatureData.length = 0; // Limpa os dados de temperatura globalmente
+                MV.length = 0; // Limpa os dados de MV globalmente
+
+                // Atualiza o gráfico com os arrays limpos
+                dynamicChart.data.labels = labels;
+                dynamicChart.data.datasets[0].data = temperatureData;
+                dynamicChart.data.datasets[1].data = MV;
+
+                // Atualiza o gráfico
+                dynamicChart.update();
+            }
+        }
+
+        // Evento de clique no botão de limpar
+        document.getElementById('limparDadosBtn').addEventListener('click', limparDados);
 
     </script>
 
