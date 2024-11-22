@@ -19,11 +19,24 @@
             <section class="controls-section">
 
                 <div class="controls">
+                    
                     <div class="form-group">
-                        <label for="mvInput">SetPoint (ºC):</label>
+                        
+                        @if (ViewBag.Malha == null || ViewBag.Malha == "F")
+                        {
+                            <label for="mvInput">SetPoint (ºC):</label>
+                        }
+                        else
+                        {
+                            <label for="mvInput">MV (PWM):</label>
+                        }
                         <input type="number" id="mvInput" class="form-control" step="0.1" />
                         <span id="mvError" class="text-danger"></span>
                     </div>
+
+                    <!-- Use um elemento escondido para armazenar o valor da ViewBag -->
+                    <div id="malhaValue" style="display:none;">@ViewBag.Malha</div>
+
                     
                     @if (ViewBag.Malha == null || ViewBag.Malha == "F")
                     {
@@ -50,20 +63,6 @@
                         <button id="updateIntervalButton" class="button">Atualizar Tempo</button>
                     </div>
 
-                    <form class="form-container container row" action="/Sensor/TrocaMalha" method="get">
-                    <div class="form-group">
-                        
-                        <label for="malhaSelect">Escolha o Tipo de Malha:</label>
-                        <select id="malhaSelect" class="form-control" name="malha">
-                            <option value="A">Malha Aberta</option>
-                            <option value="F">Malha Fechada</option>
-                        </select>
-                            <input type="submit" class="custom-button" role="button" value="Trocar Malha" />
-
-                            <span class="text-danger"> @ViewBag.Erro </span>
-                    </div>
-                    </form>
-
                 </div>
 
             </section>
@@ -88,16 +87,29 @@
   
                 <div class="button-container">
                     <button id="toggleButton" class="button">Pausar</button>
-                    <button id="calculateErrorButton" class="button">Calcular Erro Estacionário</button>
+                    <button id="calculateErrorButton" class="button">Calcular</button>
                     <button id="limparDadosBtn">Limpar Dados do Gráfico</button>
+
+                    <form class="form-container container row" action="/Sensor/TrocaMalha" method="get">
+                        <div class="form-group">
+
+                            <label for="malhaSelect">Escolha o Tipo de Malha:</label>
+                            <select id="malhaSelect" class="form-control" name="malha">
+                                <option value="A">Malha Aberta</option>
+                                <option value="F">Malha Fechada</option>
+                            </select>
+                            <button type="submit" class="button" role="button" value="Trocar Malha" />
+
+                            <span class="text-danger"> @ViewBag.Erro </span>
+                        </div>
+                    </form>
+
+                    <a href="/Home/Index">Voltar</a>
 
                     <div>
                         <label for="Temp">Temperatura atual: </label> 
                         <input type="text" id="Temp" class="form-control" readonly value="0.1" />
-                    </div>
 
-                    <div>
-                        <a href="/Home/Index">Voltar</a>
                     </div>
  
                 </div>
@@ -106,17 +118,20 @@
 
             <div>
 
-                <label for="errorExpect">Erro Estacionário (Fórmula):</label>
-                <input type="text" id="errorExpect" class="form-control" readonly />
-
-                <label for="errorResult">Erro Estacionário (Realidade):</label>
-                <input type="text" id="errorResult" class="form-control" readonly />
-
                 <label for="ConstantWin">Constante de ganho (K):</label>
                 <input type="text" id="ConstantWin" class="form-control" readonly />
 
                 <label for="ConstantTime">Constante de tempo (S):</label>
                 <input type="text" id="ConstantTime" class="form-control" readonly />
+
+                @if (ViewBag.Malha == null || ViewBag.Malha == "F")
+                {
+                    <label for="errorExpect">Erro Estacionário (Fórmula):</label>
+                    <input type="text" id="errorExpect" class="form-control" readonly />
+
+                    <label for="errorResult">Erro Estacionário (Realidade):</label>
+                    <input type="text" id="errorResult" class="form-control" readonly />
+                }
 
             </div>
         </div>
@@ -274,13 +289,27 @@
         }
 
         document.getElementById('calculateErrorButton').addEventListener('click', () => {
-            const isMvValid = validarCampo('mvInput', 'mvError', 'O valor de Setpoint é obrigatório e deve ser maior que zero.');
-            const isKpValid = validarCampo('kpInput', 'kpError', 'O valor de Kp é obrigatório e deve ser maior que zero.');
-            const isKiValid = validarCampo('kiInput', 'kiError', 'O valor de Ki é obrigatório e deve ser maior que zero.');
-            const isKdValid = validarCampo('kdInput', 'kdError', 'O valor de Kd é obrigatório e deve ser maior que zero.');
+            
+            let malhaValue = document.getElementById('malhaValue').innerText;
 
-            if (!isKpValid || !isKiValid || !isKdValid) {
-                return; // Interrompe o cálculo se algum campo for inválido
+            if (malhaValue == "" || malhaValue == "F") {
+                const isMvValid = validarCampo('mvInput', 'mvError', 'O valor de Setpoint é obrigatório e deve ser maior que zero.');
+                const isKpValid = validarCampo('kpInput', 'kpError', 'O valor de Kp é obrigatório e deve ser maior que zero.');
+                const isKiValid = validarCampo('kiInput', 'kiError', 'O valor de Ki é obrigatório e deve ser maior que zero.');
+                const isKdValid = validarCampo('kdInput', 'kdError', 'O valor de Kd é obrigatório e deve ser maior que zero.');
+
+
+                if (!isKpValid || !isKiValid || !isKdValid || !isMvValid) {
+                    return; // Interrompe o cálculo se algum campo for inválido
+                }
+            }
+            else 
+            {
+                const isMvValid = validarCampo('mvInput', 'mvError', 'O valor de MV é obrigatório e deve ser maior que zero.');
+                
+                if (!isMvValid) {
+                    return; // Interrompe o cálculo se algum campo for inválido
+                }
             }
 
             console.log('Todos os valores são válidos, continuando com o cálculo...');
@@ -293,9 +322,11 @@
             const setpoint = parseFloat(document.getElementById('mvInput').value);
             if (!isNaN(setpoint)) {
                 
+                //Evita dar erro para o sistema aberto
+                let malhaValue = document.getElementById('malhaValue').innerText;
+
                 const ganhoK = calcularGanho(); // Obtém o ganho K
                 const setpoint = parseFloat(document.getElementById('mvInput').value); // Obtém o setpoint
-                const kp = parseFloat(document.getElementById('kpInput').value); // Obtém o Kp
                 const lastTemperature = temperatureData[temperatureData.length - 1]; //Última temperatura
                 const initialValue = temperatureData[0]; //Temperatura inicial
                 const erroEstacionarioResult = setpoint - lastTemperature; //Diferença entre o setpoint e a última temperatura
@@ -312,16 +343,22 @@
                 // O índice é o tempo em segundos
                 const timeConstant = timeIndex;
 
-                //Calcula o Erro estacionário (Fórmula)
-                if (ganhoK !== null && !isNaN(kp) && !isNaN(setpoint)) {
-                    const erroEstacionarioReal = (setpoint - lastTemperature) / (1 + kp * ganhoK);
-                    document.getElementById('errorExpect').value = erroEstacionarioReal.toFixed(2);
-                } else {
-                    console.error('Erro ao calcular o erro estacionário.');
+                if (malhaValue == "" || malhaValue == "F") {
+                    const kp = parseFloat(document.getElementById('kpInput').value); // Obtém o Kp
+
+                    //Calcula o Erro estacionário (Fórmula)
+                    if (ganhoK !== "" && !isNaN(kp) && !isNaN(setpoint)) {
+                        const erroEstacionarioReal = (setpoint - lastTemperature) / (1 + kp * ganhoK);
+                        document.getElementById('errorExpect').value = erroEstacionarioReal.toFixed(2);
+                        document.getElementById('errorResult').value = erroEstacionarioResult.toFixed(2); //Erro estacionário (Realidade)
+                    } else {
+                        console.error('Erro ao calcular o erro estacionário.');
+                    }
+
                 }
                 
-                document.getElementById('ConstantTime').value = timeConstant.toFixed(2);
-                document.getElementById('errorResult').value = erroEstacionarioResult.toFixed(2); //Erro estacionário (Realidade)
+                document.getElementById('ConstantWin').value = ganhoK.toFixed(2); //Envia a constante de ganho
+                document.getElementById('ConstantTime').value = timeConstant.toFixed(2); //Envia a constante de tempo
             }
         });
 
@@ -332,15 +369,11 @@
             const mvInput = parseFloat(document.getElementById('mvInput').value); // MV atual
 
             if (!isNaN(initialTemperature) && !isNaN(finalTemperature) && !isNaN(mvInput)) {
-                // Variação de MV
-                const deltaMV = mvInput; - initialTemperature;
 
                 // Calcula o ganho
-                const ganhoK = (finalTemperature - initialTemperature) / deltaMV;
-
-                // Exibe o ganho
-                document.getElementById('ConstantWin').value = ganhoK.toFixed(2);
-                return ganhoK;
+                const ganhoK = (finalTemperature - initialTemperature) / mvInput;
+                
+                return ganhoK; // Retorna o ganho
             } else {
                 console.error('Não foi possível calcular o ganho. Verifique os valores fornecidos.');
                 return null;
