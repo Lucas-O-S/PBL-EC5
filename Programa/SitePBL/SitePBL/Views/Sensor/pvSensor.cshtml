@@ -15,10 +15,14 @@
 		@foreach (var sensor in Model)
 		{
 			<tr>
-				<td>
-					<a href="/sensor/edit?id=@sensor.id" role="button" class="btn btn-primary">Editar</a>
+				<td class="icons">
+					<a href="/sensor/edit?id=@sensor.id" role="button" class="btn btn-primary">
+						<img src="~/img/EditIcon.png" alt="Editar" style="width:20px; height:20px;">
+					</a>
 					&nbsp;&nbsp;
-					<a href="javascript:apagar(@sensor.id)" role="button" class="btn btn-danger">Excluir</a>
+					<a href="javascript:apagar(@sensor.id)" role="button" class="btn btn-danger">
+						<img src="~/img/TrashIcon.png" alt="Excluir" style="width:20px; height:20px;">
+					</a>
 				</td>
 				<td>@sensor.id</td>
 				<td>@sensor.descricao</td>

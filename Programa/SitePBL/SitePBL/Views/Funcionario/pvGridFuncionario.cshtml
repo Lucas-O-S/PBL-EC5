@@ -14,10 +14,14 @@
             @foreach (var funcionario in Model)
             {
                 <tr>
-                    <td>
-                        <a href="/funcionario/edit?id=@funcionario.id" role="button" class="btn btn-primary">Editar</a>
+                    <td class="icons">
+                        <a href="/funcionario/edit?id=@funcionario.id" role="button" class="btn btn-primary">
+                            <img src="~/img/EditIcon.png" alt="Editar" style="width:20px; height:20px;">
+                        </a>
                         &nbsp;&nbsp;
-                        <a href="javascript:apagar(@funcionario.id)" role="button" class="btn btn-danger">Excluir</a>
+                        <a href="javascript:apagar(@funcionario.id)" role="button" class="btn btn-danger">
+                            <img src="~/img/TrashIcon.png" alt="Excluir" style="width:20px; height:20px;">
+                        </a>
                     </td>
                     <td>@funcionario.id</td>
                     <td>@funcionario.nome</td>
