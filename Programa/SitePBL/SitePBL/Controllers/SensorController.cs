@@ -61,26 +61,26 @@ namespace SitePBL.Controllers
             {
                 if (string.IsNullOrEmpty(descricao))
                     descricao = "";
-				if (string.IsNullOrEmpty(empresa))
-					empresa = "";
-				SensorDAO sDAO = new SensorDAO();
-                var lista = sDAO.BuscaAvancada(descricao,empresa,tipo);
-				return PartialView("pvSensor",lista);
+                if (string.IsNullOrEmpty(empresa))
+                    empresa = "";
+                SensorDAO sDAO = new SensorDAO();
+                var lista = sDAO.BuscaAvancada(descricao, empresa, tipo);
+                return PartialView("pvSensor", lista);
 
-			}
-			catch (Exception erro)
-			{
-				return View("Error", new ErrorViewModel(erro.ToString()));
-			}
+            }
+            catch (Exception erro)
+            {
+                return View("Error", new ErrorViewModel(erro.ToString()));
+            }
         }
 
         public IActionResult TrocaMalha(string malha)
         {
             ViewBag.Malha = malha;
-            return View("Dashboard",null);
+            return View("Dashboard", null);
         }
 
-        public static async Task<List<SensorViewModel>> PegarUltimos50Dados(string host)
+        public static async Task<List<SensorViewModel>> PegarUltimos50Dados(string host, string lamp)
         {
             List<SensorViewModel> listaDados = new List<SensorViewModel>();
 
@@ -88,19 +88,28 @@ namespace SitePBL.Controllers
             {
                 using (HttpClient client = new HttpClient())
                 {
-                    string url = $"{host}/v2/entities?limit=50&orderBy=!dateCreated";
+                    // Construção correta da URL
+                    string url = $"http://{host}:8666/v2/entities/urn:ngsi-ld:Lamp:{lamp}/attrs/temperature?lastN=50";
+
                     HttpResponseMessage response = await client.GetAsync(url);
 
                     if (response.IsSuccessStatusCode)
                     {
                         string jsonResponse = await response.Content.ReadAsStringAsync();
+                        // Ajuste da desserialização com base no formato esperado
                         listaDados = JsonConvert.DeserializeObject<List<SensorViewModel>>(jsonResponse);
+                    }
+                    else
+                    {
+                        // Log de erro em caso de falha na requisição
+                        Console.WriteLine($"Erro ao acessar API: {response.StatusCode}");
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                // Tratamento de erro
+                // Tratamento de erro com log da exceção
+                Console.WriteLine($"Erro ao buscar dados: {ex.Message}");
             }
 
             return listaDados;
@@ -110,16 +119,17 @@ namespace SitePBL.Controllers
         {
             try
             {
-                // Chama o método que consulta os últimos 50 dados no Fiware
-                var dados = await PegarUltimos50Dados(HelperFiwareDAO.host);    
+                // Nome específico da lâmpada (ou sensor) que deseja consultar
+                string lamp = "03y";
+                var dados = await PegarUltimos50Dados(HelperFiwareDAO.host, lamp);
 
-                if (dados == null)
+                if (dados == null || dados.Count == 0)
                 {
                     ModelState.AddModelError("descricao", "Não foi possível obter dados do Fiware.");
                     return View("Dashboard", null); // Ou outra View que faça sentido
                 }
 
-                // Supondo que você vai retornar esses dados para uma View chamada "Dashboard"
+                // Retorna os dados para a View chamada "Dashboard"
                 return View("Dashboard", dados);
             }
             catch (Exception erro)
