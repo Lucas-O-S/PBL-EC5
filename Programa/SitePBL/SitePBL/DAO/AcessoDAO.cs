@@ -83,5 +83,17 @@ namespace SitePBL.DAO
             }
         }
 
+        public int VerificarLogin(string loginUsuario)
+        {
+            SqlParameter[] sp = new SqlParameter[]
+            {
+                new SqlParameter("login_Usuario", loginUsuario),
+                new SqlParameter("senha", loginUsuario)
+
+            };
+            DataTable dt = HelperSqlDAO.ExecutaProcSelect("sp_login_acesso", sp);
+
+           return dt.Rows.Count;
+        }
     }
 }

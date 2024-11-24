@@ -54,15 +54,14 @@ aquecimento, acoplada a um dissipador de calor e a um sensor de temperatura LM35
 | **Notebook**            | Equipamento utilizado para desenvolvimento e monitoramento do sistema.                                                   | ![Notebook](./imagens/notebook.jpeg)   |
 
 ### Conexões
-| **Componente** | **Conexão**                                              |
+| **Componente** | **Conexão**                                                              |
 |----------------|----------------------------------------------------------|
-| **ESP32**      |            |
-| **Fonte DC**   |         |
-| **Protótipo**  |       |
+| **ESP32**      | Porta - D34 -> Divisor de Tensão conectado ao protótipo                  |
+| **Fonte DC**   | Positivo canal 1 -> VCC do protótipo <br> Negativo canal 1 -> GND protótipo |
+| **Protótipo**  | OUT -> Entrada D34 do ESP32, com divisor de tensão com resistores <br> GND -> Saída do Resistor <br> GND -> Negativo da Fonte <br> VCC -> Positivo da Fonte <br> USB -> Notebook |
 
 ### Diagrama Elétrico
 ![Diagrama Eletrico](./imagens/DiagramaEletrico_PBL.jpg).
-
 ### Projeto Físico
 ![Projeto Fisico](./imagens/projeto2.jpg).
 
@@ -610,17 +609,101 @@ Exige ```float temperatura``` e ```DateTime data```.<br>
 Este documento descreve as classes e utilitários relacionados à camada de acesso a dados (DAO) do projeto SitePBL. 
 Essa camada é responsável por abstrair a comunicação com o banco de dados, incluindo a execução de Stored Procedures (SPs), consultas e manipulações de registros. <br>
 
-1. **PadraoDAO<T>**: Classe abstrata genérica que serve como base para outras DAOs. Ela define métodos comuns para operações no banco de dados.<br>
+1. **ConexaoDB**: Classe estática responsável por criar conexões com o banco de dados.<br>
+* Método:<br>
+```SqlConnection GetConexao()``` Retorna uma conexão aberta com o banco.
+```cpp
+Data Source=LOCALHOST\sqlexpress;
+Database=Termo_Light;
+User ID=sa;
+Password=123456;
+```
+2. **PadraoDAO<T>**: Classe abstrata genérica que serve como base para outras DAOs. Ela define métodos comuns para operações no banco de dados.<br>
+* Herança: PadraoViewModel.<br>
+* Propriedades:<br>
+  ```string nomeTabela``` Nome da tabela no banco de dados.<br>
+  ```string nomeSpListagem``` Nome da SP usada na listagem (default: ```"sp_listagem_generic"```).<br>
+* Métodos:<br>
+  ```CriaParametros(T models)``` Nome da tabela no banco de dados. <br>
+  ```MontarModel(DataRow registro)``` Converte um ```DataRow```em um objeto do tipo ```T```. <br>
+  ```SetTabela()``` Define o nome da tabela usada pelo DAO. <br>
+  ```void Insert(T model)``` Insere um registro no banco de dados. <br>
+  ```void Update(T model)``` Atualiza um registro no banco de dados.  <br>
+  ```void Delete (int id)``` Exclui um registro com base no ID.  <br>
+  ```T Consulta(int? id)``` Retorna um registro com base no ID.  <br>
+  ```List<T> Listagem()``` Lista todos os registros da tabela associada.  <br>
+3. **HelperSqlDAO**: Classe estática com métodos auxiliares para execução de comandos SQL e manipulação de parâmetros. <br>
+* Métodos:
+```void ExecutaProc(string sql, SqlParameter[] parametros)```: Executa uma SP sem retorno(por exemplo, insert, update ou delete).  <br>
+```DataTable ExecutaProcSelect(string sql, SqlParameter[] parametros)```: Executa uma SP e retorna os resultados como ```DataTable```  <br>
+```SqlParameter[] CriaParametros(int? id)```: Cria um array de parÂmetros SQL contendo apenas o ID.  <br>
+```SqlParameter[] CriarParametros(int? id, string tabela)``` Cria um array de parâmetros SQL contendo o ID e o nome da tabela.  <br>
 
+4. **HelperFiwareDAO**: Classe estática projetada para interação com o FIWARE, fornecendo funcionalidades para o monitoramento, leitura de dados e gerenciamento de dispositivos IoT.<br>
+* **VerificarServer**: Verifica a disponibilidade de um servidor FIWARE.<br>
+Parâmetros: ```host```: IP do servidor
+Retorno: ```bool```indicando se o servidor está ativo.<br>
+* **VerificarDados**: Obtém as últimas leituras de temperatura de um sensor associado a uma lâmpada. <br>
+Parâmetros:<br>
+```host```: IP do servidor.<br>
+```lamp```: ID da lâmpada. <br>
+```n```: Número de leituras a recuperar. <br>
+Retorno: Lista de objetos ```LeituraViewModel``` contendo temperatura e horário.
+* ```Ler```: Obtém a última leitura de temperatura de um sensor. <br>
+Parâmetros: <br>
+```host```: IP do servidor. <br>
+```lamp```: ID da lâmpada. <br>
+Retorno: Objeto ```LeituraViewModel```com temperatura e horário.
+* ```CriarLamp```: Cria uma nova lâmpada no sistema.<br>
+Parâmetros:<br>
+```host```: IP do servidor<br>
+```lamp```: ID da lâmpada <br>
+Processo interno: Provisão do dispositivo, registro no servidor e inscrição no sistema de monitoramento. <br>
 
+5. **Acesso DAO**: Responsável pelo gerenciamento de dados de acesso dos usuários no banco de dados.<br>
+* ```SetTabela```: Define a tabela principal como ```acesso```.<br>
+* ```CriaParametros```: Cria os parâmetros SQL para operações no banco de dados. <br>
+Parâmetros: <br>
+```acesso```: Objeto ```AcessoViewModel``` contendo os dados do usuário. <br>
+Retorno: Array de ```SqlParameter```para operações de banco.<br>
+* ```MontarModel```: Monta um modelo ```AcessoViewModel``` a partir de um registro da tabela. <br>
+Parâmetros:<br>
+```registro```: Linha do tipo ```DataRow``` do banco de dados.<br>
+Retorno: Objeto ```AcessoViewModel``` <br>
+* ```Login```: Valida as credenciais de login de um usuário. <br>
+Parâmetros: <br>
+```loginUsuario``` Nome de usuário. <br>
+```senha``` Senha do usuário. <br>
+Retorno: ```bool```indicando sucesso ou falha no login
 
+6. **EmpresaDAO**: Gerencia dados da entidade Empresa. <br>
+* Tabela associada: ```empresa```<br>
+* Métodos:<br>
+```CriaParametros(EmpresaViewModel empresa)```: Gera os parâmetros SQL para inservção/atualização, incluindo: ```id```, ```nome```, ```logo```(imagem em ```VarBinary```) e ```sede```.<br>
+```MontarModel(DataRow registro)```: Constroi um objeto ```EmpresaViewModel```com base nos dados do banco.<br>
 
+7. **FuncionarioDAO**: Gerencia dados da entidade Funcionário.<br>
+* Tabela associada: ```funcionario```<br>
+* Métodos: <br>
+```CriaParametros(FuncionarioViewModel funcionario)```: Gera os parâmetros SQL incluindo: ```id```, ```nome```, ```cargo```, ```foto```(imagem em ```VarBinary```) e ```dataContratacao```.<br>
+```MontarModel(DataRow registro)``` Mapeia um registro da tabela para um objeto ```FuncionarioViewModel```. <br>
+```BuscaAvancada```: Pesquisa funcionários com base em filtros como data de contratação, nome e cargo. <br>
 
+8. **ManutencaoDAO**: Gerencia dados da entidade Manutenção. <br>
+* Tabela associada: ```manutencao```<br>
+* Enumerador: ```estados```(valores: Completo, Incompleto e Cancelado).<br>
+* Métodos: <br>
+```CriaParametros(ManutencaoViewModel manutencao)```: Define parâmetros SQL para os campos ```id```, ```data_hora```, ```fk_sensor_id```(id do sensor relacionado), ```fk_funcionario_id```(id do funcionario responsável) e ```estado```.<br>
+```MontarModel(DataRow registro)```: Constroi um objeto ```ManutencaoViewModel```, incluindo asociações com sensores, funcionários e empresas. <br>
+```BuscaAvancada```: Pesquisa avançada com base em filtros como data, funcionário, sensor e estado.
 
-
-
-
-
+9. **SensorDAO**: Gerencia dados da entidade Sensor.
+* Tabela associada: ```sensor```<br>
+* Métodos: <br>
+```CriaParametros(SensorViewModel sensor)```: Cria parâmetros SQL, incluindo ```id```, ```descricao``` e ```fk_empresa_id```(id da empresa associada). <br>
+```MontarModel(DataRow registro)```: Mapeia um registro para um objeto. <br>
+```VerificarSensoresRepetidos```: Verifica se já existem sensores cadastrados com a mesma descrição. <br>
+```BuscaAvancada```: Realiza pesquisa de sensores com filtros por descrição e tipo. <br>
 
 
 ## Youtube

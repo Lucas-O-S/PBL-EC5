@@ -1,128 +1,136 @@
 ﻿@model List<SensorViewModel>
 @{
-	ViewData["Title"] = "Listagem de Sensores";
+    ViewData["Title"] = "Listagem de Sensores";
 }
 <head>
-	<link rel="stylesheet" href="~/css/listagens.css">
+    <link rel="stylesheet" href="~/css/listagens.css">
 
 </head>
 <!--Precisa adicionar consulta avançada-->
 
 <main class="container">
 
-	<div class=" row titulo" titulo>Lista de Sensores</div>
-	<br />
-	<div class="container">
-		<fieldset id="area_filtro" class="form-group main-section">
-			<legend>Filtro de pesquisa</legend>
-			<div class="row g-2 align-items-center">
-				<!-- Descrição -->
-				<div class="col-md-3">
-					<label for="descricao" class="form-label">Descrição</label>
-					<input type="text" class="form-control form-control-sm" id="descricao" />
-				</div>
-				<!-- Tipo de Consulta de Empresa -->
-				<div class="col-md-3">
-					<label class="form-label">Tipo de Consulta de Empresa</label>
-					<div class="form-check">
-						<input type="radio" class="form-check-input" name="opcao" id="opcao1" value="0"
-						checked  onclick="toggleInput()" />
-						<label class="form-check-label" for="opcao1">Pesquisa Livre</label>
-					</div>
-					<div class="form-check">
-						<input type="radio" class="form-check-input" name="opcao" id="opcao2" value="1"
-						@(ViewData["opcao"]?.ToString() == "1" ? "checked" : "") onclick="toggleInput()" />
-						<label class="form-check-label" for="opcao2">Pesquisa por Empresa</label>
-					</div>
-				</div>
+    <div class=" row titulo" titulo>Lista de Sensores</div>
+    <br />
+    <div class="container">
+        <fieldset id="area_filtro" class="form-group main-section">
+            <legend>Filtro de pesquisa</legend>
+            <br />
+            <div class="row linha">
+                <!-- Tipo de Consulta de Empresa -->
+                <div class="col-md-3">
+                    <label class="form-label"><b>Tipo de Consulta de Empresa</b></label>
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" name="opcao" id="opcao1" value="0"
+                               checked onclick="toggleInput()" />
+                        <label class="form-check-label" for="opcao1">Pesquisa Livre</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" name="opcao" id="opcao2" value="1"
+                        @(ViewData["opcao"]?.ToString() == "1" ? "checked" : "") onclick="toggleInput()" />
+                        <label class="form-check-label" for="opcao2">Pesquisa por Empresa</label>
+                    </div>
+                </div>
+                <div class="col-md-1"></div>
+                <!-- Empresa -->
+                <div class="col-md-5" id="empresaDiv">
+                    <label for="empresa" class="form-label"><b>Empresa</b></label>
+                    <input type="text" name="empresa" class="form-control form-control-sm" id="empresa" />
+                </div>
+            </div>
+            <br />
+            <br />
+            <br />
+            <br />
+            <div class="row linha">
+                <!-- Descrição -->
+                <div class="col-md-6">
+                    <label for="descricao" class="form-label"><b>Descrição</b></label>
+                    <input type="text" class="form-control form-control-sm" id="descricao" />
+                </div>
+            </div>
+            <div class="row linha">
+                <!-- Pesquisa avançada -->
+                <div class="col-md-12 d-flex align-items-center">
+                    <input type="button" name="pesquisar" id="pesquisar" value="Pesquisar" onclick="pesquisar()"
+                           class="btn btn-primary btn-sm w-100" />
+                </div>
+            </div>
+        </fieldset>
+    </div>
 
-				<!-- Empresa -->
-				<div class="col-md-3" id="empresaDiv">
-					<label for="empresa" class="form-label">Empresa</label>
-					<input type="text" name="empresa" class="form-control form-control-sm" id="empresa" />
-				</div>
 
-				<!-- Pesquisa avançada -->
-				<div class="col-md-3 d-flex align-items-center">
-					<input type="button" name="pesquisar" id="pesquisar" value="Pesquisar" onclick="pesquisar()"
-						   class="btn btn-primary btn-sm w-100" />
-				</div>
-			</div>
-		</fieldset>
-	</div>
+    <br />
+    <div id="resultadoConsulta" class="table-responsive"></div>
 
-
-	<br />
-	<div id="resultadoConsulta" class="table-responsive"></div>
-
-	<br />
-	<br />
-	<br />
+    <br />
+    <br />
+    <br />
 
 </main>
 
 <script>
 
-	document.addEventListener("DOMContentLoaded", function () {
-		// Selecionar a primeira opção por padrão
-		document.getElementById("opcao1").checked = true;
+    document.addEventListener("DOMContentLoaded", function () {
+        // Selecionar a primeira opção por padrão
+        document.getElementById("opcao1").checked = true;
 
-		// Ajustar o input inicial
-		toggleInput();
+        // Ajustar o input inicial
+        toggleInput();
 
-		// Executar a pesquisa inicial
-		pesquisar();
-	});
+        // Executar a pesquisa inicial
+        pesquisar();
+    });
 
-	function apagar(id) {
-		if (confirm('Deseja apagar?'))
-			location.href = '/Sensor/delete?id=' + id;
-	}
-	// Função para alternar entre os inputs
-	// Função para alternar entre os inputs
-	function toggleInput() {
-		var opcao = document.querySelector('input[name="opcao"]:checked').value;
+    function apagar(id) {
+        if (confirm('Deseja apagar?'))
+            location.href = '/Sensor/delete?id=' + id;
+    }
+    // Função para alternar entre os inputs
+    // Função para alternar entre os inputs
+    function toggleInput() {
+        var opcao = document.querySelector('input[name="opcao"]:checked').value;
 
-		var empresaInput = document.getElementById("empresa");
-		var empresaDiv = document.getElementById("empresaDiv");
+        var empresaInput = document.getElementById("empresa");
+        var empresaDiv = document.getElementById("empresaDiv");
 
-		if (opcao == "0") {
-			// Exibir input de texto
-			empresaInput.type = "text";  // Garante que é um campo de texto
-			empresaDiv.innerHTML = `
-					<label for="empresa">Empresa</label>
-					<input type="text" name="empresa" class="form-control" id="empresa" />`;
-		} 
-		else {
-			// Exibir dropdown (select)
-			empresaDiv.innerHTML = `
-					<label for="empresa">Empresa</label>
-					<select name="empresa" id="empresa" class="form-control">
-				@foreach (EmpresaViewModel E in ViewBag.empresas)
-				{
-					<option value="@E.nome">@E.nome</option>
-				}
-				</select>`;
-		}
-	}
+        if (opcao == "0") {
+            // Exibir input de texto
+            empresaInput.type = "text";  // Garante que é um campo de texto
+            empresaDiv.innerHTML = `
+                                <label for="empresa">Empresa</label>
+                                <input type="text" name="empresa" class="form-control" id="empresa" />`;
+        }
+        else {
+            // Exibir dropdown (select)
+            empresaDiv.innerHTML = `
+                                <label for="empresa">Empresa</label>
+                                <select name="empresa" id="empresa" class="form-control">
+    @foreach (EmpresaViewModel E in ViewBag.empresas)
+    {
+                                            <option value="@E.nome">@E.nome</option>
+    }
+                            </select>`;
+        }
+    }
 
-	
-	function pesquisar() {
-		var vDescricao = document.getElementById('descricao').value;
-		var vEmpresa = document.getElementById('empresa').value;
-		var vOpcao = document.querySelector('input[name="opcao"]:checked').value;
-		$.ajax({
-			url: "/Sensor/BuscaAvancada",
-			data: { descricao: vDescricao, empresa: vEmpresa, tipo : vOpcao },
-			success: function(dados){
-				if (dados.erro != undefined) {
-					alert(dados.msg);
-				}
-				else{
-					document.getElementById('resultadoConsulta').innerHTML = dados;
 
-				}
-			}
-		})
-	}
-	</script>
+    function pesquisar() {
+        var vDescricao = document.getElementById('descricao').value;
+        var vEmpresa = document.getElementById('empresa').value;
+        var vOpcao = document.querySelector('input[name="opcao"]:checked').value;
+        $.ajax({
+            url: "/Sensor/BuscaAvancada",
+            data: { descricao: vDescricao, empresa: vEmpresa, tipo: vOpcao },
+            success: function (dados) {
+                if (dados.erro != undefined) {
+                    alert(dados.msg);
+                }
+                else {
+                    document.getElementById('resultadoConsulta').innerHTML = dados;
+
+                }
+            }
+        })
+    }
+</script>

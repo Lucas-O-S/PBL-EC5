@@ -17,11 +17,43 @@ namespace SitePBL.Controllers
             ExigeAutenticacao = false;
         }
 
-        protected override void ValidarDados(AcessoViewModel model, string operacao)
+        protected override void ValidarDados(AcessoViewModel acesso, string operacao)
         {
-            base.ValidarDados(model, operacao);
+            base.ValidarDados(acesso, operacao);
+            AcessoDAO dao = new AcessoDAO();
 
+            if (operacao == "I")
+            {
 
+                if (string.IsNullOrEmpty(acesso.nomeUsuario))
+                    ModelState.AddModelError("nomeUsuario", "Campo obrigatório! Preencha o nome!");
+
+                if (string.IsNullOrEmpty(acesso.loginUsuario))
+                    ModelState.AddModelError("loginUsuario", "Campo obrigatório! Preencha o login!");
+                if (dao.VerificarLogin(acesso.loginUsuario) > 0)
+                    ModelState.AddModelError("login", "Este login já existe! Tente outro.");
+
+                if (string.IsNullOrEmpty(acesso.nomeEmpresa))
+                    ModelState.AddModelError("nomeEmpresa", "Campo obrigatório! Preencha o nome da empresa!");
+
+                if (string.IsNullOrEmpty(acesso.senha))
+                    ModelState.AddModelError("senha", "Campo obrigatório! Preencha a senha!");
+            }
+            else
+            {
+
+                if (dao.Login(acesso.loginUsuario, acesso.senha))
+                {
+                    if (string.IsNullOrEmpty(acesso.loginUsuario))
+                        ModelState.AddModelError("loginUsuario", "Campo obrigatório! Preencha o login!");
+                    if (string.IsNullOrEmpty(acesso.senha))
+                        ModelState.AddModelError("senha", "Campo obrigatório! Preencha a senha!");
+                }
+                else
+                {
+                    ModelState.AddModelError("loginE", "Login ou senha incorretos! Tente novamente.");
+                }
+            }
         }
 
         public IActionResult Login()
@@ -41,7 +73,7 @@ namespace SitePBL.Controllers
         public IActionResult Enviar(AcessoViewModel model, string operacao)
         {
             AcessoDAO a = new AcessoDAO();
-
+            ValidarDados(model,operacao);
             if(operacao == "A")
             {
                 if (a.Login(model.loginUsuario, model.senha))

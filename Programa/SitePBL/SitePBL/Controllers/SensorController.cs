@@ -53,6 +53,11 @@ namespace SitePBL.Controllers
                     ValidarDadosFiware(model, operacao).GetAwaiter().GetResult();
             }
 
+            if (model.empresaId < 0)
+            {
+                ModelState.AddModelError("empresaId", "Selecione um Sensor");
+            }
+
         }
 
         public IActionResult BuscaAvancada(string descricao, string empresa, int tipo)
