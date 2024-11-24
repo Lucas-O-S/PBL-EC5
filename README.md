@@ -632,7 +632,7 @@ Password=123456;
   ```void Delete (int id)``` Exclui um registro com base no ID.  <br>
   ```T Consulta(int? id)``` Retorna um registro com base no ID.  <br>
   ```List<T> Listagem()``` Lista todos os registros da tabela associada.  <br>
-3. **HelperSqlDAO***: Classe estática com métodos auxiliares para execução de comandos SQL e manipulação de parâmetros. <br>
+3. **HelperSqlDAO**: Classe estática com métodos auxiliares para execução de comandos SQL e manipulação de parâmetros. <br>
 * Métodos:
 ```void ExecutaProc(string sql, SqlParameter[] parametros)```: Executa uma SP sem retorno(por exemplo, insert, update ou delete).  <br>
 ```DataTable ExecutaProcSelect(string sql, SqlParameter[] parametros)```: Executa uma SP e retorna os resultados como ```DataTable```  <br>
@@ -676,10 +676,34 @@ Parâmetros: <br>
 ```senha``` Senha do usuário. <br>
 Retorno: ```bool```indicando sucesso ou falha no login
 
+6. **EmpresaDAO**: Gerencia dados da entidade Empresa. <br>
+* Tabela associada: ```empresa```<br>
+* Métodos:<br>
+```CriaParametros(EmpresaViewModel empresa)```: Gera os parâmetros SQL para inservção/atualização, incluindo: ```id```, ```nome```, ```logo```(imagem em ```VarBinary```) e ```sede```.<br>
+```MontarModel(DataRow registro)```: Constroi um objeto ```EmpresaViewModel```com base nos dados do banco.<br>
 
+7. **FuncionarioDAO**: Gerencia dados da entidade Funcionário.<br>
+* Tabela associada: ```funcionario```<br>
+* Métodos: <br>
+```CriaParametros(FuncionarioViewModel funcionario)```: Gera os parâmetros SQL incluindo: ```id```, ```nome```, ```cargo```, ```foto```(imagem em ```VarBinary```) e ```dataContratacao```.<br>
+```MontarModel(DataRow registro)``` Mapeia um registro da tabela para um objeto ```FuncionarioViewModel```. <br>
+```BuscaAvancada```: Pesquisa funcionários com base em filtros como data de contratação, nome e cargo. <br>
 
+8. **ManutencaoDAO**: Gerencia dados da entidade Manutenção. <br>
+* Tabela associada: ```manutencao```<br>
+* Enumerador: ```estados```(valores: Completo, Incompleto e Cancelado).<br>
+* Métodos: <br>
+```CriaParametros(ManutencaoViewModel manutencao)```: Define parâmetros SQL para os campos ```id```, ```data_hora```, ```fk_sensor_id```(id do sensor relacionado), ```fk_funcionario_id```(id do funcionario responsável) e ```estado```.<br>
+```MontarModel(DataRow registro)```: Constroi um objeto ```ManutencaoViewModel```, incluindo asociações com sensores, funcionários e empresas. <br>
+```BuscaAvancada```: Pesquisa avançada com base em filtros como data, funcionário, sensor e estado.
 
-
+9. **SensorDAO**: Gerencia dados da entidade Sensor.
+* Tabela associada: ```sensor```<br>
+* Métodos: <br>
+```CriaParametros(SensorViewModel sensor)```: Cria parâmetros SQL, incluindo ```id```, ```descricao``` e ```fk_empresa_id```(id da empresa associada). <br>
+```MontarModel(DataRow registro)```: Mapeia um registro para um objeto. <br>
+```VerificarSensoresRepetidos```: Verifica se já existem sensores cadastrados com a mesma descrição. <br>
+```BuscaAvancada```: Realiza pesquisa de sensores com filtros por descrição e tipo. <br>
 
 
 ## Youtube
