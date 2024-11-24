@@ -210,6 +210,16 @@ begin
 end
 go
 
+-----------------------------------------------------------------
+
+create or alter procedure sp_verificar_login(
+	@login_Usuario varchar(500)
+)
+as
+begin
+	select COUNT(login_Usuario) as cont from acesso where login_Usuario = @login_Usuario
+end
+go
 
 ---------------------------------------------------------
 
