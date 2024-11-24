@@ -87,11 +87,13 @@ namespace SitePBL.DAO
         {
             SqlParameter[] sp = new SqlParameter[]
             {
-                new SqlParameter("login_Usuario", loginUsuario)
+                new SqlParameter("login_Usuario", loginUsuario),
+                new SqlParameter("senha", loginUsuario)
+
             };
             DataTable dt = HelperSqlDAO.ExecutaProcSelect("sp_login_acesso", sp);
-            int teste = Convert.ToInt32(dt.Rows[0]["cont"]);
-            return teste;
+
+           return dt.Rows.Count;
         }
     }
 }

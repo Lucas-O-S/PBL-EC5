@@ -20,10 +20,10 @@ namespace SitePBL.Controllers
         protected override void ValidarDados(AcessoViewModel acesso, string operacao)
         {
             base.ValidarDados(acesso, operacao);
+            AcessoDAO dao = new AcessoDAO();
 
-            if (ViewBag.Operacao == "I")
+            if (operacao == "I")
             {
-                AcessoDAO dao = new AcessoDAO();
 
                 if (string.IsNullOrEmpty(acesso.nomeUsuario))
                     ModelState.AddModelError("nomeUsuario", "Campo obrigatório! Preencha o nome!");
@@ -41,7 +41,6 @@ namespace SitePBL.Controllers
             }
             else
             {
-                AcessoDAO dao = new AcessoDAO();
 
                 if (dao.Login(acesso.loginUsuario, acesso.senha))
                 {
@@ -74,7 +73,7 @@ namespace SitePBL.Controllers
         public IActionResult Enviar(AcessoViewModel model, string operacao)
         {
             AcessoDAO a = new AcessoDAO();
-
+            ValidarDados(model,operacao);
             if(operacao == "A")
             {
                 if (a.Login(model.loginUsuario, model.senha))
