@@ -704,6 +704,71 @@ Retorno: ```bool```indicando sucesso ou falha no login
 ```MontarModel(DataRow registro)```: Mapeia um registro para um objeto. <br>
 ```VerificarSensoresRepetidos```: Verifica se já existem sensores cadastrados com a mesma descrição. <br>
 ```BuscaAvancada```: Realiza pesquisa de sensores com filtros por descrição e tipo. <br>
+#### *Controllers*
+
+1. HelperController: É uma classe utilitária que fornece métodos estáticos de suporte para outros controladores.<br>
+```VerificaUserLogado(ISession session)``` Verifica se o usuário está autenticado com base na sessão HTTP.<br>
+Retorno: ```true```se o usuário está logado, caso contrário, ```false```.<br>
+
+2. PadraoController<T>: Classe abstrata que define uma estrutura base para os controladores do projeto. Ele é genérico e espera que o tipo ```T```herde de ```PadraoViewModel```. Os controllers seguem seu padrão, herdando métodos genéricos. <br>
+* Propriedades:
+```dao``` Instância do Data Acess Object(DAO) associado ao modelo ```T```.<br>
+```NomeViewIndex``` Nome da view de listagem (default: ```"index"```).<br>
+```NomeViewForm``` Nome da view de formulário (default: ```"form"```). <br>
+```ExigeAutenticacao``` Indica se a autenticação é obrigatória (default: ```true```), <br>
+* Métodos Sobrescrevíveis:
+```AdicionarViewbagsForm``` e ```AdicionarViewbagsIndex``` Personalização de ```ViewBag```em páginas específicas. <br>
+```ValidarDados(T model, string operacao)``` Valida os dados do modelo antes de operações de persistência. <br>
+* Métodos: <br>
+```Index()```: Retorna a listagem de itens. <br>
+```Create()```: Renderiza a página para criação de novos itens.<br>
+```Save(T model, string operacao)```: Salva um novo item ou atualiza um existente.<br>
+```Edit(int id)```: Recupera e exibe um item para edição.<br>
+```Delete(int id)```: Remove um item.<br>
+```Dashboard()```: Exemplo de página personalizada.<br>
+
+3. HomeController: Gerencia as páginas principais do sistema. O controlador sobrescreve ```OnActionExecuting``` para verificar se o usuário está logado antes de processar qualquer ação. <br>
+* Métodos:<br>
+```Index()```: Página inicial do site.<br>
+```Sobre()```: Página com informações sobre o projeto.<br>
+```Privacy()```: Exibe a política de privacidade.<br>
+```Error()```: Renderiza uma página de erro customizada.<br>
+
+4. AcessoController: Gerencia operações de login, cadastro e controle de sessão. <br>
+* Propriedades: <br>
+```ExigeAutenticacao``` Definido como ```false```, permitindo acesso às funcionalidades sem autenticação inicial. <br>
+* Métodos: <br>
+```Login()```: Exibe a página de login.<br>
+```Cadastro()```: Exibe a página de cadastro de um novo usuário.<br>
+```Enviar(AcessoViewModel model, string operacao)```: Processa o login ou cadastro.<br>
+```LogOff()```: Finaliza a sessão e redireciona o usuário para a tela de login.<br>
+* Validação: é realizada através do método ```ValidarDados```, garantindo que campos obrigatórios sejam preenchidos e que o login seja único no cadastro.
+
+5. EmpressaoController: Controla operações relacionadas à Empresa, como cadastro, edição e validação de dados.
+* Propriedades: <br>
+```ValidarDados```: Verifica campos obrigatórios(nome, sede e imagem), limita o tamanho da imagem a 2MB e garante a persistência da imagem existente ao editar um registro sem fornecer uma nova imagem. <br>
+```ConvertImageToByte```: Converte a imagem fornecida para bytes ao salvar ou atualizar registros. <br>
+
+6. FuncionarioController: Gerencia as ações relacionados aos Funcionários,  incluindo cadastro, edição e busca avançada. <br>
+* Propriedades: <br>
+```ValidarDados```: Verifica campos obrigatórios( nome, cargo e data de contratação), valida o tamanho da imagem(máximo 2MB), garante a persistência da imagem existente ao editar registros e impede datas de contratação inválidas(anteriores a 1900 ou posteriores à data atual). <br>
+```BuscaAvancada```: Filtra funcionários com base em nome, cargo e intervalo de datas de contratação. <br>
+
+7. ManutencaoController: Gerencia as manutenções, com funcionalidades de cadastro, edição e busca avançada, além de integração com funcionários, sensores e estados de manutenção. <br>
+* Propriedades: <br>
+```AdicionarViewbagsForm```: Lista funcionários, sensores e estados disponíveis para exibição em formulários e índices. <br>
+```ValidarDados```: Verifica se os campos obrigatórios (funcionário, estado, sensor e data) estão preenchidos e garante que as datas de manutenção sejam válidas (futuras para novos registros ou coerentes com o estado em edições). <br>
+```BuscaAvancada```: Filtra manutenções com base em intervalo de datas, funcionário, empresa, sensor e estado. <br>
+
+8. SensorController: Controla as operações relacionadas aos Sensores, incluindo integração com o sistema Fiware. <br>
+* Propriedades: <br>
+```ValidarDadosFiware````: Impede duplicidade de sensores, verificando descrições já existentes, valida o tamanho da imagem e empresa associada e faz integração com Fiware para criação e validação de sensores.<br>
+```AdicionarViewbagsForm```: Lista empresas disponíveis para exibição em formulários e índices.<br>
+```BuscaAvancada```: Filtra sensores com base em descrição, empresa e tipo.<br>
+```PegarUltimos50Dados```: Consulta os últimos 50 dados de temperatura de sensores do Fiware. <br>
+```PegarUltimosDados```: Exibe informações no dashboard do sistema.<br>
+
+
 
 
 ## Youtube
