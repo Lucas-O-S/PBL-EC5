@@ -54,11 +54,11 @@ aquecimento, acoplada a um dissipador de calor e a um sensor de temperatura LM35
 | **Notebook**            | Equipamento utilizado para desenvolvimento e monitoramento do sistema.                                                   | ![Notebook](./imagens/notebook.jpeg)   |
 
 ### Conexões
-| **Componente** | **Conexão**                                              |
+| **Componente** | **Conexão**                                                              |
 |----------------|----------------------------------------------------------|
-| **ESP32**      |            |
-| **Fonte DC**   |         |
-| **Protótipo**  |       |
+| **ESP32**      | Porta - D34 -> Divisor de Tensão conectado ao protótipo                  |
+| **Fonte DC**   | Positivo canal 1 -> VCC do protótipo / Negativo canal 1 -> GND protótipo |
+| **Protótipo**  | OUT -> Entrada de energia do ESP32, com divisor de tensão / GND -> Saída do Resistor / USB -> Notebook |
 
 ### Diagrama Elétrico
 ![Diagrama Eletrico](./imagens/DiagramaEletrico_PBL.jpg).
