@@ -29,21 +29,29 @@
 
                 <div class="form-group">
                     <label class="control-label">Funcionario Responsavel</label>
-                    <select asp-for="idFuncionario"> 
+                    <select asp-for="idFuncionario">
+                        <option value="-1">--Selecione--</option>
+
                         @foreach(FuncionarioViewModel f in ViewBag.funcionarios){
                             <option value="@f.id">@f.nome</option>
                         }
                     </select>
+                    <span asp-validation-for="idFuncionario" class="text-danger"></span>
+
                 </div>
 
                 <div class="form-group">
                     <label class="control-label">Sensor</label>
                     <select asp-for="idSensor">
+                        <option value="-1">--Selecione--</option>
+
                         @foreach (SensorViewModel S in ViewBag.sensores)
                         {
                             <option value="@S.id">@S.descricao</option>
                         }
                     </select>
+                    <span asp-validation-for="idSensor" class="text-danger"></span>
+
                 </div>
 
                 <!--Data e Hora-->
@@ -68,11 +76,14 @@
                     <div class="form-group">
                         <label class="control-label">Estado</label>
                         <select asp-for="estadoId">
+                            <option value="-1">--Selecione--</option>
                             @foreach (var E in ViewBag.estados)
                             {
                                 <option value="@((int)E)E">@E</option>
                             }
                         </select>
+                        <span asp-validation-for="estadoId" class="text-danger"></span>
+
                     </div>
 
                 }
