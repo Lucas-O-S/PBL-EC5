@@ -610,7 +610,38 @@ Exige ```float temperatura``` e ```DateTime data```.<br>
 Este documento descreve as classes e utilitários relacionados à camada de acesso a dados (DAO) do projeto SitePBL. 
 Essa camada é responsável por abstrair a comunicação com o banco de dados, incluindo a execução de Stored Procedures (SPs), consultas e manipulações de registros. <br>
 
-1. **PadraoDAO<T>**: Classe abstrata genérica que serve como base para outras DAOs. Ela define métodos comuns para operações no banco de dados.<br>
+1. **ConexaoDB**: Classe estática responsável por criar conexões com o banco de dados.<br>
+* Método:<br>
+```SqlConnection GetConexao()``` Retorna uma conexão aberta com o banco.
+```cpp
+Data Source=LOCALHOST\sqlexpress;
+Database=Termo_Light;
+User ID=sa;
+Password=123456;
+```
+2. **PadraoDAO<T>**: Classe abstrata genérica que serve como base para outras DAOs. Ela define métodos comuns para operações no banco de dados.<br>
+* Herança: PadraoViewModel.<br>
+* Propriedades:<br>
+  ```string nomeTabela``` Nome da tabela no banco de dados.<br>
+  ```string nomeSpListagem``` Nome da SP usada na listagem (default: ```"sp_listagem_generic"```).<br>
+* Métodos:<br>
+  ```CriaParametros(T models)``` Nome da tabela no banco de dados. <br>
+  ```MontarModel(DataRow registro)``` Converte um ```DataRow```em um objeto do tipo ```T```. <br>
+  ```SetTabela()``` Define o nome da tabela usada pelo DAO. <br>
+  ```void Insert(T model)``` Insere um registro no banco de dados. <br>
+  ```void Update(T model)``` Atualiza um registro no banco de dados.  <br>
+  ```void Delete (int id)``` Exclui um registro com base no ID.  <br>
+  ```T Consulta(int? id)``` Retorna um registro com base no ID.  <br>
+  ```List<T> Listagem()``` Lista todos os registros da tabela associada.  <br>
+3. **HelperSqlDAO***: Classe estática com métodos auxiliares para execução de comandos SQL e manipulação de parâmetros. <br>
+* Métodos:
+```void ExecutaProc(string sql, SqlParameter[] parametros)```: Executa uma SP sem retorno(por exemplo, insert, update ou delete).  <br>
+```DataTable ExecutaProcSelect(string sql, SqlParameter[] parametros)```: Executa uma SP e retorna os resultados como ```DataTable```  <br>
+```SqlParameter[] CriaParametros(int? id)```: Cria um array de parÂmetros SQL contendo apenas o ID.  <br>
+```SqlParameter[] CriarParametros(int? id, string tabela)``` Cria um array de parâmetros SQL contendo o ID e o nome da tabela.  <br>
+4. **HelperFiwareDAO**: Classe estática projetada para interação com o FIWARE, fornecendo funcionalidades para o monitoramento, leitura de dados e gerenciamento de dispositivos IoT.<br>
+* **VerificarServer**: Verifica a disponibilidade de um servidor FIWARE.<br>
+Parâmetros: ```host```: IP do servidor
 
 
 
