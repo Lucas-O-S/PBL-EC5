@@ -638,14 +638,43 @@ Password=123456;
 ```DataTable ExecutaProcSelect(string sql, SqlParameter[] parametros)```: Executa uma SP e retorna os resultados como ```DataTable```  <br>
 ```SqlParameter[] CriaParametros(int? id)```: Cria um array de parÂmetros SQL contendo apenas o ID.  <br>
 ```SqlParameter[] CriarParametros(int? id, string tabela)``` Cria um array de parâmetros SQL contendo o ID e o nome da tabela.  <br>
+
 4. **HelperFiwareDAO**: Classe estática projetada para interação com o FIWARE, fornecendo funcionalidades para o monitoramento, leitura de dados e gerenciamento de dispositivos IoT.<br>
 * **VerificarServer**: Verifica a disponibilidade de um servidor FIWARE.<br>
 Parâmetros: ```host```: IP do servidor
+Retorno: ```bool```indicando se o servidor está ativo.<br>
+* **VerificarDados**: Obtém as últimas leituras de temperatura de um sensor associado a uma lâmpada. <br>
+Parâmetros:<br>
+```host```: IP do servidor.<br>
+```lamp```: ID da lâmpada. <br>
+```n```: Número de leituras a recuperar. <br>
+Retorno: Lista de objetos ```LeituraViewModel``` contendo temperatura e horário.
+* ```Ler```: Obtém a última leitura de temperatura de um sensor. <br>
+Parâmetros: <br>
+```host```: IP do servidor. <br>
+```lamp```: ID da lâmpada. <br>
+Retorno: Objeto ```LeituraViewModel```com temperatura e horário.
+* ```CriarLamp```: Cria uma nova lâmpada no sistema.<br>
+Parâmetros:<br>
+```host```: IP do servidor<br>
+```lamp```: ID da lâmpada <br>
+Processo interno: Provisão do dispositivo, registro no servidor e inscrição no sistema de monitoramento. <br>
 
-
-
-
-
+5. **Acesso DAO**: Responsável pelo gerenciamento de dados de acesso dos usuários no banco de dados.<br>
+* ```SetTabela```: Define a tabela principal como ```acesso```.<br>
+* ```CriaParametros```: Cria os parâmetros SQL para operações no banco de dados. <br>
+Parâmetros: <br>
+```acesso```: Objeto ```AcessoViewModel``` contendo os dados do usuário. <br>
+Retorno: Array de ```SqlParameter```para operações de banco.<br>
+* ```MontarModel```: Monta um modelo ```AcessoViewModel``` a partir de um registro da tabela. <br>
+Parâmetros:<br>
+```registro```: Linha do tipo ```DataRow``` do banco de dados.<br>
+Retorno: Objeto ```AcessoViewModel``` <br>
+* ```Login```: Valida as credenciais de login de um usuário. <br>
+Parâmetros: <br>
+```loginUsuario``` Nome de usuário. <br>
+```senha``` Senha do usuário. <br>
+Retorno: ```bool```indicando sucesso ou falha no login
 
 
 
