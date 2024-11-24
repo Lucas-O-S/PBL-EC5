@@ -144,17 +144,15 @@ create or alter procedure sp_avancado_sensor(
 )
 as
 begin
-	declare @likeDescricao varchar(max)
-	set @likeDescricao = '%' + @descricao + '%'
-	declare @likeEmpresa varchar(max)
-	set @likeEmpresa = '%' + @empresa + '%'
+	set @descricao = '%' + @descricao + '%'
+	set @empresa = '%' + @empresa + '%'
 
 	select s.id,descricao, fk_empresa_id 
 	from sensor as s
 	inner join empresa as e
 	on e.id = s.fk_empresa_id
-	where s.descricao like @likeDescricao and
-	( (@tipo = 0 and e.nome like @likeDescricao) or (@tipo = 1 and e.nome = @empresa))
+	where s.descricao like @descricao and
+	( (@tipo = 0 and e.nome like @empresa) or (@tipo = 1 and e.nome = @empresa))
 				
 end
 go
