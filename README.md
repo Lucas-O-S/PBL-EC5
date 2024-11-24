@@ -61,7 +61,7 @@ aquecimento, acoplada a um dissipador de calor e a um sensor de temperatura LM35
 | **Protótipo**  |       |
 
 ### Diagrama Elétrico
-![Diagrama Eletrico](./imagens/).
+![Diagrama Eletrico](./imagens/DiagramaEletrico_PBL.jpg).
 
 ### Projeto Físico
 ![Projeto Fisico](./imagens/projeto2.jpg).
