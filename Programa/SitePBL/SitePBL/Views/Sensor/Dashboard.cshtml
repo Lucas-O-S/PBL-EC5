@@ -47,12 +47,12 @@
                         </div>
                         <div class="form-group">
                             <label for="kiInput">Ki:</label>
-                            <input type="number" id="kiInput" class="form-control" step="0.1" value="1"/>
+                            <input type="number" id="kiInput" class="form-control" step="0.1" value="0"/>
                             <span id="kiError" class="text-danger"></span>
                         </div>
                         <div class="form-group">
                             <label for="kdInput">Kd:</label>
-                            <input type="number" id="kdInput" class="form-control" step="0.1" value="1" />
+                            <input type="number" id="kdInput" class="form-control" step="0.1" value="0" />
                             <span id="kdError" class="text-danger"></span>
                         </div>
                     }
@@ -97,10 +97,7 @@
                         <button id="toggleButton" class="button">Pausar</button>
                         <button id="calculateErrorButton" class="button">Calcular</button>
                         <button id="limparDadosBtn" class="button">Limpar Dados do Gráfico</button>
-                    
-                        <form asp-action="PegarUltimosDados" method="get">
-                        <button type="submit" class="button">Pegar Últimos 50 Dados</button>
-                        </form>
+                        <button id="atualizarGrafico" class="button">Atualizar Gráfico com os Últimos 50 Dados</button>
 
                         <a class="button" href="/Home/Index">Voltar</a>
 
@@ -299,7 +296,7 @@
             const value = parseFloat(input.value);
             const error = document.getElementById(errorId);
 
-            if (isNaN(value) || value <= 0) {
+            if (isNaN(value) || value < 0) {
                 error.textContent = mensagemErro;
                 return false;
             }
@@ -313,10 +310,10 @@
             let malhaValue = document.getElementById('malhaValue').innerText;
 
             if (malhaValue == "" || malhaValue == "F") {
-                const isMvValid = validarCampo('mvInput', 'mvError', 'O valor de Setpoint é obrigatório e deve ser maior que zero.');
-                const isKpValid = validarCampo('kpInput', 'kpError', 'O valor de Kp é obrigatório e deve ser maior que zero.');
-                const isKiValid = validarCampo('kiInput', 'kiError', 'O valor de Ki é obrigatório e deve ser maior que zero.');
-                const isKdValid = validarCampo('kdInput', 'kdError', 'O valor de Kd é obrigatório e deve ser maior que zero.');
+                const isMvValid = validarCampo('mvInput', 'mvError', 'O valor de Setpoint é obrigatório e deve ser positivo.');
+                const isKpValid = validarCampo('kpInput', 'kpError', 'O valor de Kp é obrigatório e deve ser positivo.');
+                const isKiValid = validarCampo('kiInput', 'kiError', 'O valor de Ki é obrigatório e deve ser positivo.');
+                const isKdValid = validarCampo('kdInput', 'kdError', 'O valor de Kd é obrigatório e deve ser positivo.');
 
 
                 if (!isKpValid || !isKiValid || !isKdValid || !isMvValid) {
@@ -365,10 +362,13 @@
 
                 if (malhaValue == "" || malhaValue == "F") {
                     const kp = parseFloat(document.getElementById('kpInput').value); // Obtém o Kp
+                    const ki = parseFloat(document.getElementById('kiInput').value); // Obtém o Ki
 
                     //Calcula o Erro estacionário (Fórmula)
                     if (ganhoK !== "" && !isNaN(kp) && !isNaN(setpoint)) {
-                        const erroEstacionarioReal = (setpoint - lastTemperature) / (1 + kp * ganhoK);
+                        const erroEstacionarioReal = (setpoint - lastTemperature) / (1 + kp * ganhoK + ki * 3);
+                        
+                        //Ilustra na tela os erros calculados
                         document.getElementById('errorExpect').value = erroEstacionarioReal.toFixed(2);
                         document.getElementById('errorResult').value = erroEstacionarioResult.toFixed(2); //Erro estacionário (Realidade)
                     } else {
@@ -423,6 +423,42 @@
 
         // Evento de clique no botão de limpar
         document.getElementById('limparDadosBtn').addEventListener('click', limparDados);
+
+        // Função para buscar os dados e atualizar o gráfico
+        async function atualizarGraficoComDados() {
+            try {
+                // Faz a chamada AJAX para buscar os últimos 50 dados
+                const response = await fetch('/Sensor/PegarUltimosDados');
+
+                if (!response.ok) {
+                    console.error('Erro ao buscar dados:', response.statusText);
+                    return;
+                }
+
+                // Recebe os dados em formato JSON
+                const dados = await response.json();
+
+                // Limpa os arrays para atualizar com novos dados
+                labels.length = 0;
+                temperatureData.length = 0;
+                MV.length = 0;
+
+                // Preenche os arrays com os novos dados
+                dados.forEach((dado, index) => {
+                    labels.push(index + 1); // Índice ou qualquer valor que queira como label
+                    temperatureData.push(dado.temperatura || 0); // Supondo que o dado tem 'temperatura'
+                    MV.push(dado.mv || 0); // Supondo que o dado tem 'mv'
+                });
+
+                // Atualiza o gráfico com os novos dados
+                dynamicChart.update();
+            } catch (error) {
+                console.error('Erro ao processar os dados:', error);
+            }
+        }
+
+        // Evento para atualizar o gráfico ao clicar em um botão
+        document.getElementById('atualizarGrafico').addEventListener('click', atualizarGraficoComDados);
 
     </script>
 
