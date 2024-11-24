@@ -533,6 +533,86 @@ begin
 end
 ```
 ### Site
+#### *Models*
+Este projeto define uma série de modelos para a aplicação SitePBL. Esses modelos representam as entidades do sistema e são organizados para facilitar a integração
+e o uso nas camadas de apresentação e controle.<br>
+
+1. **PadrãoViewModel**: Classe abstrata base para outras ViewModels. <br>
+* Propriedade: ```int? id``` Identificador genérico.<br>
+
+2. **AcessoViewModel**: Representa as credenciais de acesso de usuários ao sistema. <br>
+* Herança: PadraoViewModel <br>
+* Propriedades: <br>
+```string senha``` Senha do usuário <br>
+```int empresaId``` Identificador da empresa associada <br>
+```string nomeEmpresa``` Nome da empresa associada <br>
+```string loginUsuario``` Login do usuário <br>
+```string nomeUsuario``` Nome do usuário <br>
+
+3. **ManutencaoViewModel**: Armazena informações sobre manutenções.
+* Herança: PadraoViewModel <br>
+* Propriedades: <br>
+```DateTime data_hora``` Data e hora da manutenção.
+```int idSensor``` Identificador do sensor relacionado.
+```string? descricaoSensor``` Descrição do sensor.
+```int idFuncionario``` Identificador do funcionário responsável.
+```string? nomeFuncionario``` Nome do funcionario responsável.
+```int estadoId``` Estado da manutenção (feito, em andamento, etc).
+```string? estadoNome```Nome do estado.
+```string? nomeEmpresa``` Nome da empresa associada.
+
+4. **SensorViewModel**: Representa informações sobre os sensores do sistema.<br>
+* Herança: PadraoViewModel <br>
+* Propriedades: <br>
+```string descricao``` Descrição ou identificador do sensor no Fiware.<br>
+```int empresaId``` Identificador da empresa associada.<br>
+```string? empresaNome``` Nome da empresa associada.<br>
+
+5. **FotoPadraoViewModel**: Classe abstrata que adiciona suporte para manipulação de imagens.<br>
+* Herança: PadraoViewModel <br>
+* Propriedades: <br>
+```IFormFile? imagem``` Arquivo da imagem.
+```byte[]? imagembyte``` Representação da imagem em bytes.
+```string? foto64``` Imagem em formato Base64. somenta leitura.
+* Método:<br>
+```byte[] ConvertImageToByte(IFormFile file)``` Converte uma imagem em formato ```IFormFile``` para bytes.<br>
+
+6. **FuncionarioViewModel**: Representa as informações sobre os funcionarios da empresa.<br>
+* Herança: FotoPadraoViewModel <br>
+* Propriedades: <br>
+```string nome``` Nome do funcionário.
+```string cargo``` Cargo do funcionário.
+```DateTime dataContratacao``` Data de contratação do funcionário.
+
+7. **EmpresaViewModel**: Representa as informações sobre as empresas cadastradas.<br>
+* Herança: FotoPadraoViewModel <br>
+* Propriedades: <br>
+```string nome``` Nome da empresa<br>
+```string sede```Localização da sede da empresa<br>
+
+8. **LeituraViewModel**: Representa uma leitura do sensor.<br>
+* Propriedades: <br>
+```float temperatura``` Temperatura registrada (somente leitura).<br>
+```DateTime data``` Data e hora da leitura (somente leitura).<br>
+* Constructor: <br>
+Exige ```float temperatura``` e ```DateTime data```.<br>
+
+9. **ErrorViewModel**: Modelo para representação de erros do sistema.<br>
+* Propriedades: <br>
+```string Erro``` Mensagem de erro.<br>
+```string? RequestId``` Identificador da requisição.<br>
+```bool ShowRequestId``` Indica se o RequestID está disponível. <br>
+* Construtores: <br>
+```ErrorViewModel(string erro)``` Inicializa com uma mensagem de erro.<br>
+```ErrorViewModel()``` Inicializa sem mensagem.<br>
+
+#### *DAO*
+Este documento descreve as classes e utilitários relacionados à camada de acesso a dados (DAO) do projeto SitePBL. 
+Essa camada é responsável por abstrair a comunicação com o banco de dados, incluindo a execução de Stored Procedures (SPs), consultas e manipulações de registros. <br>
+
+1. **PadraoDAO<T>**: Classe abstrata genérica que serve como base para outras DAOs. Ela define métodos comuns para operações no banco de dados.<br>
+
+
 
 
 
@@ -555,7 +635,7 @@ end
 * Utilize o Arduino IDE ou outro ambiente compatível para carregar o código no ESP32.
 3. Monitoramento e Controle
 * Use o monitor serial para acompanhar logs de conexão e status.
-* Publique mensagens no broker MQTT para enviar comandos e visualize os dados de luminosidade.
+* Publique mensagens no broker MQTT para enviar comandos e visualize os dados de temperatura.
 
 
 ## Referências Bibliográficas
