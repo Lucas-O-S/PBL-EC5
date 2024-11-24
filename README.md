@@ -57,12 +57,11 @@ aquecimento, acoplada a um dissipador de calor e a um sensor de temperatura LM35
 | **Componente** | **Conexão**                                                              |
 |----------------|----------------------------------------------------------|
 | **ESP32**      | Porta - D34 -> Divisor de Tensão conectado ao protótipo                  |
-| **Fonte DC**   | Positivo canal 1 -> VCC do protótipo / Negativo canal 1 -> GND protótipo |
-| **Protótipo**  | OUT -> Entrada de energia do ESP32, com divisor de tensão / GND -> Saída do Resistor / USB -> Notebook |
+| **Fonte DC**   | Positivo canal 1 -> VCC do protótipo <br> Negativo canal 1 -> GND protótipo |
+| **Protótipo**  | OUT -> Entrada D34 do ESP32, com divisor de tensão com resistores <br> GND -> Saída do Resistor <br> GND -> Negativo da Fonte <br> VCC -> Positivo da Fonte <br> USB -> Notebook |
 
 ### Diagrama Elétrico
 ![Diagrama Eletrico](./imagens/DiagramaEletrico_PBL.jpg).
-
 ### Projeto Físico
 ![Projeto Fisico](./imagens/projeto2.jpg).
 
