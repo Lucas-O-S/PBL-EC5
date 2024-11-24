@@ -1,66 +1,73 @@
-﻿<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="utf-8" />
-    <title>Charts</title>
-    <script src="_js/Chart.bundle.min.js"></script>
-    <script src="_js/default.js"></script>
-    <script src="_js/charts.lib.js"></script>
-    <link rel="stylesheet" href="~/css/dashManu.css">
-</head>
-<body>
-    <div class="container">
-        <!-- Contêiner da esquerda com o título -->
-        <div class="info-container">
-            <h1>Análise de Sensores</h1>
-        </div>
+﻿@model List<ManutencaoViewModel>
 
-        <!-- Contêiner da direita com o gráfico -->
-        <div class="chart-container">
-            <canvas id="chart"></canvas>
-        </div>
+<!-- Tabela de Manutenção -->
+<section class="manutencao-table-section">
+    <h2>Dados de Manutenção dos Sensores</h2>
+    <table id="manutencaoTable" class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Data e Hora</th>
+                <th>ID do Sensor</th>
+                <th>Descrição do Sensor</th>
+                <th>ID do Funcionário</th>
+                <th>Nome do Funcionário</th>
+                <th>Estado da Manutenção</th>
+                <th>Nome da Empresa</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var manutencao in Model)
+            {
+                <tr>
+                    <td>@manutencao.id</td>
+                    <td>@manutencao.data_hora.ToString("dd/MM/yyyy HH:mm")</td>
+                    <td>@manutencao.idSensor</td>
+                    <td>@manutencao.descricaoSensor</td>
+                    <td>@manutencao.idFuncionario</td>
+                    <td>@manutencao.nomeFuncionario</td>
+                    <td>@manutencao.estadoNome</td>
+                    <td>@manutencao.nomeEmpresa</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <!-- Container do gráfico -->
+    <div class="chart-container">
+        <canvas id="manutencaoChart"></canvas>
     </div>
+</section>
 
-    <script type="text/javascript">
-        var dados = [
-            [
-                ['1, seg', '2, ter', '3, qua', '4, qui', '5, sex', '6, sab', '7, dom', '8, seg', '9, ter', '10, qua'],
-                [12, 19, 3, 5, 2, 3, 4, 5, 4, 3, 4, 5, 6, 7, 8, 9, 1, 0, 5, 8, 4, 9]
-            ],
-            [
-                ['Prazo', 'Fora'],
-                [100, 40],
-                [100, 30],
-                [100, 20],
-                [100, 10],
-            ],
-        ];
+    <script>
+        // Utilizando os dados serializados do ViewBag
+        const labels = ViewBag.Labels;
+        const data = ViewBag.Data;
 
-        var ds = 1;
+        // Verifique se os dados estão sendo carregados corretamente no console
+        console.log('Labels:', labels);
+        console.log('Data:', data);
 
-        var c = draw_chart("", 'doughnut', 'chart', dados[ds][0], [
-            { data: dados[ds][1], label: 'P 1', color: ['dark', 'red'] },
-            { data: dados[ds][2], label: 'P 2', color: ['dark', 'red'] },
-            { data: dados[ds][3], label: 'P 3', color: ['dark', 'red'] },
-            { data: dados[ds][4], label: 'P 4', color: ['dark', 'red'] },
-        ]);
-
-        setInterval(function () {
-            var val = parseInt(Math.random() * 30);
-            c.data.datasets[0].data = [100 - val, val];
-
-            val = parseInt(Math.random() * 30);
-            c.data.datasets[1].data = [100 - val, val];
-
-            val = parseInt(Math.random() * 30);
-            c.data.datasets[2].data = [100 - val, val];
-
-            val = parseInt(Math.random() * 30);
-            c.data.datasets[3].data = [100 - val, val];
-
-            c.update();
-            console.log('updated');
-        }, 1000);
+        // Aqui, você pode configurar o gráfico usando Chart.js
+        const ctx = document.getElementById('manutencaoChart').getContext('2d');
+        const chart = new Chart(ctx, {
+            type: 'bar', // Gráfico de colunas
+            data: {
+                labels: data, // Nomes das empresas
+                datasets: [{
+                    label: 'Quantidade de Manutenções',
+                    data: labels, // Quantidade de manutenções
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
     </script>
-</body>
-</html>
