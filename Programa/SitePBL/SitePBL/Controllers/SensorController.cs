@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using SitePBL.DAO;
 using SitePBL.Models;
 using System.Data;
@@ -77,6 +78,54 @@ namespace SitePBL.Controllers
         {
             ViewBag.Malha = malha;
             return View("Dashboard",null);
+        }
+
+        public static async Task<List<SensorViewModel>> PegarUltimos50Dados(string host)
+        {
+            List<SensorViewModel> listaDados = new List<SensorViewModel>();
+
+            try
+            {
+                using (HttpClient client = new HttpClient())
+                {
+                    string url = $"{host}/v2/entities?limit=50&orderBy=!dateCreated";
+                    HttpResponseMessage response = await client.GetAsync(url);
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        string jsonResponse = await response.Content.ReadAsStringAsync();
+                        listaDados = JsonConvert.DeserializeObject<List<SensorViewModel>>(jsonResponse);
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                // Tratamento de erro
+            }
+
+            return listaDados;
+        }
+
+        public async Task<IActionResult> PegarUltimosDados()
+        {
+            try
+            {
+                // Chama o método que consulta os últimos 50 dados no Fiware
+                var dados = await PegarUltimos50Dados(HelperFiwareDAO.host);    
+
+                if (dados == null)
+                {
+                    ModelState.AddModelError("descricao", "Não foi possível obter dados do Fiware.");
+                    return View("Dashboard", null); // Ou outra View que faça sentido
+                }
+
+                // Supondo que você vai retornar esses dados para uma View chamada "Dashboard"
+                return View("Dashboard", dados);
+            }
+            catch (Exception erro)
+            {
+                return View("Error", new ErrorViewModel(erro.ToString()));
+            }
         }
 
     }

@@ -67,12 +67,53 @@
 
             </section>
 
+            <section class="controls-section">
+
+                <div class="controls">
+
+                    <label for="Temp">Temperatura (ºC): </label>
+                    <input type="text" id="Temp" class="form-control" readonly value="0.1" />
+
+                    <label for="Time">Tempo (S): </label>
+                    <input type="text" id="Time" class="form-control" readonly value="0.1" />
+                </div>
+
+                <form class="form-container container row" action="/Sensor/TrocaMalha" method="get">
+                    <div class="button-container">
+
+                        <label for="malhaSelect">Escolha o Tipo de Malha:</label>
+                        <select id="malhaSelect" class="form-control" name="malha">
+                            <option value="A">Malha Aberta</option>
+                            <option value="F">Malha Fechada</option>
+                        </select>
+                        <button class="button">Trocar Malha</button>
+
+                        <span class="text-danger"> @ViewBag.Erro </span>
+                    </div>
+                </form>
+
+                    <!--Seção de botões-->
+                    <div class="button-container">
+                        <button id="toggleButton" class="button">Pausar</button>
+                        <button id="calculateErrorButton" class="button">Calcular</button>
+                        <button id="limparDadosBtn" class="button">Limpar Dados do Gráfico</button>
+                    
+                        <form asp-action="PegarUltimosDados" method="get">
+                        <button type="submit" class="button">Pegar Últimos 50 Dados</button>
+                        </form>
+
+                        <a class="button" href="/Home/Index">Voltar</a>
+
+                    </div>
+
+            </section>
+
             <!-- Seção do Gráfico -->
             <section class="chart-section">
 
                 <div>
                     @if (ViewBag.Malha == null || ViewBag.Malha == "F")
-                        {
+                    {
                         <h1>Controle de Temperatura (Malha Fechada)</h1>
                     }
                     else
@@ -83,35 +124,6 @@
 
                 <div class="chart-container">
                     <canvas id="chart"></canvas>
-                </div>
-  
-                <div class="button-container">
-                    <button id="toggleButton" class="button">Pausar</button>
-                    <button id="calculateErrorButton" class="button">Calcular</button>
-                    <button id="limparDadosBtn">Limpar Dados do Gráfico</button>
-
-                    <form class="form-container container row" action="/Sensor/TrocaMalha" method="get">
-                        <div class="form-group">
-
-                            <label for="malhaSelect">Escolha o Tipo de Malha:</label>
-                            <select id="malhaSelect" class="form-control" name="malha">
-                                <option value="A">Malha Aberta</option>
-                                <option value="F">Malha Fechada</option>
-                            </select>
-                            <button type="submit" class="button" role="button" value="Trocar Malha" />
-
-                            <span class="text-danger"> @ViewBag.Erro </span>
-                        </div>
-                    </form>
-
-                    <a href="/Home/Index">Voltar</a>
-
-                    <div>
-                        <label for="Temp">Temperatura atual: </label> 
-                        <input type="text" id="Temp" class="form-control" readonly value="0.1" />
-
-                    </div>
- 
                 </div>
 
             </section>
@@ -216,6 +228,8 @@
 
         let updateIntervalId; // Variável global para armazenar o ID do intervalo
 
+        let timeInSeconds = 0; // Variável para controlar o tempo em segundos
+
         // Função para iniciar o intervalo de leitura
         function startTemperatureUpdate() {
             // Cancela o intervalo existente, se houver
@@ -242,7 +256,10 @@
 
                     // Adiciona novos dados ao gráfico
                     temperatureData.push(newTemperature);
-                    labels.push(`${labels.length}s`);
+
+                    // Incrementa o contador de tempo em segundos
+                    timeInSeconds += intervalTime / 1000; // Converte milissegundos para segundos
+                    labels.push(`${timeInSeconds.toFixed(1)}s`); // Adiciona o tempo em segundos ao eixo X
 
                     // Atualiza a linha de MV no gráfico
                     const mvInput = document.getElementById('mvInput');
@@ -250,6 +267,9 @@
                     if (!isNaN(mvValue)) {
                         dynamicChart.data.datasets[1].data.push(mvValue);
                     }
+
+                    // Exibe o último tempo
+                    document.getElementById('Time').value = timeInSeconds.toFixed(1);
 
                     // Atualiza o gráfico
                     dynamicChart.update();
