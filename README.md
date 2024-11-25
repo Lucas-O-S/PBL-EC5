@@ -531,6 +531,23 @@ begin
 	and ((estado = @estado and @estado !=4) or (@estado = 4))
 end
 ```
+
+#### ```sp_quantidades_empresas``` 
+Procura as empresas que tem uma conexão ativa com alguma manutenção e depois conta quantas manutenções essas empresas tem
+```sql
+create or alter procedure sp_quantidades_empresas(@id int)
+as 
+begin
+	
+	select e.nome, COUNT(e.id) as 'Total'
+	from manutencao as m
+	inner join sensor as s on s.id = m.fk_sensor_id
+	inner join empresa as e on e.id = s.fk_empresa_id
+	group by e.nome
+
+end
+go
+```
 ### Site
 #### *Models*
 Este projeto define uma série de modelos para a aplicação SitePBL. Esses modelos representam as entidades do sistema e são organizados para facilitar a integração
