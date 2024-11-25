@@ -116,22 +116,33 @@ namespace SitePBL.DAO
 			return lista;
 		}
 
-        public List<EmpresaViewModel> ObterQuantidadesEmpresas(int id)
-        {
-            List<EmpresaViewModel> empresas = new List<EmpresaViewModel>();
+		public List<ManutencaoViewModel> ObterQuantidadesEmpresas(int id, List<ManutencaoViewModel> empresas)
+		{
+			SqlParameter[] sql = new SqlParameter[]
+			{
+		new SqlParameter("id", id)
+			};
 
-            SqlParameter[] sql = new SqlParameter[]
-            {
-                new SqlParameter("id",id)
-            };
+			// Executa a stored procedure e obtém o resultado em uma DataTable
+			DataTable dt = HelperSqlDAO.ExecutaProcSelect("sp_quantidades_empresas", sql);
 
-            DataTable dt = HelperSqlDAO.ExecutaProcSelect("sp_quantidades_empresas", sql);
+			// Itera sobre as linhas retornadas pela DataTable
+			foreach (DataRow dr in dt.Rows)
+			{
+				ManutencaoViewModel manutencao = new ManutencaoViewModel
+				{
+					nomeEmpresa = dr["nome"].ToString(), // Acessa o nome da empresa
+					qtdManutencao = Convert.ToInt32(dr["Total"]) // Acessa a quantidade (assumindo que a coluna se chama 'Total')
+				};
 
+				// Adiciona o objeto preenchido à lista
+				empresas.Add(manutencao);
+			}
 
+			return empresas;
+		}
 
-            return empresas;
-        }
-    }
+	}
 
 
 

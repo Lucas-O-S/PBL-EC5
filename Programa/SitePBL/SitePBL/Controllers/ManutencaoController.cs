@@ -111,5 +111,20 @@ namespace SitePBL.Controllers
 				return View("Error", new ErrorViewModel(erro.ToString()));
 			}
 		}
-	}
+
+        public override IActionResult Dashboard()
+        {
+            int id = 0;
+            List<ManutencaoViewModel> empresas = new List<ManutencaoViewModel>();
+            var dao = new ManutencaoDAO(); 
+
+            // Chama o método para obter as quantidades de empresas
+            empresas = dao.ObterQuantidadesEmpresas(id, empresas);
+
+            // Converte os dados para JSON para usar no JavaScript
+            ViewBag.EmpresasData = Newtonsoft.Json.JsonConvert.SerializeObject(empresas);
+
+            return View();
+        }
+    }
 }

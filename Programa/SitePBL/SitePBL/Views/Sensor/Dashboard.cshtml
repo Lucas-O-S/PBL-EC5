@@ -246,6 +246,7 @@
 
                     // Adiciona novos dados ao gráfico
                     temperatureData.push(newTemperature);
+                    const lastTemperature = temperatureData[temperatureData.length - 1]; //Última temperatura
 
                     // Incrementa o contador de tempo em segundos
                     timeInSeconds += intervalTime / 1000; // Converte milissegundos para segundos
@@ -260,6 +261,63 @@
 
                     // Exibe o último tempo
                     document.getElementById('Time').value = timeInSeconds.toFixed(1);
+
+                    cincomais = mvInput * 1.05;
+                    cincomenos = mvInput * 0.95;
+
+                    if (lastTemperature <= cincomenos || lastTemperature > cincomais) 
+                    {
+                        const myHeaders = new Headers();
+                        myHeaders.append("Content-Type", "application/json");
+                        myHeaders.append("fiware-service", "smart");
+                        myHeaders.append("fiware-servicepath", "/");
+
+                        const raw = JSON.stringify({
+                            "on": {
+                                "type": "command",
+                                "value": ""
+                            }
+                        });
+
+                        const requestOptions = {
+                            method: "PATCH",
+                            headers: myHeaders,
+                            body: raw,
+                            redirect: "follow"
+                        };
+
+                        fetch("http://4.228.64.5:1026/v2/entities/urn:ngsi-ld:Lamp:03y/attrs/", requestOptions)
+                            .then((response) => response.text())
+                            .then((result) => console.log(result))
+                            .catch((error) => console.error(error));
+                    }
+
+                    else()
+                    {
+                        const myHeaders = new Headers();
+                        myHeaders.append("Content-Type", "application/json");
+                        myHeaders.append("fiware-service", "smart");
+                        myHeaders.append("fiware-servicepath", "/");
+
+                        const raw = JSON.stringify({
+                            "off": {
+                                "type": "command",
+                                "value": ""
+                            }
+                        });
+
+                        const requestOptions = {
+                            method: "PATCH",
+                            headers: myHeaders,
+                            body: raw,
+                            redirect: "follow"
+                        };
+
+                        fetch("http://4.228.64.5:1026/v2/entities/urn:ngsi-ld:Lamp:03y/attrs/", requestOptions)
+                            .then((response) => response.text())
+                            .then((result) => console.log(result))
+                            .catch((error) => console.error(error));
+                    }
 
                     // Atualiza o gráfico
                     dynamicChart.update();

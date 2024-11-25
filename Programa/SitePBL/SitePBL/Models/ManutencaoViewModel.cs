@@ -41,5 +41,10 @@
 		/// Nome da Empresa
 		/// </summary>
 		public string? nomeEmpresa {  get; set; }
+
+		/// <summary>
+		/// Quantidade de empresas em manutenção
+		/// </summary>
+		public int qtdManutencao { get; set; }
 	}
 }

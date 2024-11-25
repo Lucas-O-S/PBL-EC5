@@ -2,36 +2,6 @@
 
 <!-- Tabela de Manutenção -->
 <section class="manutencao-table-section">
-    <h2>Dados de Manutenção dos Sensores</h2>
-    <table id="manutencaoTable" class="table table-striped">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Data e Hora</th>
-                <th>ID do Sensor</th>
-                <th>Descrição do Sensor</th>
-                <th>ID do Funcionário</th>
-                <th>Nome do Funcionário</th>
-                <th>Estado da Manutenção</th>
-                <th>Nome da Empresa</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var manutencao in Model)
-            {
-                <tr>
-                    <td>@manutencao.id</td>
-                    <td>@manutencao.data_hora.ToString("dd/MM/yyyy HH:mm")</td>
-                    <td>@manutencao.idSensor</td>
-                    <td>@manutencao.descricaoSensor</td>
-                    <td>@manutencao.idFuncionario</td>
-                    <td>@manutencao.nomeFuncionario</td>
-                    <td>@manutencao.estadoNome</td>
-                    <td>@manutencao.nomeEmpresa</td>
-                </tr>
-            }
-        </tbody>
-    </table>
 
     <!-- Container do gráfico -->
     <div class="chart-container">
@@ -40,34 +10,41 @@
 </section>
 
     <script>
-        // Utilizando os dados serializados do ViewBag
-        const labels = ViewBag.Labels;
-        const data = ViewBag.Data;
+        // Dados recebidos da ViewBag
+        const empresasData = @Html.Raw(ViewBag.EmpresasData);
 
-        // Verifique se os dados estão sendo carregados corretamente no console
-        console.log('Labels:', labels);
-        console.log('Data:', data);
+        // Extração dos dados para o gráfico
+    const labels = empresasData.map(item => item.nomeEmpresa); // Usando o nome das empresas como rótulos
+    const dataCounts = empresasData.map(item => item.qtdManutencao); // Usando o total como valores
+        console.log(empresasData);
+
 
         // Aqui, você pode configurar o gráfico usando Chart.js
-        const ctx = document.getElementById('manutencaoChart').getContext('2d');
-        const chart = new Chart(ctx, {
-            type: 'bar', // Gráfico de colunas
-            data: {
-                labels: data, // Nomes das empresas
-                datasets: [{
-                    label: 'Quantidade de Manutenções',
-                    data: labels, // Quantidade de manutenções
-                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                    borderColor: 'rgba(75, 192, 192, 1)',
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
+    const ctx = document.getElementById('manutencaoChart').getContext('2d');
+    const chart = new Chart(ctx, {
+        type: 'bar', // Gráfico de colunas
+        data: {
+            labels: labels, // Nomes das empresas
+            datasets: [{
+                label: 'Quantidade de Manutenções',
+                data: dataCounts, // Quantidade de manutenções
+                backgroundColor: [
+                    'rgba(0, 0, 0, 0.8)', 
+                    'rgba(0, 0, 255, 0.6)' 
+                ],
+                borderColor: [
+                    'rgba(0, 0, 0, 1)',
+                    'rgba(0, 0, 255, 1)' 
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                x: { beginAtZero: true },
+                y: { beginAtZero: true }
             }
-        });
+        }
+    });
+
     </script>
