@@ -1,4 +1,4 @@
-﻿@{
+@{
     ViewData["Title"] = "Dashboard de Sensores";
 }
 
@@ -241,15 +241,8 @@
             // Define um novo intervalo de leitura
             updateIntervalId = setInterval(() => {
                 if (!isPaused) {
-                    // Simula uma curva
-                    var i = parseFloat(document.getElementById('Temp').value);
-                    if (i < 0.9) {
-                        i += 0.1;
-                    }
-                    document.getElementById('Temp').value = i;
-
-                    // Calcula a nova temperatura
-                    const newTemperature = 20 / Math.cos(i);
+                    
+                    const newTemperature = obterTemperatura('4.228.64.5', '03y');  // Chame a função passando o IP do servidor e o ID da lâmpada
 
                     // Adiciona novos dados ao gráfico
                     temperatureData.push(newTemperature);
