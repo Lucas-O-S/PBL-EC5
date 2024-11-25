@@ -214,6 +214,10 @@
                     temperatureData.push(temp);
                     labels.push(dataHora.toLocaleTimeString());
                     dynamicChart.update();
+
+                    document.getElementById('Temp').value = temp.toFixed(2); // Exibe o setpoint
+                    // Exibe o último tempo
+                    document.getElementById('Time').value = timeInSeconds.toFixed(1);
                 } else {
                     console.error('Erro ao buscar os dados do Fiware:', response.statusText);
                 }
@@ -247,10 +251,14 @@
                     // Adiciona novos dados ao gráfico
                     temperatureData.push(newTemperature);
                     const lastTemperature = temperatureData[temperatureData.length - 1]; //Última temperatura
+                    const calor = document.getElementById('Temp');
+                    const Hot = parseFloat(calor.value);
 
                     // Incrementa o contador de tempo em segundos
                     timeInSeconds += intervalTime / 1000; // Converte milissegundos para segundos
                     labels.push(`${timeInSeconds.toFixed(1)}s`); // Adiciona o tempo em segundos ao eixo X
+
+
 
                     // Atualiza a linha de MV no gráfico
                     const mvInput = document.getElementById('mvInput');
@@ -259,14 +267,10 @@
                         dynamicChart.data.datasets[1].data.push(mvValue);
                     }
 
-                    // Exibe o último tempo
-                    document.getElementById('Time').value = timeInSeconds.toFixed(1);
+                    const cincomais = mvValue * 1.05;
+                    const cincomenos = mvValue * 0.95;
 
-                    cincomais = mvInput * 1.05;
-                    cincomenos = mvInput * 0.95;
-
-                    if (lastTemperature <= cincomenos || lastTemperature > cincomais) 
-                    {
+                    if (Hot <= cincomenos || Hot > cincomais) {
                         const myHeaders = new Headers();
                         myHeaders.append("Content-Type", "application/json");
                         myHeaders.append("fiware-service", "smart");
