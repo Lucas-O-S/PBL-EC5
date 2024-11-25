@@ -22,15 +22,15 @@
     width: 200px;
 }
 
-.left-section p {
-    font-size: 300%;
-    margin: 0px;
-}
+    .left-section p {
+        font-size: 300%;
+        margin: 0px;
+    }
 
-.left-section h1 {
-    font-size: 300%;
-    margin: 0px;
-}
+    .left-section h1 {
+        font-size: 300%;
+        margin: 0px;
+    }
 
 /* Seção direita (tabela ou lista) */
 .right-section {
@@ -44,12 +44,12 @@
     margin-right: 5%;
 }
 
-.right-section h2 {
-    font-size: 200%;
-    margin-bottom: 10%;
-    margin-top: 5%;
-    margin-left: 5%;
-}
+    .right-section h2 {
+        font-size: 200%;
+        margin-bottom: 10%;
+        margin-top: 5%;
+        margin-left: 5%;
+    }
 
 .text-section {
     display: flex;
@@ -92,7 +92,6 @@ input[type="file"] {
     position: absolute;
     bottom: 350px;
     width: auto; /* Permite que o botão se ajuste ao conteúdo */
-    min-width: 120px; /* Define uma largura mínima */
     height: auto; /* Ajusta a altura de acordo com o conteúdo */
     padding: 10px 20px; /* Adiciona espaçamento interno */
     color: #000000; /* Define a cor do texto */
@@ -117,14 +116,9 @@ input[type="file"] {
         font-size: 15px;
     }
 
-#uploadIcon i {
-    font-size: 2rem;
-    color: #136c01; /* Altere para a cor desejada */
-}
-
 /* Estilo do botão de enviar */
 input[type="button"] {
-    margin-top: 40%;
+    margin-top: 40px;
     background-color: #136c01;
     color: black;
     font-size: 14px;
@@ -141,14 +135,11 @@ input[type="button"] {
         cursor: pointer;
     }
 
-input[type="button"]:active {
-    transform: scale(0.95); /* Reduz o tamanho do botão em 5% */
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* Remove ou diminui a sombra ao clicar */
-}
-
-/* Media query para telas menores (responsividade) */
-@media (max-width: 768px) {
-    .content-container {
-        flex-direction: column; /* Empilha as seções verticalmente em telas pequenas */
+    input[type="button"]:active {
+        transform: scale(0.95); /* Reduz o tamanho do botão em 5% */
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* Remove ou diminui a sombra ao clicar */
     }
+
+.linha {
+    height: 70px;
 }

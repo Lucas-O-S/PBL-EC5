@@ -1,4 +1,4 @@
-/* Estilo básico do body */
+/* Estilo do body */
 #pagina_login body {
     font-family: Consolas, monospace;
     margin: 0;
@@ -6,76 +6,150 @@
     background-color: #9bed8b;
 }
 
-#pagina_login section {
-    flex: 1;
-    background-color: #e0ffda;
-    padding: 0.01%;
-    border-radius: 10px;
-    text-align: center;
-    min-width: 100px;
-    margin-right: 40%;
-    margin-left: 40%;
-    padding-left: 10px;
-    padding-right: 10px;
-}
-
-/* Estilo da logo */
-#pagina_login .logo {
+/* Centraliza o conteúdo da página */
+.content-container {
     display: flex;
     justify-content: center;
-    margin-bottom: 0;
-}
-
-    #pagina_login .logo img {
-        height: 230px;
-        width: auto;
-        padding: 0px;
-        margin-top: 0.5%;
-    }
-
-#pagina_login h2 {
-    font-size: 250%;
     align-items: center;
-    margin-top: 10%;
-    margin-bottom: 8%;
+    min-height: 100vh;
+    padding: 20px;
+    flex-direction: column; /* Garante que os itens sejam empilhados verticalmente */
 }
 
-#pagina_login label {
+.top-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bottom-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Centraliza a fieldset de login e a logo */
+.fieldset-login, .logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+}
+
+.logo img {
+    max-width: 200px;
+}
+
+/* Ajustes para fieldsets */
+.fieldset-login {
+    border: none;
+    border-radius: 10px;
+    padding: 20px;
+    padding-bottom: 0;
+    margin-bottom: 20px; /* Espaço entre os fieldsets */
+    background-color: #e0ffda; /* Cor de fundo */
+    width: 400px; /* Fixando largura */
+}
+
+.fieldset-cadastro {
+    border: none;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px; /* Espaço entre os fieldsets */
+    background-color: #e0ffda; /* Cor de fundo */
+    width: 650px; /* Fixando largura */
+}
+
+/* Alinha o título "Cadastro" à esquerda */
+.left-section h1 {
+    text-align: left;
+    font-size: 250%;
+    margin-bottom: 10px;
+}
+
+/* Estilo dos campos de input */
+label {
     font-size: 130%;
     text-align: left;
     display: block;
-    margin-bottom: 0;
-    margin-top: 0;
-    margin-left: 34px;
+    margin-bottom: 5px;
 }
 
-input[type="text"] {
-    margin-bottom: 8%;
+input[type="text"], input[type="password"] {
     padding: 10px;
-    border: 0;
-    width: 70%;
+    width: 100%;
+    max-width: 300px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
 }
 
-/* Estilo do botão */
-input[type="button"] {
-    margin-bottom: 8%;
+/* Estilo dos botões */
+input[type="button"], input[type="submit"] {
+    margin-top: 10px;
     background-color: #136c01;
-    color: white;
-    font-size: 16px;
+    color: black;
+    font-size: 14px;
     padding: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
     border: none;
     border-radius: 60px;
     cursor: pointer;
-    width: 40%;
+    width: auto;
 }
 
-    input[type="button"]:hover {
-        background-color: #072b00;
-        color: white;
-        cursor: pointer;
-    }
+input[type="button"]:hover, input[type="submit"]:hover {
+    background-color: #072b00;
+    color: white;
+}
 
-input[type="button"]:active {
-    transform: scale(0.95); /* Reduz o tamanho do botão em 5% */
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* Remove ou diminui a sombra ao clicar */
+input[type="button"]:active, input[type="submit"]:active {
+    transform: scale(0.95);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Para a seção de cadastro e login */
+.left-section, .right-section {
+    border-radius: 10px;
+    padding: 20px;
+    width: 50%;
+    margin: 0 10px;
+    text-align: center;
+}
+
+/* Ajustes de posicionamento dos botões */
+.form-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px; /* Espaço entre os botões */
+    margin-top: 20px;
+}
+
+/* Estilo para as mensagens de erro */
+.text-danger {
+    color: red;
+    font-size: 0.9em;
+    margin-top: 5px;
+}
+
+.flex-column {
+    display: flex;
+    flex-direction: row;
+}
+.entrar-section {
+    margin-top: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    width: 45%;
+}
+
+.cadastrar-section {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 45%;
 }

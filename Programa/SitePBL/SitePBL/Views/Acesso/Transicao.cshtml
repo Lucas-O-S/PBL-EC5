@@ -1,0 +1,43 @@
+﻿@{
+    Layout = null; /* Não usar layout para fullscreen */
+}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transição</title>
+    <style>
+        /* Tela fullscreen com vídeo */
+        body {
+            margin: 0;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #000; /* Fundo preto */
+            height: 100vh;
+        }
+
+        video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ajusta sem distorcer */
+        }
+    </style>
+</head>
+<body>
+    <video id="transition-video" autoplay muted playsinline>
+        <source src="/vid/Vinheta.mp4" type="video/mp4">
+        Seu navegador não suporta o vídeo.
+    </video>
+
+    <script>
+        // Redireciona para a home quando o vídeo termina
+        document.getElementById('transition-video').onended = function () {
+            window.location.href = '/Home/Index'; // Redireciona para a home
+        };
+    </script>
+</body>
+</html>
