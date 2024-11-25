@@ -711,12 +711,12 @@ Retorno: ```bool```indicando sucesso ou falha no login
 Retorno: ```true```se o usuário está logado, caso contrário, ```false```.<br>
 
 2. PadraoController<T>: Classe abstrata que define uma estrutura base para os controladores do projeto. Ele é genérico e espera que o tipo ```T```herde de ```PadraoViewModel```. Os controllers seguem seu padrão, herdando métodos genéricos. <br>
-* Propriedades:
+* Propriedades: <br>
 ```dao``` Instância do Data Acess Object(DAO) associado ao modelo ```T```.<br>
 ```NomeViewIndex``` Nome da view de listagem (default: ```"index"```).<br>
 ```NomeViewForm``` Nome da view de formulário (default: ```"form"```). <br>
 ```ExigeAutenticacao``` Indica se a autenticação é obrigatória (default: ```true```), <br>
-* Métodos Sobrescrevíveis:
+* Métodos Sobrescrevíveis: <br>
 ```AdicionarViewbagsForm``` e ```AdicionarViewbagsIndex``` Personalização de ```ViewBag```em páginas específicas. <br>
 ```ValidarDados(T model, string operacao)``` Valida os dados do modelo antes de operações de persistência. <br>
 * Métodos: <br>
