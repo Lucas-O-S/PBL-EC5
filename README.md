@@ -551,14 +551,14 @@ e o uso nas camadas de apresentação e controle.<br>
 3. **ManutencaoViewModel**: Armazena informações sobre manutenções.
 * Herança: PadraoViewModel <br>
 * Propriedades: <br>
-```DateTime data_hora``` Data e hora da manutenção.
-```int idSensor``` Identificador do sensor relacionado.
-```string? descricaoSensor``` Descrição do sensor.
-```int idFuncionario``` Identificador do funcionário responsável.
-```string? nomeFuncionario``` Nome do funcionario responsável.
-```int estadoId``` Estado da manutenção (feito, em andamento, etc).
-```string? estadoNome```Nome do estado.
-```string? nomeEmpresa``` Nome da empresa associada.
+```DateTime data_hora``` Data e hora da manutenção. <br>
+```int idSensor``` Identificador do sensor relacionado.<br>
+```string? descricaoSensor``` Descrição do sensor.<br>
+```int idFuncionario``` Identificador do funcionário responsável.<br>
+```string? nomeFuncionario``` Nome do funcionario responsável.<br>
+```int estadoId``` Estado da manutenção (feito, em andamento, etc).<br>
+```string? estadoNome```Nome do estado.<br>
+```string? nomeEmpresa``` Nome da empresa associada.<br>
 
 4. **SensorViewModel**: Representa informações sobre os sensores do sistema.<br>
 * Herança: PadraoViewModel <br>
@@ -570,18 +570,18 @@ e o uso nas camadas de apresentação e controle.<br>
 5. **FotoPadraoViewModel**: Classe abstrata que adiciona suporte para manipulação de imagens.<br>
 * Herança: PadraoViewModel <br>
 * Propriedades: <br>
-```IFormFile? imagem``` Arquivo da imagem.
-```byte[]? imagembyte``` Representação da imagem em bytes.
-```string? foto64``` Imagem em formato Base64. somenta leitura.
+```IFormFile? imagem``` Arquivo da imagem.<br>
+```byte[]? imagembyte``` Representação da imagem em bytes.<br>
+```string? foto64``` Imagem em formato Base64. somenta leitura.<br>
 * Método:<br>
 ```byte[] ConvertImageToByte(IFormFile file)``` Converte uma imagem em formato ```IFormFile``` para bytes.<br>
 
 6. **FuncionarioViewModel**: Representa as informações sobre os funcionarios da empresa.<br>
 * Herança: FotoPadraoViewModel <br>
 * Propriedades: <br>
-```string nome``` Nome do funcionário.
-```string cargo``` Cargo do funcionário.
-```DateTime dataContratacao``` Data de contratação do funcionário.
+```string nome``` Nome do funcionário.<br>
+```string cargo``` Cargo do funcionário.<br>
+```DateTime dataContratacao``` Data de contratação do funcionário.<br>
 
 7. **EmpresaViewModel**: Representa as informações sobre as empresas cadastradas.<br>
 * Herança: FotoPadraoViewModel <br>
@@ -611,7 +611,7 @@ Essa camada é responsável por abstrair a comunicação com o banco de dados, i
 
 1. **ConexaoDB**: Classe estática responsável por criar conexões com o banco de dados.<br>
 * Método:<br>
-```SqlConnection GetConexao()``` Retorna uma conexão aberta com o banco.
+```SqlConnection GetConexao()``` Retorna uma conexão aberta com o banco.<br>
 ```cpp
 Data Source=LOCALHOST\sqlexpress;
 Database=Termo_Light;
@@ -641,7 +641,7 @@ Password=123456;
 
 4. **HelperFiwareDAO**: Classe estática projetada para interação com o FIWARE, fornecendo funcionalidades para o monitoramento, leitura de dados e gerenciamento de dispositivos IoT.<br>
 * **VerificarServer**: Verifica a disponibilidade de um servidor FIWARE.<br>
-Parâmetros: ```host```: IP do servidor
+Parâmetros: ```host```: IP do servidor<br>
 Retorno: ```bool```indicando se o servidor está ativo.<br>
 * **VerificarDados**: Obtém as últimas leituras de temperatura de um sensor associado a uma lâmpada. <br>
 Parâmetros:<br>
@@ -653,7 +653,7 @@ Retorno: Lista de objetos ```LeituraViewModel``` contendo temperatura e horário
 Parâmetros: <br>
 ```host```: IP do servidor. <br>
 ```lamp```: ID da lâmpada. <br>
-Retorno: Objeto ```LeituraViewModel```com temperatura e horário.
+Retorno: Objeto ```LeituraViewModel```com temperatura e horário. <br>
 * ```CriarLamp```: Cria uma nova lâmpada no sistema.<br>
 Parâmetros:<br>
 ```host```: IP do servidor<br>
@@ -674,7 +674,7 @@ Retorno: Objeto ```AcessoViewModel``` <br>
 Parâmetros: <br>
 ```loginUsuario``` Nome de usuário. <br>
 ```senha``` Senha do usuário. <br>
-Retorno: ```bool```indicando sucesso ou falha no login
+Retorno: ```bool```indicando sucesso ou falha no login <br>
 
 6. **EmpresaDAO**: Gerencia dados da entidade Empresa. <br>
 * Tabela associada: ```empresa```<br>
@@ -697,7 +697,7 @@ Retorno: ```bool```indicando sucesso ou falha no login
 ```MontarModel(DataRow registro)```: Constroi um objeto ```ManutencaoViewModel```, incluindo asociações com sensores, funcionários e empresas. <br>
 ```BuscaAvancada```: Pesquisa avançada com base em filtros como data, funcionário, sensor e estado.
 
-9. **SensorDAO**: Gerencia dados da entidade Sensor.
+9. **SensorDAO**: Gerencia dados da entidade Sensor.<br>
 * Tabela associada: ```sensor```<br>
 * Métodos: <br>
 ```CriaParametros(SensorViewModel sensor)```: Cria parâmetros SQL, incluindo ```id```, ```descricao``` e ```fk_empresa_id```(id da empresa associada). <br>
