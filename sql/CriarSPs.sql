@@ -334,3 +334,16 @@ begin
 end
 go
 ----------------------------------------------------------
+create or alter procedure sp_quantidades_empresas(@id int)
+as 
+begin
+	
+	select e.nome, COUNT(e.id) as 'Total'
+	from manutencao as m
+	inner join sensor as s on s.id = m.fk_sensor_id
+	inner join empresa as e on e.id = s.fk_empresa_id
+	group by e.nome
+
+end
+go
+----------------------------------------------------------

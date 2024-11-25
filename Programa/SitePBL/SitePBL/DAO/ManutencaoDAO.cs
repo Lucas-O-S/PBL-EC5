@@ -115,7 +115,23 @@ namespace SitePBL.DAO
 			}
 			return lista;
 		}
-	}
+
+        public List<EmpresaViewModel> ObterQuantidadesEmpresas(int id)
+        {
+            List<EmpresaViewModel> empresas = new List<EmpresaViewModel>();
+
+            SqlParameter[] sql = new SqlParameter[]
+            {
+                new SqlParameter("id",id)
+            };
+
+            DataTable dt = HelperSqlDAO.ExecutaProcSelect("sp_quantidades_empresas", sql);
+
+
+
+            return empresas;
+        }
+    }
 
 
 
