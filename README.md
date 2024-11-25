@@ -762,7 +762,7 @@ Retorno: ```true```se o usuário está logado, caso contrário, ```false```.<br>
 
 8. SensorController: Controla as operações relacionadas aos Sensores, incluindo integração com o sistema Fiware. <br>
 * Propriedades: <br>
-```ValidarDadosFiware````: Impede duplicidade de sensores, verificando descrições já existentes, valida o tamanho da imagem e empresa associada e faz integração com Fiware para criação e validação de sensores.<br>
+```ValidarDadosFiware```: Impede duplicidade de sensores, verificando descrições já existentes, valida o tamanho da imagem e empresa associada e faz integração com Fiware para criação e validação de sensores.<br>
 ```AdicionarViewbagsForm```: Lista empresas disponíveis para exibição em formulários e índices.<br>
 ```BuscaAvancada```: Filtra sensores com base em descrição, empresa e tipo.<br>
 ```PegarUltimos50Dados```: Consulta os últimos 50 dados de temperatura de sensores do Fiware. <br>
