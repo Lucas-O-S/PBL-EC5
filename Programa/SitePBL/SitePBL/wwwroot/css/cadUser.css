@@ -65,7 +65,7 @@ label {
 }
 
 input[type="text"] {
-    margin-bottom: 8%;
+    margin-bottom: 10px;
     margin-left: -140px;
     padding: 10px;
     border: 0;
@@ -96,9 +96,9 @@ input[type="button"]:active {
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* Remove ou diminui a sombra ao clicar */
 }
 
-/* Media query para telas menores (responsividade) */
-@media (max-width: 768px) {
-    .content-container {
-        flex-direction: column; /* Empilha as seções verticalmente em telas pequenas */
-    }
+.logo img {
+    height: 10px;
+    width: auto;
+    padding: 0px;
+    margin-top: 0.5%;
 }

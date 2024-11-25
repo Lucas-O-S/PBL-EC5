@@ -1,105 +1,111 @@
 ﻿@model AcessoViewModel
 
 @{
-    if (ViewBag.operacao == "I")
+    if (ViewBag.Operacao == "I")
         ViewData["Title"] = "Cadastro";
     else
         ViewData["Title"] = "Login";
 }
 
 <head>
-    <link rel="stylesheet" href="~/css/cadFunc.css">
-
+    <link rel="stylesheet" href="~/css/login.css">
 </head>
 <main class="content-container">
     <form class="form-container container row" action="/acesso/enviar" method="post">
-        <section class="left-section">
 
-            @if (ViewBag.Operacao == "A")
-            {
-                <h1><strong>Login</strong></h1>
-            }
-            else
-            {
-                <h1><strong>Login</strong></h1>
+        @if (ViewBag.Operacao == "A")
+        {
+            <!-- Seção superior com logo -->
+            <section class="top-section">
+                <img src="~/img/Logo.png" class="logo" style="width: 600px" />
+            </section>
 
-            }
-
-            <input type="submit" class="custom-button" role="button" name="btnEnviar" />
-            <input name="operacao" value="@ViewBag.Operacao" hidden>
-
-            @if (ViewBag.Operacao == "A")
-            {
-                <a asp-controller="Acesso" asp-action="Cadastro">
-                    <input type="button" class="btn" name="btnCadastrar" value="Cadastrar">
-                </a>
-            }
-            else
-            {
-                <a asp-controller="Acesso" asp-action="Login">
-                    <input type="button" class="btn" name="btnLogin" value="Login">
-                </a>
-            }
-        </section>
-
-
-        <section class="right-section">
-            <br>
-
-            <div class="input-group-sm mb-3 col">
-                @if (ViewBag.Operacao == "A")
-                {
-                    <div class="row">
+            <!-- Campos de login e botão de cadastrar -->
+            <section class="bottom-section">
+                <fieldset class="fieldset-login">
+                    <h1>Login</h1>
+                    <div class="input-group-sm mb-3 col">
+                        <div class="flex-column">
                             <div class="form-group">
                                 <label for="loginUsuario" class="control-label">Login do Usuário</label>
-                                <input asp-for="loginUsuario" type="text" class="form-control" required placeholder='Login...' value="SA"/>
+                                <input asp-for="loginUsuario" type="text" class="form-control" required placeholder="Login..." value="SA" />
                                 <span asp-validation-for="loginUsuario" class="text-danger"></span>
-
                             </div>
                             <div class="form-group">
                                 <label for="senha" class="control-label">Senha</label>
-                                <input asp-for="senha" type="password" class="form-control" required placeholder='Senha...' value="123456"/>
+                                <input asp-for="senha" type="password" class="form-control" required placeholder="Senha..." value="123456" />
                                 <span asp-validation-for="senha" class="text-danger"></span>
-
                             </div>
-                            <span asp-validation-for="loginE" class="text-danger"></span>
                             <br />
-                            <span class="text-danger"> @ViewBag.Erro</span>     
+                            <span class="text-danger">@ViewBag.Erro</span>
+                        </div>
                     </div>
+                    <input name="operacao" value="@ViewBag.Operacao" hidden>
 
-                }
-                else
-                {
-                    <div class="row">
-                        <div class="form-group">
-                            <label for="loginUsuario" class="control-label">Login do Usuário</label>
-                            <input asp-for="loginUsuario" type="text" class="form-control" required placeholder='Login...' />
-                            <span asp-validation-for="loginUsuario" class="text-danger"></span>
-                            <span asp-validation-for="login" class="text-danger"></span>
-
-                        </div>
-                        <div class="form-group">
-                            <label for="nomeUsuario" class="control-label">Nome do Usuário</label>
-                            <input asp-for="nomeUsuario" type="text" class="form-control" required placeholder='Nome...' />
-                            <span asp-validation-for="nomeUsuario" class="text-danger"></span>
-
-                        </div>
-                        <div class="form-group">
-                            <label for="nomeEmpresa" class="control-label">Nome da Empresa</label>
-                            <input asp-for="nomeEmpresa" type="text" class="form-control" required placeholder='Empresa...' />
-                            <span asp-validation-for="nomeEmpresa" class="text-danger"></span>
+                    <section class="cadastrar-section">
+                        <div class="btnCadastro">
+                            <a asp-controller="Acesso" asp-action="Cadastro">
+                                <input type="button" class="custom-button" name="btnCadastrar" value="Cadastrar">
+                            </a>
                             <br />
                         </div>
-                        <div class="form-group">
-                            <label for="senha" class="control-label">Senha</label>
-                            <input asp-for="senha" type="password" class="form-control" required placeholder='Senha...' />
-                            <span asp-validation-for="senha" class="text-danger"></span>
-
+                    </section>
+                    <section class="entrar-section">
+                        <div class="btnEnviar">
+                            <input type="submit" class="custom-button" name="btnEnviar" value="Entrar" />
                         </div>
-                        <span class="text-danger"> @ViewBag.Erro</span>
+                    </section>
+                </fieldset>
+            </section>
+        }
+        else
+        {
+            <!-- Seção para o cadastro -->
+            <section class="left-section">
+                <h1><strong>Cadastro</strong></h1>
+
+                <!-- Botões de envio e login -->
+                <div class="form-actions">
+                    <input type="submit" class="custom-button" name="btnEnviar" value="Enviar" />
+                    <input name="operacao" value="@ViewBag.Operacao" hidden>
+
+                    <a asp-controller="Acesso" asp-action="Login">
+                        <input type="button" class="custom-button" name="btnLogin" value="Login">
+                    </a>
+                </div>
+            </section>
+
+            <!-- Campos de cadastro -->
+            <section class="right-section">
+                <fieldset class="fieldset-cadastro">
+                    <div class="input-group-sm mb-3 col">
+                        <div class="row">
+                            <div class="form-group">
+                                <label for="loginUsuario" class="control-label">Login do Usuário</label>
+                                <input asp-for="loginUsuario" type="text" class="form-control" required placeholder="Login..." />
+                                <span asp-validation-for="loginUsuario" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="nomeUsuario" class="control-label">Nome do Usuário</label>
+                                <input asp-for="nomeUsuario" type="text" class="form-control" required placeholder="Nome..." />
+                                <span asp-validation-for="nomeUsuario" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="nomeEmpresa" class="control-label">Nome da Empresa</label>
+                                <input asp-for="nomeEmpresa" type="text" class="form-control" required placeholder="Empresa..." />
+                                <span asp-validation-for="nomeEmpresa" class="text-danger"></span>
+                                <br />
+                            </div>
+                            <div class="form-group">
+                                <label for="senha" class="control-label">Senha</label>
+                                <input asp-for="senha" type="password" class="form-control" required placeholder="Senha..." />
+                                <span asp-validation-for="senha" class="text-danger"></span>
+                            </div>
+                        </div>
                     </div>
-                }
-            </div>
-        </section>
+                </fieldset>
+            </section>
+        }
     </form>
 </main>
+
