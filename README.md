@@ -768,7 +768,23 @@ Retorno: ```true```se o usuário está logado, caso contrário, ```false```.<br>
 ```PegarUltimos50Dados```: Consulta os últimos 50 dados de temperatura de sensores do Fiware. <br>
 ```PegarUltimosDados```: Exibe informações no dashboard do sistema.<br>
 
+#### *Views*<br>
+1. ```Index.cshtml```: Página inicial com links para as funcionalidades principais. <br>
+2. ```Sobre.cshtml```: Informações detalhadas sobre a empresa.<br>
+3. Cadastros: Permite o registro de funcionários, empresas, sensores e manutenções. <br>
+4. Listagens: Exibe dados previamente cadastrados, como funcionários, empresas, sensores e manutenções.<br>
+5. Dashboards: Visualização gráfica de dados, com dashboards específicos para manutenção e sensores.<br>
+6. Gestão de acessos: Controle por login/logout.<br>
+7. ```Erro.cshtml```: Exibe mensagens de erro com detalhes técnicos.<br>
 
+#### *CSS*<br>
+```home.css```: Estilo para a página inicial.<br>
+```site.css```: Estilo base para o site.<br>
+```cadFunc.css```: Estilos adicionais para páginas de cadastro.<br>
+
+Scripts:<br>
+```Chart.bundle.min.js``` e ```charts.lib.js```: Bibliotecas para renderização dos gráficos nos dashboards.<br>
+```default.js```: Scripts padrão.<br>
 
 
 ## Youtube
