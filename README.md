@@ -1,4 +1,4 @@
-# Sistema IoT para Controle e Monitoramento Térmico em Estufas de Secagem de Motores Elétricos: Modelagem e Análise do protótipo
+# Sistema IoT para Monitoramento Térmico em Estufas de Secagem de Motores Elétricos
 ![Javascript](https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E)
 ![C#](https://img.shields.io/badge/C%23-239120?style=for-the-badge&logo=csharp&logoColor=white)
 ![HTML](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
@@ -551,14 +551,14 @@ e o uso nas camadas de apresentação e controle.<br>
 3. **ManutencaoViewModel**: Armazena informações sobre manutenções.
 * Herança: PadraoViewModel <br>
 * Propriedades: <br>
-```DateTime data_hora``` Data e hora da manutenção.
-```int idSensor``` Identificador do sensor relacionado.
-```string? descricaoSensor``` Descrição do sensor.
-```int idFuncionario``` Identificador do funcionário responsável.
-```string? nomeFuncionario``` Nome do funcionario responsável.
-```int estadoId``` Estado da manutenção (feito, em andamento, etc).
-```string? estadoNome```Nome do estado.
-```string? nomeEmpresa``` Nome da empresa associada.
+```DateTime data_hora``` Data e hora da manutenção. <br>
+```int idSensor``` Identificador do sensor relacionado.<br>
+```string? descricaoSensor``` Descrição do sensor.<br>
+```int idFuncionario``` Identificador do funcionário responsável.<br>
+```string? nomeFuncionario``` Nome do funcionario responsável.<br>
+```int estadoId``` Estado da manutenção (feito, em andamento, etc).<br>
+```string? estadoNome```Nome do estado.<br>
+```string? nomeEmpresa``` Nome da empresa associada.<br>
 
 4. **SensorViewModel**: Representa informações sobre os sensores do sistema.<br>
 * Herança: PadraoViewModel <br>
@@ -570,18 +570,18 @@ e o uso nas camadas de apresentação e controle.<br>
 5. **FotoPadraoViewModel**: Classe abstrata que adiciona suporte para manipulação de imagens.<br>
 * Herança: PadraoViewModel <br>
 * Propriedades: <br>
-```IFormFile? imagem``` Arquivo da imagem.
-```byte[]? imagembyte``` Representação da imagem em bytes.
-```string? foto64``` Imagem em formato Base64. somenta leitura.
+```IFormFile? imagem``` Arquivo da imagem.<br>
+```byte[]? imagembyte``` Representação da imagem em bytes.<br>
+```string? foto64``` Imagem em formato Base64. somenta leitura.<br>
 * Método:<br>
 ```byte[] ConvertImageToByte(IFormFile file)``` Converte uma imagem em formato ```IFormFile``` para bytes.<br>
 
 6. **FuncionarioViewModel**: Representa as informações sobre os funcionarios da empresa.<br>
 * Herança: FotoPadraoViewModel <br>
 * Propriedades: <br>
-```string nome``` Nome do funcionário.
-```string cargo``` Cargo do funcionário.
-```DateTime dataContratacao``` Data de contratação do funcionário.
+```string nome``` Nome do funcionário.<br>
+```string cargo``` Cargo do funcionário.<br>
+```DateTime dataContratacao``` Data de contratação do funcionário.<br>
 
 7. **EmpresaViewModel**: Representa as informações sobre as empresas cadastradas.<br>
 * Herança: FotoPadraoViewModel <br>
@@ -611,7 +611,7 @@ Essa camada é responsável por abstrair a comunicação com o banco de dados, i
 
 1. **ConexaoDB**: Classe estática responsável por criar conexões com o banco de dados.<br>
 * Método:<br>
-```SqlConnection GetConexao()``` Retorna uma conexão aberta com o banco.
+```SqlConnection GetConexao()``` Retorna uma conexão aberta com o banco.<br>
 ```cpp
 Data Source=LOCALHOST\sqlexpress;
 Database=Termo_Light;
@@ -641,7 +641,7 @@ Password=123456;
 
 4. **HelperFiwareDAO**: Classe estática projetada para interação com o FIWARE, fornecendo funcionalidades para o monitoramento, leitura de dados e gerenciamento de dispositivos IoT.<br>
 * **VerificarServer**: Verifica a disponibilidade de um servidor FIWARE.<br>
-Parâmetros: ```host```: IP do servidor
+Parâmetros: ```host```: IP do servidor<br>
 Retorno: ```bool```indicando se o servidor está ativo.<br>
 * **VerificarDados**: Obtém as últimas leituras de temperatura de um sensor associado a uma lâmpada. <br>
 Parâmetros:<br>
@@ -653,7 +653,7 @@ Retorno: Lista de objetos ```LeituraViewModel``` contendo temperatura e horário
 Parâmetros: <br>
 ```host```: IP do servidor. <br>
 ```lamp```: ID da lâmpada. <br>
-Retorno: Objeto ```LeituraViewModel```com temperatura e horário.
+Retorno: Objeto ```LeituraViewModel```com temperatura e horário. <br>
 * ```CriarLamp```: Cria uma nova lâmpada no sistema.<br>
 Parâmetros:<br>
 ```host```: IP do servidor<br>
@@ -674,7 +674,7 @@ Retorno: Objeto ```AcessoViewModel``` <br>
 Parâmetros: <br>
 ```loginUsuario``` Nome de usuário. <br>
 ```senha``` Senha do usuário. <br>
-Retorno: ```bool```indicando sucesso ou falha no login
+Retorno: ```bool```indicando sucesso ou falha no login <br>
 
 6. **EmpresaDAO**: Gerencia dados da entidade Empresa. <br>
 * Tabela associada: ```empresa```<br>
@@ -697,29 +697,337 @@ Retorno: ```bool```indicando sucesso ou falha no login
 ```MontarModel(DataRow registro)```: Constroi um objeto ```ManutencaoViewModel```, incluindo asociações com sensores, funcionários e empresas. <br>
 ```BuscaAvancada```: Pesquisa avançada com base em filtros como data, funcionário, sensor e estado.
 
-9. **SensorDAO**: Gerencia dados da entidade Sensor.
+9. **SensorDAO**: Gerencia dados da entidade Sensor.<br>
 * Tabela associada: ```sensor```<br>
 * Métodos: <br>
 ```CriaParametros(SensorViewModel sensor)```: Cria parâmetros SQL, incluindo ```id```, ```descricao``` e ```fk_empresa_id```(id da empresa associada). <br>
 ```MontarModel(DataRow registro)```: Mapeia um registro para um objeto. <br>
 ```VerificarSensoresRepetidos```: Verifica se já existem sensores cadastrados com a mesma descrição. <br>
 ```BuscaAvancada```: Realiza pesquisa de sensores com filtros por descrição e tipo. <br>
+#### *Controllers*
+
+1. HelperController: É uma classe utilitária que fornece métodos estáticos de suporte para outros controladores.<br>
+```VerificaUserLogado(ISession session)``` Verifica se o usuário está autenticado com base na sessão HTTP.<br>
+Retorno: ```true```se o usuário está logado, caso contrário, ```false```.<br>
+
+2. PadraoController<T>: Classe abstrata que define uma estrutura base para os controladores do projeto. Ele é genérico e espera que o tipo ```T```herde de ```PadraoViewModel```. Os controllers seguem seu padrão, herdando métodos genéricos. <br>
+* Propriedades: <br>
+```dao``` Instância do Data Acess Object(DAO) associado ao modelo ```T```.<br>
+```NomeViewIndex``` Nome da view de listagem (default: ```"index"```).<br>
+```NomeViewForm``` Nome da view de formulário (default: ```"form"```). <br>
+```ExigeAutenticacao``` Indica se a autenticação é obrigatória (default: ```true```), <br>
+* Métodos Sobrescrevíveis: <br>
+```AdicionarViewbagsForm``` e ```AdicionarViewbagsIndex``` Personalização de ```ViewBag```em páginas específicas. <br>
+```ValidarDados(T model, string operacao)``` Valida os dados do modelo antes de operações de persistência. <br>
+* Métodos: <br>
+```Index()```: Retorna a listagem de itens. <br>
+```Create()```: Renderiza a página para criação de novos itens.<br>
+```Save(T model, string operacao)```: Salva um novo item ou atualiza um existente.<br>
+```Edit(int id)```: Recupera e exibe um item para edição.<br>
+```Delete(int id)```: Remove um item.<br>
+```Dashboard()```: Exemplo de página personalizada.<br>
+
+3. HomeController: Gerencia as páginas principais do sistema. O controlador sobrescreve ```OnActionExecuting``` para verificar se o usuário está logado antes de processar qualquer ação. <br>
+* Métodos:<br>
+```Index()```: Página inicial do site.<br>
+```Sobre()```: Página com informações sobre o projeto.<br>
+```Privacy()```: Exibe a política de privacidade.<br>
+```Error()```: Renderiza uma página de erro customizada.<br>
+
+4. AcessoController: Gerencia operações de login, cadastro e controle de sessão. <br>
+* Propriedades: <br>
+```ExigeAutenticacao``` Definido como ```false```, permitindo acesso às funcionalidades sem autenticação inicial. <br>
+* Métodos: <br>
+```Login()```: Exibe a página de login.<br>
+```Cadastro()```: Exibe a página de cadastro de um novo usuário.<br>
+```Enviar(AcessoViewModel model, string operacao)```: Processa o login ou cadastro.<br>
+```LogOff()```: Finaliza a sessão e redireciona o usuário para a tela de login.<br>
+* Validação: é realizada através do método ```ValidarDados```, garantindo que campos obrigatórios sejam preenchidos e que o login seja único no cadastro.
+
+5. EmpressaoController: Controla operações relacionadas à Empresa, como cadastro, edição e validação de dados.
+* Propriedades: <br>
+```ValidarDados```: Verifica campos obrigatórios(nome, sede e imagem), limita o tamanho da imagem a 2MB e garante a persistência da imagem existente ao editar um registro sem fornecer uma nova imagem. <br>
+```ConvertImageToByte```: Converte a imagem fornecida para bytes ao salvar ou atualizar registros. <br>
+
+6. FuncionarioController: Gerencia as ações relacionados aos Funcionários,  incluindo cadastro, edição e busca avançada. <br>
+* Propriedades: <br>
+```ValidarDados```: Verifica campos obrigatórios( nome, cargo e data de contratação), valida o tamanho da imagem(máximo 2MB), garante a persistência da imagem existente ao editar registros e impede datas de contratação inválidas(anteriores a 1900 ou posteriores à data atual). <br>
+```BuscaAvancada```: Filtra funcionários com base em nome, cargo e intervalo de datas de contratação. <br>
+
+7. ManutencaoController: Gerencia as manutenções, com funcionalidades de cadastro, edição e busca avançada, além de integração com funcionários, sensores e estados de manutenção. <br>
+* Propriedades: <br>
+```AdicionarViewbagsForm```: Lista funcionários, sensores e estados disponíveis para exibição em formulários e índices. <br>
+```ValidarDados```: Verifica se os campos obrigatórios (funcionário, estado, sensor e data) estão preenchidos e garante que as datas de manutenção sejam válidas (futuras para novos registros ou coerentes com o estado em edições). <br>
+```BuscaAvancada```: Filtra manutenções com base em intervalo de datas, funcionário, empresa, sensor e estado. <br>
+
+8. SensorController: Controla as operações relacionadas aos Sensores, incluindo integração com o sistema Fiware. <br>
+* Propriedades: <br>
+```ValidarDadosFiware```: Impede duplicidade de sensores, verificando descrições já existentes, valida o tamanho da imagem e empresa associada e faz integração com Fiware para criação e validação de sensores.<br>
+```AdicionarViewbagsForm```: Lista empresas disponíveis para exibição em formulários e índices.<br>
+```BuscaAvancada```: Filtra sensores com base em descrição, empresa e tipo.<br>
+```PegarUltimos50Dados```: Consulta os últimos 50 dados de temperatura de sensores do Fiware. <br>
+```PegarUltimosDados```: Exibe informações no dashboard do sistema.<br>
+
+#### *Views*<br>
+1. ```Index.cshtml```: Página inicial com links para as funcionalidades principais. <br>
+2. ```Sobre.cshtml```: Informações detalhadas sobre a empresa.<br>
+3. Cadastros: Permite o registro de funcionários, empresas, sensores e manutenções. <br>
+4. Listagens: Exibe dados previamente cadastrados, como funcionários, empresas, sensores e manutenções.<br>
+5. ```Erro.cshtml```: Exibe mensagens de erro com detalhes técnicos.<br>
+6. Gestão de acessos: Controle por login/logout.<br>
+7. Dashboards: Visualização gráfica de dados para monitoramento de um sistema de temperatura. A interface permite a visualização em tempo real de dados obtidos de sensores, configurações de parâmetros de controle PID e escolha de modos de operação (malha aberta ou malha fechada). Também permite análise gráfica e manipulação de dados históricos.<br>
+* Configurações de Controle: Malha aberta ou Malha fechada, e caso seja malha fechada que apareça suas variáveis.<br>
+```cpp
+ let malhaValue = document.getElementById('malhaValue').innerText;
+
+            if (malhaValue == "" || malhaValue == "F") {
+                const isMvValid = validarCampo('mvInput', 'mvError', 'O valor de Setpoint é obrigatório e deve ser positivo.');
+                const isKpValid = validarCampo('kpInput', 'kpError', 'O valor de Kp é obrigatório e deve ser positivo.');
+                const isKiValid = validarCampo('kiInput', 'kiError', 'O valor de Ki é obrigatório e deve ser positivo.');
+                const isKdValid = validarCampo('kdInput', 'kdError', 'O valor de Kd é obrigatório e deve ser positivo.');
 
 
-## Youtube
-[Video pitch](link_do_video).
-<br>
+                if (!isKpValid || !isKiValid || !isKdValid || !isMvValid) {
+                    return; // Interrompe o cálculo se algum campo for inválido
+                }
+            }
+            else 
+            {
+                const isMvValid = validarCampo('mvInput', 'mvError', 'O valor de MV é obrigatório e deve ser maior que zero.');
+                
+                if (!isMvValid) {
+                    return; // Interrompe o cálculo se algum campo for inválido
+                }
+            }
 
-## Manual
-1. Preparação do Ambiente
-* Configure uma rede Wi-Fi para o ESP32 e um broker MQTT.
-* Substitua os valores padrão (SSID, senha, IP do broker) pelas suas informações.
-2. Carregamento do Código
-* Utilize o Arduino IDE ou outro ambiente compatível para carregar o código no ESP32.
-3. Monitoramento e Controle
-* Use o monitor serial para acompanhar logs de conexão e status.
-* Publique mensagens no broker MQTT para enviar comandos e visualize os dados de temperatura.
+            console.log('Todos os valores são válidos, continuando com o cálculo...');
+            // Insira o restante do cálculo aqui
+        });
+```
+* Monitoramento em Tempo Real: Vizualização de Temperatura Atual e Tempo Decorrido. Atualizando a casa 1000ms.<br>
+```cpp
+async function obterTemperatura(host, lamp) {
+            try {
+                const response = await fetch(`http://${host}:1026/v2/entities/urn:ngsi-ld:Lamp:${lamp}/attrs/temperature`, {
+                    method: 'GET',
+                    headers: {
+                        'fiware-service': 'smart',
+                        'fiware-servicepath': '/',
+                        'Accept': 'application/json'
+                    }
+                });
 
+                if (response.ok) {
+                    const data = await response.json();
+                    const temp = data.value;
+                    const dataString = data.metadata.TimeInstant.value;
+                    const dataHora = new Date(dataString);
+
+                    // Adiciona dados ao gráfico
+                    temperatureData.push(temp);
+                    labels.push(dataHora.toLocaleTimeString());
+                    dynamicChart.update();
+                } else {
+                    console.error('Erro ao buscar os dados do Fiware:', response.statusText);
+                }
+            } catch (error) {
+                console.error('Erro na requisição:', error);
+            }
+        }
+
+
+        let updateIntervalId; // Variável global para armazenar o ID do intervalo
+
+        let timeInSeconds = 0; // Variável para controlar o tempo em segundos
+
+        // Função para iniciar o intervalo de leitura
+        function startTemperatureUpdate() {
+            // Cancela o intervalo existente, se houver
+            if (updateIntervalId) {
+                clearInterval(updateIntervalId);
+            }
+
+            // Obtém o novo tempo de atualização do campo ReadTime
+            const readTimeInput = document.getElementById('ReadTime');
+            const intervalTime = parseFloat(readTimeInput.value) || 1000; // Valor padrão de 1 segundo
+
+            // Define um novo intervalo de leitura
+            updateIntervalId = setInterval(() => {
+                if (!isPaused) {
+                    // Simula uma curva
+                    var i = parseFloat(document.getElementById('Temp').value);
+                    if (i < 0.9) {
+                        i += 0.1;
+                    }
+                    document.getElementById('Temp').value = i;
+
+                    // Calcula a nova temperatura
+                    const newTemperature = 20 / Math.cos(i);
+
+                    // Adiciona novos dados ao gráfico
+                    temperatureData.push(newTemperature);
+
+                    // Incrementa o contador de tempo em segundos
+                    timeInSeconds += intervalTime / 1000; // Converte milissegundos para segundos
+                    labels.push(`${timeInSeconds.toFixed(1)}s`); // Adiciona o tempo em segundos ao eixo X
+
+                    // Atualiza a linha de MV no gráfico
+                    const mvInput = document.getElementById('mvInput');
+                    const mvValue = parseFloat(mvInput.value);
+                    if (!isNaN(mvValue)) {
+                        dynamicChart.data.datasets[1].data.push(mvValue);
+                    }
+
+                    // Exibe o último tempo
+                    document.getElementById('Time').value = timeInSeconds.toFixed(1);
+
+                    // Atualiza o gráfico
+                    dynamicChart.update();
+                }
+            }, intervalTime);
+        }
+
+```
+* Gráfico: Exibe os dados de temperatura e valores de MV. Opção de Limpar Dados e Atualizar Gráfico(lê os últimos 50 dados).<br>
+```cpp
+ // Evento de clique no botão de limpar
+        document.getElementById('limparDadosBtn').addEventListener('click', limparDados);
+
+        // Função para buscar os dados e atualizar o gráfico
+        async function atualizarGraficoComDados() {
+            try {
+                // Faz a chamada AJAX para buscar os últimos 50 dados
+                const response = await fetch('/Sensor/PegarUltimosDados');
+
+                if (!response.ok) {
+                    console.error('Erro ao buscar dados:', response.statusText);
+                    return;
+                }
+
+                // Recebe os dados em formato JSON
+                const dados = await response.json();
+
+                // Limpa os arrays para atualizar com novos dados
+                labels.length = 0;
+                temperatureData.length = 0;
+                MV.length = 0;
+
+                // Preenche os arrays com os novos dados
+                dados.forEach((dado, index) => {
+                    labels.push(index + 1); // Índice ou qualquer valor que queira como label
+                    temperatureData.push(dado.temperatura || 0); // Supondo que o dado tem 'temperatura'
+                    MV.push(dado.mv || 0); // Supondo que o dado tem 'mv'
+                });
+
+                // Atualiza o gráfico com os novos dados
+                dynamicChart.update();
+            } catch (error) {
+                console.error('Erro ao processar os dados:', error);
+            }
+        }
+
+        // Evento para atualizar o gráfico ao clicar em um botão
+        document.getElementById('atualizarGrafico').addEventListener('click', atualizarGraficoComDados);
+```
+* Cálculos automáticos: Constante de ganho, tempo e erro estacionário (real e o calculado). <br>
+```cpp
+document.getElementById('calculateErrorButton').addEventListener('click', () => {
+            
+            let malhaValue = document.getElementById('malhaValue').innerText;
+
+            if (malhaValue == "" || malhaValue == "F") {
+                const isMvValid = validarCampo('mvInput', 'mvError', 'O valor de Setpoint é obrigatório e deve ser positivo.');
+                const isKpValid = validarCampo('kpInput', 'kpError', 'O valor de Kp é obrigatório e deve ser positivo.');
+                const isKiValid = validarCampo('kiInput', 'kiError', 'O valor de Ki é obrigatório e deve ser positivo.');
+                const isKdValid = validarCampo('kdInput', 'kdError', 'O valor de Kd é obrigatório e deve ser positivo.');
+
+
+                if (!isKpValid || !isKiValid || !isKdValid || !isMvValid) {
+                    return; // Interrompe o cálculo se algum campo for inválido
+                }
+            }
+            else 
+            {
+                const isMvValid = validarCampo('mvInput', 'mvError', 'O valor de MV é obrigatório e deve ser maior que zero.');
+                
+                if (!isMvValid) {
+                    return; // Interrompe o cálculo se algum campo for inválido
+                }
+            }
+
+            console.log('Todos os valores são válidos, continuando com o cálculo...');
+            // Insira o restante do cálculo aqui
+        });
+  document.getElementById('calculateErrorButton').addEventListener('click', () => {
+            const setpoint = parseFloat(document.getElementById('mvInput').value);
+            if (!isNaN(setpoint)) {
+                
+                //Evita dar erro para o sistema aberto
+                let malhaValue = document.getElementById('malhaValue').innerText;
+
+                const ganhoK = calcularGanho(); // Obtém o ganho K
+                const setpoint = parseFloat(document.getElementById('mvInput').value); // Obtém o setpoint
+                const lastTemperature = temperatureData[temperatureData.length - 1]; //Última temperatura
+                const initialValue = temperatureData[0]; //Temperatura inicial
+                const erroEstacionarioResult = setpoint - lastTemperature; //Diferença entre o setpoint e a última temperatura
+                const targetValue = initialValue + 0.632 * (lastTemperature - initialValue); //Constante de tempo (Tau)
+
+                //Calcula constante de tempo
+                let timeIndex = labels.length - 1;
+                for (let i = 0; i < temperatureData.length; i++) {
+                    if (temperatureData[i] >= targetValue) {
+                        timeIndex = i; // Encontra o índice correspondente ao targetValue
+                        break;
+                    }
+                }
+                // O índice é o tempo em segundos
+                const timeConstant = timeIndex;
+
+                if (malhaValue == "" || malhaValue == "F") {
+                    const kp = parseFloat(document.getElementById('kpInput').value); // Obtém o Kp
+                    const ki = parseFloat(document.getElementById('kiInput').value); // Obtém o Ki
+
+                    //Calcula o Erro estacionário (Fórmula)
+                    if (ganhoK !== "" && !isNaN(kp) && !isNaN(setpoint)) {
+                        const erroEstacionarioReal = (setpoint - lastTemperature) / (1 + kp * ganhoK + ki * 3);
+                        
+                        //Ilustra na tela os erros calculados
+                        document.getElementById('errorExpect').value = erroEstacionarioReal.toFixed(2);
+                        document.getElementById('errorResult').value = erroEstacionarioResult.toFixed(2); //Erro estacionário (Realidade)
+                    } else {
+                        console.error('Erro ao calcular o erro estacionário.');
+                    }
+
+                }
+                
+                document.getElementById('ConstantWin').value = ganhoK.toFixed(2); //Envia a constante de ganho
+                document.getElementById('ConstantTime').value = timeConstant.toFixed(2); //Envia a constante de tempo
+            }
+        });
+//Formula que calcula o ganho
+        function calcularGanho() {
+            const initialTemperature = temperatureData[0]; // Primeiro valor da temperatura
+            const finalTemperature = temperatureData[temperatureData.length - 1]; // Último valor da temperatura
+            const mvInput = parseFloat(document.getElementById('mvInput').value); // MV atual
+
+            if (!isNaN(initialTemperature) && !isNaN(finalTemperature) && !isNaN(mvInput)) {
+
+                // Calcula o ganho
+                const ganhoK = (finalTemperature - initialTemperature) / mvInput;
+                
+                return ganhoK; // Retorna o ganho
+            } else {
+                console.error('Não foi possível calcular o ganho. Verifique os valores fornecidos.');
+                return null;
+            }
+        }
+```
+
+#### *CSS*<br>
+```home.css```: Estilo para a página inicial.<br>
+```site.css```: Estilo base para o site.<br>
+```cadFunc.css```: Estilos adicionais para páginas de cadastro.<br>
+```~/css/dashSens.css```: Arquivo de estilos do frontend do dashboard. <br>
 
 ## Referências Bibliográficas
 CABRINI, Fabio. fiware. GitHub, n.d. Disponível em: https://github.com/fabiocabrini/fiware. Acesso em: 16 de out. de 2024. <br>

@@ -73,35 +73,40 @@ namespace SitePBL.Controllers
         public IActionResult Enviar(AcessoViewModel model, string operacao)
         {
             AcessoDAO a = new AcessoDAO();
-            ValidarDados(model,operacao);
-            if(operacao == "A")
+
+            if (operacao == "A") // Operação de login
             {
                 if (a.Login(model.loginUsuario, model.senha))
                 {
                     HttpContext.Session.SetString("Logado", "true");
-                    return RedirectToAction("index", "home");
+                    // Redireciona para a tela de transição
+                    return View("Transicao");
                 }
                 else
                 {
                     ViewBag.Operacao = operacao;
+                    ViewBag.Erro = "Usuário ou senha inválidos.";
                     return View("Form");
                 }
             }
-            else
+            else // Operação de cadastro
             {
                 a.Insert(model);
                 if (a.Login(model.nomeUsuario, model.senha))
                 {
                     HttpContext.Session.SetString("Logado", "true");
-                    return RedirectToAction("index", "home");
+                    // Redireciona para a tela de transição
+                    return View("Transicao");
                 }
                 else
                 {
                     ViewBag.Operacao = operacao;
+                    ViewBag.Erro = "Cadastro não efetuado. Tente novamente.";
                     return View("Form");
                 }
             }
         }
+
 
         public IActionResult LogOff()
         {
