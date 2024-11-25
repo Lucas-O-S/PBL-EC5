@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using SitePBL.DAO;
 using SitePBL.Models;
 using System.Data.SqlTypes;
@@ -58,6 +59,19 @@ namespace SitePBL.Controllers
 
                 }
 
+            }
+
+            if (model.idFuncionario < 0)
+            {
+                ModelState.AddModelError("idFuncionario", "Selecione um Funcionario");
+            }
+            if (model.estadoId < 0)
+            {
+                ModelState.AddModelError("estadoId", "Selecione um estado");
+            }
+            if (model.idSensor < 0)
+            {
+                ModelState.AddModelError("idSensor", "Selecione um Sensor");
             }
 
 

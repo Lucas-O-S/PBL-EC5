@@ -44,6 +44,8 @@
                     <label class="control-label">EmpresaId</label>
 
                     <select asp-for="empresaId" class="form-control">
+                        <option value="-1">--Selecione--</option>
+
                         @foreach(EmpresaViewModel E in ViewBag.empresas)
                         {
                             <option value="@E.id">@E.nome</option>

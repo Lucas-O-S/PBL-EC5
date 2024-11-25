@@ -19,11 +19,24 @@
             <section class="controls-section">
 
                 <div class="controls">
+                    
                     <div class="form-group">
-                        <label for="mvInput">SetPoint (ºC):</label>
+                        
+                        @if (ViewBag.Malha == null || ViewBag.Malha == "F")
+                        {
+                            <label for="mvInput">SetPoint (ºC):</label>
+                        }
+                        else
+                        {
+                            <label for="mvInput">MV (PWM):</label>
+                        }
                         <input type="number" id="mvInput" class="form-control" step="0.1" />
                         <span id="mvError" class="text-danger"></span>
                     </div>
+
+                    <!-- Use um elemento escondido para armazenar o valor da ViewBag -->
+                    <div id="malhaValue" style="display:none;">@ViewBag.Malha</div>
+
                     
                     @if (ViewBag.Malha == null || ViewBag.Malha == "F")
                     {
@@ -34,12 +47,12 @@
                         </div>
                         <div class="form-group">
                             <label for="kiInput">Ki:</label>
-                            <input type="number" id="kiInput" class="form-control" step="0.1" value="1"/>
+                            <input type="number" id="kiInput" class="form-control" step="0.1" value="0"/>
                             <span id="kiError" class="text-danger"></span>
                         </div>
                         <div class="form-group">
                             <label for="kdInput">Kd:</label>
-                            <input type="number" id="kdInput" class="form-control" step="0.1" value="1" />
+                            <input type="number" id="kdInput" class="form-control" step="0.1" value="0" />
                             <span id="kdError" class="text-danger"></span>
                         </div>
                     }
@@ -50,21 +63,45 @@
                         <button id="updateIntervalButton" class="button">Atualizar Tempo</button>
                     </div>
 
-                    <form class="form-container container row" action="/Sensor/TrocaMalha" method="get">
-                    <div class="form-group">
-                        
+                </div>
+
+            </section>
+
+            <section class="controls-section">
+
+                <div class="controls">
+
+                    <label for="Temp">Temperatura (ºC): </label>
+                    <input type="text" id="Temp" class="form-control" readonly value="0.1" />
+
+                    <label for="Time">Tempo (S): </label>
+                    <input type="text" id="Time" class="form-control" readonly value="0.1" />
+                </div>
+
+                <form class="form-container container row" action="/Sensor/TrocaMalha" method="get">
+                    <div class="button-container">
+
                         <label for="malhaSelect">Escolha o Tipo de Malha:</label>
                         <select id="malhaSelect" class="form-control" name="malha">
                             <option value="A">Malha Aberta</option>
                             <option value="F">Malha Fechada</option>
                         </select>
-                            <input type="submit" class="custom-button" role="button" value="Trocar Malha" />
+                        <button class="button">Trocar Malha</button>
 
-                            <span class="text-danger"> @ViewBag.Erro </span>
+                        <span class="text-danger"> @ViewBag.Erro </span>
                     </div>
-                    </form>
+                </form>
 
-                </div>
+                    <!--Seção de botões-->
+                    <div class="button-container">
+                        <button id="toggleButton" class="button">Pausar</button>
+                        <button id="calculateErrorButton" class="button">Calcular</button>
+                        <button id="limparDadosBtn" class="button">Limpar Dados do Gráfico</button>
+                        <button id="atualizarGrafico" class="button">Atualizar Gráfico com os Últimos 50 Dados</button>
+
+                        <a class="button" href="/Home/Index">Voltar</a>
+
+                    </div>
 
             </section>
 
@@ -73,7 +110,7 @@
 
                 <div>
                     @if (ViewBag.Malha == null || ViewBag.Malha == "F")
-                        {
+                    {
                         <h1>Controle de Temperatura (Malha Fechada)</h1>
                     }
                     else
@@ -85,38 +122,25 @@
                 <div class="chart-container">
                     <canvas id="chart"></canvas>
                 </div>
-  
-                <div class="button-container">
-                    <button id="toggleButton" class="button">Pausar</button>
-                    <button id="calculateErrorButton" class="button">Calcular Erro Estacionário</button>
-                    <button id="limparDadosBtn">Limpar Dados do Gráfico</button>
-
-                    <div>
-                        <label for="Temp">Temperatura atual: </label> 
-                        <input type="text" id="Temp" class="form-control" readonly value="0.1" />
-                    </div>
-
-                    <div>
-                        <a href="/Home/Index">Voltar</a>
-                    </div>
- 
-                </div>
 
             </section>
 
             <div>
-
-                <label for="errorExpect">Erro Estacionário (Fórmula):</label>
-                <input type="text" id="errorExpect" class="form-control" readonly />
-
-                <label for="errorResult">Erro Estacionário (Realidade):</label>
-                <input type="text" id="errorResult" class="form-control" readonly />
 
                 <label for="ConstantWin">Constante de ganho (K):</label>
                 <input type="text" id="ConstantWin" class="form-control" readonly />
 
                 <label for="ConstantTime">Constante de tempo (S):</label>
                 <input type="text" id="ConstantTime" class="form-control" readonly />
+
+                @if (ViewBag.Malha == null || ViewBag.Malha == "F")
+                {
+                    <label for="errorExpect">Erro Estacionário (Fórmula):</label>
+                    <input type="text" id="errorExpect" class="form-control" readonly />
+
+                    <label for="errorResult">Erro Estacionário (Realidade):</label>
+                    <input type="text" id="errorResult" class="form-control" readonly />
+                }
 
             </div>
         </div>
@@ -201,6 +225,8 @@
 
         let updateIntervalId; // Variável global para armazenar o ID do intervalo
 
+        let timeInSeconds = 0; // Variável para controlar o tempo em segundos
+
         // Função para iniciar o intervalo de leitura
         function startTemperatureUpdate() {
             // Cancela o intervalo existente, se houver
@@ -227,7 +253,10 @@
 
                     // Adiciona novos dados ao gráfico
                     temperatureData.push(newTemperature);
-                    labels.push(`${labels.length}s`);
+
+                    // Incrementa o contador de tempo em segundos
+                    timeInSeconds += intervalTime / 1000; // Converte milissegundos para segundos
+                    labels.push(`${timeInSeconds.toFixed(1)}s`); // Adiciona o tempo em segundos ao eixo X
 
                     // Atualiza a linha de MV no gráfico
                     const mvInput = document.getElementById('mvInput');
@@ -235,6 +264,9 @@
                     if (!isNaN(mvValue)) {
                         dynamicChart.data.datasets[1].data.push(mvValue);
                     }
+
+                    // Exibe o último tempo
+                    document.getElementById('Time').value = timeInSeconds.toFixed(1);
 
                     // Atualiza o gráfico
                     dynamicChart.update();
@@ -264,7 +296,7 @@
             const value = parseFloat(input.value);
             const error = document.getElementById(errorId);
 
-            if (isNaN(value) || value <= 0) {
+            if (isNaN(value) || value < 0) {
                 error.textContent = mensagemErro;
                 return false;
             }
@@ -274,13 +306,27 @@
         }
 
         document.getElementById('calculateErrorButton').addEventListener('click', () => {
-            const isMvValid = validarCampo('mvInput', 'mvError', 'O valor de Setpoint é obrigatório e deve ser maior que zero.');
-            const isKpValid = validarCampo('kpInput', 'kpError', 'O valor de Kp é obrigatório e deve ser maior que zero.');
-            const isKiValid = validarCampo('kiInput', 'kiError', 'O valor de Ki é obrigatório e deve ser maior que zero.');
-            const isKdValid = validarCampo('kdInput', 'kdError', 'O valor de Kd é obrigatório e deve ser maior que zero.');
+            
+            let malhaValue = document.getElementById('malhaValue').innerText;
 
-            if (!isKpValid || !isKiValid || !isKdValid) {
-                return; // Interrompe o cálculo se algum campo for inválido
+            if (malhaValue == "" || malhaValue == "F") {
+                const isMvValid = validarCampo('mvInput', 'mvError', 'O valor de Setpoint é obrigatório e deve ser positivo.');
+                const isKpValid = validarCampo('kpInput', 'kpError', 'O valor de Kp é obrigatório e deve ser positivo.');
+                const isKiValid = validarCampo('kiInput', 'kiError', 'O valor de Ki é obrigatório e deve ser positivo.');
+                const isKdValid = validarCampo('kdInput', 'kdError', 'O valor de Kd é obrigatório e deve ser positivo.');
+
+
+                if (!isKpValid || !isKiValid || !isKdValid || !isMvValid) {
+                    return; // Interrompe o cálculo se algum campo for inválido
+                }
+            }
+            else 
+            {
+                const isMvValid = validarCampo('mvInput', 'mvError', 'O valor de MV é obrigatório e deve ser maior que zero.');
+                
+                if (!isMvValid) {
+                    return; // Interrompe o cálculo se algum campo for inválido
+                }
             }
 
             console.log('Todos os valores são válidos, continuando com o cálculo...');
@@ -293,9 +339,11 @@
             const setpoint = parseFloat(document.getElementById('mvInput').value);
             if (!isNaN(setpoint)) {
                 
+                //Evita dar erro para o sistema aberto
+                let malhaValue = document.getElementById('malhaValue').innerText;
+
                 const ganhoK = calcularGanho(); // Obtém o ganho K
                 const setpoint = parseFloat(document.getElementById('mvInput').value); // Obtém o setpoint
-                const kp = parseFloat(document.getElementById('kpInput').value); // Obtém o Kp
                 const lastTemperature = temperatureData[temperatureData.length - 1]; //Última temperatura
                 const initialValue = temperatureData[0]; //Temperatura inicial
                 const erroEstacionarioResult = setpoint - lastTemperature; //Diferença entre o setpoint e a última temperatura
@@ -312,16 +360,25 @@
                 // O índice é o tempo em segundos
                 const timeConstant = timeIndex;
 
-                //Calcula o Erro estacionário (Fórmula)
-                if (ganhoK !== null && !isNaN(kp) && !isNaN(setpoint)) {
-                    const erroEstacionarioReal = (setpoint - lastTemperature) / (1 + kp * ganhoK);
-                    document.getElementById('errorExpect').value = erroEstacionarioReal.toFixed(2);
-                } else {
-                    console.error('Erro ao calcular o erro estacionário.');
+                if (malhaValue == "" || malhaValue == "F") {
+                    const kp = parseFloat(document.getElementById('kpInput').value); // Obtém o Kp
+                    const ki = parseFloat(document.getElementById('kiInput').value); // Obtém o Ki
+
+                    //Calcula o Erro estacionário (Fórmula)
+                    if (ganhoK !== "" && !isNaN(kp) && !isNaN(setpoint)) {
+                        const erroEstacionarioReal = (setpoint - lastTemperature) / (1 + kp * ganhoK + ki * 3);
+                        
+                        //Ilustra na tela os erros calculados
+                        document.getElementById('errorExpect').value = erroEstacionarioReal.toFixed(2);
+                        document.getElementById('errorResult').value = erroEstacionarioResult.toFixed(2); //Erro estacionário (Realidade)
+                    } else {
+                        console.error('Erro ao calcular o erro estacionário.');
+                    }
+
                 }
                 
-                document.getElementById('ConstantTime').value = timeConstant.toFixed(2);
-                document.getElementById('errorResult').value = erroEstacionarioResult.toFixed(2); //Erro estacionário (Realidade)
+                document.getElementById('ConstantWin').value = ganhoK.toFixed(2); //Envia a constante de ganho
+                document.getElementById('ConstantTime').value = timeConstant.toFixed(2); //Envia a constante de tempo
             }
         });
 
@@ -332,15 +389,11 @@
             const mvInput = parseFloat(document.getElementById('mvInput').value); // MV atual
 
             if (!isNaN(initialTemperature) && !isNaN(finalTemperature) && !isNaN(mvInput)) {
-                // Variação de MV
-                const deltaMV = mvInput; - initialTemperature;
 
                 // Calcula o ganho
-                const ganhoK = (finalTemperature - initialTemperature) / deltaMV;
-
-                // Exibe o ganho
-                document.getElementById('ConstantWin').value = ganhoK.toFixed(2);
-                return ganhoK;
+                const ganhoK = (finalTemperature - initialTemperature) / mvInput;
+                
+                return ganhoK; // Retorna o ganho
             } else {
                 console.error('Não foi possível calcular o ganho. Verifique os valores fornecidos.');
                 return null;
@@ -370,6 +423,42 @@
 
         // Evento de clique no botão de limpar
         document.getElementById('limparDadosBtn').addEventListener('click', limparDados);
+
+        // Função para buscar os dados e atualizar o gráfico
+        async function atualizarGraficoComDados() {
+            try {
+                // Faz a chamada AJAX para buscar os últimos 50 dados
+                const response = await fetch('/Sensor/PegarUltimosDados');
+
+                if (!response.ok) {
+                    console.error('Erro ao buscar dados:', response.statusText);
+                    return;
+                }
+
+                // Recebe os dados em formato JSON
+                const dados = await response.json();
+
+                // Limpa os arrays para atualizar com novos dados
+                labels.length = 0;
+                temperatureData.length = 0;
+                MV.length = 0;
+
+                // Preenche os arrays com os novos dados
+                dados.forEach((dado, index) => {
+                    labels.push(index + 1); // Índice ou qualquer valor que queira como label
+                    temperatureData.push(dado.temperatura || 0); // Supondo que o dado tem 'temperatura'
+                    MV.push(dado.mv || 0); // Supondo que o dado tem 'mv'
+                });
+
+                // Atualiza o gráfico com os novos dados
+                dynamicChart.update();
+            } catch (error) {
+                console.error('Erro ao processar os dados:', error);
+            }
+        }
+
+        // Evento para atualizar o gráfico ao clicar em um botão
+        document.getElementById('atualizarGrafico').addEventListener('click', atualizarGraficoComDados);
 
     </script>
 

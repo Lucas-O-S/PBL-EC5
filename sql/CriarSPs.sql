@@ -144,8 +144,7 @@ create or alter procedure sp_avancado_sensor(
 )
 as
 begin
-	declare @likeDescricao varchar(max)
-	set @likeDescricao = '%' + @descricao + '%'
+	set @descricao = '%' + @descricao + '%'
 	declare @likeEmpresa varchar(max)
 	set @likeEmpresa = '%' + @empresa + '%'
 
@@ -153,8 +152,8 @@ begin
 	from sensor as s
 	inner join empresa as e
 	on e.id = s.fk_empresa_id
-	where s.descricao like @likeDescricao and
-	( (@tipo = 0 and e.nome like @likeDescricao) or (@tipo = 1 and e.nome = @empresa))
+	where s.descricao like @descricao and
+	( (@tipo = 0 and e.nome like @likeEmpresa) or (@tipo = 1 and e.nome = @empresa))
 				
 end
 go
@@ -210,6 +209,16 @@ begin
 end
 go
 
+-----------------------------------------------------------------
+
+create or alter procedure sp_verificar_login(
+	@login_Usuario varchar(500)
+)
+as
+begin
+	select COUNT(login_Usuario) as cont from acesso where login_Usuario = @login_Usuario
+end
+go
 
 ---------------------------------------------------------
 
