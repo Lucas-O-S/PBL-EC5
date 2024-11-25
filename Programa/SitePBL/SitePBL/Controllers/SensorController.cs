@@ -85,62 +85,17 @@ namespace SitePBL.Controllers
             return View("Dashboard", null);
         }
 
-        public static async Task<List<SensorViewModel>> PegarUltimos50Dados(string host, string lamp)
-        {
-            List<SensorViewModel> listaDados = new List<SensorViewModel>();
-
-            try
-            {
-                using (HttpClient client = new HttpClient())
-                {
-                    // Construção correta da URL
-                    string url = $"http://{host}:8666/v2/entities/urn:ngsi-ld:Lamp:{lamp}/attrs/temperature?lastN=50";
-
-                    HttpResponseMessage response = await client.GetAsync(url);
-
-                    if (response.IsSuccessStatusCode)
-                    {
-                        string jsonResponse = await response.Content.ReadAsStringAsync();
-                        // Ajuste da desserialização com base no formato esperado
-                        listaDados = JsonConvert.DeserializeObject<List<SensorViewModel>>(jsonResponse);
-                    }
-                    else
-                    {
-                        // Log de erro em caso de falha na requisição
-                        Console.WriteLine($"Erro ao acessar API: {response.StatusCode}");
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                // Tratamento de erro com log da exceção
-                Console.WriteLine($"Erro ao buscar dados: {ex.Message}");
-            }
-
-            return listaDados;
-        }
-
         public async Task<IActionResult> PegarUltimosDados()
         {
-            try
-            {
-                // Nome específico da lâmpada (ou sensor) que deseja consultar
-                string lamp = "03y";
-                var dados = await PegarUltimos50Dados(HelperFiwareDAO.host, lamp);
+            // Defina as variáveis necessárias
+            string host = "4.228.64.5"; // IP correto do servidor
+            string lampId = "03y";       // ID correto da lâmpada
+            int lastN = 50;              // Número de leituras que deseja obter
 
-                if (dados == null || dados.Count == 0)
-                {
-                    ModelState.AddModelError("descricao", "Não foi possível obter dados do Fiware.");
-                    return View("Dashboard", null); // Ou outra View que faça sentido
-                }
+            List<LeituraViewModel> leituras = await HelperFiwareDAO.VerificarDados(host, lampId, lastN);
 
-                // Retorna os dados para a View chamada "Dashboard"
-                return View("Dashboard", dados);
-            }
-            catch (Exception erro)
-            {
-                return View("Error", new ErrorViewModel(erro.ToString()));
-            }
+            // Retorne os dados em formato JSON
+            return Json(leituras);
         }
 
     }
