@@ -57,7 +57,7 @@
     border-radius: 10px;
     padding: 20px;
     margin-bottom: 20px; /* Espaço entre os fieldsets */
-    background-color: #e0ffda; /* Cor de fundo */
+    /*background-color: #e0ffda;*/ /* Cor de fundo */
     width: 650px; /* Fixando largura */
 }
 
@@ -122,11 +122,12 @@ input[type="button"]:active, input[type="submit"]:active {
 /* Ajustes de posicionamento dos botões */
 .form-actions {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between normal;
     align-items: center;
     gap: 20px; /* Espaço entre os botões */
     margin-top: 20px;
 }
+
 
 /* Estilo para as mensagens de erro */
 .text-danger {

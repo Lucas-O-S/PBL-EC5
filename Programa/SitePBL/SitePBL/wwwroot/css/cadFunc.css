@@ -105,6 +105,22 @@ input[type="file"] {
     border-radius: 25px; /* Bordas arredondadas para um visual moderno */
     transition: background-color 0.3s, transform 0.2s; /* Animação para hover */
 }
+.custom-btn {
+    bottom: 350px;
+    width: auto; /* Permite que o botão se ajuste ao conteúdo */
+    height: auto; /* Ajusta a altura de acordo com o conteúdo */
+    padding: 10px 20px; /* Adiciona espaçamento interno */
+    color: #000000; /* Define a cor do texto */
+    background-color: #136c01; /* Adiciona um fundo para melhor contraste */
+    font-size: 16px; /* Ajusta o tamanho da fonte */
+    display: flex; /* Garante o alinhamento interno */
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    margin-bottom: 20px; /* Espaçamento inferior */
+    border-radius: 25px; /* Bordas arredondadas para um visual moderno */
+    transition: background-color 0.3s, transform 0.2s; /* Animação para hover */
+}
 
     .custom-button:hover {
         color: #072b00;
