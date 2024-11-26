@@ -20,24 +20,26 @@
                 <img src="~/img/Logo.png" class="logo" style="width: 600px" />
             </section>
 
+
             <!-- Campos de login e botão de cadastrar -->
             <section class="bottom-section">
                 <fieldset class="fieldset-login">
                     <h1>Login</h1>
+                    <span class="text-danger">@ViewBag.Erro</span>
+
                     <div class="input-group-sm mb-3 col">
                         <div class="flex-column">
                             <div class="form-group">
                                 <label for="loginUsuario" class="control-label">Login do Usuário</label>
-                                <input asp-for="loginUsuario" type="text" class="form-control" required placeholder="Login..." value="SA" />
+                                <input asp-for="loginUsuario" type="text" class="form-control" placeholder="Login..." value="SA" />
                                 <span asp-validation-for="loginUsuario" class="text-danger"></span>
                             </div>
                             <div class="form-group">
                                 <label for="senha" class="control-label">Senha</label>
-                                <input asp-for="senha" type="password" class="form-control" required placeholder="Senha..." value="123456" />
+                                <input asp-for="senha" type="password" class="form-control" placeholder="Senha..." value="123456" />
                                 <span asp-validation-for="senha" class="text-danger"></span>
                             </div>
                             <br />
-                            <span class="text-danger">@ViewBag.Erro</span>
                         </div>
                     </div>
                     <input name="operacao" value="@ViewBag.Operacao" hidden>
@@ -78,27 +80,31 @@
             <!-- Campos de cadastro -->
             <section class="right-section">
                 <fieldset class="fieldset-cadastro">
+                    <span class="text-danger">@ViewBag.Erro</span>
+                    <br>
+                    <span asp-validation-for="login" class="text-danger"></span>
+
                     <div class="input-group-sm mb-3 col">
                         <div class="row">
                             <div class="form-group">
                                 <label for="loginUsuario" class="control-label">Login do Usuário</label>
-                                <input asp-for="loginUsuario" type="text" class="form-control" required placeholder="Login..." />
+                                <input asp-for="loginUsuario" type="text" class="form-control" placeholder="Login..." />
                                 <span asp-validation-for="loginUsuario" class="text-danger"></span>
                             </div>
                             <div class="form-group">
                                 <label for="nomeUsuario" class="control-label">Nome do Usuário</label>
-                                <input asp-for="nomeUsuario" type="text" class="form-control" required placeholder="Nome..." />
+                                <input asp-for="nomeUsuario" type="text" class="form-control" placeholder="Nome..." />
                                 <span asp-validation-for="nomeUsuario" class="text-danger"></span>
                             </div>
                             <div class="form-group">
                                 <label for="nomeEmpresa" class="control-label">Nome da Empresa</label>
-                                <input asp-for="nomeEmpresa" type="text" class="form-control" required placeholder="Empresa..." />
+                                <input asp-for="nomeEmpresa" type="text" class="form-control" placeholder="Empresa..." />
                                 <span asp-validation-for="nomeEmpresa" class="text-danger"></span>
                                 <br />
                             </div>
                             <div class="form-group">
                                 <label for="senha" class="control-label">Senha</label>
-                                <input asp-for="senha" type="password" class="form-control" required placeholder="Senha..." />
+                                <input asp-for="senha" type="password" class="form-control" placeholder="Senha..." />
                                 <span asp-validation-for="senha" class="text-danger"></span>
                             </div>
                         </div>

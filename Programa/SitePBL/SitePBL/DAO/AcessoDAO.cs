@@ -1,6 +1,7 @@
 ﻿using SitePBL.Models;
 using System.Data;
 using System.Data.SqlClient;
+using System.Globalization;
 
 namespace SitePBL.DAO
 {
@@ -83,12 +84,12 @@ namespace SitePBL.DAO
             }
         }
 
-        public int VerificarLogin(string loginUsuario)
+        public int VerificarLogin(string loginUsuario, string senha)
         {
             SqlParameter[] sp = new SqlParameter[]
             {
                 new SqlParameter("login_Usuario", loginUsuario),
-                new SqlParameter("senha", loginUsuario)
+                new SqlParameter("senha", senha)
 
             };
             DataTable dt = HelperSqlDAO.ExecutaProcSelect("sp_login_acesso", sp);

@@ -30,9 +30,13 @@ namespace SitePBL.Controllers
 
                 if (string.IsNullOrEmpty(acesso.loginUsuario))
                     ModelState.AddModelError("loginUsuario", "Campo obrigatório! Preencha o login!");
-                if (dao.VerificarLogin(acesso.loginUsuario) > 0)
-                    ModelState.AddModelError("login", "Este login já existe! Tente outro.");
 
+                if (!string.IsNullOrEmpty(acesso.senha) && !string.IsNullOrEmpty(acesso.loginUsuario))
+                {
+                    if (!dao.Login(acesso.loginUsuario, acesso.senha))
+                        ModelState.AddModelError("login", "Este login já existe! Tente outro.");
+                }
+                
                 if (string.IsNullOrEmpty(acesso.nomeEmpresa))
                     ModelState.AddModelError("nomeEmpresa", "Campo obrigatório! Preencha o nome da empresa!");
 
@@ -41,18 +45,10 @@ namespace SitePBL.Controllers
             }
             else
             {
-
-                if (dao.Login(acesso.loginUsuario, acesso.senha))
-                {
-                    if (string.IsNullOrEmpty(acesso.loginUsuario))
-                        ModelState.AddModelError("loginUsuario", "Campo obrigatório! Preencha o login!");
-                    if (string.IsNullOrEmpty(acesso.senha))
-                        ModelState.AddModelError("senha", "Campo obrigatório! Preencha a senha!");
-                }
-                else
-                {
-                    ModelState.AddModelError("loginE", "Login ou senha incorretos! Tente novamente.");
-                }
+                if (string.IsNullOrEmpty(acesso.loginUsuario))
+                    ModelState.AddModelError("loginUsuario", "Campo obrigatório! Preencha o login!");
+                if (string.IsNullOrEmpty(acesso.senha))
+                    ModelState.AddModelError("senha", "Campo obrigatório! Preencha a senha!");            
             }
         }
 
@@ -76,7 +72,7 @@ namespace SitePBL.Controllers
             ValidarDados(model, operacao);
             if (operacao == "A") // Operação de login
             {
-                if (a.Login(model.loginUsuario, model.senha))
+                if (ModelState.IsValid && a.Login(model.loginUsuario, model.senha))
                 {
                     HttpContext.Session.SetString("Logado", "true");
                     // Redireciona para a tela de transição
@@ -91,10 +87,9 @@ namespace SitePBL.Controllers
             }
             else // Operação de cadastro
             {
-                a.Insert(model);
                 if (ModelState.IsValid)
                 {
-                    HttpContext.Session.SetString("Logado", "true");
+                    a.Insert(model);
                     ViewBag.Operacao = "A";
                     // Redireciona para a tela de transição
                     return View("form");
