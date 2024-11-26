@@ -87,10 +87,10 @@
         const novoChart = new Chart(novoCtx, {
         type: 'bar', 
             data: {
-            labels: labels01, 
-                datasets: [{
+            labels: dataCounts01,
+            datasets: [{
                     label: 'Condição do sensor',
-                    data: dataCounts01,
+                    data: labels01,
                     backgroundColor: [
                         'rgba(0, 0, 0, 0.8)',
                         'rgba(0, 0, 255, 0.6)'
