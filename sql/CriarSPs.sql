@@ -342,7 +342,7 @@ begin
 	from manutencao as m
 	inner join sensor as s on s.id = m.fk_sensor_id
 	inner join empresa as e on e.id = s.fk_empresa_id
-	group by e.nome,m.estado, s.descricao
+	group by e.nome, e.id
 
 end
 go
