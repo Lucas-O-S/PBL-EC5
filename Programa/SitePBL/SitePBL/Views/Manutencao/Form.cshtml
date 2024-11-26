@@ -79,7 +79,7 @@
                             <option value="-1">--Selecione--</option>
                             @foreach (var E in ViewBag.estados)
                             {
-                                <option value="@((int)E)E">@E</option>
+                                <option value="@((int)E)">@E</option>
                             }
                         </select>
                         <span asp-validation-for="estadoId" class="text-danger"></span>
