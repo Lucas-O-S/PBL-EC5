@@ -116,13 +116,16 @@ namespace SitePBL.Controllers
         {
             int id = 0;
             List<ManutencaoViewModel> empresas = new List<ManutencaoViewModel>();
+            List<ManutencaoViewModel> empresas01 = new List<ManutencaoViewModel>();
             var dao = new ManutencaoDAO(); 
 
             // Chama o método para obter as quantidades de empresas
             empresas = dao.ObterQuantidadesEmpresas(id, empresas);
+            empresas01 = dao.ObterSensoresManutencao(id, empresas01);
 
             // Converte os dados para JSON para usar no JavaScript
             ViewBag.EmpresasData = Newtonsoft.Json.JsonConvert.SerializeObject(empresas);
+            ViewBag.ManutencaoData = Newtonsoft.Json.JsonConvert.SerializeObject(empresas01);
 
             return View();
         }

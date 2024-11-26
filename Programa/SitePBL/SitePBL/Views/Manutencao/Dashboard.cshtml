@@ -11,6 +11,10 @@
         <canvas id="manutencaoChart"></canvas>
     </div>
 
+</section>
+
+<section class="sensor-table-section">
+    
     <!-- Container do segundo gráfico -->
     <div>
         <h1>Sensores em manutenção</h1>
@@ -19,12 +23,17 @@
         <canvas id="manutencaoChart01"></canvas>
     </div>
 
+    <div>
+        <h1>2 -> Completo</h1>
+        <h1>1 -> Incompleto</h1>
+        <h1>0 -> Não iniciado</h1>
+    </div>
+
+</section>
     <!--Seção de botões-->
     <div class="button-container">
         <a class="button" href="/Home/Index">Voltar</a>
     </div>
-
-</section>
 
     <script>
         // Dados recebidos da ViewBag
@@ -36,7 +45,7 @@
         console.log(empresasData);
 
 
-        // Aqui, você pode configurar o gráfico usando Chart.js
+        // Modelo do gráfico
         const ctx = document.getElementById('manutencaoChart').getContext('2d');
         const chart = new Chart(ctx, {
         type: 'bar', // Gráfico de colunas
@@ -64,28 +73,31 @@
         }
     });
 
-        // Dados para o segundo gráfico
-        const Labels01 = ["Rótulo 1", "Rótulo 2", "Rótulo 3"]; 
-        const novoDataCounts = [10, 20, 30]; 
+        // Dados recebidos da ViewBag
+        const ManutencaoData = @Html.Raw(ViewBag.ManutencaoData);
+
+        // Extração dos dados para o gráfico
+        const labels01 = ManutencaoData.map(item => item.estadoNome); // Usando o nome das empresas como rótulos
+        const dataCounts01 = ManutencaoData.map(item => item.descricaoSensor); // Usando o total como valores
+        console.log(ManutencaoData);
+
 
         // Configuração do segundo gráfico usando Chart.js
         const novoCtx = document.getElementById('manutencaoChart01').getContext('2d');
         const novoChart = new Chart(novoCtx, {
         type: 'bar', 
             data: {
-            labels: Labels01, 
+            labels: labels01, 
                 datasets: [{
-                    label: 'Seu Label Aqui', 
-                    data: novoDataCounts, 
+                    label: 'Condição do sensor',
+                    data: dataCounts01,
                     backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)', 
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(75, 192, 192, 0.2)'
+                        'rgba(0, 0, 0, 0.8)',
+                        'rgba(0, 0, 255, 0.6)'
                     ],
                     borderColor: [
-                        'rgba(255, 99, 132, 1)', 
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(75, 192, 192, 1)'
+                        'rgba(0, 0, 0, 0.8)',
+                        'rgba(0, 0, 255, 0.6)'
                     ],
                     borderWidth: 1
                 }]
