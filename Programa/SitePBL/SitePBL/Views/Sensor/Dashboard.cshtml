@@ -250,7 +250,6 @@
 
                     // Adiciona novos dados ao gráfico
                     temperatureData.push(newTemperature);
-                    const lastTemperature = temperatureData[temperatureData.length - 1]; //Última temperatura
                     const calor = document.getElementById('Temp');
                     const Hot = parseFloat(calor.value);
 
@@ -270,58 +269,39 @@
                     const cincomais = mvValue * 1.05;
                     const cincomenos = mvValue * 0.95;
 
+                    //Verifica se o sistema liga ou desliga a luz do ESP-32
+                    let turn;
                     if (Hot <= cincomenos || Hot > cincomais) {
-                        const myHeaders = new Headers();
-                        myHeaders.append("Content-Type", "application/json");
-                        myHeaders.append("fiware-service", "smart");
-                        myHeaders.append("fiware-servicepath", "/");
-
-                        const raw = JSON.stringify({
-                            "on": {
-                                "type": "command",
-                                "value": ""
-                            }
-                        });
-
-                        const requestOptions = {
-                            method: "PATCH",
-                            headers: myHeaders,
-                            body: raw,
-                            redirect: "follow"
-                        };
-
-                        fetch("http://4.228.64.5:1026/v2/entities/urn:ngsi-ld:Lamp:03y/attrs/", requestOptions)
-                            .then((response) => response.text())
-                            .then((result) => console.log(result))
-                            .catch((error) => console.error(error));
+                        turn = "on";
+                    }
+                    else {
+                        turn = "off";
                     }
 
-                    else 
-                    {
-                        const myHeaders = new Headers();
-                        myHeaders.append("Content-Type", "application/json");
-                        myHeaders.append("fiware-service", "smart");
-                        myHeaders.append("fiware-servicepath", "/");
+                    //Função que manda informação para o ESP-32
+                    const myHeaders = new Headers();
+                    myHeaders.append("Content-Type", "application/json");
+                    myHeaders.append("fiware-service", "smart");
+                    myHeaders.append("fiware-servicepath", "/");
 
-                        const raw = JSON.stringify({
-                            "off": {
-                                "type": "command",
-                                "value": ""
-                            }
-                        });
+                    const raw = JSON.stringify({
+                        [turn]: {
+                            "type": "command",
+                            "value": ""
+                        }
+                    });
 
-                        const requestOptions = {
-                            method: "PATCH",
-                            headers: myHeaders,
-                            body: raw,
-                            redirect: "follow"
-                        };
+                    const requestOptions = {
+                        method: "PATCH",
+                        headers: myHeaders,
+                        body: raw,
+                        redirect: "follow"
+                    };
 
-                        fetch("http://4.228.64.5:1026/v2/entities/urn:ngsi-ld:Lamp:03y/attrs/", requestOptions)
-                            .then((response) => response.text())
-                            .then((result) => console.log(result))
-                            .catch((error) => console.error(error));
-                    }
+                    fetch("http://4.228.64.5:1026/v2/entities/urn:ngsi-ld:Lamp:03y/attrs/", requestOptions)
+                        .then((response) => response.text())
+                        .then((result) => console.log(result))
+                        .catch((error) => console.error(error));
 
                     // Atualiza o gráfico
                     dynamicChart.update();
