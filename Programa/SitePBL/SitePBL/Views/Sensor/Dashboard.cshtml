@@ -184,6 +184,37 @@
             }
         });
 
+        //Configuração do gráfico dos últimos 50 dados
+        const dynamicChart01 = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [
+                    {
+                        label: 'Temperatura (°C)',
+                        data: temperatureData,
+                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'MV (Valor de Medição)',
+                        data: [],
+                        borderColor: 'rgba(19, 108, 1, 1)',
+                        borderWidth: 1,
+                        borderDash: [5, 5],
+                        fill: false
+                    }
+                ]
+            },
+            options: {
+                scales: {
+                    x: { beginAtZero: true },
+                    y: { beginAtZero: true }
+                }
+            }
+        });
+
         // Controle de pausa/retomada
         let isPaused = false;
         const toggleButton = document.getElementById('toggleButton');
@@ -462,15 +493,11 @@
         // Função para buscar os dados e atualizar o gráfico
         async function atualizarGraficoComDados() {
             try {
-                // Faz a chamada AJAX para buscar os últimos 50 dados
                 const response = await fetch('/Sensor/PegarUltimosDados');
-
                 if (!response.ok) {
                     console.error('Erro ao buscar dados:', response.statusText);
                     return;
                 }
-
-                // Recebe os dados em formato JSON
                 const dados = await response.json();
 
                 // Limpa os arrays para atualizar com novos dados
@@ -480,13 +507,15 @@
 
                 // Preenche os arrays com os novos dados
                 dados.forEach((dado, index) => {
-                    labels.push(index + 1); // Índice ou qualquer valor que queira como label
-                    temperatureData.push(dado.temperatura || 0); // Supondo que o dado tem 'temperatura'
-                    MV.push(dado.mv || 0); // Supondo que o dado tem 'mv'
+                    labels.push(index + 1);
+                    temperatureData.push(dado.temperatura || 0);
+                    MV.push(dado.mv || 0);
                 });
 
-                // Atualiza o gráfico com os novos dados
-                dynamicChart.update();
+                // Atualiza os dados no gráfico
+                dynamicChart01.data.datasets[0].data = temperatureData;
+                dynamicChart01.data.datasets[1].data = MV;
+                dynamicChart01.update();
             } catch (error) {
                 console.error('Erro ao processar os dados:', error);
             }

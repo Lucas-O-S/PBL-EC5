@@ -120,20 +120,20 @@ namespace SitePBL.DAO
 		{
 			SqlParameter[] sql = new SqlParameter[]
 			{
-		new SqlParameter("id", id)
+		        new SqlParameter("id", id)
 			};
 
-			// Executa a stored procedure e obtém o resultado em uma DataTable
-			DataTable dt = HelperSqlDAO.ExecutaProcSelect("sp_quantidades_empresas", sql);
+            // Executa a SP que traz quantos sensores em manutenção as empresas tem
+            DataTable dt_empresas = HelperSqlDAO.ExecutaProcSelect("sp_quantidades_empresas", sql);
 
-			// Itera sobre as linhas retornadas pela DataTable
-			foreach (DataRow dr in dt.Rows)
+            // Itera sobre as linhas retornadas pela DataTable
+            foreach (DataRow dr in dt_empresas.Rows)
 			{
 				ManutencaoViewModel manutencao = new ManutencaoViewModel
 				{
 					nomeEmpresa = dr["nome"].ToString(), // Acessa o nome da empresa
 					qtdManutencao = Convert.ToInt32(dr["Total"]) // Acessa a quantidade (assumindo que a coluna se chama 'Total')
-				};
+                };
 
 				// Adiciona o objeto preenchido à lista
 				empresas.Add(manutencao);
@@ -142,7 +142,33 @@ namespace SitePBL.DAO
 			return empresas;
 		}
 
-	}
+        public List<ManutencaoViewModel> ObterSensoresManutencao(int id, List<ManutencaoViewModel> empresas)
+        {
+            SqlParameter[] sql = new SqlParameter[]
+            {
+                new SqlParameter("id", id)
+            };
+
+            // Executa a SP que traz o estado dos sensores
+            DataTable dt_sensor = HelperSqlDAO.ExecutaProcSelect("sp_estados_sensor", sql);
+
+            // Itera sobre as linhas retornadas pela DataTable
+            foreach (DataRow dr in dt_sensor.Rows)
+            {
+                ManutencaoViewModel manutencao = new ManutencaoViewModel
+                {
+                    descricaoSensor = dr["descricao"].ToString(), // Nome do sensor
+                    estadoNome = dr["estado"].ToString() // Estado do sensor
+                };
+
+                // Adiciona o objeto preenchido à lista
+                empresas.Add(manutencao);
+            }
+
+            return empresas;
+        }
+
+    }
 
 
 

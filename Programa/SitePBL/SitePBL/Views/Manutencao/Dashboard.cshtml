@@ -3,9 +3,20 @@
 <!-- Tabela de Manutenção -->
 <section class="manutencao-table-section">
 
-    <!-- Container do gráfico -->
+    <!-- Container do primeiro gráfico -->
+    <div>
+        <h1>Empresas em manutenção</h1>
+    </div>
     <div class="chart-container">
         <canvas id="manutencaoChart"></canvas>
+    </div>
+
+    <!-- Container do segundo gráfico -->
+    <div>
+        <h1>Sensores em manutenção</h1>
+    </div>
+    <div class="chart-container">
+        <canvas id="manutencaoChart01"></canvas>
     </div>
 
     <!--Seção de botões-->
@@ -20,14 +31,14 @@
         const empresasData = @Html.Raw(ViewBag.EmpresasData);
 
         // Extração dos dados para o gráfico
-    const labels = empresasData.map(item => item.nomeEmpresa); // Usando o nome das empresas como rótulos
-    const dataCounts = empresasData.map(item => item.qtdManutencao); // Usando o total como valores
+        const labels = empresasData.map(item => item.nomeEmpresa); // Usando o nome das empresas como rótulos
+        const dataCounts = empresasData.map(item => item.qtdManutencao); // Usando o total como valores
         console.log(empresasData);
 
 
         // Aqui, você pode configurar o gráfico usando Chart.js
-    const ctx = document.getElementById('manutencaoChart').getContext('2d');
-    const chart = new Chart(ctx, {
+        const ctx = document.getElementById('manutencaoChart').getContext('2d');
+        const chart = new Chart(ctx, {
         type: 'bar', // Gráfico de colunas
         data: {
             labels: labels, // Nomes das empresas
@@ -52,5 +63,39 @@
             }
         }
     });
+
+        // Dados para o segundo gráfico
+        const Labels01 = ["Rótulo 1", "Rótulo 2", "Rótulo 3"]; 
+        const novoDataCounts = [10, 20, 30]; 
+
+        // Configuração do segundo gráfico usando Chart.js
+        const novoCtx = document.getElementById('manutencaoChart01').getContext('2d');
+        const novoChart = new Chart(novoCtx, {
+        type: 'bar', 
+            data: {
+            labels: Labels01, 
+                datasets: [{
+                    label: 'Seu Label Aqui', 
+                    data: novoDataCounts, 
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)', 
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(75, 192, 192, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)', 
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(75, 192, 192, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    x: { beginAtZero: true },
+                    y: { beginAtZero: true }
+                }
+            }
+        });
 
     </script>

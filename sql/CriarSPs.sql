@@ -342,7 +342,20 @@ begin
 	from manutencao as m
 	inner join sensor as s on s.id = m.fk_sensor_id
 	inner join empresa as e on e.id = s.fk_empresa_id
-	group by e.nome
+	group by e.nome,m.estado, s.descricao
+
+end
+go
+----------------------------------------------------------
+create or alter procedure sp_estados_sensor(@id int)
+as 
+begin
+	
+	select m.estado,s.descricao
+	from manutencao as m
+	inner join sensor as s on s.id = m.fk_sensor_id
+	inner join empresa as e on e.id = s.fk_empresa_id
+	group by m.estado, s.descricao
 
 end
 go
