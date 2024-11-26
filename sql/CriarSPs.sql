@@ -114,7 +114,7 @@ GO
 create or alter procedure sp_update_sensor(
 	@id int,
 	@descricao varchar(500),
-	@fk_empresa_id int
+	@fk_empresa_id int,
 )
 as
 begin
