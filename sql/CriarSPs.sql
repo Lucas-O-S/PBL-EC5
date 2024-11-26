@@ -172,7 +172,7 @@ create or alter procedure sp_insert_acesso(
 as
 begin
 	declare @fk_empresa_id int
-	set @fk_empresa_id = (select empresa.id from empresa where 'Termo-Light' = empresa.nome)
+	set @fk_empresa_id = (select empresa.id from empresa where @nomeEmpresa = empresa.nome)
 	insert into Acesso(Nome_Usuario,login_Usuario ,senha,fk_empresa_id) values (@Nome_Usuario, @login_Usuario, @senha, @fk_empresa_id)
 end
 go

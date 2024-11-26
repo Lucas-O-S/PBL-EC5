@@ -73,7 +73,7 @@ namespace SitePBL.Controllers
         public IActionResult Enviar(AcessoViewModel model, string operacao)
         {
             AcessoDAO a = new AcessoDAO();
-
+            ValidarDados(model, operacao);
             if (operacao == "A") // Operação de login
             {
                 if (a.Login(model.loginUsuario, model.senha))
@@ -92,11 +92,12 @@ namespace SitePBL.Controllers
             else // Operação de cadastro
             {
                 a.Insert(model);
-                if (a.Login(model.nomeUsuario, model.senha))
+                if (ModelState.IsValid)
                 {
                     HttpContext.Session.SetString("Logado", "true");
+                    ViewBag.Operacao = "A";
                     // Redireciona para a tela de transição
-                    return View("Transicao");
+                    return View("form");
                 }
                 else
                 {
