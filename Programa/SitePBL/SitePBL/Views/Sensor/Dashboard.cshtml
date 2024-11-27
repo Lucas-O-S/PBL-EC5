@@ -71,8 +71,11 @@
 
                 <div class="controls">
 
-                    <label for="Temp">Temperatura (ºC): </label>
+                    <label for="Temp">Temperatura Final(ºC): </label>
                     <input type="text" id="Temp" class="form-control" readonly value="0.1" />
+
+                    <label for="Temp0">Temperatura Inicial(ºC): </label>
+                    <input type="text" id="Temp0" class="form-control" readonly />
 
                     <label for="Time">Tempo (S): </label>
                     <input type="text" id="Time" class="form-control" readonly value="0.1" />
@@ -127,8 +130,11 @@
 
             <div>
 
-                <label for="ConstantWin">Constante de ganho (K):</label>
-                <input type="text" id="ConstantWin" class="form-control" readonly />
+                @if (ViewBag.Malha == "A")
+                {
+                    <label for="ConstantWin">Constante de ganho (K):</label>
+                    <input type="text" id="ConstantWin" class="form-control" readonly />
+                }
 
                 <label for="ConstantTime">Constante de tempo (S):</label>
                 <input type="text" id="ConstantTime" class="form-control" readonly />
@@ -155,37 +161,6 @@
         const MV = [];
 
         const dynamicChart = new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: labels,
-                datasets: [
-                    {
-                        label: 'Temperatura (°C)',
-                        data: temperatureData,
-                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                        borderColor: 'rgba(255, 99, 132, 1)',
-                        borderWidth: 1
-                    },
-                    {
-                        label: 'MV (Valor de Medição)',
-                        data: [],
-                        borderColor: 'rgba(19, 108, 1, 1)',
-                        borderWidth: 1,
-                        borderDash: [5, 5],
-                        fill: false
-                    }
-                ]
-            },
-            options: {
-                scales: {
-                    x: { beginAtZero: true },
-                    y: { beginAtZero: true }
-                }
-            }
-        });
-
-        //Configuração do gráfico dos últimos 50 dados
-        const dynamicChart01 = new Chart(ctx, {
             type: 'line',
             data: {
                 labels: labels,
@@ -244,14 +219,30 @@
                     // Adiciona dados ao gráfico
                     temperatureData.push(temp);
                     labels.push(dataHora.toLocaleTimeString());
+
+                    // Atualiza a linha de MV no gráfico
+                    const mvInput = document.getElementById('mvInput');
+                    const mvValue = parseFloat(mvInput.value);
+                    if (!isNaN(mvValue)) {
+                        dynamicChart.data.datasets[1].data = Array(labels.length).fill(mvValue);
+                    }
+
+                    dynamicChart.data.datasets[0].data.push(temp);
+
+                    // Atualiza o gráfico
                     dynamicChart.update();
 
                     document.getElementById('Temp').value = temp.toFixed(2); // Exibe o setpoint
-                    // Exibe o último tempo
-                    document.getElementById('Time').value = timeInSeconds.toFixed(1);
+                    
+                    // Pega temperatura inicial
+                    if (!document.getElementById('Temp0').value) 
+                    { document.getElementById('Temp0').value = temp.toFixed(2); }
+                    
+                    document.getElementById('Time').value = timeInSeconds.toFixed(1);// Exibe o último tempo
                 } else {
                     console.error('Erro ao buscar os dados do Fiware:', response.statusText);
                 }
+
             } catch (error) {
                 console.error('Erro na requisição:', error);
             }
@@ -259,7 +250,6 @@
 
 
         let updateIntervalId; // Variável global para armazenar o ID do intervalo
-
         let timeInSeconds = 0; // Variável para controlar o tempo em segundos
 
         // Função para iniciar o intervalo de leitura
@@ -279,24 +269,16 @@
                     
                     const newTemperature = obterTemperatura('4.228.64.5', '03y');  // Chame a função passando o IP do servidor e o ID da lâmpada
 
-                    // Adiciona novos dados ao gráfico
-                    temperatureData.push(newTemperature);
-                    const calor = document.getElementById('Temp');
-                    const Hot = parseFloat(calor.value);
-
                     // Incrementa o contador de tempo em segundos
                     timeInSeconds += intervalTime / 1000; // Converte milissegundos para segundos
                     labels.push(`${timeInSeconds.toFixed(1)}s`); // Adiciona o tempo em segundos ao eixo X
 
+                    const calor = document.getElementById('Temp');
+                    const Hot = parseFloat(calor.value);
 
-
-                    // Atualiza a linha de MV no gráfico
+                    // Calculo para acender a luz
                     const mvInput = document.getElementById('mvInput');
                     const mvValue = parseFloat(mvInput.value);
-                    if (!isNaN(mvValue)) {
-                        dynamicChart.data.datasets[1].data.push(mvValue);
-                    }
-
                     const cincomais = mvValue * 1.05;
                     const cincomenos = mvValue * 0.95;
 
@@ -333,9 +315,6 @@
                         .then((response) => response.text())
                         .then((result) => console.log(result))
                         .catch((error) => console.error(error));
-
-                    // Atualiza o gráfico
-                    dynamicChart.update();
                 }
             }, intervalTime);
         }
@@ -346,15 +325,6 @@
         // Inicializa o intervalo ao carregar a página
         startTemperatureUpdate();
 
-        // Atualização da linha de MV
-        const mvInput = document.getElementById('mvInput');
-        mvInput.addEventListener('change', () => {
-            mvValue = parseFloat(mvInput.value);
-            if (!isNaN(mvValue)) {
-                dynamicChart.data.datasets[1].data = Array(labels.length).fill(mvValue);
-                dynamicChart.update();
-            }
-        });
 
         //Analisa se existe algum erro
         function validarCampo(inputId, errorId, mensagemErro) {
@@ -399,19 +369,17 @@
             // Insira o restante do cálculo aqui
         });
 
-
         // Cálculo do botão "Calcular"
         document.getElementById('calculateErrorButton').addEventListener('click', () => {
-            const setpoint = parseFloat(document.getElementById('mvInput').value);
+            const setpoint = parseFloat(document.getElementById('mvInput').value); // Obtém o setpoint
             if (!isNaN(setpoint)) {
                 
                 //Evita dar erro para o sistema aberto
                 let malhaValue = document.getElementById('malhaValue').innerText;
 
                 const ganhoK = calcularGanho(); // Obtém o ganho K
-                const setpoint = parseFloat(document.getElementById('mvInput').value); // Obtém o setpoint
                 const lastTemperature = temperatureData[temperatureData.length - 1]; //Última temperatura
-                const initialValue = temperatureData[0]; //Temperatura inicial
+                const initialValue = parseFloat(document.getElementById('Temp0').value);; //Temperatura inicial
                 const erroEstacionarioResult = setpoint - lastTemperature; //Diferença entre o setpoint e a última temperatura
                 const targetValue = initialValue + 0.632 * (lastTemperature - initialValue); //Constante de tempo (Tau)
 
@@ -431,7 +399,7 @@
                     const ki = parseFloat(document.getElementById('kiInput').value); // Obtém o Ki
 
                     //Calcula o Erro estacionário (Fórmula)
-                    if (ganhoK !== "" && !isNaN(kp) && !isNaN(setpoint)) {
+                    if (!isNaN(ganhoK) && !isNaN(kp) && !isNaN(setpoint)) {
                         const erroEstacionarioReal = (setpoint - lastTemperature) / (1 + kp * ganhoK + ki * 3);
                         
                         //Ilustra na tela os erros calculados
@@ -450,7 +418,7 @@
 
         //Formula que calcula o ganho
         function calcularGanho() {
-            const initialTemperature = temperatureData[0]; // Primeiro valor da temperatura
+            const initialTemperature = parseFloat(document.getElementById('Temp0').value); // Primeiro valor da temperatura
             const finalTemperature = temperatureData[temperatureData.length - 1]; // Último valor da temperatura
             const mvInput = parseFloat(document.getElementById('mvInput').value); // MV atual
 
@@ -513,9 +481,9 @@
                 });
 
                 // Atualiza os dados no gráfico
-                dynamicChart01.data.datasets[0].data = temperatureData;
-                dynamicChart01.data.datasets[1].data = MV;
-                dynamicChart01.update();
+                dynamicChart.data.datasets[0].data = temperatureData;
+                dynamicChart.data.datasets[1].data = MV;
+                dynamicChart.update();
             } catch (error) {
                 console.error('Erro ao processar os dados:', error);
             }
