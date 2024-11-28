@@ -79,12 +79,21 @@ namespace SitePBL.Controllers
             }
         }
 
+        /// <summary>
+        /// Troca a malha entre aberta e fechada
+        /// </summary>
+        /// <param name="malha">A malha selecionada</param>
+        /// <returns>A dashboard da malha</returns>
         public IActionResult TrocaMalha(string malha)
         {
             ViewBag.Malha = malha;
             return View("Dashboard", null);
         }
 
+        /// <summary>
+        /// Devolve os ultimos 50 dados do sensor
+        /// </summary>
+        /// <returns></returns>
         public async Task<IActionResult> PegarUltimosDados()
         {
             // Defina as variáveis necessárias

@@ -5,6 +5,9 @@
     /// </summary>
     public abstract class PadraoViewModel
     {
+        /// <summary>
+        /// ID generico
+        /// </summary>
         public virtual int? id { get; set; }
 
     }

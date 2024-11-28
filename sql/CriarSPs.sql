@@ -114,11 +114,11 @@ GO
 create or alter procedure sp_update_sensor(
 	@id int,
 	@descricao varchar(500),
-	@fk_empresa_id int,
+	@fk_empresa_id int
 )
 as
 begin
-	update Sensor set descricao = @descricao, fk_empresa_id =@fk_empresa_id where id = @id
+	update Sensor set descricao = @descricao, fk_empresa_id = @fk_empresa_id where id = @id
 
 end
 go

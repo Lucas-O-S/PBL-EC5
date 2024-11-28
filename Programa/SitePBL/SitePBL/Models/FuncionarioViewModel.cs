@@ -15,6 +15,9 @@
 		/// </summary>
 		public string cargo { get; set;}
 
+		/// <summary>
+		/// Data da Contratação
+		/// </summary>
 		public DateTime dataContratacao { get; set;}
 
 

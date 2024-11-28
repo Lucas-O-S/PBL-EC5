@@ -80,6 +80,13 @@ namespace SitePBL.DAO
             return teste;
         }
 
+        /// <summary>
+        /// Busca avançada de Sensores
+        /// </summary>
+        /// <param name="descricao">descrição do sensor</param>
+        /// <param name="empresa">nome da empresa</param>
+        /// <param name="tipo">tipo de pesquisa avançada</param>
+        /// <returns>Lista de Sensores</returns>
         public List<SensorViewModel> BuscaAvancada(string descricao, string empresa,int tipo)
         {
             SqlParameter[] sp = new SqlParameter[]
