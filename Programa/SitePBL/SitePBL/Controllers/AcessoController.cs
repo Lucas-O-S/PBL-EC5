@@ -45,10 +45,10 @@ namespace SitePBL.Controllers
                     ModelState.AddModelError("senha", "Campo obrigatório! Preencha a senha!");
 
                 //Se não estiverem vazios verificara se existe o login 
-                if (!string.IsNullOrEmpty(acesso.senha) && !string.IsNullOrEmpty(acesso.loginUsuario))
+                if (!string.IsNullOrEmpty(acesso.loginUsuario))
                 {
-                    if (!dao.Login(acesso.loginUsuario, acesso.senha))
-                        ModelState.AddModelError("login", "Este login já existe! Tente outro.");
+                    if (dao.RepeticaoLogin(acesso.loginUsuario))
+                        ModelState.AddModelError("loginUsuario", "Este login já existe! Tente outro.");
                 }
                 
        

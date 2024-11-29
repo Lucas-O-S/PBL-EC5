@@ -90,6 +90,26 @@ namespace SitePBL.DAO
             }
         }
 
+        public bool RepeticaoLogin(string loginUsuario)
+        {
+            var parametros = new SqlParameter[]
+            {
+                new SqlParameter("login_Usuario", loginUsuario)
+             };
+            string sql = "sp_verificar_login_acesso";
 
+            DataTable tabela = HelperSqlDAO.ExecutaProcSelect(sql, parametros);
+
+            if (tabela.Rows.Count == 0)
+            {
+                return false;
+            }
+            else
+            {
+                return Convert.ToString(tabela.Rows[0]["login_Usuario"]) == loginUsuario;
+            }
+
+
+        }
     }
 }
