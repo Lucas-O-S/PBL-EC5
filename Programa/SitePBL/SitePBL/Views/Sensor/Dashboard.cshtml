@@ -19,9 +19,9 @@
             <section class="controls-section">
 
                 <div class="controls">
-                    
+
                     <div class="form-group">
-                        
+
                         @if (ViewBag.Malha == null || ViewBag.Malha == "F")
                         {
                             <label for="mvInput">SetPoint (ºC):</label>
@@ -37,7 +37,7 @@
                     <!-- Use um elemento escondido para armazenar o valor da ViewBag -->
                     <div id="malhaValue" style="display:none;">@ViewBag.Malha</div>
 
-                    
+
                     @if (ViewBag.Malha == null || ViewBag.Malha == "F")
                     {
                         <div class="form-group">
@@ -47,7 +47,7 @@
                         </div>
                         <div class="form-group">
                             <label for="kiInput">Ki:</label>
-                            <input type="number" id="kiInput" class="form-control" step="0.1" value="0"/>
+                            <input type="number" id="kiInput" class="form-control" step="0.1" value="0" />
                             <span id="kiError" class="text-danger"></span>
                         </div>
                         <div class="form-group">
@@ -95,16 +95,16 @@
                     </div>
                 </form>
 
-                    <!--Seção de botões-->
-                    <div class="button-container">
-                        <button id="toggleButton" class="button">Pausar</button>
-                        <button id="calculateErrorButton" class="button">Calcular</button>
-                        <button id="limparDadosBtn" class="button">Limpar Dados do Gráfico</button>
-                        <button id="atualizarGrafico" class="button">Atualizar Gráfico com os Últimos 50 Dados</button>
+                <!--Seção de botões-->
+                <div class="button-container">
+                    <button id="toggleButton" class="button">Pausar</button>
+                    <button id="calculateErrorButton" class="button">Calcular</button>
+                    <button id="limparDadosBtn" class="button">Limpar Dados do Gráfico</button>
+                    <button id="atualizarGrafico" class="button">Atualizar Gráfico com os Últimos 50 Dados</button>
 
-                        <a class="button" href="/Home/Index">Voltar</a>
+                    <a class="button" href="/Home/Index">Voltar</a>
 
-                    </div>
+                </div>
 
             </section>
 
@@ -233,11 +233,10 @@
                     dynamicChart.update();
 
                     document.getElementById('Temp').value = temp.toFixed(2); // Exibe o setpoint
-                    
+
                     // Pega temperatura inicial
-                    if (!document.getElementById('Temp0').value) 
-                    { document.getElementById('Temp0').value = temp.toFixed(2); }
-                    
+                    if (!document.getElementById('Temp0').value) { document.getElementById('Temp0').value = temp.toFixed(2); }
+
                     document.getElementById('Time').value = timeInSeconds.toFixed(1);// Exibe o último tempo
                 } else {
                     console.error('Erro ao buscar os dados do Fiware:', response.statusText);
@@ -266,7 +265,7 @@
             // Define um novo intervalo de leitura
             updateIntervalId = setInterval(() => {
                 if (!isPaused) {
-                    
+
                     const newTemperature = obterTemperatura('4.228.64.5', '03y');  // Chame a função passando o IP do servidor e o ID da lâmpada
 
                     // Incrementa o contador de tempo em segundos
@@ -342,7 +341,7 @@
         }
 
         document.getElementById('calculateErrorButton').addEventListener('click', () => {
-            
+
             let malhaValue = document.getElementById('malhaValue').innerText;
 
             if (malhaValue == "" || malhaValue == "F") {
@@ -356,10 +355,9 @@
                     return; // Interrompe o cálculo se algum campo for inválido
                 }
             }
-            else 
-            {
+            else {
                 const isMvValid = validarCampo('mvInput', 'mvError', 'O valor de MV é obrigatório e deve ser maior que zero.');
-                
+
                 if (!isMvValid) {
                     return; // Interrompe o cálculo se algum campo for inválido
                 }
@@ -373,7 +371,7 @@
         document.getElementById('calculateErrorButton').addEventListener('click', () => {
             const setpoint = parseFloat(document.getElementById('mvInput').value); // Obtém o setpoint
             if (!isNaN(setpoint)) {
-                
+
                 //Evita dar erro para o sistema aberto
                 let malhaValue = document.getElementById('malhaValue').innerText;
 
@@ -401,7 +399,7 @@
                     //Calcula o Erro estacionário (Fórmula)
                     if (!isNaN(ganhoK) && !isNaN(kp) && !isNaN(setpoint)) {
                         const erroEstacionarioReal = (setpoint - lastTemperature) / (1 + kp * ganhoK + ki * 3);
-                        
+
                         //Ilustra na tela os erros calculados
                         document.getElementById('errorExpect').value = erroEstacionarioReal.toFixed(2);
                         document.getElementById('errorResult').value = erroEstacionarioResult.toFixed(2); //Erro estacionário (Realidade)
@@ -410,8 +408,9 @@
                     }
 
                 }
-                
-                document.getElementById('ConstantWin').value = ganhoK.toFixed(2); //Envia a constante de ganho
+                if (malhaValue == "A") { 
+                    document.getElementById('ConstantWin').value = ganhoK.toFixed(2); //Envia a constante de ganho
+                }
                 document.getElementById('ConstantTime').value = timeConstant.toFixed(2); //Envia a constante de tempo
             }
         });
@@ -426,7 +425,7 @@
 
                 // Calcula o ganho
                 const ganhoK = (finalTemperature - initialTemperature) / mvInput;
-                
+
                 return ganhoK; // Retorna o ganho
             } else {
                 console.error('Não foi possível calcular o ganho. Verifique os valores fornecidos.');
@@ -437,7 +436,7 @@
         // Função para limpar os dados do gráfico com confirmação
         function limparDados() {
             const confirmacao = confirm('Tem certeza de que deseja limpar todos os dados do gráfico? ' +
-                                        'Pode haver perca de dados não salvos');
+                'Pode haver perca de dados não salvos');
 
             if (confirmacao) {
                 // Limpa os dados dos datasets e rótulos do gráfico
