@@ -17,32 +17,44 @@ namespace SitePBL.Controllers
             ExigeAutenticacao = false;
         }
 
+        /// <summary>
+        /// Validação de dados ao criar login ou utiliza-lo
+        /// </summary>
+        /// <param name="acesso"></param>
+        /// <param name="operacao"></param>
         protected override void ValidarDados(AcessoViewModel acesso, string operacao)
         {
+            //Chama a versão base
             base.ValidarDados(acesso, operacao);
             AcessoDAO dao = new AcessoDAO();
 
+            //Se for Cadastro
             if (operacao == "I")
             {
-
+                //Verificação de valores vazios
                 if (string.IsNullOrEmpty(acesso.nomeUsuario))
                     ModelState.AddModelError("nomeUsuario", "Campo obrigatório! Preencha o nome!");
 
                 if (string.IsNullOrEmpty(acesso.loginUsuario))
                     ModelState.AddModelError("loginUsuario", "Campo obrigatório! Preencha o login!");
 
-                if (!string.IsNullOrEmpty(acesso.senha) && !string.IsNullOrEmpty(acesso.loginUsuario))
-                {
-                    if (!dao.Login(acesso.loginUsuario, acesso.senha))
-                        ModelState.AddModelError("login", "Este login já existe! Tente outro.");
-                }
-                
                 if (string.IsNullOrEmpty(acesso.nomeEmpresa))
                     ModelState.AddModelError("nomeEmpresa", "Campo obrigatório! Preencha o nome da empresa!");
 
                 if (string.IsNullOrEmpty(acesso.senha))
                     ModelState.AddModelError("senha", "Campo obrigatório! Preencha a senha!");
+
+                //Se não estiverem vazios verificara se existe o login 
+                if (!string.IsNullOrEmpty(acesso.loginUsuario))
+                {
+                    if (dao.RepeticaoLogin(acesso.loginUsuario))
+                        ModelState.AddModelError("loginUsuario", "Este login já existe! Tente outro.");
+                }
+                
+       
             }
+            
+            //Se for login verifica se os dados foram fornecidos
             else
             {
                 if (string.IsNullOrEmpty(acesso.loginUsuario))
@@ -52,6 +64,11 @@ namespace SitePBL.Controllers
             }
         }
 
+
+        /// <summary>
+        /// Manda para a form como um login
+        /// </summary>
+        /// <returns>Tela form na operação de Login</returns>
         public IActionResult Login()
         {
             ViewBag.Operacao = "A";
@@ -59,6 +76,10 @@ namespace SitePBL.Controllers
             return View(NomeViewForm, a);
         }
 
+        /// <summary>
+        /// Manda para a form como um cadastro
+        /// </summary>
+        /// <returns>Tela de cadastro com a operação de cadastro</returns>
         public IActionResult Cadastro()
         {
             ViewBag.Operacao = "I";
@@ -66,6 +87,12 @@ namespace SitePBL.Controllers
             return View(NomeViewForm, a);
         }
 
+        /// <summary>
+        /// Envia o resultado
+        /// </summary>
+        /// <param name="model">model de acesso</param>
+        /// <param name="operacao">operação usada, A = Login e I = Cadastro</param>
+        /// <returns>Resultado da operação</returns>
         public IActionResult Enviar(AcessoViewModel model, string operacao)
         {
             AcessoDAO a = new AcessoDAO();
@@ -103,7 +130,10 @@ namespace SitePBL.Controllers
             }
         }
 
-
+        /// <summary>
+        /// Finaliza a session
+        /// </summary>
+        /// <returns>Redireciona ao login</returns>
         public IActionResult LogOff()
         {
             HttpContext.Session.Clear();

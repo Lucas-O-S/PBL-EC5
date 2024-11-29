@@ -95,6 +95,11 @@ namespace SitePBL.Controllers
             }
         }
 
+        /// <summary>
+        /// Limpa a model state
+        /// </summary>
+        /// <param name="model">model generica</param>
+        /// <param name="operacao">operação realizada</param>
         protected virtual void ValidarDados(T model, string operacao) { ModelState.Clear(); }
 
         public virtual IActionResult Edit(int id)

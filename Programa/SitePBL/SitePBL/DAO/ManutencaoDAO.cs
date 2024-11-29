@@ -87,6 +87,16 @@ namespace SitePBL.DAO
             return manutencao;
         }
 
+        /// <summary>
+        /// Busca avançada de manutenções
+        /// </summary>
+        /// <param name="data_hora_inicial">Data e hora inicial</param>
+        /// <param name="data_hora_final">Data e Hora Final</param>
+        /// <param name="funcionario">Nome do funcionario</param>
+        /// <param name="empresa">Nome da empresa</param>
+        /// <param name="sensor">Descrição do sensor</param>
+        /// <param name="estado">Estado do senor</param>
+        /// <returns>Lista de Manutenções</returns>
 		public List<ManutencaoViewModel> BuscaAvancada(
             DateTime data_hora_inicial,
             DateTime data_hora_final,
@@ -116,15 +126,17 @@ namespace SitePBL.DAO
 			return lista;
 		}
 
+        /// <summary>
+        /// Retorna a quantidade de empresas
+        /// </summary>
+        /// <param name="id">id da empresa</param>
+        /// <param name="empresas">Lista de manutenção</param>
+        /// <returns>lista de manutenção</returns>
 		public List<ManutencaoViewModel> ObterQuantidadesEmpresas(int id, List<ManutencaoViewModel> empresas)
 		{
-			SqlParameter[] sql = new SqlParameter[]
-			{
-		        new SqlParameter("id", id)
-			};
 
             // Executa a SP que traz quantos sensores em manutenção as empresas tem
-            DataTable dt_empresas = HelperSqlDAO.ExecutaProcSelect("sp_quantidades_empresas", sql);
+            DataTable dt_empresas = HelperSqlDAO.ExecutaProcSelect("sp_quantidades_empresas", HelperSqlDAO.CriarParametros(id));
 
             // Itera sobre as linhas retornadas pela DataTable
             foreach (DataRow dr in dt_empresas.Rows)
@@ -142,15 +154,18 @@ namespace SitePBL.DAO
 			return empresas;
 		}
 
+        /// <summary>
+        /// Lista os sensores da manutenção
+        /// </summary>
+        /// <param name="id">Id</param>
+        /// <param name="empresas">Nome da empresa</param>
+        /// <returns>Lista de manutenções</returns>
         public List<ManutencaoViewModel> ObterSensoresManutencao(int id, List<ManutencaoViewModel> empresas)
         {
-            SqlParameter[] sql = new SqlParameter[]
-            {
-                new SqlParameter("id", id)
-            };
+
 
             // Executa a SP que traz o estado dos sensores
-            DataTable dt_sensor = HelperSqlDAO.ExecutaProcSelect("sp_estados_sensor", sql);
+            DataTable dt_sensor = HelperSqlDAO.ExecutaProcSelect("sp_estados_sensor", HelperSqlDAO.CriarParametros(id));
 
             // Itera sobre as linhas retornadas pela DataTable
             foreach (DataRow dr in dt_sensor.Rows)

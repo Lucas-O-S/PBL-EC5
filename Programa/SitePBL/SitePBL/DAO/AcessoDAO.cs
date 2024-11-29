@@ -63,6 +63,12 @@ namespace SitePBL.DAO
             return acesso;
         }
 
+        /// <summary>
+        /// Verifica o Login, para isso recebe o login e a senha e devolve se ele existe ou não
+        /// </summary>
+        /// <param name="loginUsuario">Nome do Login</param>
+        /// <param name="senha">Senha do login</param>
+        /// <returns>Verdadeiro, caso exista um login e senha existentes no banco de dados ou falso se não ouver resultado ou se não houver correpondencia do login</returns>
         public bool Login(string loginUsuario, string senha)
         {
             var parametros = new SqlParameter[]
@@ -84,17 +90,26 @@ namespace SitePBL.DAO
             }
         }
 
-        public int VerificarLogin(string loginUsuario, string senha)
+        public bool RepeticaoLogin(string loginUsuario)
         {
-            SqlParameter[] sp = new SqlParameter[]
+            var parametros = new SqlParameter[]
             {
-                new SqlParameter("login_Usuario", loginUsuario),
-                new SqlParameter("senha", senha)
+                new SqlParameter("login_Usuario", loginUsuario)
+             };
+            string sql = "sp_verificar_login_acesso";
 
-            };
-            DataTable dt = HelperSqlDAO.ExecutaProcSelect("sp_login_acesso", sp);
+            DataTable tabela = HelperSqlDAO.ExecutaProcSelect(sql, parametros);
 
-           return dt.Rows.Count;
+            if (tabela.Rows.Count == 0)
+            {
+                return false;
+            }
+            else
+            {
+                return Convert.ToString(tabela.Rows[0]["login_Usuario"]) == loginUsuario;
+            }
+
+
         }
     }
 }

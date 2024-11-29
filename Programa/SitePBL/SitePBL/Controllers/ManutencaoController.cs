@@ -29,8 +29,12 @@ namespace SitePBL.Controllers
 
         }
 
+        /// <summary>
+        /// Adiciona uma viewbag a index
+        /// </summary>
         protected override void AdicionarViewbagsIndex()
         {
+            //Transforma um enumerador em uma lista
             ViewBag.estados = Enum.GetValues(typeof(ManutencaoDAO.estados)).Cast<ManutencaoDAO.estados>().ToList();
         }
 

@@ -114,11 +114,11 @@ GO
 create or alter procedure sp_update_sensor(
 	@id int,
 	@descricao varchar(500),
-	@fk_empresa_id int,
+	@fk_empresa_id int
 )
 as
 begin
-	update Sensor set descricao = @descricao, fk_empresa_id =@fk_empresa_id where id = @id
+	update Sensor set descricao = @descricao, fk_empresa_id = @fk_empresa_id where id = @id
 
 end
 go
@@ -188,12 +188,11 @@ begin
 
 	select * 
 	from Acesso 
-	where @login_Usuario = login_Usuario and @senha = Senha
+	where @login_Usuario = login_Usuario COLLATE SQL_Latin1_General_CP1_CS_AS and @senha = Senha COLLATE SQL_Latin1_General_CP1_CS_AS;
 	
 
 end
 go
-
 ---------------------------------------------------------------
 
 create or alter procedure sp_update_acesso(
@@ -205,21 +204,21 @@ create or alter procedure sp_update_acesso(
 	)
 as
 begin
-	update acesso set Nome_Usuario = @Nome_Usuario, fk_empresa_id = @idEmpresa,  senha = @senha, @login_Usuario = @login_Usuario where id = @id
+	update acesso set Nome_Usuario = @Nome_Usuario, fk_empresa_id = @idEmpresa,  senha = @senha, @login_Usuario = @login_Usuario where id = @id;
 end
 go
 
 -----------------------------------------------------------------
 
-create or alter procedure sp_verificar_login(
+create or alter procedure sp_verificar_login_acesso(
 	@login_Usuario varchar(500)
 )
 as
 begin
-	select COUNT(login_Usuario) as cont from acesso where login_Usuario = @login_Usuario
+	select login_Usuario from acesso where login_Usuario = @login_Usuario COLLATE SQL_Latin1_General_CP1_CS_AS;
+	--O Collate torna case sensitive
 end
 go
-
 ---------------------------------------------------------
 
 -----SPs Funcionario

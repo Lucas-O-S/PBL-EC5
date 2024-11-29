@@ -39,6 +39,10 @@ namespace SitePBL.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
+        /// <summary>
+        /// Verifica se hpa login antes de iniciar
+        /// </summary>
+        /// <param name="context"></param>
         public override void OnActionExecuting(ActionExecutingContext context)
         {
             if (!HelperController.VerificaUserLogado(HttpContext.Session))
